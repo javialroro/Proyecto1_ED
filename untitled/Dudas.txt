@@ -1,0 +1,1 @@
+1. AL validar los diferentes campos de los clientes se debe seguir un cierto patron? ej. que los codigos sean solo numeros, prioridad sea solo numeros.

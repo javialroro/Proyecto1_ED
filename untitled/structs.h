@@ -16,7 +16,7 @@ struct NodoArticulo;
 struct ListaArticulos;
 
 struct Cliente{
-    int codigo;
+    string codigo;
     string nombre;
     int prioridad;
 
@@ -24,6 +24,20 @@ struct Cliente{
         codigo = _codigo;
         nombre = _nombre;
         prioridad = _prioridad;
+    }
+
+    Cliente(){
+        codigo = "";
+        nombre = "";
+        prioridad = 0;
+
+    }
+    void imprimir (){
+
+        cout << "Cliente #" << codigo << "\t";
+        cout << "Nombre: " << nombre << "\t";
+        cout << "Prioridad: " << prioridad << "\t" << endl;
+        cout <<"-----------------------------"<<endl<<endl;
     }
 };
 
@@ -43,6 +57,33 @@ struct listaClientes{
 
     listaClientes(){
         pn = un = NULL;
+    }
+
+    void insertarAlInicio (Cliente * cliente)
+    {
+        // si no hay elementos
+        if (pn == NULL)
+        {
+            // ambos apuntan al nuevo en memoria
+            pn = new NodoCliente(cliente);
+            un = pn;
+            // ambos apuntan al nuevo
+        }
+        else{
+            NodoCliente *nuevo = new NodoCliente(cliente);
+            nuevo->siguiente = pn;
+            pn = nuevo;
+        }
+    }
+
+    void imprimir(){
+        NodoCliente *tmp = pn;
+
+        while (tmp != NULL){
+            tmp->cliente->imprimir(); // metodo de imprimir un cliente
+            tmp = tmp->siguiente;
+        }
+        cout << endl;
     }
 
 };
