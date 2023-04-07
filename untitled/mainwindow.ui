@@ -680,7 +680,7 @@ Fabricaciones</string>
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="btnDetener1">
+   <widget class="QPushButton" name="btnDetener01">
     <property name="geometry">
      <rect>
       <x>600</x>
@@ -714,7 +714,7 @@ color: white;</string>
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="btnVer1">
+   <widget class="QPushButton" name="btnVer01">
     <property name="geometry">
      <rect>
       <x>600</x>
@@ -748,7 +748,7 @@ color: white;</string>
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="btnVer2">
+   <widget class="QPushButton" name="btnVer02">
     <property name="geometry">
      <rect>
       <x>600</x>
@@ -782,7 +782,7 @@ color: white;</string>
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="btnDetener2">
+   <widget class="QPushButton" name="btnDetener02">
     <property name="geometry">
      <rect>
       <x>600</x>
@@ -816,7 +816,7 @@ color: white;</string>
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="btnVer4Com">
+   <widget class="QPushButton" name="btnVer04Com">
     <property name="geometry">
      <rect>
       <x>190</x>
@@ -850,7 +850,7 @@ color: white;</string>
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="btnDetener4Com">
+   <widget class="QPushButton" name="btnDetener04Com">
     <property name="geometry">
      <rect>
       <x>190</x>
@@ -884,7 +884,7 @@ color: white;</string>
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="btnVer3">
+   <widget class="QPushButton" name="btnVer03">
     <property name="geometry">
      <rect>
       <x>190</x>
@@ -918,7 +918,7 @@ color: white;</string>
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="btnDetener3">
+   <widget class="QPushButton" name="btnDetener03">
     <property name="geometry">
      <rect>
       <x>190</x>
@@ -952,7 +952,7 @@ color: white;</string>
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="btnDetener5">
+   <widget class="QPushButton" name="btnDetener05">
     <property name="geometry">
      <rect>
       <x>370</x>
@@ -1118,7 +1118,7 @@ Alisto</string>
      <enum>Qt::Horizontal</enum>
     </property>
    </widget>
-   <widget class="QPushButton" name="btnVer5">
+   <widget class="QPushButton" name="btnVer05">
     <property name="geometry">
      <rect>
       <x>370</x>
@@ -1190,7 +1190,7 @@ color: white;</string>
      <enum>Qt::Horizontal</enum>
     </property>
    </widget>
-   <widget class="QPushButton" name="btnDetener6">
+   <widget class="QPushButton" name="btnDetener06">
     <property name="geometry">
      <rect>
       <x>600</x>
@@ -1224,7 +1224,7 @@ color: white;</string>
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="btnVer6">
+   <widget class="QPushButton" name="btnVer06">
     <property name="geometry">
      <rect>
       <x>600</x>
@@ -1447,7 +1447,7 @@ color: white;</string>
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="btnDetener6_2">
+   <widget class="QPushButton" name="btnDetener07">
     <property name="geometry">
      <rect>
       <x>620</x>
@@ -1500,7 +1500,7 @@ color: white;</string>
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="btnDetener6_3">
+   <widget class="QPushButton" name="btnDetener08">
     <property name="geometry">
      <rect>
       <x>620</x>
@@ -1534,7 +1534,7 @@ color: white;</string>
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="btnDetener6_4">
+   <widget class="QPushButton" name="btnDetener09">
     <property name="geometry">
      <rect>
       <x>620</x>
@@ -1676,7 +1676,7 @@ color: black;</string>
      <string>3.</string>
     </property>
    </widget>
-   <widget class="Line" name="lineH16_2">
+   <widget class="Line" name="lineH17">
     <property name="geometry">
      <rect>
       <x>1120</x>
@@ -1732,7 +1732,7 @@ color: white</string>
 Alistados</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="lblCaja">
     <property name="geometry">
      <rect>
       <x>1300</x>
@@ -1751,7 +1751,7 @@ Alistados</string>
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="btnDetener6_5">
+   <widget class="QPushButton" name="btnDetener10">
     <property name="geometry">
      <rect>
       <x>1380</x>
@@ -1785,7 +1785,7 @@ color: white;</string>
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="btnVer6_2">
+   <widget class="QPushButton" name="btnVer07">
     <property name="geometry">
      <rect>
       <x>1380</x>
@@ -1819,7 +1819,7 @@ color: white;</string>
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="Line" name="lineV05_2">
+   <widget class="Line" name="lineV07">
     <property name="geometry">
      <rect>
       <x>1330</x>
@@ -1838,7 +1838,7 @@ color: white;</string>
      <enum>Qt::Vertical</enum>
     </property>
    </widget>
-   <widget class="QPushButton" name="btnColaAlistados_2">
+   <widget class="QPushButton" name="btnColaPorFacturar">
     <property name="geometry">
      <rect>
       <x>1310</x>
@@ -1875,7 +1875,7 @@ color: white</string>
 Facturar</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_2">
+   <widget class="QLabel" name="lblCajaRegistradora">
     <property name="geometry">
      <rect>
       <x>1310</x>
@@ -1894,7 +1894,7 @@ Facturar</string>
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="btnVer6_3">
+   <widget class="QPushButton" name="btnVer08">
     <property name="geometry">
      <rect>
       <x>1380</x>
@@ -1928,7 +1928,7 @@ color: white;</string>
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="btnDetener6_6">
+   <widget class="QPushButton" name="btnDetener11">
     <property name="geometry">
      <rect>
       <x>1380</x>
@@ -1962,7 +1962,7 @@ color: white;</string>
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="Line" name="lineV05_3">
+   <widget class="Line" name="lineV08">
     <property name="geometry">
      <rect>
       <x>1330</x>
@@ -1981,7 +1981,7 @@ color: white;</string>
      <enum>Qt::Vertical</enum>
     </property>
    </widget>
-   <widget class="QLabel" name="label_3">
+   <widget class="QLabel" name="lblPedidoFinal">
     <property name="geometry">
      <rect>
       <x>1310</x>
@@ -2000,7 +2000,7 @@ color: white;</string>
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="btnVer6_4">
+   <widget class="QPushButton" name="btnVer09">
     <property name="geometry">
      <rect>
       <x>1330</x>
@@ -2034,8 +2034,8 @@ color: white;</string>
      <bool>true</bool>
     </property>
    </widget>
-   <zorder>lineV05_3</zorder>
-   <zorder>lineV05_2</zorder>
+   <zorder>lineV08</zorder>
+   <zorder>lineV07</zorder>
    <zorder>lblcliente1</zorder>
    <zorder>lineV01</zorder>
    <zorder>lineH04</zorder>
@@ -2065,30 +2065,30 @@ color: white;</string>
    <zorder>lineV03</zorder>
    <zorder>lineH13</zorder>
    <zorder>lblImgListos</zorder>
-   <zorder>btnDetener1</zorder>
-   <zorder>btnVer1</zorder>
-   <zorder>btnVer2</zorder>
-   <zorder>btnDetener2</zorder>
-   <zorder>btnVer4Com</zorder>
-   <zorder>btnDetener4Com</zorder>
-   <zorder>btnVer3</zorder>
-   <zorder>btnDetener3</zorder>
-   <zorder>btnDetener5</zorder>
+   <zorder>btnDetener01</zorder>
+   <zorder>btnVer01</zorder>
+   <zorder>btnVer02</zorder>
+   <zorder>btnDetener02</zorder>
+   <zorder>btnVer04Com</zorder>
+   <zorder>btnDetener04Com</zorder>
+   <zorder>btnVer03</zorder>
+   <zorder>btnDetener03</zorder>
+   <zorder>btnDetener05</zorder>
    <zorder>lineH09</zorder>
    <zorder>lineV04</zorder>
    <zorder>lineH15</zorder>
    <zorder>lineV05</zorder>
    <zorder>lineH14</zorder>
-   <zorder>btnVer5</zorder>
+   <zorder>btnVer05</zorder>
    <zorder>lblAlistadores</zorder>
    <zorder>lineH16</zorder>
-   <zorder>btnDetener6</zorder>
-   <zorder>btnVer6</zorder>
+   <zorder>btnDetener06</zorder>
+   <zorder>btnVer06</zorder>
    <zorder>lblAlistador2</zorder>
-   <zorder>btnDetener6_2</zorder>
+   <zorder>btnDetener07</zorder>
    <zorder>lblAlistador3</zorder>
-   <zorder>btnDetener6_3</zorder>
-   <zorder>btnDetener6_4</zorder>
+   <zorder>btnDetener08</zorder>
+   <zorder>btnDetener09</zorder>
    <zorder>lblAlistador1</zorder>
    <zorder>btnColaDeAlisto</zorder>
    <zorder>lblAlmacen</zorder>
@@ -2097,18 +2097,18 @@ color: white;</string>
    <zorder>lblNum1Alistador</zorder>
    <zorder>lblNum2Alistador</zorder>
    <zorder>lblNum3Alistador</zorder>
-   <zorder>lineH16_2</zorder>
+   <zorder>lineH17</zorder>
    <zorder>tableWidget</zorder>
    <zorder>btnColaAlistados</zorder>
-   <zorder>label</zorder>
-   <zorder>btnDetener6_5</zorder>
-   <zorder>btnVer6_2</zorder>
-   <zorder>btnColaAlistados_2</zorder>
-   <zorder>label_2</zorder>
-   <zorder>btnVer6_3</zorder>
-   <zorder>btnDetener6_6</zorder>
-   <zorder>label_3</zorder>
-   <zorder>btnVer6_4</zorder>
+   <zorder>lblCaja</zorder>
+   <zorder>btnDetener10</zorder>
+   <zorder>btnVer07</zorder>
+   <zorder>btnColaPorFacturar</zorder>
+   <zorder>lblCajaRegistradora</zorder>
+   <zorder>btnVer08</zorder>
+   <zorder>btnDetener11</zorder>
+   <zorder>lblPedidoFinal</zorder>
+   <zorder>btnVer09</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>

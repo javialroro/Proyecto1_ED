@@ -1,0 +1,16 @@
+# ninja log v5
+18	473	7026058293537066	untitled_autogen/timestamp	5659618b610f8a4b
+1449	4537	7026046094509916	CMakeFiles/untitled.dir/untitled_autogen/mocs_compilation.cpp.obj	5fb0bebc4e08ab1c
+18	473	7026058293537066	untitled_autogen/mocs_compilation.cpp	5659618b610f8a4b
+18	473	7026058293537066	C:/Users/QUIROS CALVO/Trabajos_TEC_2023/ED_/I Proyecto/build-untitled-Desktop_Qt_6_5_0_MinGW_64_bit-Debug/untitled_autogen/timestamp	5659618b610f8a4b
+492	4393	7026058332738177	CMakeFiles/untitled.dir/main.cpp.obj	564dfcf2a0ade380
+18	473	7026058293537066	C:/Users/QUIROS CALVO/Trabajos_TEC_2023/ED_/I Proyecto/build-untitled-Desktop_Qt_6_5_0_MinGW_64_bit-Debug/untitled_autogen/mocs_compilation.cpp	5659618b610f8a4b
+1496	2180	7026046070953723	CMakeFiles/untitled.dir/structs.cpp.obj	34721b5602d7ab92
+498	4921	7026058338014121	CMakeFiles/untitled.dir/mainwindow.cpp.obj	ff411b41dd1a1ae1
+4922	5304	7026058341777858	untitled.exe	724ff2c9712c3d32
+19	442	7026061092497043	untitled_autogen/timestamp	5659618b610f8a4b
+19	442	7026061092497043	untitled_autogen/mocs_compilation.cpp	5659618b610f8a4b
+19	442	7026061092497043	C:/Users/QUIROS CALVO/Trabajos_TEC_2023/ED_/I Proyecto/build-untitled-Desktop_Qt_6_5_0_MinGW_64_bit-Debug/untitled_autogen/timestamp	5659618b610f8a4b
+19	442	7026061092497043	C:/Users/QUIROS CALVO/Trabajos_TEC_2023/ED_/I Proyecto/build-untitled-Desktop_Qt_6_5_0_MinGW_64_bit-Debug/untitled_autogen/mocs_compilation.cpp	5659618b610f8a4b
+463	3724	7026061125303283	CMakeFiles/untitled.dir/mainwindow.cpp.obj	ff411b41dd1a1ae1
+3724	4004	7026061128033447	untitled.exe	724ff2c9712c3d32
