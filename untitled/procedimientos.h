@@ -10,7 +10,7 @@
 using namespace std;
 
 void cargarClientes(listaClientes *lista) {
-    ifstream archivo("C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Clientes\\clientes"); // crea objeto ifstream y lo abre
+    ifstream archivo("C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Clientes\\clientes.txt"); // crea objeto ifstream y lo abre
     string linea;
     if (archivo.is_open()) { // verifica si el archivo está abierto
         while (getline(archivo, linea)) { // lee cada línea del archivo
@@ -29,8 +29,46 @@ void cargarClientes(listaClientes *lista) {
             else{
                 archivo.close();
                 cout<< "Archivo erroneo" << endl;
-                string ruta_archivo = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Clientes\\clientes";
-                string ruta_errores = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Errores\\clientes";
+                string ruta_archivo = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Clientes\\clientes.txt";
+                string ruta_errores = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Errores\\clientes.txt";
+                rename(ruta_archivo.c_str(),ruta_errores.c_str());
+                break;
+            }
+        }
+
+        archivo.close(); // cierra el archivo
+        lista->imprimir();
+
+    } else {
+        cout << "No se pudo abrir el archivo" << endl;
+    }
+
+}
+
+void CargarArticulos(listaArticulos *lista ){
+    ifstream archivo("C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Articulos\\articulos.txt"); // crea objeto ifstream y lo abre
+    string linea;
+    if (archivo.is_open()) { // verifica si el archivo está abierto
+        while (getline(archivo, linea)) { // lee cada línea del archivo
+            Articulo *articulo = new Articulo;
+            stringstream ss(linea);
+            string cant;
+            string seg;
+            string campo;
+            if (getline(ss, articulo->codigo, '\t') && getline(ss, cant, '\t') && getline(ss, seg, '\t')&& getline(ss, articulo->categoria, '\t')&& getline(ss, articulo->ubicacionBodega, '\t') && ss.eof()) {
+                getline(ss, cant,'\t');
+                articulo->cantidadAlmacen = stoi(cant);
+                getline(ss, seg, '\t');
+                articulo->segundosF =  stoi(seg);
+                getline(ss, articulo->ubicacionBodega, '\t');
+                lista->insertarAlInicio(articulo); // annade el cliente a la lista
+
+            }
+            else{
+                archivo.close();
+                cout<< "Archivo erroneo" << endl;
+                string ruta_archivo = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Articulos\\articulos.txt";
+                string ruta_errores = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Errores\\articulos.txt";
                 rename(ruta_archivo.c_str(),ruta_errores.c_str());
                 break;
             }

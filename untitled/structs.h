@@ -7,13 +7,13 @@ using namespace std;
 
 struct Cliente;
 struct NodoCliente;
-struct ListaClientes;
+struct listaClientes;
 struct Pedido;
 struct NodoPedido;
-struct ListaPedidos;
+struct listaPedidos;
 struct Articulo;
 struct NodoArticulo;
-struct ListaArticulos;
+struct listaArticulos;
 
 struct Cliente{
     string codigo;
@@ -92,6 +92,7 @@ struct Articulo{
     string codigo;
     int cantidadAlmacen;
     int segundosF;
+    string categoria;
     string ubicacionBodega;
 
     Articulo(string _codigo, int _cantidad,int _segundos, string _ubicacion){
@@ -99,6 +100,24 @@ struct Articulo{
         cantidadAlmacen = _cantidad;
         segundosF = _segundos;
         ubicacionBodega = _ubicacion;
+    }
+
+    Articulo(){
+        codigo = "";
+        cantidadAlmacen = 0;
+        segundosF = 0;
+        categoria = "";
+        ubicacionBodega = "";
+    }
+
+    void imprimir (){
+
+        cout << "Codigo #" << codigo << "\t";
+        cout << "Cantidad en Almacen: " << cantidadAlmacen << "\t";
+        cout << "Segundos en Produccion: " << segundosF << "\t";
+        cout << "Categoria: " << categoria << "\t";
+        cout << "Ubicacion: " << ubicacionBodega << "\t" << endl;
+        cout <<"-----------------------------"<<endl<<endl;
     }
 };
 
@@ -113,10 +132,37 @@ struct NodoArticulo{
     }
 };
 
-struct ListaArticulos{
+struct listaArticulos{
     NodoArticulo * pn, *un;
-    ListaArticulos(){
+    listaArticulos(){
         pn = un = NULL;
+    }
+    void insertarAlInicio (Articulo * articulo)
+    {
+        // si no hay elementos
+        if (pn == NULL)
+        {
+            // ambos apuntan al nuevo en memoria
+            pn = new NodoArticulo(articulo);
+            un = pn;
+            // ambos apuntan al nuevo
+        }
+        else{
+            NodoArticulo *nuevo = new NodoArticulo(articulo);
+            nuevo->siguiente = pn;
+            pn ->anterior = nuevo;
+            pn = nuevo;
+        }
+    }
+
+    void imprimir(){
+        NodoArticulo *tmp = pn;
+
+        while (tmp != NULL){
+            tmp->articulo->imprimir(); // metodo de imprimir un cliente
+            tmp = tmp->siguiente;
+        }
+        cout << endl;
     }
 };
 
@@ -174,9 +220,9 @@ struct NodoPedido{
     }
 };
 
-struct ListaPedidos{
+struct listaPedidos{
     NodoPedido *pn,*un;
-    ListaPedidos(){
+    listaPedidos(){
         pn = un = NULL;
     }
 };
