@@ -3,7 +3,7 @@
 #include "procedimientos.h"
 #include "structs.h"
 #include <QApplication>
-#include "mainwindow.h"
+//#include "mainwindow.h"
 
 
 
@@ -14,8 +14,8 @@ int main(int argc, char *argv[])
     listaArticulos *listaArt = new listaArticulos();
     CargarArticulos(listaArt);
     //cargarClientes(lista);
-    MainWindow w;
-    w.show();
+    //MainWindow w;
+    //w.show();
     return a.exec();
     return 0;
 }

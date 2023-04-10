@@ -174,6 +174,11 @@ struct ArticuloPedido{
         codProd = cod;
         cantidad = cant;
     }
+
+    ArticuloPedido(){
+        codProd = "";
+        cantidad = 0;
+    }
 };
 
 struct NodoArticuloP{
@@ -201,11 +206,19 @@ struct Pedido{
     int cantidadArt;
     ListaArticulosP *listaPedido;
 
+    Pedido(){
+        numPedido = 0;
+        codCliente = 0;
+        cantidadArt = 0;
+        listaPedido = new ListaArticulosP();
+
+    }
+
     Pedido(int num, int cod, int cant){
         numPedido = num;
         codCliente = cod;
         cantidadArt = cant;
-        listaPedido = new ListaArticulosP;
+        listaPedido = new ListaArticulosP();
     }
 };
 

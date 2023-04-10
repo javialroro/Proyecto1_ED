@@ -1,0 +1,17 @@
+# ninja log v5
+19	974	7028455102300371	untitled_autogen/timestamp	c21418c36f716f65
+19	974	7028455102300371	untitled_autogen/mocs_compilation.cpp	c21418c36f716f65
+19	974	7028455102300371	C:/Users/javia/OneDrive - Estudiantes ITCR/TEC/TEC 3 Semestre/Estructuras de Datos/Proyectos/Proyecto1_ED/build-untitled-Desktop_Qt_6_4_3_MinGW_64_bit-Debug/untitled_autogen/timestamp	c21418c36f716f65
+19	974	7028455102300371	C:/Users/javia/OneDrive - Estudiantes ITCR/TEC/TEC 3 Semestre/Estructuras de Datos/Proyectos/Proyecto1_ED/build-untitled-Desktop_Qt_6_4_3_MinGW_64_bit-Debug/untitled_autogen/mocs_compilation.cpp	c21418c36f716f65
+987	1426	7028455108965169	CMakeFiles/untitled.dir/structs.cpp.obj	e2233302edf85731
+975	2522	7028455119915662	CMakeFiles/untitled.dir/untitled_autogen/mocs_compilation.cpp.obj	89927a2960fc9e09
+1007	2758	7028455122267444	CMakeFiles/untitled.dir/main.cpp.obj	f158b463460c1aad
+1000	2995	7028455124643586	CMakeFiles/untitled.dir/mainwindow.cpp.obj	b8388bdbedb16b1c
+2996	3295	7028455127315095	untitled.exe	b9de6642e92cab4d
+7	374	7028456656986219	untitled_autogen/timestamp	c21418c36f716f65
+7	374	7028456656986219	untitled_autogen/mocs_compilation.cpp	c21418c36f716f65
+7	374	7028456656986219	C:/Users/javia/OneDrive - Estudiantes ITCR/TEC/TEC 3 Semestre/Estructuras de Datos/Proyectos/Proyecto1_ED/build-untitled-Desktop_Qt_6_4_3_MinGW_64_bit-Debug/untitled_autogen/timestamp	c21418c36f716f65
+7	374	7028456656986219	C:/Users/javia/OneDrive - Estudiantes ITCR/TEC/TEC 3 Semestre/Estructuras de Datos/Proyectos/Proyecto1_ED/build-untitled-Desktop_Qt_6_4_3_MinGW_64_bit-Debug/untitled_autogen/mocs_compilation.cpp	c21418c36f716f65
+400	1932	7028456672570311	CMakeFiles/untitled.dir/main.cpp.obj	f158b463460c1aad
+385	2309	7028456676327920	CMakeFiles/untitled.dir/mainwindow.cpp.obj	b8388bdbedb16b1c
+2310	2557	7028456678665359	untitled.exe	b9de6642e92cab4d
