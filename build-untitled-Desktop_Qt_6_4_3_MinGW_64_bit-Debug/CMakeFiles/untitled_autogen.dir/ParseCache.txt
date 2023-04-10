@@ -340,4 +340,5 @@ C:/Users/javia/OneDrive - Estudiantes ITCR/TEC/TEC 3 Semestre/Estructuras de Dat
 C:/Users/javia/OneDrive - Estudiantes ITCR/TEC/TEC 3 Semestre/Estructuras de Datos/Proyectos/Proyecto1_ED/untitled/main.cpp
 C:/Users/javia/OneDrive - Estudiantes ITCR/TEC/TEC 3 Semestre/Estructuras de Datos/Proyectos/Proyecto1_ED/untitled/mainwindow.cpp
  uic:./ui_mainwindow.h
+C:/Users/javia/OneDrive - Estudiantes ITCR/TEC/TEC 3 Semestre/Estructuras de Datos/Proyectos/Proyecto1_ED/untitled/QThreads.h
 C:/Users/javia/OneDrive - Estudiantes ITCR/TEC/TEC 3 Semestre/Estructuras de Datos/Proyectos/Proyecto1_ED/untitled/structs.cpp

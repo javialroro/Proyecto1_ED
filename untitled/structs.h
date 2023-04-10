@@ -179,6 +179,11 @@ struct ArticuloPedido{
         codProd = "";
         cantidad = 0;
     }
+
+    void imprimir(){
+        cout<<"Codigo Articulo: "<<codProd;
+        cout<<" Cantidad: "<<cantidad<<endl;
+    }
 };
 
 struct NodoArticuloP{
@@ -196,6 +201,33 @@ struct ListaArticulosP{
     ListaArticulosP(){
         pn = un = NULL;
     }
+    void imprimir(){
+        NodoArticuloP *tmp = pn;
+
+        while (tmp != NULL){
+            tmp->articulo->imprimir(); // metodo de imprimir un cliente
+            tmp = tmp->siguiente;
+        }
+        cout << endl;
+    }
+
+    void insertarAlInicio (ArticuloPedido * articulo)
+    {
+        // si no hay elementos
+        if (pn == NULL)
+        {
+            // ambos apuntan al nuevo en memoria
+            pn = new NodoArticuloP(articulo);
+            un = pn;
+            // ambos apuntan al nuevo
+        }
+        else{
+            NodoArticuloP *nuevo = new NodoArticuloP(articulo);
+            nuevo->siguiente = pn;
+            pn = nuevo;
+        }
+    }
+
 };
 
 
@@ -220,6 +252,12 @@ struct Pedido{
         cantidadArt = cant;
         listaPedido = new ListaArticulosP();
     }
+    void imprimir(){
+        cout<<"Numero de pedido: "<<numPedido;
+        cout<<" Codigo de cliente: "<<codCliente;
+        cout<<" Cantidad de Artiuclos: "<<cantidadArt;
+        listaPedido->imprimir();
+    }
 };
 
 struct NodoPedido{
@@ -237,6 +275,15 @@ struct listaPedidos{
     NodoPedido *pn,*un;
     listaPedidos(){
         pn = un = NULL;
+    }
+    void imprimir(){
+        NodoPedido *tmp = pn;
+
+        while (tmp != NULL){
+            tmp->pedido->imprimir(); // metodo de imprimir un cliente
+            tmp = tmp->siguiente;
+        }
+        cout << endl;
     }
 };
 

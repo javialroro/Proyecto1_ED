@@ -9,6 +9,12 @@
 #include <filesystem>
 using namespace std;
 
+#include <iostream>
+#include <filesystem>
+
+
+
+
 void cargarClientes(listaClientes *lista) {
     //archivo Javier "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Clientes\\clientes.txt"
 
@@ -91,7 +97,8 @@ void CargarArticulos(listaArticulos *lista ){
     }
 }
 
-void cargarPedido(ifstream archivo){
+
+void cargarPedido(ifstream & archivo){
     string linea;
     int contador = 1;
     Pedido *pedido= new Pedido();
@@ -110,10 +117,13 @@ void cargarPedido(ifstream archivo){
                 stringstream ss(linea);
                 string campo;
                 if (getline(ss, articulo->codProd, '\t') && getline(ss, campo, '\t')){
-                    getline(ss, campo, '\t'); // lee el primer campo como una cadena de caracteres
-                    articulo->codProd = campo;
+                    getline(ss, articulo->codProd, '\t'); // lee el primer campo como una cadena de caracteres
                     getline(ss, campo, '\t'); // lee el segundo campo como una cadena de caracteres
                     articulo->cantidad= stoi(campo); // convierte la cadena de caracteres a un entero
+                    pedido->listaPedido->insertarAlInicio(articulo);
+
+
+
                 }
                 else{
                     cout<<"Archivo erroneo, revise carpeta de errores";
@@ -122,16 +132,16 @@ void cargarPedido(ifstream archivo){
             }
 
             contador++;
+
         }
 
+        pedido->imprimir();
         archivo.close(); // cierra el archivo
-
-        // Aquí puedes hacer lo que necesites con los datos leídos del archivo, como crear un objeto Pedido con ellos y agregarlo a una lista de pedidos.
     } else {
         cout << "No se pudo abrir el archivo" << endl;
     }
 }
-}
+
 
 
 
