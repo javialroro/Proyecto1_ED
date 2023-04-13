@@ -6,3 +6,4 @@ B09	1
 B00	10
 
 
+Archivo erroneo, formato incorrecto

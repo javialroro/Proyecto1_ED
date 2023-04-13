@@ -255,6 +255,12 @@
 	"HEADERS" : 
 	[
 		[
+			"C:/Users/QUIROS CALVO/Trabajos_TEC_2023/ED_/I Proyecto/untitled/QThreads.h",
+			"MU",
+			"EWIEGA46WW/moc_QThreads.cpp",
+			null
+		],
+		[
 			"C:/Users/QUIROS CALVO/Trabajos_TEC_2023/ED_/I Proyecto/untitled/colas.h",
 			"MU",
 			"EWIEGA46WW/moc_colas.cpp",

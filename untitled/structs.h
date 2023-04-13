@@ -88,6 +88,17 @@ struct listaClientes{
         cout << endl;
     }
 
+    // Metodo para facilitar la busqueda de un cliente en la lista
+    Cliente *buscarCliente(string codCliente){
+        NodoCliente *aux = pn;
+        while (aux != NULL){
+            if (aux->cliente->codigo == codCliente){
+                return aux->cliente;
+            }
+        }
+    }
+
+
 };
 
 struct Articulo{
@@ -257,6 +268,7 @@ struct Pedido{
         cout<<endl;
         listaPedido->imprimir();
     }
+
 };
 
 struct NodoPedido{

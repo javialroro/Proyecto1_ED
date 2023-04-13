@@ -17,8 +17,8 @@ int main(int argc, char *argv[])
     //cargarClientes(lista);
     //MainWindow w;
     //w.show();
-    RevisorArchivos revisor;
-    revisor.start();
+    //RevisorArchivos revisor;
+    //revisor.start();
 
     return a.exec();
     return 0;
