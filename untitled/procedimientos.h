@@ -2,23 +2,14 @@
 #ifndef PROCEDIMIENTOS_H
 #define PROCEDIMIENTOS_H
 #include "structs.h"
-#include <iostream>
-#include <sstream>
-#include <fstream>
 #include <cstdio>
 #include <filesystem>
 using namespace std;
 
-#include <iostream>
-#include <filesystem>
-
-
-
-
 void cargarClientes(listaClientes *lista) {
     //archivo Javier "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Clientes\\clientes.txt"
 
-    ifstream archivo("C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Clientes\\clientes.txt");
+    fstream archivo("C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Clientes\\clientes.txt", std::ios::in | std::ios::app);
     //ifstream archivo("C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Clientes\\clientes.txt"); // crea objeto ifstream y lo abre
     string linea;
     if (archivo.is_open()) { // verifica si el archivo está abierto
@@ -36,8 +27,10 @@ void cargarClientes(listaClientes *lista) {
 
             }
             else{
+
+                archivo << "Archivo erroneo, formato incorrecto"<<endl;
                 archivo.close();
-                cout<< "Archivo erroneo" << endl;
+                cout<< "Archivo erroneo, formato incorrecto" << endl;
                 string ruta_archivo = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Clientes\\clientes.txt";
                 string ruta_errores = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Errores\\clientes.txt";
                 //string ruta_archivo = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Clientes\\clientes.txt";
@@ -57,9 +50,8 @@ void cargarClientes(listaClientes *lista) {
 }
 
 void CargarArticulos(listaArticulos *lista ){
-
     //ifstream archivo("C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Articulos\\articulos.txt"); // crea objeto ifstream y lo abre
-    ifstream archivo("C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Articulos\\articulos.txt");
+    fstream archivo("C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Articulos\\articulos.txt", std::ios::in | std::ios::app);
     string linea;
     if (archivo.is_open()) { // verifica si el archivo está abierto
         while (getline(archivo, linea)) { // lee cada línea del archivo
@@ -78,9 +70,11 @@ void CargarArticulos(listaArticulos *lista ){
 
             }
             else{
-                archivo.close();
-                cout<< "Archivo erroneo" << endl;
 
+                //cout<< "Archivo erroneo, formato incorrecto" << endl;
+                archivo << "Archivo erroneo, formato incorrecto" << endl;
+                archivo.close();
+                cout<< "Archivo erroneo, formato incorrecto" << endl;
                 //archivo Javier "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Articulos\\articulos.txt"
 
                 string ruta_archivo = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Articulos\\articulos.txt";
@@ -98,23 +92,52 @@ void CargarArticulos(listaArticulos *lista ){
 }
 
 
-void cargarPedido(ifstream & archivo){
+void cargarPedido(Archivo *archivo){
     string linea;
     int contador = 1;
+    int cantArt = 0;
     Pedido *pedido= new Pedido();
-
-    if (archivo.is_open()) { // verifica si el archivo está abierto
-        while (getline(archivo, linea)) { // lee cada línea del archivo
+    bool error= false;
+    if (archivo->arch.is_open()) { // verifica si el archivo está abierto
+        while (getline(archivo->arch, linea)) { // lee cada línea del archivo
+            stringstream ss(linea);
             if (contador == 1) {
-                pedido->numPedido = stoi(linea);
+                string numP;
+                if (getline(ss, numP, '\n')){
+                    getline(ss, numP, '\n');
+                    pedido->numPedido = stoi(numP);
+                }
+                else{
+                    archivo->arch << "Archivo erroneo, formato incorrecto" << endl;
+                    archivo->arch.close();
+                    cout<< "Archivo erroneo, formato incorrecto" << endl;
+                    rename(archivo->path.c_str(),archivo->errores.c_str());
+                    error=true;
+                    break;
+
+                    //pasar el archivo a la carpeta de errores.
+                }
             }
             else if (contador == 2) {
-                pedido->codCliente = stoi(linea);
+                string codC;
+                if (getline(ss, codC, '\n')){
+                    getline(ss, codC, '\n');
+                    pedido->codCliente = stoi(codC);
+                }
+                else{
+                    archivo->arch << "Archivo erroneo, formato incorrecto" << endl;
+                    archivo->arch.close();
+                    cout<< "Archivo erroneo, formato incorrecto" << endl;
+                    rename(archivo->path.c_str(),archivo->errores.c_str());
+                    error=true;
+                    break;
+                }
+
             }
             else {
 
                 ArticuloPedido *articulo = new ArticuloPedido();
-                stringstream ss(linea);
+
                 string campo;
                 if (getline(ss, articulo->codProd, '\t') && getline(ss, campo, '\t')){
                     getline(ss, articulo->codProd, '\t'); // lee el primer campo como una cadena de caracteres
@@ -126,18 +149,24 @@ void cargarPedido(ifstream & archivo){
 
                 }
                 else{
-                    cout<<"Archivo erroneo, revise carpeta de errores";
-                    //pasar el archivo a la carpeta de errores.
+                    archivo->arch << "Archivo erroneo, formato incorrecto" << endl;
+                    archivo->arch.close();
+                    cout<< "Archivo erroneo, formato incorrecto" << endl;
+                    rename(archivo->path.c_str(),archivo->errores.c_str());
+                    error=true;
+                    break;
                 }
             }
 
             contador++;
 
         }
-
-        pedido->imprimir();
-        archivo.close(); // cierra el archivo
+        if (!error){
+            pedido->imprimir();
+        }
+        archivo->arch.close(); // cierra el archivo
     } else {
+        archivo->arch.close();
         cout << "No se pudo abrir el archivo" << endl;
     }
 }

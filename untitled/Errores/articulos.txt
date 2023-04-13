@@ -1,2 +1,4 @@
-A01	1000	30	A	X10
+A01	1000	30	A	
+B02	8000	30	B	Y02
 
+Archivo erroneo, formato incorrecto

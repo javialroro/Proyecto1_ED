@@ -3,6 +3,8 @@
 #define STRUCTS_H
 #include <iostream>
 #include <string>
+#include <sstream>
+#include <fstream>
 using namespace std;
 
 struct Cliente;
@@ -235,13 +237,11 @@ struct ListaArticulosP{
 struct Pedido{
     int numPedido;
     int codCliente;
-    int cantidadArt;
     ListaArticulosP *listaPedido;
 
     Pedido(){
         numPedido = 0;
         codCliente = 0;
-        cantidadArt = 0;
         listaPedido = new ListaArticulosP();
 
     }
@@ -249,13 +249,12 @@ struct Pedido{
     Pedido(int num, int cod, int cant){
         numPedido = num;
         codCliente = cod;
-        cantidadArt = cant;
         listaPedido = new ListaArticulosP();
     }
     void imprimir(){
         cout<<"Numero de pedido: "<<numPedido;
         cout<<" Codigo de cliente: "<<codCliente;
-        cout<<" Cantidad de Artiuclos: "<<cantidadArt;
+        cout<<endl;
         listaPedido->imprimir();
     }
 };
@@ -287,6 +286,16 @@ struct listaPedidos{
     }
 };
 
+struct Archivo{
+    fstream arch;
+    string path;
+    string errores;
+    Archivo(fstream & a, string p, string e){
+        arch = std::move(a);
+        path = p;
+        errores = e;
+    }
+};
 
 
 

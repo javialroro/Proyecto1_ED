@@ -1,10 +1,10 @@
 
 //#include "mainwindow.h"
-#include "procedimientos.h"
-#include "structs.h"
+//#include "procedimientos.h"
+//#include "structs.h"
 #include <QApplication>
 #include "QThreads.h"
-//#include "mainwindow.h"
+#include "mainwindow.h"
 
 
 
