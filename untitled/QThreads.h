@@ -9,11 +9,12 @@
 #include "colas.h"
 #include "structs.h"
 
+// Variables globales
+extern Queue<Pedido>*qPedidos;
+extern QMutex g_mutex;
 
 class RevisorArchivos : public QThread {
 public:
-    Queue<Pedido>*qPedidos;
-
     void run() override {
         while (true) {
             //QString path = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Pedidos";
@@ -35,10 +36,7 @@ public:
                     string ruta_archivo = todo;
                     //string ruta_pedidosP = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\PedidosProcesados\\"+cArchivo;
                     string ruta_pedidosP = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\PedidosProcesados\\"+cArchivo;
-
                     rename(ruta_archivo.c_str(),ruta_pedidosP.c_str());
-
-
                 }
             }
             else {
@@ -49,6 +47,7 @@ public:
         }
     }
 };
+
 
 
 
