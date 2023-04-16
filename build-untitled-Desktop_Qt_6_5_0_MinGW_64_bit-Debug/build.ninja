@@ -176,7 +176,7 @@ build untitled_autogen_timestamp_deps: phony CMakeFiles/untitled_autogen_timesta
 #############################################
 # Utility command for untitled_autogen
 
-build untitled_autogen: phony CMakeFiles/untitled_autogen untitled_autogen/include/ui_mainwindow.h untitled_autogen/timestamp untitled_autogen/mocs_compilation.cpp untitled_autogen_timestamp_deps
+build untitled_autogen: phony CMakeFiles/untitled_autogen untitled_autogen/include/ui_mainwindow.h untitled_autogen/include/ui_dialog.h untitled_autogen/timestamp untitled_autogen/mocs_compilation.cpp untitled_autogen_timestamp_deps
 
 
 #############################################
@@ -192,13 +192,13 @@ build untitled_autogen/timestamp untitled_autogen/mocs_compilation.cpp | ${cmake
 #############################################
 # Phony custom command for CMakeFiles\untitled_autogen_timestamp_deps
 
-build CMakeFiles/untitled_autogen_timestamp_deps | ${cmake_ninja_workdir}CMakeFiles/untitled_autogen_timestamp_deps: phony C$:/Qt/6.5.0/mingw_64/lib/libQt6Core.a C$:/Qt/6.5.0/mingw_64/./bin/uic.exe C$:/Qt/6.5.0/mingw_64/./bin/moc.exe C$:/Qt/6.5.0/mingw_64/lib/libQt6Widgets.a
+build CMakeFiles/untitled_autogen_timestamp_deps | ${cmake_ninja_workdir}CMakeFiles/untitled_autogen_timestamp_deps: phony C$:/Qt/6.5.0/mingw_64/lib/libQt6Core.a C$:/Qt/6.5.0/mingw_64/./bin/moc.exe C$:/Qt/6.5.0/mingw_64/./bin/uic.exe C$:/Qt/6.5.0/mingw_64/lib/libQt6Widgets.a
 
 
 #############################################
 # Phony custom command for CMakeFiles\untitled_autogen
 
-build CMakeFiles/untitled_autogen untitled_autogen/include/ui_mainwindow.h | ${cmake_ninja_workdir}CMakeFiles/untitled_autogen ${cmake_ninja_workdir}untitled_autogen/include/ui_mainwindow.h: phony untitled_autogen/timestamp || untitled_autogen_timestamp_deps
+build CMakeFiles/untitled_autogen untitled_autogen/include/ui_mainwindow.h untitled_autogen/include/ui_dialog.h | ${cmake_ninja_workdir}CMakeFiles/untitled_autogen ${cmake_ninja_workdir}untitled_autogen/include/ui_mainwindow.h ${cmake_ninja_workdir}untitled_autogen/include/ui_dialog.h: phony untitled_autogen/timestamp || untitled_autogen_timestamp_deps
 
 # =============================================================================
 # Target aliases.

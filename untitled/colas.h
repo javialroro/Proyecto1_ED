@@ -3,7 +3,8 @@
 
 #include <QList>
 #include <QDebug>
-#include<QObject>
+#include <QObject>
+#include "structs.h"
 
 template <typename T>
 struct Queue {

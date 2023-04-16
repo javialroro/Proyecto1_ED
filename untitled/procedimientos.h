@@ -2,6 +2,7 @@
 #ifndef PROCEDIMIENTOS_H
 #define PROCEDIMIENTOS_H
 #include "structs.h"
+#include "colas.h"
 #include <cstdio>
 #include <filesystem>
 using namespace std;
@@ -95,7 +96,7 @@ void CargarArticulos(listaArticulos *lista ){
 }
 
 
-void cargarPedido(Archivo *archivo){
+void cargarPedido(Archivo *archivo, Queue<Pedido>*qPedidos){
     string linea;
     int contador = 1;
     int cantArt = 0;
@@ -165,6 +166,7 @@ void cargarPedido(Archivo *archivo){
 
         }
         if (!error){
+            qPedidos->enQueue(*pedido);
             pedido->imprimir();
         }
         archivo->arch.close(); // cierra el archivo

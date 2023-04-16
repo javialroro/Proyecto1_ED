@@ -6,10 +6,13 @@
 #include <QDir>
 #include <QDebug>
 #include "procedimientos.h"
+#include "colas.h"
+#include "structs.h"
 
 
 class RevisorArchivos : public QThread {
 public:
+    Queue<Pedido>*qPedidos;
 
     void run() override {
         while (true) {
@@ -28,12 +31,12 @@ public:
                     string errores = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Errores\\"+cArchivo;
                     fstream arch(todo, std::ios::in | std::ios::app);
                     Archivo *a =  new Archivo(arch,todo,errores);
-                    cargarPedido(a);
+                    cargarPedido(a, qPedidos);
                     string ruta_archivo = todo;
                     //string ruta_pedidosP = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\PedidosProcesados\\"+cArchivo;
                     string ruta_pedidosP = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\PedidosProcesados\\"+cArchivo;
-                    rename(ruta_archivo.c_str(),ruta_pedidosP.c_str());
 
+                    rename(ruta_archivo.c_str(),ruta_pedidosP.c_str());
 
 
                 }
@@ -45,6 +48,8 @@ public:
             QThread::msleep(1000); // espera 1 segundo antes de revisar de nuevo
         }
     }
-
 };
+
+
+
 #endif // QTHREADS_H
