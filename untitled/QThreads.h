@@ -48,7 +48,29 @@ public:
     }
 };
 
-class Balanceador : public QThread
+class Balanceador : public QThread {
+public:
+    Balanceador(Queue<Pedido>& colaPedidos, Queue<Pedido>& colaAlistos, QObject* parent = nullptr)
+        : QThread(parent), p_queue(colaPedidos) , a_queue(colaAlistos)
+    {
+    }
+
+    void run() override {
+        while (true) {
+            // Realizar operaciones sobre m_queue
+
+
+            // Esperar un tiempo antes de continuar
+            sleep(1);
+        }
+    }
+
+private:
+    Queue<Pedido>& p_queue;
+    Queue<Pedido>& a_queue;
+};
+
+
 
 
 #endif // QTHREADS_H
