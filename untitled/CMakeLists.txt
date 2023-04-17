@@ -22,7 +22,9 @@ set(PROJECT_SOURCES
         mainwindow.h
         mainwindow.ui
         colas.h
-        dialog.ui
+        vcolapedidos.ui
+        vcolapedidos.h
+        vcolapedidos.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

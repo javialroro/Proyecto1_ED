@@ -283,6 +283,12 @@
 			"MU",
 			"EWIEGA46WW/moc_structs.cpp",
 			null
+		],
+		[
+			"C:/Users/QUIROS CALVO/Trabajos_TEC_2023/ED_/I Proyecto/untitled/vcolapedidos.h",
+			"MU",
+			"EWIEGA46WW/moc_vcolapedidos.cpp",
+			null
 		]
 	],
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
@@ -366,6 +372,11 @@
 		],
 		[
 			"C:/Users/QUIROS CALVO/Trabajos_TEC_2023/ED_/I Proyecto/untitled/structs.cpp",
+			"MU",
+			null
+		],
+		[
+			"C:/Users/QUIROS CALVO/Trabajos_TEC_2023/ED_/I Proyecto/untitled/vcolapedidos.cpp",
 			"MU",
 			null
 		]
