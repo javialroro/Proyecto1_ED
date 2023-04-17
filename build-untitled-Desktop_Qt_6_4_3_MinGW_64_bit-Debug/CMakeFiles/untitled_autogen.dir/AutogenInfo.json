@@ -282,6 +282,12 @@
 			"MU",
 			"EWIEGA46WW/moc_structs.cpp",
 			null
+		],
+		[
+			"C:/Users/javia/OneDrive - Estudiantes ITCR/TEC/TEC 3 Semestre/Estructuras de Datos/Proyectos/Proyecto1_ED/untitled/vcolapedidos.h",
+			"MU",
+			"EWIEGA46WW/moc_vcolapedidos.cpp",
+			null
 		]
 	],
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
@@ -365,6 +371,11 @@
 		],
 		[
 			"C:/Users/javia/OneDrive - Estudiantes ITCR/TEC/TEC 3 Semestre/Estructuras de Datos/Proyectos/Proyecto1_ED/untitled/structs.cpp",
+			"MU",
+			null
+		],
+		[
+			"C:/Users/javia/OneDrive - Estudiantes ITCR/TEC/TEC 3 Semestre/Estructuras de Datos/Proyectos/Proyecto1_ED/untitled/vcolapedidos.cpp",
 			"MU",
 			null
 		]

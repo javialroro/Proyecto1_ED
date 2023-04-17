@@ -50,7 +50,7 @@ public:
 
 class Balanceador : public QThread {
 public:
-    Balanceador(Queue<Pedido>& colaPedidos, QObject* parent = nullptr, Queue<Pedido>& colaAlistos)
+    Balanceador(Queue<Pedido>& colaPedidos, Queue<Pedido>& colaAlistos, QObject* parent = nullptr)
         : QThread(parent), m_queue(colaPedidos) , a_queue(colaAlistos)
     {
     }
@@ -67,6 +67,8 @@ public:
     
 private:
     Queue<Pedido>& m_queue;
+    Queue<Pedido>& a_queue;
+
 };
     
 
