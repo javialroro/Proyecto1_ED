@@ -1,6 +1,7 @@
 
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
+#include "colas.h"
 //#include "procedimientos.h"
 
 
@@ -17,6 +18,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+/*
 void updateUI(Queue<int>& queue, QMutex& mutex, QTextEdit* textEdit) {
     mutex.lock();
     textEdit->clear();
@@ -46,5 +48,11 @@ int main(int argc, char* argv[]) {
 
 
     return app.exec();
+}
+
+*/
+void MainWindow::on_btnVer03_clicked()
+{
+
 }
 

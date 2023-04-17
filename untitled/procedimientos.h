@@ -52,7 +52,7 @@ void cargarClientes(listaClientes *lista) {
 
 void CargarArticulos(listaArticulos *lista ){
     fstream archivo("C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Articulos\\articulos.txt", std::ios::in | std::ios::app); // crea objeto ifstream y lo abre
-    //ifstream archivo("C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Articulos\\articulos.txt", std::ios::in | std::ios::app);
+    //fstream archivo("C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Articulos\\articulos.txt", std::ios::in | std::ios::app);
     string linea;
     if (archivo.is_open()) { // verifica si el archivo está abierto
         while (getline(archivo, linea)) { // lee cada línea del archivo

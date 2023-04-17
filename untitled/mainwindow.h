@@ -21,6 +21,8 @@ public:
 private slots:
     void on_btnColaPedidos_clicked();
 
+    void on_btnVer03_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

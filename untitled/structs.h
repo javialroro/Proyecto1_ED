@@ -5,6 +5,9 @@
 #include <string>
 #include <sstream>
 #include <fstream>
+#include <chrono>
+#include <ctime>
+
 using namespace std;
 
 struct Cliente;
@@ -16,6 +19,15 @@ struct listaPedidos;
 struct Articulo;
 struct NodoArticulo;
 struct listaArticulos;
+
+string retornarHora(){
+    auto now = chrono::system_clock::now();
+    time_t now_c = chrono::system_clock::to_time_t(now);
+    string hora= ctime(&now_c);
+    return hora;
+}
+
+
 
 struct Cliente{
     string codigo;
@@ -249,6 +261,7 @@ struct Pedido{
     int numPedido;
     int codCliente;
     ListaArticulosP *listaPedido;
+    string infoFactura[10];
 
     Pedido(){
         numPedido = 0;
