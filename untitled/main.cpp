@@ -1,15 +1,14 @@
 
-//#include "mainwindow.h"
-//#include "procedimientos.h"
-//#include "structs.h"
+#include "mainwindow.h"
+#include "procedimientos.h"
+#include "structs.h"
 #include <QApplication>
 #include "QThreads.h"
 #include "mainwindow.h"
 
 
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]){
     QApplication a(argc, argv);
     MainWindow w;
     w.show();

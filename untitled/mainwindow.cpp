@@ -29,7 +29,7 @@ void updateUI(Queue<int>& queue, QMutex& mutex, QTextEdit* textEdit) {
     }
     mutex.unlock();
 }
-
+*/
 void MainWindow::on_btnColaPedidos_clicked()
 {
     //cargarClientes(lista);
@@ -38,19 +38,18 @@ void MainWindow::on_btnColaPedidos_clicked()
 int main(int argc, char* argv[]) {
     QApplication app(argc, argv);
 
-
+/*
     QTimer timer;
     timer.setInterval(1000);
     QObject::connect(&timer, &QTimer::timeout, [&]() {
         updateUI(g_queue, g_mutex, ui->textEdit);
     });
     timer.start();
-
+*/
 
     return app.exec();
 }
 
-*/
 void MainWindow::on_btnVer03_clicked()
 {
 
