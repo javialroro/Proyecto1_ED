@@ -322,7 +322,34 @@ struct Archivo{
     }
 };
 
+struct Fabricacion{
+    string cod;
+    string codProd;
+    int cant;
+};
 
+struct Fabrica{
+
+    string tipo;
+    string tipoC;
+    listaArticulos *lista;
+
+
+    Fabrica(string t, listaArticulos *l){
+        tipo = t;
+        lista = l;
+    }
+
+    Fabrica(string t1, string t2, listaArticulos *l){
+        tipo = t1;
+        tipoC = t2;
+        lista = l;
+    }
+
+    void fabricar(Fabricacion * f){
+
+    }
+};
 
 
 
