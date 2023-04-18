@@ -1,24 +1,16 @@
 # ninja log v5
-1261	4915	7034004787488769	CMakeFiles/untitled.dir/untitled_autogen/mocs_compilation.cpp.obj	5fb0bebc4e08ab1c
-19	1252	7034004747721800	untitled_autogen/timestamp	5659618b610f8a4b
-19	1252	7034004747721800	untitled_autogen/mocs_compilation.cpp	5659618b610f8a4b
-605	8061	7032919660298704	CMakeFiles/untitled.dir/main.cpp.obj	564dfcf2a0ade380
-19	1252	7034004747721800	C:/Users/QUIROS CALVO/Trabajos_TEC_2023/ED_/I Proyecto/build-untitled-Desktop_Qt_6_5_0_MinGW_64_bit-Debug/untitled_autogen/timestamp	5659618b610f8a4b
-19	1252	7034004747721800	C:/Users/QUIROS CALVO/Trabajos_TEC_2023/ED_/I Proyecto/build-untitled-Desktop_Qt_6_5_0_MinGW_64_bit-Debug/untitled_autogen/mocs_compilation.cpp	5659618b610f8a4b
-1180	2312	7033998654326890	CMakeFiles/untitled.dir/structs.cpp.obj	34721b5602d7ab92
-1253	6059	7034004798920788	CMakeFiles/untitled.dir/mainwindow.cpp.obj	ff411b41dd1a1ae1
-8061	8563	7032919665262164	untitled.exe	724ff2c9712c3d32
-1275	4900	7034004787316398	CMakeFiles/untitled.dir/vcolapedidos.cpp.obj	6a14b0ae4d0859f6
-6	931	7034004947447832	build.ninja	22e8c5b94665c2c4
-0	49	0	CMakeFiles/clean.additional	baedbe210acaa455
-50	82	0	clean	577b940aee94fbd7
+1834	5928	7035503194840636	CMakeFiles/untitled.dir/untitled_autogen/mocs_compilation.cpp.obj	5fb0bebc4e08ab1c
+14	673	7035542495284545	untitled_autogen/timestamp	5659618b610f8a4b
+14	673	7035542495284545	untitled_autogen/mocs_compilation.cpp	5659618b610f8a4b
+437	6349	7035529692021845	CMakeFiles/untitled.dir/main.cpp.obj	564dfcf2a0ade380
+14	673	7035542495284545	C:/Users/QUIROS CALVO/Trabajos_TEC_2023/ED_/I Proyecto/build-untitled-Desktop_Qt_6_5_0_MinGW_64_bit-Debug/untitled_autogen/timestamp	5659618b610f8a4b
+14	673	7035542495284545	C:/Users/QUIROS CALVO/Trabajos_TEC_2023/ED_/I Proyecto/build-untitled-Desktop_Qt_6_5_0_MinGW_64_bit-Debug/untitled_autogen/mocs_compilation.cpp	5659618b610f8a4b
+633	2036	7035515483074271	CMakeFiles/untitled.dir/structs.cpp.obj	34721b5602d7ab92
+720	7311	7035542561655146	CMakeFiles/untitled.dir/mainwindow.cpp.obj	ff411b41dd1a1ae1
+6349	6781	7035529696302918	untitled.exe	af12ed2cf0c03e97
+701	5438	7035542542943058	CMakeFiles/untitled.dir/vcolapedidos.cpp.obj	6a14b0ae4d0859f6
+6	918	7035546595345143	build.ninja	22e8c5b94665c2c4
 1	34	0	CMakeFiles/clean.additional	baedbe210acaa455
 34	47	0	clean	577b940aee94fbd7
-11	1348	7034005142743205	untitled_autogen/timestamp	5659618b610f8a4b
-11	1348	7034005142743205	untitled_autogen/mocs_compilation.cpp	5659618b610f8a4b
-11	1348	7034005142743205	C:/Users/QUIROS CALVO/Trabajos_TEC_2023/ED_/I Proyecto/build-untitled-Desktop_Qt_6_5_0_MinGW_64_bit-Debug/untitled_autogen/timestamp	5659618b610f8a4b
-11	1348	7034005142743205	C:/Users/QUIROS CALVO/Trabajos_TEC_2023/ED_/I Proyecto/build-untitled-Desktop_Qt_6_5_0_MinGW_64_bit-Debug/untitled_autogen/mocs_compilation.cpp	5659618b610f8a4b
-1349	2340	7034005155440710	CMakeFiles/untitled.dir/structs.cpp.obj	34721b5602d7ab92
-1355	5045	7034005182474811	CMakeFiles/untitled.dir/untitled_autogen/mocs_compilation.cpp.obj	5fb0bebc4e08ab1c
-1376	5047	7034005182494944	CMakeFiles/untitled.dir/vcolapedidos.cpp.obj	6a14b0ae4d0859f6
-1362	6314	7034005195161276	CMakeFiles/untitled.dir/mainwindow.cpp.obj	ff411b41dd1a1ae1
+547	7702	7035527866769581	CMakeFiles/untitled.dir/QThreads.cpp.obj	8beb3a19e89dbe1a
+425	506	7035529633633766	CMakeFiles/untitled.dir/priorityqueue.cpp.obj	27a800fcc67e8a44

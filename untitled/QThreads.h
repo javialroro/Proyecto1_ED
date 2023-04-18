@@ -6,11 +6,12 @@
 #include <QDir>
 #include <QDebug>
 #include "procedimientos.h"
-#include "colas.h"
+#include "priorityqueue.h"
 #include "structs.h"
 
+
 // Variables globales
-extern Queue<Pedido>*qPedidos;
+extern PriorityQueue*qPedidos;
 extern QMutex g_mutex;
 
 class RevisorArchivos : public QThread {

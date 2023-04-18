@@ -2,7 +2,7 @@
 #ifndef PROCEDIMIENTOS_H
 #define PROCEDIMIENTOS_H
 #include "structs.h"
-#include "colas.h"
+#include "Queue.h"
 #include <cstdio>
 #include <filesystem>
 using namespace std;

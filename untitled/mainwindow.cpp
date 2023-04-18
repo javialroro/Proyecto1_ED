@@ -1,7 +1,7 @@
 
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
-#include "colas.h"
+#include "Queue.h"
 //#include "procedimientos.h"
 
 
@@ -35,8 +35,8 @@ void MainWindow::on_btnColaPedidos_clicked()
     //cargarClientes(lista);
 }
 
-int main(int argc, char* argv[]) {
-    QApplication app(argc, argv);
+//int main(int argc, char* argv[]) {
+//    QApplication app(argc, argv);
 
 /*
     QTimer timer;
@@ -47,8 +47,8 @@ int main(int argc, char* argv[]) {
     timer.start();
 */
 
-    return app.exec();
-}
+//    return app.exec();
+//}
 
 void MainWindow::on_btnVer03_clicked()
 {

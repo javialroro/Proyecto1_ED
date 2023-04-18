@@ -51,7 +51,7 @@
 			{
 				"command" : 3,
 				"file" : 1,
-				"line" : 31,
+				"line" : 36,
 				"parent" : 0
 			},
 			{
@@ -75,13 +75,13 @@
 			{
 				"command" : 4,
 				"file" : 1,
-				"line" : 63,
+				"line" : 68,
 				"parent" : 0
 			},
 			{
 				"command" : 5,
 				"file" : 1,
-				"line" : 53,
+				"line" : 58,
 				"parent" : 0
 			},
 			{
@@ -369,18 +369,21 @@
 				4,
 				5,
 				6,
-				12
+				12,
+				13,
+				14,
+				17
 			]
 		}
 	],
 	"dependencies" : 
 	[
 		{
-			"backtrace" : 0,
-			"id" : "untitled_autogen::@6890427a1f51a3e7e1df"
+			"id" : "untitled_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
 		},
 		{
-			"id" : "untitled_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
+			"backtrace" : 0,
+			"id" : "untitled_autogen::@6890427a1f51a3e7e1df"
 		}
 	],
 	"id" : "untitled::@6890427a1f51a3e7e1df",
@@ -494,7 +497,10 @@
 				4,
 				5,
 				6,
-				12
+				12,
+				13,
+				14,
+				17
 			]
 		},
 		{
@@ -507,8 +513,10 @@
 				7,
 				9,
 				11,
-				13,
-				14
+				15,
+				16,
+				18,
+				19
 			]
 		},
 		{
@@ -517,14 +525,14 @@
 			[
 				8,
 				10,
-				15
+				20
 			]
 		},
 		{
 			"name" : "CMake Rules",
 			"sourceIndexes" : 
 			[
-				16
+				21
 			]
 		}
 	],
@@ -582,7 +590,7 @@
 		},
 		{
 			"backtrace" : 4,
-			"path" : "colas.h",
+			"path" : "Queue.h",
 			"sourceGroupIndex" : 1
 		},
 		{
@@ -599,6 +607,34 @@
 			"backtrace" : 4,
 			"compileGroupIndex" : 0,
 			"path" : "vcolapedidos.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "QThreads.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "priorityqueue.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "priorityqueue.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"path" : "listasimple.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "listasimple.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{

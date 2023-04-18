@@ -261,15 +261,21 @@
 			null
 		],
 		[
-			"C:/Users/QUIROS CALVO/Trabajos_TEC_2023/ED_/I Proyecto/untitled/colas.h",
+			"C:/Users/QUIROS CALVO/Trabajos_TEC_2023/ED_/I Proyecto/untitled/Queue.h",
 			"MU",
-			"EWIEGA46WW/moc_colas.cpp",
+			"EWIEGA46WW/moc_Queue.cpp",
 			null
 		],
 		[
 			"C:/Users/QUIROS CALVO/Trabajos_TEC_2023/ED_/I Proyecto/untitled/mainwindow.h",
 			"MU",
 			"EWIEGA46WW/moc_mainwindow.cpp",
+			null
+		],
+		[
+			"C:/Users/QUIROS CALVO/Trabajos_TEC_2023/ED_/I Proyecto/untitled/priorityqueue.h",
+			"MU",
+			"EWIEGA46WW/moc_priorityqueue.cpp",
 			null
 		],
 		[
@@ -361,12 +367,22 @@
 	"SOURCES" : 
 	[
 		[
+			"C:/Users/QUIROS CALVO/Trabajos_TEC_2023/ED_/I Proyecto/untitled/QThreads.cpp",
+			"MU",
+			null
+		],
+		[
 			"C:/Users/QUIROS CALVO/Trabajos_TEC_2023/ED_/I Proyecto/untitled/main.cpp",
 			"MU",
 			null
 		],
 		[
 			"C:/Users/QUIROS CALVO/Trabajos_TEC_2023/ED_/I Proyecto/untitled/mainwindow.cpp",
+			"MU",
+			null
+		],
+		[
+			"C:/Users/QUIROS CALVO/Trabajos_TEC_2023/ED_/I Proyecto/untitled/priorityqueue.cpp",
 			"MU",
 			null
 		],

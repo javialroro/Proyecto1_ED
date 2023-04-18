@@ -21,10 +21,13 @@ set(PROJECT_SOURCES
         mainwindow.cpp
         mainwindow.h
         mainwindow.ui
-        colas.h
+        Queue.h
         vcolapedidos.ui
         vcolapedidos.h
         vcolapedidos.cpp
+        QThreads.cpp
+        PriorityQueue.cpp
+        PriorityQueue.h
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

@@ -20,12 +20,12 @@ struct Articulo;
 struct NodoArticulo;
 struct listaArticulos;
 
-string retornarHora(){
-    auto now = chrono::system_clock::now();
-    time_t now_c = chrono::system_clock::to_time_t(now);
-    string hora= ctime(&now_c);
-    return hora;
-}
+//string retornarHora(){
+//    auto now = chrono::system_clock::now();
+//    time_t now_c = chrono::system_clock::to_time_t(now);
+//    string hora= ctime(&now_c);
+//    return hora;
+//}
 
 
 
@@ -278,6 +278,7 @@ struct Pedido{
     void imprimir(){
         cout<<"Numero de pedido: "<<numPedido;
         cout<<" Codigo de cliente: "<<codCliente;
+        cout<<"---------------------------";
         cout<<endl;
         listaPedido->imprimir();
     }
