@@ -8,6 +8,7 @@
 #include <chrono>
 #include <ctime>
 
+
 using namespace std;
 
 struct Cliente;
@@ -47,7 +48,6 @@ struct Cliente{
 
     }
     void imprimir (){
-
         cout << "Cliente #" << codigo << "\t";
         cout << "Nombre: " << nombre << "\t";
         cout << "Prioridad: " << prioridad << "\t" << endl;
@@ -276,13 +276,12 @@ struct Pedido{
         listaPedido = new ListaArticulosP();
     }
     void imprimir(){
-        cout<<"Numero de pedido: "<<numPedido;
-        cout<<" Codigo de cliente: "<<codCliente;
+        cout<<"Numero de pedido: "<<numPedido<<endl;
+        cout<<" Codigo de cliente: "<<codCliente<<endl;
         cout<<"---------------------------";
         cout<<endl;
         listaPedido->imprimir();
     }
-
 };
 
 struct NodoPedido{

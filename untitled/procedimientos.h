@@ -167,6 +167,7 @@ void cargarPedido(Archivo *archivo, Queue<Pedido>*qPedidos){
         }
         if (!error){
             qPedidos->enQueue(*pedido);
+            //count<<listaClientes->buscarCliente(pedido->codCliente)->prioridad<<end;
             pedido->imprimir();
         }
         archivo->arch.close(); // cierra el archivo

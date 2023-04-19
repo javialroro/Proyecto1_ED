@@ -11,7 +11,7 @@
 
 
 // Variables globales
-extern PriorityQueue*qPedidos;
+extern Queue<Pedido>*qPedidos;
 extern QMutex g_mutex;
 
 class RevisorArchivos : public QThread {

@@ -1,7 +1,7 @@
 
 #ifndef PRIORITYQUEUE_H
 #define PRIORITYQUEUE_H
-#include <vector>
+#include <QList>
 #include "Queue.h"
 #include "structs.h"
 
@@ -9,66 +9,76 @@ struct PriorityQueue;
 
 using namespace std;
 
-struct Nodo {
-    Queue<Pedido> queue;
-    Nodo* anterior;
-    Nodo* siguiente;
-};
 
-struct PriorityQueue{ // Sera en realidad una lista doble enlasada
-    int counter;
-    Nodo* pn, *un;
-    vector<Queue>* PriorityVector;
+struct PriorityQueue{
+    int counter; // Variable que lleva la cantidad de pedidos encolados en general.
+    QList<Queue<Pedido>> listQueue;
 
+    // Constructor que genera la lista de queues que manejará la prioridad
     PriorityQueue(){
-        vector<Queue>* PriorityVector = new vector<Queue>;
+        Queue<Pedido> queue01; //= new Queue<Pedido>();
+        listQueue.append(queue01);
+        Queue<Pedido> queue02; // = new Queue<Pedido>();
+        listQueue.append(queue02);
+        Queue<Pedido> queue03; // = new Queue<Pedido>();
+        listQueue.append(queue03);
+        Queue<Pedido> queue04; // = new Queue<Pedido>();
+        listQueue.append(queue04);
+        Queue<Pedido> queue05; // = new Queue<Pedido>();
+        listQueue.append(queue05);
+        Queue<Pedido> queue06; // = new Queue<Pedido>();
+        listQueue.append(queue06);
+        Queue<Pedido> queue07; // = new Queue<Pedido>();
+        listQueue.append(queue07);
+        Queue<Pedido> queue08; // = new Queue<Pedido>();
+        listQueue.append(queue08);
+        Queue<Pedido> queue09; // = new Queue<Pedido>();
+        listQueue.append(queue09);
+        Queue<Pedido> queue10; // = new Queue<Pedido>();
+        listQueue.append(queue10);
+    } // Dejo los new comentados en caso de futuros inconvenientes
 
-        Queue<Pedido> qPrioridad10;
-        Queue<Pedido> qPrioridad09;
-        Queue<Pedido> qPrioridad08;
-        Queue<Pedido> qPrioridad07;
-        Queue<Pedido> qPrioridad06;
-        Queue<Pedido> qPrioridad05;
-        Queue<Pedido> qPrioridad04;
-        Queue<Pedido> qPrioridad03;
-        Queue<Pedido> qPrioridad02;
-        Queue<Pedido> qPrioridad01;
+    // enQueue adaptado
+    void enQueuePriority (int prioridad, Pedido newPedido){
+        listQueue[prioridad-1].enQueue(newPedido);
+        counter++;
+    }
 
-        PriorityVector->push_back(qPrioridad10);
-        PriorityVector->push_back(qPrioridad09);
-        PriorityVector->push_back(qPrioridad08);
-        PriorityVector->push_back(qPrioridad07);
-        PriorityVector->push_back(qPrioridad06);
-        PriorityVector->push_back(qPrioridad05);
-        PriorityVector->push_back(qPrioridad04);
-        PriorityVector->push_back(qPrioridad03);
-        PriorityVector->push_back(qPrioridad02);
-        PriorityVector->push_back(qPrioridad01);
-
-        for (Queue<Pedido> queue : PriorityVector) {
-            if (queue==qPrioridad10)
-                cout << "P 10" << endl;
-            else if (queue==qPrioridad09)
-                cout << "P 09" << endl;
-            else if (queue==qPrioridad08)
-                cout << "P 08" << endl;
-            else if (queue==qPrioridad07)
-                cout << "P 07" << endl;
-            else if (queue==qPrioridad06)
-                cout << "P 06" << endl;
-            else if (queue==qPrioridad05)
-                cout << "P 05" << endl;
-            else if (queue==qPrioridad04)
-                cout << "P 04" << endl;
-            else if (queue==qPrioridad03)
-                cout << "P 03" << endl;
-            else if (queue==qPrioridad02)
-                cout << "P 02" << endl;
-            else if (queue==qPrioridad01)
-                cout << "P 01" << endl;
+    // deQueue adaptado
+    Pedido deQueuePriority(){
+        for (Queue<Pedido> queue : listQueue) {
+            if (!queue.isEmpty()){
+                counter--;
+                return queue.deQueue();
+            }
         }
     }
+
+    // Validador de que los queue de la lista estén todos vacíos
+    bool isEmptyPriority(){
+        for (const auto& queue : listQueue) {
+            if (!queue.isEmpty())
+                return false;
+        }
+        return true;
+    }
+
+    // Método para obtener la cantidad de Pedidos encolados independientemente de las prioridades
+    int cantidadEnCola(){
+        return counter;
+    }
+
+    // Convertir a string toda la cola
+    //QString _toString(){
+    //    QString result;
+    //    for (const auto& queue : listQueue) {
+    //        if (!queue.isEmpty())
+    //            result.append(queue._toString());
+    //    }
+    //    return result;
+    //}
 };
+
 
 
 #endif // PRIORITYQUEUE_H

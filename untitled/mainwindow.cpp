@@ -2,6 +2,7 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include "Queue.h"
+//#include "vcolapedidos.cpp"
 //#include "procedimientos.h"
 
 
@@ -32,7 +33,7 @@ void updateUI(Queue<int>& queue, QMutex& mutex, QTextEdit* textEdit) {
 */
 void MainWindow::on_btnColaPedidos_clicked()
 {
-    //cargarClientes(lista);
+
 }
 
 //int main(int argc, char* argv[]) {

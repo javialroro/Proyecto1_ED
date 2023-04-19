@@ -3,10 +3,9 @@
 
 #include <QMainWindow>
 
-namespace Ui {
-class vColaPedidos;
-}
-
+QT_BEGIN_NAMESPACE
+namespace Ui {class vColaPedidos;}
+QT_END_NAMESPACE
 class vColaPedidos : public QMainWindow
 {
     Q_OBJECT
