@@ -49,18 +49,67 @@ public:
     }
 };
 
+bool verficarCantidad(ListaArticulosP * lista, listaArticulos * listaG){
+    NodoArticuloP *tmp = lista->pn;
+
+    while (tmp != NULL){
+        bool verif =tmp->haySuficiente(listaG); // metodo de imprimir un cliente
+        if (!verif){
+            return false;
+        }
+        tmp = tmp->siguiente;
+    }
+    return true;
+}
+
+
+
 class Balanceador : public QThread {
 public:
-    Balanceador(Queue<Pedido>& colaPedidos, Queue<Pedido>& colaAlistos,Queue<Fabricacion> & A,
-                Queue<Fabricacion> & B,Queue<Fabricacion> & C, Queue<Fabricacion> & D, QObject* parent = nullptr)
-        : QThread(parent), m_queue(colaPedidos) , a_queue(colaAlistos), f1(A), f2(B),f3(C),f4(D)
+    Balanceador(listaArticulos  * l, PriorityQueue * colaPedidos, Queue<Pedido *>& colaAlistos,Queue<Pedido *> & A,
+                Queue<Pedido *> & B,Queue<Pedido *> & C, Queue<Pedido *> & D, QObject* parent = nullptr)
+        : QThread(parent), p_queue(colaPedidos) , a_queue(colaAlistos), f1(A), f2(B),f3(C),f4(D),lista(l)
     {
     }
     
     void run() override {
         while (true) {
             // Realizar operaciones sobre m_queue
-            
+            while(!p_queue->isEmptyPriority()){
+                Pedido * pedido = p_queue->deQueuePriority();
+
+                NodoArticuloP *tmp = pedido->listaPedido->pn;
+
+                bool flag= true;
+
+                while (tmp != NULL){
+                    bool verif =tmp->haySuficiente(lista); // metodo de imprimir un cliente
+                    if (!verif){
+                        NodoArticulo *cat= lista->buscar(tmp->articulo->codProd);
+                        string categoria =cat->articulo->categoria;
+
+                        if (categoria == "A") {
+                            f1.enQueue(pedido);
+                            flag= false;
+                        } else if (categoria == "B") {
+                            f2.enQueue(pedido);
+                            flag= false;
+                        } else if (categoria == "C") {
+                            f3.enQueue(pedido);
+                            flag= false;
+                        } else if (categoria == "A" || categoria == "B") {
+                            //
+                        }
+                    }
+
+                    tmp = tmp->siguiente;
+                }
+                if (flag){
+                    a_queue.enQueue(pedido);
+                }
+
+
+            }
             
             // Esperar un tiempo antes de continuar
             sleep(1);
@@ -68,17 +117,24 @@ public:
     }
     
 private:
-    Queue<Pedido>& m_queue;
-    Queue<Pedido>& a_queue;
-    Queue<Fabricacion> & f1;
-    Queue<Fabricacion> & f2;
-    Queue<Fabricacion> & f3;
-    Queue<Fabricacion> & f4;
+    PriorityQueue * p_queue;
+    Queue<Pedido *>& a_queue;
+    Queue<Pedido *> & f1;
+    Queue<Pedido *> & f2;
+    Queue<Pedido *> & f3;
+    Queue<Pedido *> & f4;
+    listaArticulos * lista;
+
 
 
 };
-    
 
+string retornarHora(){
+    auto now = chrono::system_clock::now();
+    time_t now_c = chrono::system_clock::to_time_t(now);
+    string hora= ctime(&now_c);
+    return hora;
+}
 
 
 #endif // QTHREADS_H

@@ -26,6 +26,7 @@ void cargarClientes(listaClientes *lista) {
 
                 lista->insertarAlInicio(cliente); // annade el cliente a la lista
 
+
             }
             else{
 
@@ -46,6 +47,7 @@ void cargarClientes(listaClientes *lista) {
 
     } else {
         cout << "No se pudo abrir el archivo" << endl;
+
     }
 
 }

@@ -21,14 +21,6 @@ struct Articulo;
 struct NodoArticulo;
 struct listaArticulos;
 
-//string retornarHora(){
-//    auto now = chrono::system_clock::now();
-//    time_t now_c = chrono::system_clock::to_time_t(now);
-//    string hora= ctime(&now_c);
-//    return hora;
-//}
-
-
 
 struct Cliente{
     string codigo;
@@ -108,6 +100,7 @@ struct listaClientes{
                 return aux->cliente;
             }
         }
+        return NULL;
     }
 
 
@@ -189,6 +182,25 @@ struct listaArticulos{
         }
         cout << endl;
     }
+
+
+
+    NodoArticulo *  buscar(string art){
+        NodoArticulo * tmp = pn;
+
+        while (tmp != NULL){
+            if (art==tmp->articulo->codigo){
+                return tmp;
+
+            }
+
+            tmp = tmp->siguiente;
+        }
+
+        // hacer que vaya a errores
+        return NULL;
+    }
+
 };
 
 struct ArticuloPedido{
@@ -218,6 +230,15 @@ struct NodoArticuloP{
     NodoArticuloP(ArticuloPedido * _articulo){
         articulo = _articulo;
         siguiente=NULL;
+    }
+    bool haySuficiente(listaArticulos * lista){
+        NodoArticulo * b = lista->buscar(articulo->codProd);
+
+        if(articulo->cantidad <= b->articulo-> cantidadAlmacen){
+            return true;
+        }
+
+        return false;
     }
 };
 
@@ -252,6 +273,8 @@ struct ListaArticulosP{
             pn = nuevo;
         }
     }
+
+
 
 };
 
@@ -322,11 +345,6 @@ struct Archivo{
     }
 };
 
-struct Fabricacion{
-    string cod;
-    string codProd;
-    int cant;
-};
 
 struct Fabrica{
 
@@ -346,7 +364,7 @@ struct Fabrica{
         lista = l;
     }
 
-    void fabricar(Fabricacion * f){
+    void fabricar(Pedido * f){
 
     }
 };

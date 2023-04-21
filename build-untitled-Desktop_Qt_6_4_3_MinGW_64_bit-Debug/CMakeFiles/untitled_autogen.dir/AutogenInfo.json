@@ -260,15 +260,21 @@
 			null
 		],
 		[
-			"C:/Users/javia/OneDrive - Estudiantes ITCR/TEC/TEC 3 Semestre/Estructuras de Datos/Proyectos/Proyecto1_ED/untitled/colas.h",
+			"C:/Users/javia/OneDrive - Estudiantes ITCR/TEC/TEC 3 Semestre/Estructuras de Datos/Proyectos/Proyecto1_ED/untitled/Queue.h",
 			"MU",
-			"EWIEGA46WW/moc_colas.cpp",
+			"EWIEGA46WW/moc_Queue.cpp",
 			null
 		],
 		[
 			"C:/Users/javia/OneDrive - Estudiantes ITCR/TEC/TEC 3 Semestre/Estructuras de Datos/Proyectos/Proyecto1_ED/untitled/mainwindow.h",
 			"MU",
 			"EWIEGA46WW/moc_mainwindow.cpp",
+			null
+		],
+		[
+			"C:/Users/javia/OneDrive - Estudiantes ITCR/TEC/TEC 3 Semestre/Estructuras de Datos/Proyectos/Proyecto1_ED/untitled/priorityqueue.h",
+			"MU",
+			"EWIEGA46WW/moc_priorityqueue.cpp",
 			null
 		],
 		[
@@ -360,12 +366,22 @@
 	"SOURCES" : 
 	[
 		[
+			"C:/Users/javia/OneDrive - Estudiantes ITCR/TEC/TEC 3 Semestre/Estructuras de Datos/Proyectos/Proyecto1_ED/untitled/QThreads.cpp",
+			"MU",
+			null
+		],
+		[
 			"C:/Users/javia/OneDrive - Estudiantes ITCR/TEC/TEC 3 Semestre/Estructuras de Datos/Proyectos/Proyecto1_ED/untitled/main.cpp",
 			"MU",
 			null
 		],
 		[
 			"C:/Users/javia/OneDrive - Estudiantes ITCR/TEC/TEC 3 Semestre/Estructuras de Datos/Proyectos/Proyecto1_ED/untitled/mainwindow.cpp",
+			"MU",
+			null
+		],
+		[
+			"C:/Users/javia/OneDrive - Estudiantes ITCR/TEC/TEC 3 Semestre/Estructuras de Datos/Proyectos/Proyecto1_ED/untitled/priorityqueue.cpp",
 			"MU",
 			null
 		],
