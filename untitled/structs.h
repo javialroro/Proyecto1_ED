@@ -91,17 +91,20 @@ struct listaClientes{
         }
         cout << endl;
     }
+    bool search(string a){
+        NodoCliente *tmp = pn;
 
-    // Metodo para facilitar la busqueda de un cliente en la lista
-    Cliente *buscarCliente(string codCliente){
-        NodoCliente *aux = pn;
-        while (aux != NULL){
-            if (aux->cliente->codigo == codCliente){
-                return aux->cliente;
+        while (tmp != NULL){
+            if(tmp->cliente->codigo == a){
+                //cout<<"existe"<<endl;
+                return true;
             }
+            //cout<<tmp->cliente->codigo; // metodo de imprimir un cliente
+            tmp = tmp->siguiente;
         }
-        return NULL;
+        return false;
     }
+
 
 
 };
@@ -185,20 +188,36 @@ struct listaArticulos{
 
 
 
-    NodoArticulo *  buscar(string art){
+    NodoArticulo * buscar(string art){
         NodoArticulo * tmp = pn;
 
         while (tmp != NULL){
             if (art==tmp->articulo->codigo){
+                tmp->articulo->imprimir();
                 return tmp;
 
             }
 
             tmp = tmp->siguiente;
         }
-
+        cout<<"NO"<<endl;
         // hacer que vaya a errores
         return NULL;
+    }
+
+    bool search(string a){
+        NodoArticulo *tmp = pn;
+
+        while (tmp != NULL){
+            if(tmp->articulo->codigo == a){
+                tmp->articulo->imprimir();
+                return true;
+            }
+             // metodo de imprimir un cliente
+            tmp = tmp->siguiente;
+        }
+        cout<<"NO EXISTE";
+        return false;
     }
 
 };

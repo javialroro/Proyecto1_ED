@@ -11,14 +11,15 @@
 int main(int argc, char *argv[]){
 
     QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
+    //MainWindow w;
+    //w.show();
     listaClientes *lista = new listaClientes();
     listaArticulos *listaArt = new listaArticulos();
     CargarArticulos(listaArt);
     cargarClientes(lista);
 
-    RevisorArchivos revisor;
+
+    RevisorArchivos revisor(listaArt,lista);
     revisor.start();
 
     return a.exec();

@@ -5,5 +5,4 @@ A03	30
 B09	1
 B00	10
 
-
-Archivo erroneo, formato incorrecto
+Archivo erroneo, cliente no existente
