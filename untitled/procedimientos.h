@@ -3,6 +3,7 @@
 #define PROCEDIMIENTOS_H
 #include "structs.h"
 #include "Queue.h"
+#include "priorityqueue.h"
 #include <cstdio>
 #include <filesystem>
 using namespace std;
@@ -98,7 +99,7 @@ void CargarArticulos(listaArticulos *lista ){
 }
 
 
-void cargarPedido(Archivo *archivo, Queue<Pedido>*qPedidos, listaClientes * lista, listaArticulos * listaArt){
+void cargarPedido(Archivo *archivo, PriorityQueue * qPedidos, listaClientes * lista, listaArticulos * listaArt){
 
     string linea;
     int contador = 1;
@@ -130,11 +131,11 @@ void cargarPedido(Archivo *archivo, Queue<Pedido>*qPedidos, listaClientes * list
                 }
             }
             else if (contador == 2) {
-                string codC;
-                if (getline(ss, codC, '\n')){
-                    if(lista->search(codC)){
-                        getline(ss, codC, '\n');
-                        pedido->codCliente = stoi(codC);
+
+                if (getline(ss, pedido->codCliente, '\n')){
+                    if(lista->search(pedido->codCliente)){
+                        getline(ss, pedido->codCliente, '\n');
+
 
                     }
 
@@ -201,13 +202,13 @@ void cargarPedido(Archivo *archivo, Queue<Pedido>*qPedidos, listaClientes * list
 
 
         if (!error){
-            //qPedidos->enQueue(*pedido);
+            qPedidos->enQueuePriority(lista->bPrioridad(pedido->codCliente),pedido);
             //count<<listaClientes->buscarCliente(pedido->codCliente)->prioridad<<end;
             archivo->arch.close();
             pedido->imprimir();
             string ruta_procesados = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\PedidosProcesados\\pedido.txt";
             rename(archivo->path.c_str(),ruta_procesados.c_str());
-            cout<<"a";
+            cout<<"a"<<endl;
         }
 
          // cierra el archivo

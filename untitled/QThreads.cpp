@@ -7,4 +7,4 @@
 
 
 //Se inicializa la cola que se usará
-PriorityQueue* qPedidos = new PriorityQueue();
+//PriorityQueue* qPedidos = new PriorityQueue();

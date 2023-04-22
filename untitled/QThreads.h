@@ -11,7 +11,7 @@
 
 
 // Variables globales
-extern Queue<Pedido>*qPedidos;
+PriorityQueue * qPedidos = new PriorityQueue();
 extern QMutex g_mutex;
 
 class RevisorArchivos : public QThread {
@@ -74,6 +74,14 @@ bool verficarCantidad(ListaArticulosP * lista, listaArticulos * listaG){
     return true;
 }
 
+void encolarMenor(Queue<Pedido *>& q1, Queue<Pedido *>& q2, Pedido * pedido) {
+    if (q1.size() <= q2.size()) {
+        q1.enQueue(pedido);
+    }
+    else {
+        q2.enQueue(pedido);
+    }
+}
 
 
 class Balanceador : public QThread {
@@ -86,7 +94,7 @@ public:
     
     void run() override {
         while (true) {
-            // Realizar operaciones sobre m_queue
+
             while(!p_queue->isEmptyPriority()){
                 Pedido * pedido = p_queue->deQueuePriority();
 
@@ -101,16 +109,14 @@ public:
                         string categoria =cat->articulo->categoria;
 
                         if (categoria == "A") {
-                            f1.enQueue(pedido);
+                            encolarMenor(f1,f4,pedido);
                             flag= false;
                         } else if (categoria == "B") {
-                            f2.enQueue(pedido);
+                            encolarMenor(f2,f4,pedido);
                             flag= false;
                         } else if (categoria == "C") {
                             f3.enQueue(pedido);
                             flag= false;
-                        } else if (categoria == "A" || categoria == "B") {
-                            //
                         }
                     }
 
@@ -147,6 +153,10 @@ string retornarHora(){
     string hora= ctime(&now_c);
     return hora;
 }
+
+// Función para comparar el tamaño de tres queues y encolar en la de menor tamaño
+
+
 
 
 #endif // QTHREADS_H

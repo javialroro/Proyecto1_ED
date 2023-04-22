@@ -105,6 +105,20 @@ struct listaClientes{
         return false;
     }
 
+    int bPrioridad(string a){
+        NodoCliente *tmp = pn;
+
+        while (tmp != NULL){
+            if(tmp->cliente->codigo == a){
+                //cout<<"existe"<<endl;
+                return tmp->cliente->prioridad;
+            }
+            //cout<<tmp->cliente->codigo; // metodo de imprimir un cliente
+            tmp = tmp->siguiente;
+        }
+        return NULL;
+    }
+
 
 
 };
@@ -301,13 +315,13 @@ struct ListaArticulosP{
 
 struct Pedido{
     int numPedido;
-    int codCliente;
+    string codCliente;
     ListaArticulosP *listaPedido;
     string infoFactura[10];
 
     Pedido(){
         numPedido = 0;
-        codCliente = 0;
+        codCliente = "";
         listaPedido = new ListaArticulosP();
 
     }

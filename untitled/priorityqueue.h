@@ -42,6 +42,7 @@ struct PriorityQueue{
     void enQueuePriority (int prioridad, Pedido * newPedido){
         listQueue[prioridad-1].enQueue(newPedido);
         counter++;
+        cout<<"Encolado correctamente"<<endl;
     }
 
     // deQueue adaptado
@@ -69,14 +70,15 @@ struct PriorityQueue{
     }
 
     // Convertir a string toda la cola
-    //QString _toString(){
-    //    QString result;
-    //    for (const auto& queue : listQueue) {
-    //        if (!queue.isEmpty())
-    //            result.append(queue._toString());
-    //    }
-    //    return result;
-    //}
+    /*
+    QString _toString() const {
+        QString result;
+        for (const auto& queue : listQueue) {
+            if (!queue.isEmpty())
+                result.append(queue._toString());
+        }
+        return result;
+    }*/
 };
 
 
