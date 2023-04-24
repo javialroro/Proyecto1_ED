@@ -1,8 +1,7 @@
 
 #ifndef PROCEDIMIENTOS_H
 #define PROCEDIMIENTOS_H
-#include "structs.h"
-#include "Queue.h"
+
 #include "priorityqueue.h"
 #include <cstdio>
 #include <filesystem>
@@ -206,8 +205,7 @@ void cargarPedido(Archivo *archivo, PriorityQueue * qPedidos, listaClientes * li
             qPedidos->enQueuePriority(lista->bPrioridad(pedido->codCliente),pedido);
             //count<<listaClientes->buscarCliente(pedido->codCliente)->prioridad<<end;
             archivo->arch.close();
-            string ruta_procesados = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\PedidosProcesados\\pedido.txt";
-            rename(archivo->path.c_str(),ruta_procesados.c_str());
+
 
         }
 
@@ -227,34 +225,93 @@ string retornarHora(){
     return hora;
 }
 
-void modificarArchivo(string path, int cant, string _codigo){
-    string arch = path+"articulos.txt";
-    string archT = path+"articulos.txt";
-    ifstream infile(arch);
-    ofstream outfile(archT);
-    string line;
-
-    while (getline(infile, line)) {
-        // Extraer código
-        string codigo = line.substr(0, 4);
-        if (codigo == _codigo) {
-            // Modificar valor
-            line.replace(8, 2, to_string(cant));
+void modifyField(std::string& line, std::string code, int fieldIndex, int newValue) {
+    // Busca el código en la línea
+    size_t pos = line.find(code);
+    if (pos != std::string::npos) {
+        // Si se encontró el código, busca el índice del campo a modificar
+        for (int i = 0; i < fieldIndex; i++) {
+            pos = line.find("\t", pos + 1);
+            if (pos == std::string::npos) {
+                // No se encontró el campo
+                //return "No se encontró el campo";
+            }
         }
-        // Escribir línea modificada en archivo temporal
-        outfile << line << endl;
+        // Modifica el campo
+        int endPos = line.find("\t", pos + 1);
+        if (endPos == std::string::npos) {
+            endPos = line.size();
+        }
+        std::string field = line.substr(pos + 1, endPos - pos - 1);
+        std::stringstream ss(field);
+        int oldValue;
+        ss >> oldValue;
+        line.replace(pos + 1, endPos - pos - 1, std::to_string(newValue));
+        std::cout << "Modified field " << fieldIndex << " from " << oldValue << " to " << newValue << std::endl;
+        cout<<line<<endl;
+        //return line;
     }
-
-    // Cerrar archivos
-    infile.close();
-    outfile.close();
-
-    // Sobrescribir archivo original con archivo temporal
-    //remove(arch.c_str());
-    rename(archT.c_str(), arch.c_str());
+    //cout<<line<<endl;
+    //return line;
 
 }
 
+void cambiar(string code, int fieldIndex, int newValue) {
+    // Abrir el archivo en modo lectura y escritura
+    fstream file("C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Articulos\\articulos.txt", std::ios::in | std::ios::out);
+
+
+    if (!file.is_open()) {
+    cout << "Error al abrir el archivo" << std::endl;
+    return;
+    }
+
+    string line;
+    stringstream ss;
+    bool lineFound = false;
+
+    // Crear un archivo temporal para escribir las líneas modificadas
+    fstream tempFile("temp.txt", std::ios::out);
+    if (!tempFile.is_open()) {
+    cout << "Error al crear el archivo temporal" << std::endl;
+    return;
+    }
+
+    // Leer el archivo línea por línea
+    while (getline(file, line)) {
+    // Reemplazar la línea si se encuentra el código
+        if (line.find(code) != string::npos) {
+                modifyField(line, code, fieldIndex, newValue);
+                lineFound = true;
+        }
+        tempFile << line << endl;
+
+    }
+
+
+    if (!lineFound) {
+        cout << "No se encontro la línea con el codigo " << code << endl;
+        file.close();
+        tempFile.close();
+        remove("temp.txt");
+        return;
+    }
+
+
+
+    // Cerrar ambos archivos
+    file.close();
+    tempFile.close();
+
+    // Reemplazar el archivo original con el archivo temporal
+    remove("C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Articulos\\articulos.txt");
+    rename("temp.txt", "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Articulos\\articulos.txt");
+    if (tempFile.fail()) {
+        cout << "Error al leer/escribir el archivo d" << endl;
+        //return;
+    }
+    cout << "Archivo actualizado correctamente" << endl;
+}
 
 
 
