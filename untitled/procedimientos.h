@@ -202,13 +202,13 @@ void cargarPedido(Archivo *archivo, PriorityQueue * qPedidos, listaClientes * li
 
 
         if (!error){
+            pedido->imprimir();
             qPedidos->enQueuePriority(lista->bPrioridad(pedido->codCliente),pedido);
             //count<<listaClientes->buscarCliente(pedido->codCliente)->prioridad<<end;
             archivo->arch.close();
-            pedido->imprimir();
             string ruta_procesados = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\PedidosProcesados\\pedido.txt";
             rename(archivo->path.c_str(),ruta_procesados.c_str());
-            cout<<"a"<<endl;
+
         }
 
          // cierra el archivo
@@ -220,7 +220,40 @@ void cargarPedido(Archivo *archivo, PriorityQueue * qPedidos, listaClientes * li
     }
 }
 
+string retornarHora(){
+    auto now = chrono::system_clock::now();
+    time_t now_c = chrono::system_clock::to_time_t(now);
+    string hora= ctime(&now_c);
+    return hora;
+}
 
+void modificarArchivo(string path, int cant, string _codigo){
+    string arch = path+"articulos.txt";
+    string archT = path+"articulos.txt";
+    ifstream infile(arch);
+    ofstream outfile(archT);
+    string line;
+
+    while (getline(infile, line)) {
+        // Extraer código
+        string codigo = line.substr(0, 4);
+        if (codigo == _codigo) {
+            // Modificar valor
+            line.replace(8, 2, to_string(cant));
+        }
+        // Escribir línea modificada en archivo temporal
+        outfile << line << endl;
+    }
+
+    // Cerrar archivos
+    infile.close();
+    outfile.close();
+
+    // Sobrescribir archivo original con archivo temporal
+    //remove(arch.c_str());
+    rename(archT.c_str(), arch.c_str());
+
+}
 
 
 

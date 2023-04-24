@@ -12,6 +12,7 @@ public:
     // Metodo que agrega un elemento al final de la cola
     void enQueue(const T& value) {
         m_items.append(value); // append agrega al final
+        //cout<<"Encolado en queue de pedidos"<<endl;
     }
 
     // Metodo que remueve el primer elemento de la cola, y lo retorna

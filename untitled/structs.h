@@ -207,7 +207,7 @@ struct listaArticulos{
 
         while (tmp != NULL){
             if (art==tmp->articulo->codigo){
-                tmp->articulo->imprimir();
+                //tmp->articulo->imprimir();
                 return tmp;
 
             }
@@ -224,7 +224,7 @@ struct listaArticulos{
 
         while (tmp != NULL){
             if(tmp->articulo->codigo == a){
-                tmp->articulo->imprimir();
+                //tmp->articulo->imprimir();
                 return true;
             }
              // metodo de imprimir un cliente
@@ -332,11 +332,14 @@ struct Pedido{
         listaPedido = new ListaArticulosP();
     }
     void imprimir(){
+        cout<<"----------PEDIDO:----------"<<numPedido<<endl;
         cout<<"Numero de pedido: "<<numPedido<<endl;
         cout<<" Codigo de cliente: "<<codCliente<<endl;
         cout<<"---------------------------";
         cout<<endl;
         listaPedido->imprimir();
+        cout<<"---------------------------";
+        cout<<endl;
     }
 };
 
@@ -378,7 +381,7 @@ struct Archivo{
     }
 };
 
-
+/*
 struct Fabrica{
 
     string tipo;
@@ -400,7 +403,7 @@ struct Fabrica{
     void fabricar(Pedido * f){
 
     }
-};
+};*/
 
 
 

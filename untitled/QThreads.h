@@ -11,13 +11,13 @@
 
 
 // Variables globales
-PriorityQueue * qPedidos = new PriorityQueue();
+//PriorityQueue * qPedidos = new PriorityQueue();
 extern QMutex g_mutex;
 
 class RevisorArchivos : public QThread {
 public:
-    RevisorArchivos(listaArticulos  * la, listaClientes *lc, QObject* parent = nullptr)
-        : QThread(parent), listaArticulos(la) , listaClientes(lc)
+    RevisorArchivos(listaArticulos  * la, listaClientes *lc, PriorityQueue * pq, QObject* parent = nullptr)
+        : QThread(parent), listaArticulos(la) , listaClientes(lc) , colaPedidos(pq)
     {
     }
     void run() override {
@@ -29,6 +29,7 @@ public:
             if (archivos.size() > 0) {
                 qDebug() << "Archivos encontrados:";
                 for (const auto& archivo : archivos) {
+                    qDebug()<<archivo;
 
                     string cPath= path.toStdString()+"\\";
                     string cArchivo = archivo.toStdString();
@@ -39,17 +40,14 @@ public:
                     fstream arch(todo, std::ios::in | std::ios::app);
                     Archivo *a =  new Archivo(arch,todo,errores);
 
-                    cargarPedido(a, qPedidos, listaClientes, listaArticulos);
+                    cargarPedido(a, colaPedidos, listaClientes, listaArticulos);
 
-                    string ruta_archivo = todo;
-                    string ruta_pedidosP = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\PedidosProcesados\\"+cArchivo;
+                    //string ruta_archivo = todo;
+                    //string ruta_pedidosP = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\PedidosProcesados\\"+cArchivo;
                     //string ruta_pedidosP = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\PedidosProcesados\\"+cArchivo;
 
-                    rename(ruta_archivo.c_str(),ruta_pedidosP.c_str());
+                    //rename(ruta_archivo.c_str(),ruta_pedidosP.c_str());
                 }
-            }
-            else {
-                qDebug() << "No se encontraron archivos";
             }
 
             QThread::msleep(1000); // espera 1 segundo antes de revisar de nuevo
@@ -58,6 +56,7 @@ public:
 private:
     listaClientes * listaClientes;
     listaArticulos * listaArticulos;
+    PriorityQueue * colaPedidos;
 
 };
 
@@ -77,9 +76,11 @@ bool verficarCantidad(ListaArticulosP * lista, listaArticulos * listaG){
 void encolarMenor(Queue<Pedido *>& q1, Queue<Pedido *>& q2, Pedido * pedido) {
     if (q1.size() <= q2.size()) {
         q1.enQueue(pedido);
+
     }
     else {
         q2.enQueue(pedido);
+
     }
 }
 
@@ -96,27 +97,45 @@ public:
         while (true) {
 
             while(!p_queue->isEmptyPriority()){
+
+
                 Pedido * pedido = p_queue->deQueuePriority();
+
+
 
                 NodoArticuloP *tmp = pedido->listaPedido->pn;
 
                 bool flag= true;
 
                 while (tmp != NULL){
+
                     bool verif =tmp->haySuficiente(lista); // metodo de imprimir un cliente
+
                     if (!verif){
+                        cout<<"---------A COLA DE FABRICACION---------"<<endl;
+                        tmp->articulo->imprimir();
+                        cout<<"---------------------------------------"<<endl;
                         NodoArticulo *cat= lista->buscar(tmp->articulo->codProd);
                         string categoria =cat->articulo->categoria;
 
+
                         if (categoria == "A") {
+                            //cout<<"A"<<endl;
                             encolarMenor(f1,f4,pedido);
+                            cout<<"Encolado en A"<<endl;
                             flag= false;
+                            break;
                         } else if (categoria == "B") {
                             encolarMenor(f2,f4,pedido);
+                            cout<<"Encolado en B" + cat->articulo->codigo<<endl;
                             flag= false;
+                            break;
                         } else if (categoria == "C") {
+
                             f3.enQueue(pedido);
+                            cout<<"Encolado en C"<<endl;
                             flag= false;
+                            break;
                         }
                     }
 
@@ -125,6 +144,7 @@ public:
                 if (flag){
                     a_queue.enQueue(pedido);
                 }
+
 
 
             }
@@ -147,14 +167,59 @@ private:
 
 };
 
-string retornarHora(){
-    auto now = chrono::system_clock::now();
-    time_t now_c = chrono::system_clock::to_time_t(now);
-    string hora= ctime(&now_c);
-    return hora;
-}
+class Fabrica : public QThread {
+public:
+    Fabrica(listaArticulos  * l, Queue<Pedido *>& colaAlistos,Queue<Pedido *> & A, QObject* parent = nullptr)
+        : QThread(parent), a_queue(colaAlistos), cola(A), lista(l)
+    {
+    }
+    string ruta_archivo = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Articulos\\articulos.txt";
+    void run() override {
 
-// Función para comparar el tamaño de tres queues y encolar en la de menor tamaño
+
+        while (true) {
+            fstream arch(ruta_archivo, std::ios::in | std::ios::app);
+
+            while(!cola.isEmpty()){
+                Pedido * pedido = cola.deQueue();
+
+                NodoArticuloP *tmp = pedido->listaPedido->pn;
+
+
+                bool flag= true;
+
+                while (tmp != NULL){
+                    bool verif =tmp->haySuficiente(lista); // metodo de imprimir un cliente
+                    if (!verif){
+                        NodoArticulo * n =lista->buscar(tmp->articulo->codProd);
+                        n->articulo->cantidadAlmacen+=(tmp->articulo->cantidad);
+
+
+                    }
+
+                    tmp = tmp->siguiente;
+                }
+
+
+
+
+            }
+
+            // Esperar un tiempo antes de continuar
+            sleep(1);
+        }
+    }
+
+private:
+    Queue<Pedido *>& a_queue;
+    Queue<Pedido *> & cola;
+    listaArticulos * lista;
+
+
+
+};
+
+
 
 
 

@@ -42,17 +42,18 @@ struct PriorityQueue{
     void enQueuePriority (int prioridad, Pedido * newPedido){
         listQueue[prioridad-1].enQueue(newPedido);
         counter++;
-        cout<<"Encolado correctamente"<<endl;
+        cout<<"Encolado correctamente en la Queue de prioridad"<<endl;
     }
 
     // deQueue adaptado
-    Pedido * deQueuePriority(){
-        for (Queue<Pedido *> queue : listQueue) {
-            if (!queue.isEmpty()){
+    Pedido* deQueuePriority() {
+        for (Queue<Pedido*>& queue : listQueue) {
+            if (!queue.isEmpty()) {
                 counter--;
                 return queue.deQueue();
             }
         }
+        return nullptr;
     }
 
     // Validador de que los queue de la lista estén todos vacíos
