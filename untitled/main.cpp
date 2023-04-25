@@ -1,5 +1,5 @@
 
-//#include "mainwindow.h"
+#include "mainwindow.h"
 #include <QApplication>
 #include "QThreads.h"
 
@@ -31,8 +31,7 @@ int main(int argc, char *argv[]){
     balanceador.start();
     QSemaphore s(1);
 
-    modificarArchivo("C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Articulos\\"
-                     ,40,"A01");
+    //modificarArchivo("C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Articulos\\",40,"A01");
 
     Fabrica *A = new Fabrica(listaArt,colaAlistados,colaA,"A",s);
     Fabrica *B= new Fabrica(listaArt,colaAlistados,colaB,"B",s);

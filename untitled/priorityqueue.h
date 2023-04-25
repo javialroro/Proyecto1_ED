@@ -79,14 +79,24 @@ struct PriorityQueue{
     }
 
     // Convertir a string toda la cola
-    QString _toString() const {
-        QString result;
-        for (const auto& queue : listQueue) {
-            if (!queue.isEmpty())
-                result.append(queue._toString());
-        }
-        return result;
-    }
+    //QString toString() const {
+    //    QString result;
+    //    if (queue.isEmpty()) {
+    //        result = "La cola esta vacia.";
+    //    } else {
+    //        Queue<Pedido*> temp(queue);
+    //        while (!temp.isEmpty()) {
+    //            result.append(temp.front()->to_String());
+    //            temp.dequeue();
+    //            if (!temp.isEmpty()) {
+    //                result.append("\n");
+    //            }
+    //        }
+    //    }
+    //    return result;
+    //}
+
+
 };
 
 
