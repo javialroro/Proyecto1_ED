@@ -1,7 +1,5 @@
 
-#include "mainwindow.h"
-#include "procedimientos.h"
-#include "structs.h"
+//#include "mainwindow.h"
 #include <QApplication>
 #include "QThreads.h"
 
@@ -9,7 +7,6 @@
 
 
 int main(int argc, char *argv[]){
-
 
     QApplication a(argc, argv);
     MainWindow w;
@@ -32,10 +29,24 @@ int main(int argc, char *argv[]){
 
     Balanceador balanceador(listaArt, colaPedidos, colaAlistados, colaA, colaB, colaC, colaComodin);
     balanceador.start();
-
-    return a.exec();
+    QSemaphore s(1);
 
     modificarArchivo("C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Articulos\\"
                      ,40,"A01");
-    return 0;
+
+    Fabrica *A = new Fabrica(listaArt,colaAlistados,colaA,"A",s);
+    Fabrica *B= new Fabrica(listaArt,colaAlistados,colaB,"B",s);
+    Fabrica *C= new Fabrica(listaArt,colaAlistados,colaC,"C",s);
+    Fabrica *Comodin= new Fabrica(listaArt,colaAlistados,colaA,colaComodin,"A","B",s);
+
+    A->start();
+    B->start();
+    C->start();
+    Comodin->start();
+
+    //Fabricacion1 fabricacion(A,B,C,Comodin);
+    //fabricacion.start();
+
+    return a.exec();
+
 }

@@ -239,6 +239,8 @@ struct listaArticulos{
 struct ArticuloPedido{
     string codProd;
     int cantidad;
+    bool aFabrica;
+    bool fabricado;
 
     ArticuloPedido(string cod, int cant){
         codProd = cod;

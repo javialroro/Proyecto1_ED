@@ -2,9 +2,11 @@
 #include <QDialog>
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
+
 #include "Queue.h"
 #include "ui_vcolapedidos.h"
-//#include "procedimientos.h"
+
+
 
 
 //listaClientes *lista = new listaClientes();
