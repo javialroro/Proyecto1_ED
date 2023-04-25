@@ -108,7 +108,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
-        MainWindow->resize(1522, 769);
+        MainWindow->resize(1435, 769);
         MainWindow->setCursor(QCursor(Qt::ArrowCursor));
         MainWindow->setMouseTracking(false);
         centralwidget = new QWidget(MainWindow);
@@ -820,7 +820,7 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
+        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "Armazon", nullptr));
         lblcliente1->setText(QString());
         lblBalanceador->setText(QString());
 #if QT_CONFIG(tooltip)

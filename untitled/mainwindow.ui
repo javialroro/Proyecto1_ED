@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1522</width>
+    <width>1435</width>
     <height>769</height>
    </rect>
   </property>
@@ -17,7 +17,7 @@
    <bool>false</bool>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Armazon</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLabel" name="lblcliente1">

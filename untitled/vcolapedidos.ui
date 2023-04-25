@@ -2,46 +2,106 @@
 <ui version="4.0">
  <class>vColaPedidos</class>
  <widget class="QMainWindow" name="vColaPedidos">
+  <property name="enabled">
+   <bool>false</bool>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
+    <width>757</width>
     <height>600</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Información de Cola</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QColumnView" name="columnView">
+   <widget class="QTextEdit" name="txEditColaPedidos">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>20</y>
-      <width>256</width>
-      <height>571</height>
+      <x>40</x>
+      <y>40</y>
+      <width>251</width>
+      <height>521</height>
      </rect>
     </property>
-   </widget>
-   <widget class="QColumnView" name="columnView_2">
-    <property name="geometry">
-     <rect>
-      <x>270</x>
-      <y>20</y>
-      <width>256</width>
-      <height>571</height>
-     </rect>
+    <property name="styleSheet">
+     <string notr="true">border: 3px solid gray;
+border-color: rgb(0, 74, 108);
+
+</string>
     </property>
    </widget>
-   <widget class="QColumnView" name="columnView_3">
+   <widget class="QLabel" name="lblCantEnColaText">
     <property name="geometry">
      <rect>
-      <x>530</x>
-      <y>20</y>
-      <width>256</width>
-      <height>571</height>
+      <x>368</x>
+      <y>50</y>
+      <width>161</width>
+      <height>20</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 12pt &quot;Times New Roman&quot;; 
+Color: Black;</string>
+    </property>
+    <property name="text">
+     <string>Cantidad en Cola:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblCantDesencoladosText">
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>120</y>
+      <width>161</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 12pt &quot;Times New Roman&quot;; 
+Color: Black;</string>
+    </property>
+    <property name="text">
+     <string>Cantidad en Desencolada:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblCantEnColaNum">
+    <property name="geometry">
+     <rect>
+      <x>540</x>
+      <y>50</y>
+      <width>91</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 12pt &quot;Times New Roman&quot;; 
+Color: Black;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblCantDesencoladosNum">
+    <property name="geometry">
+     <rect>
+      <x>540</x>
+      <y>120</y>
+      <width>91</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 12pt &quot;Times New Roman&quot;; 
+Color: Black;</string>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
   </widget>

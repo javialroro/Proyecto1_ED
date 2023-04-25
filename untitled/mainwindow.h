@@ -23,6 +23,8 @@ private slots:
 
     void on_btnVer03_clicked();
 
+    void on_btnColaDeAlisto_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

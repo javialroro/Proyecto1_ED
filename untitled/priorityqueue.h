@@ -11,7 +11,8 @@ using namespace std;
 
 
 struct PriorityQueue{
-    int counter; // Variable que lleva la cantidad de pedidos encolados en general.
+    int CantEnCola; // Variable que lleva la cantidad de pedidos encolados en general.
+    int CantDesencolados; //Variable que lelva la cantidad de pedidos que han sido desencolados en general.
     QList<Queue<Pedido *>> listQueue;
 
     // Constructor que genera la lista de queues que manejará la prioridad
@@ -41,7 +42,7 @@ struct PriorityQueue{
     // enQueue adaptado
     void enQueuePriority (int prioridad, Pedido * newPedido){
         listQueue[prioridad-1].enQueue(newPedido);
-        counter++;
+        CantEnCola++;
         cout<<"Encolado correctamente en la Queue de prioridad"<<endl;
     }
 
@@ -49,8 +50,10 @@ struct PriorityQueue{
     Pedido* deQueuePriority() {
         for (Queue<Pedido*>& queue : listQueue) {
             if (!queue.isEmpty()) {
-                counter--;
+                CantEnCola--;
+                CantDesencolados++;
                 return queue.deQueue();
+                cout<<"Desencolado correctamente de la Queue de prioridad: "<< CantDesencolados <<endl;
             }
         }
         return nullptr;
@@ -66,12 +69,16 @@ struct PriorityQueue{
     }
 
     // Método para obtener la cantidad de Pedidos encolados independientemente de las prioridades
-    int cantidadEnCola(){
-        return counter;
+    int getCantidadEnCola(){
+        return CantEnCola;
+    }
+
+    // Método para obtener la cantidad de Pedidos desencolados independientemente de las prioridades
+    int getCantidadDesencolados(){
+        return CantDesencolados;
     }
 
     // Convertir a string toda la cola
-    /*
     QString _toString() const {
         QString result;
         for (const auto& queue : listQueue) {
@@ -79,7 +86,7 @@ struct PriorityQueue{
                 result.append(queue._toString());
         }
         return result;
-    }*/
+    }
 };
 
 

@@ -10,10 +10,10 @@
 
 int main(int argc, char *argv[]){
 
-    /*
+
     QApplication a(argc, argv);
-    //MainWindow w;
-    //w.show();
+    MainWindow w;
+    w.show();
     listaClientes *lista = new listaClientes();
     listaArticulos *listaArt = new listaArticulos();
     CargarArticulos(listaArt);
@@ -34,7 +34,7 @@ int main(int argc, char *argv[]){
     balanceador.start();
 
     return a.exec();
-*/
+
     modificarArchivo("C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Articulos\\"
                      ,40,"A01");
     return 0;

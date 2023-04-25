@@ -331,6 +331,7 @@ struct Pedido{
         codCliente = cod;
         listaPedido = new ListaArticulosP();
     }
+
     void imprimir(){
         cout<<"----------PEDIDO:----------"<<numPedido<<endl;
         cout<<"Numero de pedido: "<<numPedido<<endl;
@@ -340,6 +341,16 @@ struct Pedido{
         listaPedido->imprimir();
         cout<<"---------------------------";
         cout<<endl;
+    }
+
+    string to_String(){
+        string resultado =  "";
+        resultado.append("Pedido: #");
+        resultado.append(to_string(numPedido));
+        resultado.append(" Código Cliente: ");
+        resultado.append(codCliente);
+        resultado.append("\n");
+        return resultado;
     }
 };
 

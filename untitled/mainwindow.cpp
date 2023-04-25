@@ -1,8 +1,9 @@
 
+#include <QDialog>
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include "Queue.h"
-//#include "vcolapedidos.cpp"
+#include "ui_vcolapedidos.h"
 //#include "procedimientos.h"
 
 
@@ -31,7 +32,14 @@ void updateUI(Queue<int>& queue, QMutex& mutex, QTextEdit* textEdit) {
     mutex.unlock();
 }
 */
-void MainWindow::on_btnColaPedidos_clicked()
+void MainWindow::on_btnColaPedidos_clicked(){
+    QMainWindow  *vColaPedidosDialog = new QMainWindow (this);
+    Ui::vColaPedidos vColaPedidosUi;
+    vColaPedidosUi.setupUi(vColaPedidosDialog);
+    vColaPedidosDialog->show();
+}
+
+void MainWindow::on_btnColaDeAlisto_clicked()
 {
 
 }
@@ -55,4 +63,7 @@ void MainWindow::on_btnVer03_clicked()
 {
 
 }
+
+
+
 
