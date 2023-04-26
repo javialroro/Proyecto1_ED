@@ -1,17 +1,13 @@
 
-//#include "mainwindow.h"
+#include "mainwindow.h"
 #include <QApplication>
 #include "QThreads.h"
-
-
-
 
 int main(int argc, char *argv[]){
 QApplication a(argc, argv);
 ///*
 
-    //MainWindow w;
-    //w.show();
+
     listaClientes *lista = new listaClientes();
     listaArticulos *listaArt = new listaArticulos();
     CargarArticulos(listaArt);
@@ -45,6 +41,8 @@ QApplication a(argc, argv);
     //Fabricacion1 fabricacion(A,B,C,Comodin);
     //fabricacion.start();
 
+    MainWindow w = new MainWindow(colaPedidos, colaAlistados, colaA, colaB, colaC, colaComodin);
+    w.show();
 
 return a.exec();
     return 0;

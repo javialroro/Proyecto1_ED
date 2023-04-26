@@ -24,7 +24,6 @@ vColaPedidos::vColaPedidos(const Queue<Pedido*>& queueMostrar) :
     ui(new Ui::vColaPedidos)
 {
     ui->setupUi(this);
-    m_txEditColaPedidos = ui->txEditColaPedidos;
 }
 
 void vColaPedidos::showEvent(QShowEvent *event)

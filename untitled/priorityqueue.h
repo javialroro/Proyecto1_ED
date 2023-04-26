@@ -70,6 +70,15 @@ struct PriorityQueue{
         return counter;
     }
 
+    Queue<Pedido*> to_Queue(){
+        Queue<Pedido*> result;
+        for (Queue<Pedido*>& queue : listQueue) {
+            Queue<Pedido*> queueCopy = queue;
+            result.enQueueQ(queueCopy);
+        }
+        return result;
+    }
+
     // Convertir a string toda la cola
     /*
     QString _toString() const {

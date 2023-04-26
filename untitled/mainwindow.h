@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "QThreads.h"
+#include "priorityqueue.h"
 
 
 QT_BEGIN_NAMESPACE
@@ -16,7 +16,7 @@ class MainWindow : public QMainWindow
 
 public:
     MainWindow(QWidget *parent = nullptr);
-    MainWindow(RevisorArchivos *threadRevisor, Balanceador *threadBalanceador, Fabrica *threadA, Fabrica *threadB, Fabrica *threadC, Fabrica *threadComodin, Fabricacion1 *threadFabricacion);
+    MainWindow(PriorityQueue* _colaPedidos, Queue<Pedido *> _colaAlistados,  Queue<Pedido *> _colaA,  Queue<Pedido *> _colaB,  Queue<Pedido *> _colaC,  Queue<Pedido *> _colaComodin);
     ~MainWindow();
 
 private slots:
@@ -39,14 +39,12 @@ private slots:
 private:
     Ui::MainWindow *ui;
 
-    RevisorArchivos* revisor;
-    Balanceador* balanceador;
-    Fabrica* fabA;
-    Fabrica* fabB;
-    Fabrica* fabC;
-    Fabrica* fabComodin;
-    Fabricacion1* fabricacion;
-
+    PriorityQueue* colaPedidos;
+    Queue<Pedido *> colaAlistados;
+    Queue<Pedido *> colaA;
+    Queue<Pedido *> colaB;
+    Queue<Pedido *> colaC;
+    Queue<Pedido *> colaComodin;
 };
 
 #endif // MAINWINDOW_H

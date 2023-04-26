@@ -1,12 +1,9 @@
 
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
-//#include "QThreads.h"
-//#include "Queue.h"
-//#include "vcolapedidos.cpp"
-//#include "procedimientos.h"
+#include "vcolapedidos.h"
 
-//listaClientes *lista = new listaClientes();
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -14,15 +11,14 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 }
 
-MainWindow::MainWindow(RevisorArchivos *threadRevisor, Balanceador *threadBalanceador, Fabrica *threadA, Fabrica *threadB, Fabrica *threadC, Fabrica *threadComodin, Fabricacion1 *threadFabricacion)
+MainWindow::MainWindow(PriorityQueue* _colaPedidos, Queue<Pedido *> _colaAlistados,  Queue<Pedido *> _colaA,  Queue<Pedido *> _colaB,  Queue<Pedido *> _colaC,  Queue<Pedido *> _colaComodin)
     : QMainWindow(),
-    revisor (threadRevisor),
-    balanceador (threadBalanceador),
-    fabA (threadA),
-    fabB (threadB),
-    fabC (threadC),
-    fabComodin (threadComodin),
-    fabricacion (threadFabricacion),
+    colaPedidos(_colaPedidos),
+    colaAlistados(_colaAlistados),
+    colaA (_colaA),
+    colaB (_colaB),
+    colaC (_colaC),
+    colaComodin (_colaComodin),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
@@ -35,21 +31,21 @@ MainWindow::~MainWindow()
 
 
 void MainWindow::on_btnColaPedidos_clicked() {
-    Queue<Pedido*> colaPedidos = revisor->getColaPedidos()->to_Queue();
-    vColaPedidos* vColaPedidosDialog = new vColaPedidos(colaPedidos);
+    Queue<Pedido*> colaPedidosAux = colaPedidos->to_Queue(); //to_Queue crea una copia tipo Queue para evitar errores
+    vColaPedidos* vColaPedidosDialog = new vColaPedidos(colaPedidosAux);
 
-    QString texto;
-    while(!colaPedidos.isEmpty()){
-        Pedido* pedido = colaPedidos.deQueue();
-        texto.append(pedido->to_String());
-        texto.append("\n");
+    //QString texto;
+    //while(!colaPedidosAux.isEmpty()){
+    //    Pedido* pedido = colaPedidosAux.deQueue();
+    //    texto.append(pedido->to_String());
+    //    texto.append("\n");
         // Agregar más información del pedido aquí si se desea
-    }
+    //}
 
-    QTextEdit* txEdit = vColaPedidosDialog->findChild<QTextEdit*>("txEditColaPedidos");
-    if (txEdit) {
-        txEdit->append(texto);
-    }  // Agregar texto al QTextEdit en vColaPedidos
+    //QTextEdit* txEdit = vColaPedidosDialog->findChild<QTextEdit*>("txEditColaPedidos");
+    //if (txEdit) {
+    //    txEdit->append(texto);
+    //}  // Agregar texto al QTextEdit en vColaPedidos
     vColaPedidosDialog->show();
 }
 

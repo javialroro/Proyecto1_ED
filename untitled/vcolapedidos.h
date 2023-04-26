@@ -1,12 +1,9 @@
 #ifndef VCOLAPEDIDOS_H
 #define VCOLAPEDIDOS_H
 
-#include <QMainWindow>
-
 #include <QTextEdit>
 #include <QMainWindow>
-#include "structs.h"
-#include "Queue.h"
+#include "priorityqueue.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {class vColaPedidos;}
