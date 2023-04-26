@@ -111,8 +111,7 @@ struct listaClientes{
         }
     }
 
-<<<<<<< Updated upstream
-=======
+
     int bPrioridad(string a){
         NodoCliente *tmp = pn;
 
@@ -127,8 +126,6 @@ struct listaClientes{
         return -1;
     }
 
-
->>>>>>> Stashed changes
 
 };
 
@@ -300,6 +297,16 @@ struct Pedido{
         cout<<"---------------------------";
         cout<<endl;
         listaPedido->imprimir();
+    }
+
+    QString to_String(){
+        QString resultado =  "";
+        resultado.append("Pedido: #");
+        resultado.append(to_string(numPedido));
+        resultado.append(" Código Cliente: ");
+            resultado.append(to_string(codCliente));
+        resultado.append("\n");
+        return resultado;
     }
 };
 

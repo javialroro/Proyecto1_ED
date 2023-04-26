@@ -24,7 +24,7 @@ public:
 
     void actualizarCola(const QString& nombreCola);
 
-    QTextEdit* getTxEditColaPedidos(QWidget* parent);
+    void vColaPedidos::showEvent(QShowEvent *event);
 
 private slots:
 

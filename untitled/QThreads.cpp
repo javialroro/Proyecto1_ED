@@ -1,16 +1,9 @@
 #include "QThreads.h"
 
-<<<<<<< Updated upstream
-#include <QtCore>
-#include <QThread>
-#include <QDir>
-#include <QDebug>
-#include "priorityqueue.h"
 
 
 //Se inicializa la cola que se usará
 PriorityQueue* qPedidos = new PriorityQueue();
-=======
 bool verficarCantidad(ListaArticulosP * lista, listaArticulos * listaG){
     NodoArticuloP *tmp = lista->pn;
 

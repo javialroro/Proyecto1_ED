@@ -1,8 +1,6 @@
-<<<<<<< Updated upstream
-=======
+
 #include <QTextEdit>
 #include "priorityqueue.h"
->>>>>>> Stashed changes
 #include "vcolapedidos.h"
 #include "ui_vcolapedidos.h"
 
@@ -20,8 +18,6 @@ vColaPedidos::~vColaPedidos()
 {
     delete ui;
 }
-<<<<<<< Updated upstream
-=======
 
 vColaPedidos::vColaPedidos(const Queue<Pedido*>& queueMostrar) :
     queue(queueMostrar),
@@ -53,6 +49,3 @@ QTextEdit* getTxEditColaPedidos(QWidget* parent) {
     // ...
 //}
 
-
-
->>>>>>> Stashed changes

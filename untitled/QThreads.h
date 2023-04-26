@@ -7,11 +7,6 @@
 #include <QDir>
 #include <QDebug>
 #include "procedimientos.h"
-<<<<<<< Updated upstream
-#include "priorityqueue.h"
-#include "structs.h"
-=======
->>>>>>> Stashed changes
 
 
 // Variables globales
@@ -51,10 +46,7 @@ public:
             QThread::msleep(1000); // espera 1 segundo antes de revisar de nuevo
         }
     }
-<<<<<<< Updated upstream
-};
 
-=======
 
     PriorityQueue* getColaPedidos(){
         return colaPedidos;
@@ -77,7 +69,7 @@ void encolarMenor(Queue<Pedido *>& q1, Queue<Pedido *>& q2, Pedido * pedido);
 //----------------------------------------------------------------------------------
 
 
->>>>>>> Stashed changes
+
 class Balanceador : public QThread {
 public:
     Balanceador(Queue<Pedido>& colaPedidos, Queue<Pedido>& colaAlistos,Queue<Fabricacion> & A,
@@ -121,18 +113,7 @@ public:
     }
     
 private:
-<<<<<<< Updated upstream
-    Queue<Pedido>& m_queue;
-    Queue<Pedido>& a_queue;
-    Queue<Fabricacion> & f1;
-    Queue<Fabricacion> & f2;
-    Queue<Fabricacion> & f3;
-    Queue<Fabricacion> & f4;
 
-
-};
-    
-=======
     listaArticulos * lista;
     PriorityQueue * p_queue;
     Queue<Pedido *>& a_queue;
@@ -347,7 +328,6 @@ private:
 
 };
 
->>>>>>> Stashed changes
 
 
 

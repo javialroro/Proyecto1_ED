@@ -1,16 +1,8 @@
 
-#include "mainwindow.h"
-#include "procedimientos.h"
-#include "structs.h"
+
 #include <QApplication>
-<<<<<<< Updated upstream
 #include "QThreads.h"
 #include "mainwindow.h"
-=======
-//#include "QThreads.h"
-
->>>>>>> Stashed changes
-
 
 
 int main(int argc, char *argv[]){
@@ -25,8 +17,7 @@ int main(int argc, char *argv[]){
     RevisorArchivos revisor;
     revisor.start();
 
-<<<<<<< Updated upstream
-=======
+
     Balanceador balanceador(listaArt, colaPedidos, colaAlistados, colaA, colaB, colaC, colaComodin);
     balanceador.start();
     QSemaphore s(1);
@@ -50,7 +41,6 @@ int main(int argc, char *argv[]){
     MainWindow *w = new MainWindow(&revisor, &balanceador, A, B, C, Comodin, &fabricacion);
     w->show();
 
->>>>>>> Stashed changes
     return a.exec();
     return 0;
 }
