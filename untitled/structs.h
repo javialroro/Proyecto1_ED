@@ -7,6 +7,7 @@
 #include <fstream>
 #include <chrono>
 #include <ctime>
+#include <QString>
 
 
 using namespace std;
@@ -328,7 +329,7 @@ struct Pedido{
 
     }
 
-    Pedido(int num, int cod, int cant){
+    Pedido(int num, string cod, int cant){
         numPedido = num;
         codCliente = cod;
         listaPedido = new ListaArticulosP();
@@ -342,6 +343,16 @@ struct Pedido{
         listaPedido->imprimir();
         cout<<"---------------------------";
         cout<<endl;
+    }
+    QString to_String(){
+        string resultado =  "";
+        resultado.append("Pedido: #");
+        resultado.append(to_string(numPedido));
+        resultado.append(" Código Cliente: ");
+        resultado.append(codCliente);
+        resultado.append("\n");
+        QString r= QString::fromStdString(resultado);
+        return r;
     }
 };
 
