@@ -1,6 +1,7 @@
 
 #ifndef STRUCTS_H
 #define STRUCTS_H
+
 #include <iostream>
 #include <string>
 #include <sstream>
@@ -110,6 +111,24 @@ struct listaClientes{
         }
     }
 
+<<<<<<< Updated upstream
+=======
+    int bPrioridad(string a){
+        NodoCliente *tmp = pn;
+
+        while (tmp != NULL){
+            if(tmp->cliente->codigo == a){
+                //cout<<"existe"<<endl;
+                return tmp->cliente->prioridad;
+            }
+            //cout<<tmp->cliente->codigo; // metodo de imprimir un cliente
+            tmp = tmp->siguiente;
+        }
+        return -1;
+    }
+
+
+>>>>>>> Stashed changes
 
 };
 

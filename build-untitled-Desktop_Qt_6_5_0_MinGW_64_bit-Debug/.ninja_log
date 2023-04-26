@@ -1,4 +1,5 @@
 # ninja log v5
+<<<<<<< Updated upstream
 27	562	7035814351499352	untitled_autogen/timestamp	5659618b610f8a4b
 1407	5079	7035660738182111	CMakeFiles/untitled.dir/untitled_autogen/mocs_compilation.cpp.obj	5fb0bebc4e08ab1c
 27	562	7035814351499352	untitled_autogen/mocs_compilation.cpp	5659618b610f8a4b
@@ -91,3 +92,65 @@
 633	5933	7035859807089872	CMakeFiles/untitled.dir/mainwindow.cpp.obj	ff411b41dd1a1ae1
 647	8057	7035859828305060	CMakeFiles/untitled.dir/main.cpp.obj	564dfcf2a0ade380
 8058	8595	7035859833629761	untitled.exe	af12ed2cf0c03e97
+=======
+32	2346	7042010613015905	untitled_autogen/timestamp	5659618b610f8a4b
+2347	10961	7042010706843694	CMakeFiles/untitled.dir/untitled_autogen/mocs_compilation.cpp.obj	5fb0bebc4e08ab1c
+32	2346	7042010613015905	untitled_autogen/mocs_compilation.cpp	5659618b610f8a4b
+32	2346	7042010613015905	C:/Users/QUIROS CALVO/Trabajos_TEC_2023/ED_/I Proyecto/build-untitled-Desktop_Qt_6_5_0_MinGW_64_bit-Debug/untitled_autogen/timestamp	5659618b610f8a4b
+3057	8370	7041999665745374	CMakeFiles/untitled.dir/procedimientos.cpp.obj	a8f5dd89b3f5e528
+3071	14055	7041999722597161	CMakeFiles/untitled.dir/main.cpp.obj	564dfcf2a0ade380
+32	2346	7042010613015905	C:/Users/QUIROS CALVO/Trabajos_TEC_2023/ED_/I Proyecto/build-untitled-Desktop_Qt_6_5_0_MinGW_64_bit-Debug/untitled_autogen/mocs_compilation.cpp	5659618b610f8a4b
+3036	3207	7041976080358046	CMakeFiles/untitled.dir/structs.cpp.obj	34721b5602d7ab92
+2330	12401	7042008705832044	CMakeFiles/untitled.dir/mainwindow.cpp.obj	ff411b41dd1a1ae1
+2527	7991	7042009400430701	CMakeFiles/untitled.dir/vcolapedidos.cpp.obj	6a14b0ae4d0859f6
+11733	12936	7041993041969224	untitled.exe	168688937ad84332
+6	918	7041965243205838	build.ninja	22e8c5b94665c2c4
+1	52	0	CMakeFiles/clean.additional	baedbe210acaa455
+53	75	0	clean	577b940aee94fbd7
+3106	13072	7041999712664739	CMakeFiles/untitled.dir/QThreads.cpp.obj	8beb3a19e89dbe1a
+3085	3235	7041976080848007	CMakeFiles/untitled.dir/priorityqueue.cpp.obj	27a800fcc67e8a44
+33	2115	7042011489909672	untitled_autogen/timestamp	5659618b610f8a4b
+33	2115	7042011489909672	untitled_autogen/mocs_compilation.cpp	5659618b610f8a4b
+33	2115	7042011489909672	C:/Users/QUIROS CALVO/Trabajos_TEC_2023/ED_/I Proyecto/build-untitled-Desktop_Qt_6_5_0_MinGW_64_bit-Debug/untitled_autogen/timestamp	5659618b610f8a4b
+33	2115	7042011489909672	C:/Users/QUIROS CALVO/Trabajos_TEC_2023/ED_/I Proyecto/build-untitled-Desktop_Qt_6_5_0_MinGW_64_bit-Debug/untitled_autogen/mocs_compilation.cpp	5659618b610f8a4b
+2135	7096	7042011546209199	CMakeFiles/untitled.dir/vcolapedidos.cpp.obj	6a14b0ae4d0859f6
+2116	10689	7042011582138968	CMakeFiles/untitled.dir/untitled_autogen/mocs_compilation.cpp.obj	5fb0bebc4e08ab1c
+41	911	7042012223646383	untitled_autogen/timestamp	5659618b610f8a4b
+41	911	7042012223646383	untitled_autogen/mocs_compilation.cpp	5659618b610f8a4b
+41	911	7042012223646383	C:/Users/QUIROS CALVO/Trabajos_TEC_2023/ED_/I Proyecto/build-untitled-Desktop_Qt_6_5_0_MinGW_64_bit-Debug/untitled_autogen/timestamp	5659618b610f8a4b
+41	911	7042012223646383	C:/Users/QUIROS CALVO/Trabajos_TEC_2023/ED_/I Proyecto/build-untitled-Desktop_Qt_6_5_0_MinGW_64_bit-Debug/untitled_autogen/mocs_compilation.cpp	5659618b610f8a4b
+975	5825	7042012272827553	CMakeFiles/untitled.dir/vcolapedidos.cpp.obj	6a14b0ae4d0859f6
+965	11620	7042012330642145	CMakeFiles/untitled.dir/mainwindow.cpp.obj	ff411b41dd1a1ae1
+31	2279	7042013111237229	untitled_autogen/timestamp	5659618b610f8a4b
+31	2279	7042013111237229	untitled_autogen/mocs_compilation.cpp	5659618b610f8a4b
+31	2279	7042013111237229	C:/Users/QUIROS CALVO/Trabajos_TEC_2023/ED_/I Proyecto/build-untitled-Desktop_Qt_6_5_0_MinGW_64_bit-Debug/untitled_autogen/timestamp	5659618b610f8a4b
+31	2279	7042013111237229	C:/Users/QUIROS CALVO/Trabajos_TEC_2023/ED_/I Proyecto/build-untitled-Desktop_Qt_6_5_0_MinGW_64_bit-Debug/untitled_autogen/mocs_compilation.cpp	5659618b610f8a4b
+2303	7354	7042013168006464	CMakeFiles/untitled.dir/vcolapedidos.cpp.obj	6a14b0ae4d0859f6
+2281	10424	7042013198685819	CMakeFiles/untitled.dir/untitled_autogen/mocs_compilation.cpp.obj	5fb0bebc4e08ab1c
+2291	12349	7042013217890269	CMakeFiles/untitled.dir/mainwindow.cpp.obj	ff411b41dd1a1ae1
+27	2304	7042014105298272	untitled_autogen/timestamp	5659618b610f8a4b
+27	2304	7042014105298272	untitled_autogen/mocs_compilation.cpp	5659618b610f8a4b
+27	2304	7042014105298272	C:/Users/QUIROS CALVO/Trabajos_TEC_2023/ED_/I Proyecto/build-untitled-Desktop_Qt_6_5_0_MinGW_64_bit-Debug/untitled_autogen/timestamp	5659618b610f8a4b
+27	2304	7042014105298272	C:/Users/QUIROS CALVO/Trabajos_TEC_2023/ED_/I Proyecto/build-untitled-Desktop_Qt_6_5_0_MinGW_64_bit-Debug/untitled_autogen/mocs_compilation.cpp	5659618b610f8a4b
+2307	11342	7042014203049143	CMakeFiles/untitled.dir/untitled_autogen/mocs_compilation.cpp.obj	5fb0bebc4e08ab1c
+2348	13161	7042014221251889	CMakeFiles/untitled.dir/mainwindow.cpp.obj	ff411b41dd1a1ae1
+28	2267	7042016853743736	untitled_autogen/timestamp	5659618b610f8a4b
+28	2267	7042016853743736	untitled_autogen/mocs_compilation.cpp	5659618b610f8a4b
+28	2267	7042016853743736	C:/Users/QUIROS CALVO/Trabajos_TEC_2023/ED_/I Proyecto/build-untitled-Desktop_Qt_6_5_0_MinGW_64_bit-Debug/untitled_autogen/timestamp	5659618b610f8a4b
+28	2267	7042016853743736	C:/Users/QUIROS CALVO/Trabajos_TEC_2023/ED_/I Proyecto/build-untitled-Desktop_Qt_6_5_0_MinGW_64_bit-Debug/untitled_autogen/mocs_compilation.cpp	5659618b610f8a4b
+2294	7470	7042016912696389	CMakeFiles/untitled.dir/vcolapedidos.cpp.obj	6a14b0ae4d0859f6
+2268	11289	7042016950910268	CMakeFiles/untitled.dir/untitled_autogen/mocs_compilation.cpp.obj	5fb0bebc4e08ab1c
+29	931	7042017081366587	untitled_autogen/timestamp	5659618b610f8a4b
+29	931	7042017081366587	untitled_autogen/mocs_compilation.cpp	5659618b610f8a4b
+29	931	7042017081366587	C:/Users/QUIROS CALVO/Trabajos_TEC_2023/ED_/I Proyecto/build-untitled-Desktop_Qt_6_5_0_MinGW_64_bit-Debug/untitled_autogen/timestamp	5659618b610f8a4b
+29	931	7042017081366587	C:/Users/QUIROS CALVO/Trabajos_TEC_2023/ED_/I Proyecto/build-untitled-Desktop_Qt_6_5_0_MinGW_64_bit-Debug/untitled_autogen/mocs_compilation.cpp	5659618b610f8a4b
+972	6417	7042017136194775	CMakeFiles/untitled.dir/vcolapedidos.cpp.obj	6a14b0ae4d0859f6
+966	12053	7042017192539795	CMakeFiles/untitled.dir/mainwindow.cpp.obj	ff411b41dd1a1ae1
+45	1028	7042020686558095	untitled_autogen/timestamp	5659618b610f8a4b
+45	1028	7042020686558095	untitled_autogen/mocs_compilation.cpp	5659618b610f8a4b
+45	1028	7042020686558095	C:/Users/QUIROS CALVO/Trabajos_TEC_2023/ED_/I Proyecto/build-untitled-Desktop_Qt_6_5_0_MinGW_64_bit-Debug/untitled_autogen/timestamp	5659618b610f8a4b
+45	1028	7042020686558095	C:/Users/QUIROS CALVO/Trabajos_TEC_2023/ED_/I Proyecto/build-untitled-Desktop_Qt_6_5_0_MinGW_64_bit-Debug/untitled_autogen/mocs_compilation.cpp	5659618b610f8a4b
+1093	6680	7042020743057276	CMakeFiles/untitled.dir/vcolapedidos.cpp.obj	6a14b0ae4d0859f6
+1082	12412	7042020800370630	CMakeFiles/untitled.dir/mainwindow.cpp.obj	ff411b41dd1a1ae1
+12413	13381	7042020809970688	untitled.exe	168688937ad84332
+>>>>>>> Stashed changes

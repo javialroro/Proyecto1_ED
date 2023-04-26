@@ -1,21 +1,10 @@
 
-#ifndef PROCEDIMIENTOS_H
-#define PROCEDIMIENTOS_H
-<<<<<<< Updated upstream
-#include "structs.h"
-#include "Queue.h"
-=======
+#include "procedimientos.h"
+using namespace std;
 
+void cargarClientes(listaClientes *lista) {
+    //archivo Javier "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Clientes\\clientes.txt"
 
->>>>>>> Stashed changes
-#include <cstdio>
-#include <filesystem>
-#include "priorityqueue.h"
-
-// Lo cambié por que el programa petó y no me quedó de otra
-// Todo está en "procedimientos.cpp"
-
-<<<<<<< Updated upstream
     //fstream archivo("C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Clientes\\clientes.txt", std::ios::in | std::ios::app);
     fstream archivo("C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Clientes\\clientes.txt", std::ios::in | std::ios::app); // crea objeto ifstream y lo abre
     string linea;
@@ -29,13 +18,10 @@
                 getline(ss, cliente->nombre, '\t'); // asigna el segundo campo al atributo "nombre"
                 getline(ss, campo, '\t'); // lee el tercer campo como una cadena de caracteres
                 cliente->prioridad = stoi(campo); // convierte la cadena de caracteres a un entero y lo asigna al atributo "prioridad"
-=======
-void cargarClientes(listaClientes *lista);
->>>>>>> Stashed changes
 
-void CargarArticulos(listaArticulos *lista );
+                lista->insertarAlInicio(cliente); // annade el cliente a la lista
 
-<<<<<<< Updated upstream
+
             }
             else{
 
@@ -56,6 +42,7 @@ void CargarArticulos(listaArticulos *lista );
 
     } else {
         cout << "No se pudo abrir el archivo" << endl;
+
     }
 
 }
@@ -85,7 +72,7 @@ void CargarArticulos(listaArticulos *lista ){
                 //cout<< "Archivo erroneo, formato incorrecto" << endl;
                 archivo << "Archivo erroneo, formato incorrecto" << endl;
                 archivo.close();
-                cout<< "Archivo erroneo, formato incorrecto" << endl;
+                cout<< "Archivo de articulos erroneo , formato incorrecto" << endl;
                 //archivo Javier "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Articulos\\articulos.txt"
 
                 //string ruta_archivo = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Articulos\\articulos.txt";
@@ -106,20 +93,25 @@ void CargarArticulos(listaArticulos *lista ){
 }
 
 
-void cargarPedido(Archivo *archivo, Queue<Pedido>*qPedidos){
+void cargarPedido(Archivo *archivo, PriorityQueue * qPedidos, listaClientes * lista, listaArticulos * listaArt){
+
     string linea;
     int contador = 1;
     int cantArt = 0;
     Pedido *pedido= new Pedido();
     bool error= false;
+
     if (archivo->arch.is_open()) { // verifica si el archivo está abierto
+
         while (getline(archivo->arch, linea)) { // lee cada línea del archivo
             stringstream ss(linea);
             if (contador == 1) {
+
                 string numP;
                 if (getline(ss, numP, '\n')){
                     getline(ss, numP, '\n');
                     pedido->numPedido = stoi(numP);
+
                 }
                 else{
                     archivo->arch << "Archivo erroneo, formato incorrecto" << endl;
@@ -129,14 +121,27 @@ void cargarPedido(Archivo *archivo, Queue<Pedido>*qPedidos){
                     error=true;
                     break;
 
-                    //pasar el archivo a la carpeta de errores.
+
                 }
             }
             else if (contador == 2) {
-                string codC;
-                if (getline(ss, codC, '\n')){
-                    getline(ss, codC, '\n');
-                    pedido->codCliente = stoi(codC);
+
+                if (getline(ss, pedido->codCliente, '\n')){
+                    if(lista->search(pedido->codCliente)){
+                        getline(ss, pedido->codCliente, '\n');
+
+
+                    }
+
+                    else{
+                        archivo->arch << "Archivo erroneo, cliente no existente" << endl;
+                        archivo->arch.close();
+                        qDebug()<< "Archivo erroneo, cliente no existente";
+                        rename(archivo->path.c_str(),archivo->errores.c_str());
+                        error=true;
+                        break;
+                    }
+
                 }
                 else{
                     archivo->arch << "Archivo erroneo, formato incorrecto" << endl;
@@ -150,14 +155,27 @@ void cargarPedido(Archivo *archivo, Queue<Pedido>*qPedidos){
             }
             else {
 
+
                 ArticuloPedido *articulo = new ArticuloPedido();
 
                 string campo;
                 if (getline(ss, articulo->codProd, '\t') && getline(ss, campo, '\t')){
-                    getline(ss, articulo->codProd, '\t'); // lee el primer campo como una cadena de caracteres
-                    getline(ss, campo, '\t'); // lee el segundo campo como una cadena de caracteres
-                    articulo->cantidad= stoi(campo); // convierte la cadena de caracteres a un entero
-                    pedido->listaPedido->insertarAlInicio(articulo);
+
+                    if (listaArt->search(articulo->codProd)){
+                        getline(ss, articulo->codProd, '\t');// lee el primer campo como una cadena de caracteres
+                        getline(ss, campo, '\t'); // lee el segundo campo como una cadena de caracteres
+                        articulo->cantidad= stoi(campo); // convierte la cadena de caracteres a un entero
+                        pedido->listaPedido->insertarAlInicio(articulo);
+                    }
+                    else{
+                        articulo->imprimir();
+                        archivo->arch << "Archivo erroneo, articulo no existente" << endl;
+                        archivo->arch.close();
+                        cout<< "Archivo erroneo, articulo no existente" << endl;
+                        rename(archivo->path.c_str(),archivo->errores.c_str());
+                        error=true;
+                        break;
+                    }
 
 
 
@@ -175,29 +193,120 @@ void cargarPedido(Archivo *archivo, Queue<Pedido>*qPedidos){
             contador++;
 
         }
+
+
         if (!error){
-            qPedidos->enQueue(*pedido);
-            //count<<listaClientes->buscarCliente(pedido->codCliente)->prioridad<<end;
             pedido->imprimir();
+            qPedidos->enQueuePriority(lista->bPrioridad(pedido->codCliente),pedido);
+            //count<<listaClientes->buscarCliente(pedido->codCliente)->prioridad<<end;
+            archivo->arch.close();
+
+
         }
-        archivo->arch.close(); // cierra el archivo
-    } else {
+
+        // cierra el archivo
+    }
+    else {
+        delete pedido;
         archivo->arch.close();
-        cout << "No se pudo abrir el archivo" << endl;
+        qDebug() << "No se pudo abrir el archivo";
     }
 }
 
+string retornarHora(){
+    auto now = chrono::system_clock::now();
+    time_t now_c = chrono::system_clock::to_time_t(now);
+    string hora= ctime(&now_c);
+    return hora;
+}
+
+void modifyField(std::string& line, std::string code, int fieldIndex, int newValue) {
+    // Busca el código en la línea
+    size_t pos = line.find(code);
+    if (pos != std::string::npos) {
+        // Si se encontró el código, busca el índice del campo a modificar
+        for (int i = 0; i < fieldIndex; i++) {
+            pos = line.find("\t", pos + 1);
+            if (pos == std::string::npos) {
+                // No se encontró el campo
+                //return "No se encontró el campo";
+            }
+        }
+        // Modifica el campo
+        int endPos = line.find("\t", pos + 1);
+        if (endPos == std::string::npos) {
+            endPos = line.size();
+        }
+        std::string field = line.substr(pos + 1, endPos - pos - 1);
+        std::stringstream ss(field);
+        int oldValue;
+        ss >> oldValue;
+        line.replace(pos + 1, endPos - pos - 1, std::to_string(newValue));
+        std::cout << "Modified field " << fieldIndex << " from " << oldValue << " to " << newValue << std::endl;
+        cout<<line<<endl;
+        //return line;
+    }
+    //cout<<line<<endl;
+    //return line;
+
+}
+
+void cambiar(string code, int fieldIndex, int newValue) {
+    // Abrir el archivo en modo lectura y escritura
+    //fstream file("C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Articulos\\articulos.txt", std::ios::in | std::ios::out);
+    fstream file("C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Articulos\\articulos.txt", std::ios::in | std::ios::out);
+
+    if (!file.is_open()) {
+        cout << "Error al abrir el archivo" << std::endl;
+        return;
+    }
+
+    string line;
+    stringstream ss;
+    bool lineFound = false;
+
+    // Crear un archivo temporal para escribir las líneas modificadas
+    fstream tempFile("temp.txt", std::ios::out);
+    if (!tempFile.is_open()) {
+        cout << "Error al crear el archivo temporal" << std::endl;
+        return;
+    }
+
+    // Leer el archivo línea por línea
+    while (getline(file, line)) {
+        // Reemplazar la línea si se encuentra el código
+        if (line.find(code) != string::npos) {
+            modifyField(line, code, fieldIndex, newValue);
+            lineFound = true;
+        }
+        tempFile << line << endl;
+
+    }
 
 
-=======
-void cargarPedido(Archivo *archivo, PriorityQueue * qPedidos, listaClientes * lista, listaArticulos * listaArt);
-
-string retornarHora();
-
-void modifyField(std::string& line, std::string code, int fieldIndex, int newValue);
->>>>>>> Stashed changes
-
-void cambiar(string code, int fieldIndex, int newValue);
+    if (!lineFound) {
+        cout << "No se encontro la línea con el codigo " << code << endl;
+                                                                        file.close();
+        tempFile.close();
+        remove("temp.txt");
+        return;
+    }
 
 
-#endif // PROCEDIMIENTOS_H
+
+    // Cerrar ambos archivos
+    file.close();
+    tempFile.close();
+
+    // Reemplazar el archivo original con el archivo temporal
+    //remove("C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Articulos\\articulos.txt");
+    //rename("temp.txt", "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Articulos\\articulos.txt");
+    //---------------------
+    remove("C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Articulos\\articulos.txt");
+    rename("temp.txt", "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Articulos\\articulos.txt");
+    if (tempFile.fail()) {
+        cout << "Error al leer/escribir el archivo d" << endl;
+        //return;
+    }
+    cout << "Archivo actualizado correctamente" << endl;
+}

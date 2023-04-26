@@ -15,6 +15,7 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 set(PROJECT_SOURCES
         QThreads.h
         procedimientos.h
+        procedimientos.cpp
         structs.h
         structs.cpp
         main.cpp
