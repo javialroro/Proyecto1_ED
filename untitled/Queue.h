@@ -1,9 +1,10 @@
-#ifndef COLAS_H
-#define COLAS_H
+#ifndef QUEUE_H
+#define QUEUE_H
 
 #include <QList>
 #include <QDebug>
 #include <QObject>
+#include "structs.h"
 
 template <typename T>
 struct Queue {
@@ -11,7 +12,6 @@ public:
     // Metodo que agrega un elemento al final de la cola
     void enQueue(const T& value) {
         m_items.append(value); // append agrega al final
-
     }
 
     // Metodo que remueve el primer elemento de la cola, y lo retorna
@@ -39,14 +39,39 @@ public:
         }
     }
 
+    // Metodo que copia la cola en cuestion.
+    Queue<T> copyQueue() {
+        Queue<T> copy;
+        Queue<T> temp;
+        // Copia los elementos de la queue original a una temporal
+        while (!m_items.isEmpty()) {
+            T item = m_items.takeFirst();
+            temp.enQueue(item);
+        }
+        // Copia los elementos de la queue temporal a la copia
+        while (!temp.isEmpty()) {
+            T item = temp.deQueue();
+            copy.enQueue(item);
+            m_items.append(item); // Reestablece la queue original
+        }
+        return copy;
+    }
+
+    void enQueueQ(Queue<T> &queue) {
+        Queue<T> queueCopy = queue.copyQueue();
+        while (!queueCopy.isEmpty()) {
+            m_items.append(queueCopy.deQueue());
+        }
+    }
+
     // Metodo de converción a string de la cola
     QString _toString() {
         QString result;
         for (int i = m_items.size() - 1; i >= 0; --i) {
             if (i < m_items.size() - 1) {
-                result.append('-');
+                result.append('\n');
             }
-            result.append(QString::number(m_items.at(i)));
+            result.append(QString::fromStdString(m_items.at(i).to_String()));
         }
         return result;
     }
@@ -55,4 +80,4 @@ private:
     QList<T> m_items; // Creación de cola de elementos
 };
 
-#endif // COLAS_H
+#endif // QUEUE_H

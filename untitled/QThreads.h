@@ -1,173 +1,145 @@
 
 #ifndef QTHREADS_H
 #define QTHREADS_H
+
 #include <QtCore>
 #include <QThread>
 #include <QDir>
 #include <QDebug>
 #include "procedimientos.h"
-
-
+<<<<<<< Updated upstream
+#include "priorityqueue.h"
+#include "structs.h"
+=======
+>>>>>>> Stashed changes
 
 
 // Variables globales
-//PriorityQueue * qPedidos = new PriorityQueue();
-//extern QMutex g_mutex;
+extern Queue<Pedido>*qPedidos;
+extern QMutex g_mutex;
 
 class RevisorArchivos : public QThread {
 public:
-    RevisorArchivos(listaArticulos  * la, listaClientes *lc, PriorityQueue * pq, QObject* parent = nullptr)
-        : QThread(parent), listaArticulos(la) , listaClientes(lc) , colaPedidos(pq)
-    {
-    }
     void run() override {
         while (true) {
-            QString path = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Pedidos";
-            //QString path = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Pedidos";
+            //QString path = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Pedidos";
+            QString path = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Pedidos";
             QDir directorio(path);
             QStringList archivos = directorio.entryList(QStringList() << "*.txt", QDir::Files);
             if (archivos.size() > 0) {
                 qDebug() << "Archivos encontrados:";
                 for (const auto& archivo : archivos) {
-                    qDebug()<<archivo;
-
                     string cPath= path.toStdString()+"\\";
                     string cArchivo = archivo.toStdString();
                     string todo= cPath+cArchivo;
-                    string errores = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Errores\\"+cArchivo;
-                    //string errores = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Errores\\"+cArchivo;
-
+                    //QString todoS = QString::fromStdString(todo);
+                    //string errores = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Errores\\"+cArchivo;
+                    string errores = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Errores\\"+cArchivo;
                     fstream arch(todo, std::ios::in | std::ios::app);
                     Archivo *a =  new Archivo(arch,todo,errores);
-
-                    cargarPedido(a, colaPedidos, listaClientes, listaArticulos);
-
+                    cargarPedido(a, qPedidos);
                     string ruta_archivo = todo;
                     //string ruta_pedidosP = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\PedidosProcesados\\"+cArchivo;
                     string ruta_pedidosP = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\PedidosProcesados\\"+cArchivo;
-
                     rename(ruta_archivo.c_str(),ruta_pedidosP.c_str());
                 }
+            }
+            else {
+                qDebug() << "No se encontraron archivos";
             }
 
             QThread::msleep(1000); // espera 1 segundo antes de revisar de nuevo
         }
     }
+<<<<<<< Updated upstream
+};
+
+=======
+
+    PriorityQueue* getColaPedidos(){
+        return colaPedidos;
+    }
+
 private:
     listaClientes * listaClientes;
     listaArticulos * listaArticulos;
     PriorityQueue * colaPedidos;
-
 };
 
-bool verficarCantidad(ListaArticulosP * lista, listaArticulos * listaG){
-    NodoArticuloP *tmp = lista->pn;
+// Hago estos cambios pues fue la forma que encontré para que no se cayera.
+// Lo que falta está en "QThreads.cpp"
+//---------------------------------------------------------------------------------
 
-    while (tmp != NULL){
-        bool verif =tmp->haySuficiente(listaG); // metodo de imprimir un cliente
-        if (!verif){
-            return false;
-        }
-        tmp = tmp->siguiente;
-    }
-    return true;
-}
+bool verficarCantidad(ListaArticulosP * lista, listaArticulos * listaG);
 
-void encolarMenor(Queue<Pedido *>& q1, Queue<Pedido *>& q2, Pedido * pedido) {
-    if (q1.size() <= q2.size()) {
-        q1.enQueue(pedido);
+void encolarMenor(Queue<Pedido *>& q1, Queue<Pedido *>& q2, Pedido * pedido);
 
-    }
-    else {
-        q2.enQueue(pedido);
-
-    }
-}
+//----------------------------------------------------------------------------------
 
 
-
-
+>>>>>>> Stashed changes
 class Balanceador : public QThread {
 public:
-    Balanceador(listaArticulos  * l, PriorityQueue * colaPedidos, Queue<Pedido *>& colaAlistos,Queue<Pedido *> & A,
-                Queue<Pedido *> & B,Queue<Pedido *> & C, Queue<Pedido *> & D, QObject* parent = nullptr)
-        : QThread(parent), p_queue(colaPedidos) , a_queue(colaAlistos), f1(A), f2(B),f3(C),f4(D),lista(l)
+    Balanceador(Queue<Pedido>& colaPedidos, Queue<Pedido>& colaAlistos,Queue<Fabricacion> & A,
+                Queue<Fabricacion> & B,Queue<Fabricacion> & C, Queue<Fabricacion> & D, QObject* parent = nullptr)
+        : QThread(parent), m_queue(colaPedidos) , a_queue(colaAlistos), f1(A), f2(B),f3(C),f4(D)
     {
     }
     
     void run() override {
         while (true) {
-
-            while(!p_queue->isEmptyPriority()){
-
-
-                Pedido * pedido = p_queue->deQueuePriority();
-
-
-
-                NodoArticuloP *tmp = pedido->listaPedido->pn;
-
-                bool flag= true;
-
-                while (tmp != NULL){
-
-                    bool verif =tmp->haySuficiente(lista); // metodo de imprimir un cliente
-                    tmp->articulo->imprimir();
-
-                    if (!verif){
-                        cout<<"---------A COLA DE FABRICACION---------"<<endl;
-                        tmp->articulo->imprimir();
-                        cout<<"---------------------------------------"<<endl;
-                        tmp->articulo->aFabrica=true;
-                        NodoArticulo *cat= lista->buscar(tmp->articulo->codProd);
-                        string categoria =cat->articulo->categoria;
-
-
-                        if (categoria == "A") {
-                            //cout<<"A"<<endl;
-                            encolarMenor(f1,f4,pedido);
-                            cout<<"Encolado en A"<<endl;
-                            flag= false;
-
-                        } else if (categoria == "B") {
-                            encolarMenor(f2,f4,pedido);
-                            cout<<"Encolado en B"<<endl ;
-                            flag= false;
-
-                        } else if (categoria == "C") {
-
-                            f3.enQueue(pedido);
-                            cout<<"Encolado en C"<<endl;
-                            flag= false;
-
-                        }
-                    }
-
-                    tmp = tmp->siguiente;
-                }
-                if (flag){
-                    a_queue.enQueue(pedido);
-                }
-
-
-
-            }
+            // Realizar operaciones sobre m_queue
+            
             
             // Esperar un tiempo antes de continuar
             sleep(1);
         }
     }
+
+    PriorityQueue * getP_queue(){
+        return p_queue;
+    }
+
+    Queue<Pedido*> & getA_queue(){
+        return a_queue;
+    }
+
+    Queue<Pedido*> & getF1(){
+        return f1;
+    }
+
+    Queue<Pedido*> & getF2(){
+        return f2;
+    }
+
+    Queue<Pedido*> & getF3(){
+        return f3;
+    }
+
+    Queue<Pedido*> & getF4(){
+        return f4;
+    }
     
 private:
+<<<<<<< Updated upstream
+    Queue<Pedido>& m_queue;
+    Queue<Pedido>& a_queue;
+    Queue<Fabricacion> & f1;
+    Queue<Fabricacion> & f2;
+    Queue<Fabricacion> & f3;
+    Queue<Fabricacion> & f4;
+
+
+};
+    
+=======
+    listaArticulos * lista;
     PriorityQueue * p_queue;
     Queue<Pedido *>& a_queue;
     Queue<Pedido *> & f1;
     Queue<Pedido *> & f2;
     Queue<Pedido *> & f3;
     Queue<Pedido *> & f4;
-    listaArticulos * lista;
-
-
 
 };
 
@@ -245,16 +217,21 @@ public:
         }
     }
 
-private:
-    Queue<Pedido *>& a_queue;
+    Queue<Pedido *>& getA_queue(){
+        return a_queue;
+    }
 
+    Queue<Pedido *>& getCola2(){
+        return cola2;
+    }
+
+private:
     listaArticulos * lista;
     string _categoria;
     string _categoria2;
-    Queue<Pedido *> cola2;
     QSemaphore& semaphore;
-
-
+    Queue<Pedido *>& a_queue;
+    Queue<Pedido *> cola2;
 };
 
 
@@ -311,6 +288,7 @@ private:
     Fabrica *B;
     Fabrica *C;
     Fabrica *Comodin;
+
 
 };
 
@@ -369,6 +347,7 @@ private:
 
 };
 
+>>>>>>> Stashed changes
 
 
 

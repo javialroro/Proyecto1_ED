@@ -1,6 +1,7 @@
 
 #ifndef STRUCTS_H
 #define STRUCTS_H
+
 #include <iostream>
 #include <string>
 #include <sstream>
@@ -20,6 +21,14 @@ struct listaPedidos;
 struct Articulo;
 struct NodoArticulo;
 struct listaArticulos;
+
+//string retornarHora(){
+//    auto now = chrono::system_clock::now();
+//    time_t now_c = chrono::system_clock::to_time_t(now);
+//    string hora= ctime(&now_c);
+//    return hora;
+//}
+
 
 
 struct Cliente{
@@ -91,20 +100,19 @@ struct listaClientes{
         }
         cout << endl;
     }
-    bool search(string a){
-        NodoCliente *tmp = pn;
 
-        while (tmp != NULL){
-            if(tmp->cliente->codigo == a){
-                //cout<<"existe"<<endl;
-                return true;
+    // Metodo para facilitar la busqueda de un cliente en la lista
+    Cliente *buscarCliente(string codCliente){
+        NodoCliente *aux = pn;
+        while (aux != NULL){
+            if (aux->cliente->codigo == codCliente){
+                return aux->cliente;
             }
-            //cout<<tmp->cliente->codigo; // metodo de imprimir un cliente
-            tmp = tmp->siguiente;
         }
-        return false;
     }
 
+<<<<<<< Updated upstream
+=======
     int bPrioridad(string a){
         NodoCliente *tmp = pn;
 
@@ -116,10 +124,11 @@ struct listaClientes{
             //cout<<tmp->cliente->codigo; // metodo de imprimir un cliente
             tmp = tmp->siguiente;
         }
-        return NULL;
+        return -1;
     }
 
 
+>>>>>>> Stashed changes
 
 };
 
@@ -199,48 +208,11 @@ struct listaArticulos{
         }
         cout << endl;
     }
-
-
-
-    NodoArticulo * buscar(string art){
-        NodoArticulo * tmp = pn;
-
-        while (tmp != NULL){
-            if (art==tmp->articulo->codigo){
-                //tmp->articulo->imprimir();
-                return tmp;
-
-            }
-
-            tmp = tmp->siguiente;
-        }
-        cout<<"NO"<<endl;
-        // hacer que vaya a errores
-        return NULL;
-    }
-
-    bool search(string a){
-        NodoArticulo *tmp = pn;
-
-        while (tmp != NULL){
-            if(tmp->articulo->codigo == a){
-                //tmp->articulo->imprimir();
-                return true;
-            }
-             // metodo de imprimir un cliente
-            tmp = tmp->siguiente;
-        }
-        cout<<"NO EXISTE";
-        return false;
-    }
-
 };
 
 struct ArticuloPedido{
     string codProd;
     int cantidad;
-    bool aFabrica;
-    bool fabricado;
 
     ArticuloPedido(string cod, int cant){
         codProd = cod;
@@ -265,15 +237,6 @@ struct NodoArticuloP{
     NodoArticuloP(ArticuloPedido * _articulo){
         articulo = _articulo;
         siguiente=NULL;
-    }
-    bool haySuficiente(listaArticulos * lista){
-        NodoArticulo * b = lista->buscar(articulo->codProd);
-
-        if(articulo->cantidad <= b->articulo-> cantidadAlmacen){
-            return true;
-        }
-
-        return false;
     }
 };
 
@@ -309,21 +272,19 @@ struct ListaArticulosP{
         }
     }
 
-
-
 };
 
 
 
 struct Pedido{
     int numPedido;
-    string codCliente;
+    int codCliente;
     ListaArticulosP *listaPedido;
     string infoFactura[10];
 
     Pedido(){
         numPedido = 0;
-        codCliente = "";
+        codCliente = 0;
         listaPedido = new ListaArticulosP();
 
     }
@@ -333,26 +294,12 @@ struct Pedido{
         codCliente = cod;
         listaPedido = new ListaArticulosP();
     }
-
     void imprimir(){
-        cout<<"----------PEDIDO:----------"<<numPedido<<endl;
         cout<<"Numero de pedido: "<<numPedido<<endl;
         cout<<" Codigo de cliente: "<<codCliente<<endl;
         cout<<"---------------------------";
         cout<<endl;
         listaPedido->imprimir();
-        cout<<"---------------------------";
-        cout<<endl;
-    }
-
-    string to_String(){
-        string resultado =  "";
-        resultado.append("Pedido: #");
-        resultado.append(to_string(numPedido));
-        resultado.append(" Código Cliente: ");
-        resultado.append(codCliente);
-        resultado.append("\n");
-        return resultado;
     }
 };
 
@@ -394,7 +341,12 @@ struct Archivo{
     }
 };
 
-/*
+struct Fabricacion{
+    string cod;
+    string codProd;
+    int cant;
+};
+
 struct Fabrica{
 
     string tipo;
@@ -413,10 +365,10 @@ struct Fabrica{
         lista = l;
     }
 
-    void fabricar(Pedido * f){
+    void fabricar(Fabricacion * f){
 
     }
-};*/
+};
 
 
 
