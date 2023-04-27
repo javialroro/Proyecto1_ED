@@ -37,6 +37,8 @@ public:
 
 private slots:
 
+    void volverAMenu();
+
 private:
     Ui::vColaPedidos *ui;
     QTextEdit* m_txEditColaPedidos;

@@ -14,6 +14,7 @@
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
+#include <QtWidgets/QPushButton>
 #include <QtWidgets/QTextEdit>
 #include <QtWidgets/QWidget>
 
@@ -30,6 +31,7 @@ public:
     QLabel *lblCantidadDesencoladosNum;
     QLabel *lblCantidadEnColaNum;
     QLabel *label_5;
+    QPushButton *btnVolverAMenu;
 
     void setupUi(QMainWindow *vColaPedidos)
     {
@@ -40,6 +42,7 @@ public:
         centralwidget->setObjectName("centralwidget");
         txEditMostrarCola = new QTextEdit(centralwidget);
         txEditMostrarCola->setObjectName("txEditMostrarCola");
+        txEditMostrarCola->setEnabled(false);
         txEditMostrarCola->setGeometry(QRect(10, 10, 341, 581));
         txEditMostrarCola->setStyleSheet(QString::fromUtf8("border: 3px solid black;\n"
 "border-color: rgb(0, 85, 127);"));
@@ -72,9 +75,16 @@ public:
 "border: 1px solid black;"));
         label_5 = new QLabel(centralwidget);
         label_5->setObjectName("label_5");
-        label_5->setGeometry(QRect(450, 340, 231, 16));
+        label_5->setGeometry(QRect(500, 340, 111, 16));
         label_5->setStyleSheet(QString::fromUtf8("font: 9pt \"Segoe UI\";\n"
 "color: Black;"));
+        btnVolverAMenu = new QPushButton(centralwidget);
+        btnVolverAMenu->setObjectName("btnVolverAMenu");
+        btnVolverAMenu->setEnabled(true);
+        btnVolverAMenu->setGeometry(QRect(510, 500, 80, 24));
+        btnVolverAMenu->setStyleSheet(QString::fromUtf8("background-color: rgb(0, 74, 108);\n"
+"font: 700 9pt \"Arial\";\n"
+"color: White;"));
         vColaPedidos->setCentralWidget(centralwidget);
 
         retranslateUi(vColaPedidos);
@@ -90,6 +100,7 @@ public:
         lblCantidadDesencoladosNum->setText(QString());
         lblCantidadEnColaNum->setText(QString());
         label_5->setText(QCoreApplication::translate("vColaPedidos", "Posible imagen***", nullptr));
+        btnVolverAMenu->setText(QCoreApplication::translate("vColaPedidos", "Volver", nullptr));
     } // retranslateUi
 
 };

@@ -50,25 +50,31 @@ void MainWindow::on_btnColaFabricaciones1_clicked()
 
 void MainWindow::on_btnColaFabricaciones2_clicked()
 {
-    //Queue<Pedido*>& colaFab2 = Balanceador.getF2();
-    //vColaPedidos* vColaPedidosDialog = new vColaPedidos(colaFab2);
-    //vColaPedidosDialog->show();
+    vColaPedidos* vColaPedidosDialog = new vColaPedidos(colaB); // Crear instancia de vColaPedidos
+
+    vColaPedidosDialog->setQueueContent(); // Establecer el contenido de la cola en el QTextEdit
+
+    vColaPedidosDialog->show();
 }
 
 
 void MainWindow::on_btnColaFabricaciones3_clicked()
 {
-    //Queue<Pedido*> colaPedidos = revisor->getColaPedidos()->to_Queue();
-    //vColaPedidos* vColaPedidosDialog = new vColaPedidos(colaPedidos);
-    //vColaPedidosDialog->show();
+    vColaPedidos* vColaPedidosDialog = new vColaPedidos(colaC); // Crear instancia de vColaPedidos
+
+    vColaPedidosDialog->setQueueContent(); // Establecer el contenido de la cola en el QTextEdit
+
+    vColaPedidosDialog->show();
 }
 
 
 void MainWindow::on_btnColaFabricaciones4Com_clicked()
 {
-    //Queue<Pedido*> colaPedidos = revisor->getColaPedidos()->to_Queue();
-    //vColaPedidos* vColaPedidosDialog = new vColaPedidos(colaPedidos);
-    //vColaPedidosDialog->show();
+    vColaPedidos* vColaPedidosDialog = new vColaPedidos(colaComodin); // Crear instancia de vColaPedidos
+
+    vColaPedidosDialog->setQueueContent(); // Establecer el contenido de la cola en el QTextEdit
+
+    vColaPedidosDialog->show();
 }
 
 
@@ -77,14 +83,17 @@ void MainWindow::on_btnColaDeAlisto_clicked()
     //Queue<Pedido*> colaPedidos = revisor->getColaPedidos()->to_Queue();
     //vColaPedidos* vColaPedidosDialog = new vColaPedidos(colaPedidos);
     //vColaPedidosDialog->show();
+
 }
 
 
 void MainWindow::on_btnColaAlistados_clicked()
 {
-    //Queue<Pedido*> colaPedidos = revisor->getColaPedidos()->to_Queue();
-    //vColaPedidos* vColaPedidosDialog = new vColaPedidos(colaPedidos);
-    //vColaPedidosDialog->show();
+    vColaPedidos* vColaPedidosDialog = new vColaPedidos(colaAlistados); // Crear instancia de vColaPedidos
+
+    vColaPedidosDialog->setQueueContent(); // Establecer el contenido de la cola en el QTextEdit
+
+    vColaPedidosDialog->show();
 }
 
 void MainWindow::on_btnColaPorFacturar_clicked()

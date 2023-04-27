@@ -2,6 +2,8 @@
 #ifndef PRIORITYQUEUE_H
 #define PRIORITYQUEUE_H
 #include <QList>
+#include <iostream>
+#include <QDebug>
 #include "Queue.h"
 #include "structs.h"
 
@@ -76,16 +78,6 @@ struct PriorityQueue{
         return countDesencolados;
     }
 
-    /*Queue<Pedido*> to_Queue() {
-        Queue<Pedido*> result;
-        for (const Queue<Pedido*>& queue : listQueue) {
-            Queue<Pedido*> queueCopy = queue;
-            while (!queueCopy.isEmpty()) {
-                result.enQueue(queueCopy.deQueue());
-            }
-        }
-        return result;
-    }*/
     // Convertir a string toda la cola
     /*
     QString _toString() const {

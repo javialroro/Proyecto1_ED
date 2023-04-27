@@ -12,6 +12,12 @@ vColaPedidos::vColaPedidos(QWidget *parent) :
     ui(new Ui::vColaPedidos)
 {
     ui->setupUi(this);
+
+    // Deshabilitar los botones de cierre, minimizar y maximizar/restaurar de la ventana
+    setWindowFlags(windowFlags() & ~(Qt::WindowCloseButtonHint | Qt::WindowMinimizeButtonHint | Qt::WindowMaximizeButtonHint));
+
+    // Conecta el botón btnVolverAMenu con la función volverAMenu()
+    connect(ui->btnVolverAMenu, &QPushButton::clicked, this, &vColaPedidos::volverAMenu);
 }
 
 vColaPedidos::~vColaPedidos()
@@ -25,6 +31,12 @@ vColaPedidos::vColaPedidos(const Queue<Pedido*>& queueMostrar) :
     ui(new Ui::vColaPedidos)
 {
     ui->setupUi(this);
+
+    // Deshabilitar los botones de cierre, minimizar y maximizar/restaurar de la ventana
+    setWindowFlags(windowFlags() & ~(Qt::WindowCloseButtonHint | Qt::WindowMinimizeButtonHint | Qt::WindowMaximizeButtonHint));
+
+    // Conecta el botón btnVolverAMenu con la función volverAMenu()
+    connect(ui->btnVolverAMenu, &QPushButton::clicked, this, &vColaPedidos::volverAMenu);
 }
 
 vColaPedidos::vColaPedidos(const PriorityQueue queueMostrar):
@@ -34,6 +46,12 @@ vColaPedidos::vColaPedidos(const PriorityQueue queueMostrar):
     ui(new Ui::vColaPedidos)
 {
     ui->setupUi(this);
+
+    // Deshabilitar los botones de cierre, minimizar y maximizar/restaurar de la ventana
+    setWindowFlags(windowFlags() & ~(Qt::WindowCloseButtonHint | Qt::WindowMinimizeButtonHint | Qt::WindowMaximizeButtonHint));
+
+    // Conecta el botón btnVolverAMenu con la función volverAMenu()
+    connect(ui->btnVolverAMenu, &QPushButton::clicked, this, &vColaPedidos::volverAMenu);
 }
 
 void vColaPedidos::showEvent(QShowEvent *event)
@@ -95,4 +113,10 @@ void vColaPedidos::setQueueContent() {
     setCantidadDesencolados(queue.getCantDesencolados()); // Actualizar la cantidad de pedidos desencolados
 }
 
+
+
+void vColaPedidos::volverAMenu()
+{
+    hide();
+}
 
