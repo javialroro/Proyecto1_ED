@@ -12,6 +12,7 @@ using namespace std;
 
 struct PriorityQueue{
     int counter; // Variable que lleva la cantidad de pedidos encolados en general.
+    int countDesencolados;
     QList<Queue<Pedido *>> listQueue;
 
     // Constructor que genera la lista de queues que manejará la prioridad
@@ -50,6 +51,7 @@ struct PriorityQueue{
         for (Queue<Pedido*>& queue : listQueue) {
             if (!queue.isEmpty()) {
                 counter--;
+                countDesencolados++;
                 return queue.deQueue();
             }
         }
@@ -66,19 +68,24 @@ struct PriorityQueue{
     }
 
     // Método para obtener la cantidad de Pedidos encolados independientemente de las prioridades
-    int cantidadEnCola(){
+    int getCantidadEnCola(){
         return counter;
     }
 
-    Queue<Pedido*> to_Queue(){
-        Queue<Pedido*> result;
-        for (Queue<Pedido*>& queue : listQueue) {
-            Queue<Pedido*> queueCopy = queue;
-            result.enQueueQ(queueCopy);
-        }
-        return result;
+    int getCantDesencolados(){
+        return countDesencolados;
     }
 
+    /*Queue<Pedido*> to_Queue() {
+        Queue<Pedido*> result;
+        for (const Queue<Pedido*>& queue : listQueue) {
+            Queue<Pedido*> queueCopy = queue;
+            while (!queueCopy.isEmpty()) {
+                result.enQueue(queueCopy.deQueue());
+            }
+        }
+        return result;
+    }*/
     // Convertir a string toda la cola
     /*
     QString _toString() const {

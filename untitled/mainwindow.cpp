@@ -31,29 +31,20 @@ MainWindow::~MainWindow()
 
 
 void MainWindow::on_btnColaPedidos_clicked() {
-    Queue<Pedido*> colaPedidosAux = colaPedidos->to_Queue(); //to_Queue crea una copia tipo Queue para evitar errores
-    vColaPedidos* vColaPedidosDialog = new vColaPedidos(colaPedidosAux);
+    vColaPedidos* vColaPedidosDialog = new vColaPedidos(*colaPedidos); // Crear instancia de vColaPedidos
 
-    //QString texto;
-    //while(!colaPedidosAux.isEmpty()){
-    //    Pedido* pedido = colaPedidosAux.deQueue();
-    //    texto.append(pedido->to_String());
-    //    texto.append("\n");
-        // Agregar más información del pedido aquí si se desea
-    //}
+    vColaPedidosDialog->setQueueContentPQ(); // Establecer el contenido de la cola en el QTextEdit
 
-    //QTextEdit* txEdit = vColaPedidosDialog->findChild<QTextEdit*>("txEditColaPedidos");
-    //if (txEdit) {
-    //    txEdit->append(texto);
-    //}  // Agregar texto al QTextEdit en vColaPedidos
     vColaPedidosDialog->show();
 }
 
 void MainWindow::on_btnColaFabricaciones1_clicked()
 {
-    //Queue<Pedido*> colaPedidos = revisor->getColaPedidos()->to_Queue();
-    //vColaPedidos* vColaPedidosDialog = new vColaPedidos(colaPedidos);
-    //vColaPedidosDialog->show();
+    vColaPedidos* vColaPedidosDialog = new vColaPedidos(colaA); // Crear instancia de vColaPedidos
+
+    vColaPedidosDialog->setQueueContent(); // Establecer el contenido de la cola en el QTextEdit
+
+    vColaPedidosDialog->show();
 }
 
 
@@ -102,3 +93,6 @@ void MainWindow::on_btnColaPorFacturar_clicked()
     //vColaPedidos* vColaPedidosDialog = new vColaPedidos(colaPedidos);
     //vColaPedidosDialog->show();
 }
+
+
+

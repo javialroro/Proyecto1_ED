@@ -17,6 +17,8 @@ public:
 
     vColaPedidos(const Queue<Pedido*>& queueMostrar); //Constructor que recibe los parámetros necesarios para poder mostrar las colas.
 
+    vColaPedidos(const PriorityQueue queueMostrar); //Constructor que recibe los parámetros necesarios para poder mostrar las colas.
+
     ~vColaPedidos();
 
     static vColaPedidos& obtenerInstancia();
@@ -25,6 +27,14 @@ public:
 
     void showEvent(QShowEvent *event);
 
+    void setQueueContentPQ();
+
+    void setQueueContent();
+
+    void setCantidadEnCola(int cantidad);
+
+    void setCantidadDesencolados(int cantidad);
+
 private slots:
 
 private:
@@ -32,5 +42,8 @@ private:
     QTextEdit* m_txEditColaPedidos;
     Queue<Pedido*> queue; // Objeto Queue<Pedido*> agregado
     Queue<Pedido*>& queueM; // Referencia a Queue<Pedido*>
+
+    PriorityQueue p_queue; // Objeto Queue<Pedido*> agregado
+    PriorityQueue p_queueM; // Referencia a Queue<Pedido*>
 };
 #endif // VCOLAPEDIDOS_H

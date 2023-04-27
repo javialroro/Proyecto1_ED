@@ -79,7 +79,7 @@ bool verficarCantidad(ListaArticulosP * lista, listaArticulos * listaG){
 }
 
 void encolarMenor(Queue<Pedido *>& q1, Queue<Pedido *>& q2, Pedido * pedido) {
-    if (q1.size() <= q2.size()) {
+    if (q1.getCantidadEnCola() <= q2.getCantidadEnCola()) {
         q1.enQueue(pedido);
 
     }

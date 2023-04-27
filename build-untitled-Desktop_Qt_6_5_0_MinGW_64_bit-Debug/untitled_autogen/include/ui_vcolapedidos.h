@@ -11,8 +11,10 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QColumnView>
+#include <QtWidgets/QFrame>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
+#include <QtWidgets/QTextEdit>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -21,9 +23,13 @@ class Ui_vColaPedidos
 {
 public:
     QWidget *centralwidget;
-    QColumnView *columnView;
-    QColumnView *columnView_2;
-    QColumnView *columnView_3;
+    QTextEdit *txEditMostrarCola;
+    QFrame *frame;
+    QLabel *lblCantidadEnCola;
+    QLabel *lblCantidadDesencolados;
+    QLabel *lblCantidadDesencoladosNum;
+    QLabel *lblCantidadEnColaNum;
+    QLabel *label_5;
 
     void setupUi(QMainWindow *vColaPedidos)
     {
@@ -32,15 +38,43 @@ public:
         vColaPedidos->resize(800, 600);
         centralwidget = new QWidget(vColaPedidos);
         centralwidget->setObjectName("centralwidget");
-        columnView = new QColumnView(centralwidget);
-        columnView->setObjectName("columnView");
-        columnView->setGeometry(QRect(10, 20, 256, 571));
-        columnView_2 = new QColumnView(centralwidget);
-        columnView_2->setObjectName("columnView_2");
-        columnView_2->setGeometry(QRect(270, 20, 256, 571));
-        columnView_3 = new QColumnView(centralwidget);
-        columnView_3->setObjectName("columnView_3");
-        columnView_3->setGeometry(QRect(530, 20, 256, 571));
+        txEditMostrarCola = new QTextEdit(centralwidget);
+        txEditMostrarCola->setObjectName("txEditMostrarCola");
+        txEditMostrarCola->setGeometry(QRect(10, 10, 341, 581));
+        txEditMostrarCola->setStyleSheet(QString::fromUtf8("border: 3px solid black;\n"
+"border-color: rgb(0, 85, 127);"));
+        frame = new QFrame(centralwidget);
+        frame->setObjectName("frame");
+        frame->setGeometry(QRect(359, 9, 431, 171));
+        frame->setFrameShape(QFrame::StyledPanel);
+        frame->setFrameShadow(QFrame::Raised);
+        lblCantidadEnCola = new QLabel(frame);
+        lblCantidadEnCola->setObjectName("lblCantidadEnCola");
+        lblCantidadEnCola->setGeometry(QRect(20, 30, 231, 16));
+        lblCantidadEnCola->setStyleSheet(QString::fromUtf8("font: 700 16pt \"Times New Roman\";\n"
+"color: Black;"));
+        lblCantidadDesencolados = new QLabel(frame);
+        lblCantidadDesencolados->setObjectName("lblCantidadDesencolados");
+        lblCantidadDesencolados->setGeometry(QRect(20, 110, 231, 16));
+        lblCantidadDesencolados->setStyleSheet(QString::fromUtf8("font: 700 16pt \"Times New Roman\";\n"
+"color: Black;"));
+        lblCantidadDesencoladosNum = new QLabel(frame);
+        lblCantidadDesencoladosNum->setObjectName("lblCantidadDesencoladosNum");
+        lblCantidadDesencoladosNum->setGeometry(QRect(280, 110, 91, 20));
+        lblCantidadDesencoladosNum->setStyleSheet(QString::fromUtf8("font: 700 16pt \"Times New Roman\";\n"
+"color: Black;\n"
+"border: 1px solid black;"));
+        lblCantidadEnColaNum = new QLabel(frame);
+        lblCantidadEnColaNum->setObjectName("lblCantidadEnColaNum");
+        lblCantidadEnColaNum->setGeometry(QRect(280, 30, 91, 20));
+        lblCantidadEnColaNum->setStyleSheet(QString::fromUtf8("font: 700 16pt \"Times New Roman\";\n"
+"color: Black;\n"
+"border: 1px solid black;"));
+        label_5 = new QLabel(centralwidget);
+        label_5->setObjectName("label_5");
+        label_5->setGeometry(QRect(450, 340, 231, 16));
+        label_5->setStyleSheet(QString::fromUtf8("font: 9pt \"Segoe UI\";\n"
+"color: Black;"));
         vColaPedidos->setCentralWidget(centralwidget);
 
         retranslateUi(vColaPedidos);
@@ -51,6 +85,11 @@ public:
     void retranslateUi(QMainWindow *vColaPedidos)
     {
         vColaPedidos->setWindowTitle(QCoreApplication::translate("vColaPedidos", "MainWindow", nullptr));
+        lblCantidadEnCola->setText(QCoreApplication::translate("vColaPedidos", "Cantidad en Cola:", nullptr));
+        lblCantidadDesencolados->setText(QCoreApplication::translate("vColaPedidos", "Cantidad Desencolados:", nullptr));
+        lblCantidadDesencoladosNum->setText(QString());
+        lblCantidadEnColaNum->setText(QString());
+        label_5->setText(QCoreApplication::translate("vColaPedidos", "Posible imagen***", nullptr));
     } // retranslateUi
 
 };

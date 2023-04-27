@@ -18,6 +18,7 @@ public:
     T deQueue() {
         Q_ASSERT(!m_items.isEmpty()); // Expresión de aserción que valida que la cola no esté vacía, este genera un error especial en caso de que dé false
         return m_items.takeFirst();
+        countDeQueue++;
     }
 
     // Metodo que valida si la cola está vacía
@@ -26,13 +27,17 @@ public:
     }
 
     // Metodo que devuelve el tamaño de la cola
-    int size() const {
+    int getCantidadEnCola() const {
         return m_items.size();
+    }
+
+    int getCantDesencolados(){
+        return countDeQueue;
     }
 
     // Metodo que despliega en consola la información de la cola
     void print() const {
-        qDebug() << "Queue size:" << size();
+        qDebug() << "Queue size:" << getCantidadEnCola();
         qDebug() << "Queue contents:";
         for (const T& value : m_items) {
             qDebug() << value;
@@ -78,6 +83,7 @@ public:
 
 private:
     QList<T> m_items; // Creación de cola de elementos
+    int countDeQueue = 0;
 };
 
 #endif // COLAS_H

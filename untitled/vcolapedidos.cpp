@@ -1,4 +1,5 @@
 #include <QTextEdit>
+#include <iterator>
 #include "priorityqueue.h"
 #include "vcolapedidos.h"
 #include "ui_vcolapedidos.h"
@@ -26,23 +27,72 @@ vColaPedidos::vColaPedidos(const Queue<Pedido*>& queueMostrar) :
     ui->setupUi(this);
 }
 
+vColaPedidos::vColaPedidos(const PriorityQueue queueMostrar):
+    queueM(queue),
+    p_queue(queueMostrar),
+    p_queueM(p_queue),
+    ui(new Ui::vColaPedidos)
+{
+    ui->setupUi(this);
+}
+
 void vColaPedidos::showEvent(QShowEvent *event)
 {
-    // Aquí va la lógica para manejar el evento de muestra
-    // ...
-    // Llamada a la implementación de la clase base
     QWidget::showEvent(event);
 }
 
-QTextEdit* getTxEditColaPedidos(QWidget* parent) {
-    return parent->findChild<QTextEdit*>("txEditColaPedidos");
+void vColaPedidos::setCantidadEnCola(int cantidad) {
+    QLabel* lblCantidadEnColaNum = findChild<QLabel*>("lblCantidadEnColaNum");
+    if (lblCantidadEnColaNum) {
+        lblCantidadEnColaNum->setText(QString::number(cantidad)); // Actualizar la cantidad de elementos en la cola
+    }
 }
 
-// Método para actualizar la cola a mostrar
-//void actualizarCola(const QString& nombreCola) {
-// Obtener los datos de la cola desde la instancia de QThreads
-//Queue<Pedido*>& cola = queueM;
+void vColaPedidos::setCantidadDesencolados(int cantidad) {
+    QLabel* lblCantidadDesencoladosNum = findChild<QLabel*>("lblCantidadDesencoladosNum");
+    if (lblCantidadDesencoladosNum) {
+        lblCantidadDesencoladosNum->setText(QString::number(cantidad)); // Actualizar la cantidad de pedidos desencolados
+    }
+}
 
-// Actualizar la información en la ventana
-// ...
-//}
+void vColaPedidos::setQueueContentPQ() {
+    QString texto;
+    PriorityQueue queueCopy = p_queue; // Copiar la cola prioritaria original
+
+    while (!queueCopy.isEmptyPriority()) {
+        Pedido* pedido = queueCopy.deQueuePriority();
+        texto.append(pedido->to_String());
+        texto.append("\n");
+    }
+
+    QTextEdit* txEdit = findChild<QTextEdit*>("txEditMostrarCola");
+    if (txEdit) {
+        txEdit->clear(); // Limpiar el contenido anterior del QTextEdit
+        txEdit->append(texto);
+    }
+
+    setCantidadEnCola(p_queue.getCantidadEnCola()); // Actualizar la cantidad de elementos en la cola
+    setCantidadDesencolados(p_queue.getCantDesencolados());// Actualizar la cantidad de pedidos desencolados
+}
+
+void vColaPedidos::setQueueContent() {
+    QString texto;
+    Queue<Pedido*> queueCopy = queue; // Copiar la cola original
+
+    while (!queueCopy.isEmpty()) {
+        Pedido* pedido = queueCopy.deQueue();
+        texto.append(pedido->to_String());
+        texto.append("\n");
+    }
+
+    QTextEdit* txEdit = findChild<QTextEdit*>("txEditMostrarCola");
+    if (txEdit) {
+        txEdit->clear(); // Limpiar el contenido anterior del QTextEdit
+        txEdit->append(texto);
+    }
+
+    setCantidadEnCola(queue.getCantidadEnCola()); // Actualizar la cantidad de elementos en la cola
+    setCantidadDesencolados(queue.getCantDesencolados()); // Actualizar la cantidad de pedidos desencolados
+}
+
+
