@@ -22,8 +22,8 @@ public:
     }
     void run() override {
         while (true) {
-            //QString path = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Pedidos";
-            QString path = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Pedidos";
+            QString path = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Pedidos";
+            //QString path = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Pedidos";
             QDir directorio(path);
             QStringList archivos = directorio.entryList(QStringList() << "*.txt", QDir::Files);
             if (archivos.size() > 0) {
@@ -34,8 +34,8 @@ public:
                     string cPath= path.toStdString()+"\\";
                     string cArchivo = archivo.toStdString();
                     string todo= cPath+cArchivo;
-                    //string errores = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Errores\\"+cArchivo;
-                    string errores = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Errores\\"+cArchivo;
+                    string errores = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Errores\\"+cArchivo;
+                    //string errores = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Errores\\"+cArchivo;
 
                     fstream arch(todo, std::ios::in | std::ios::app);
                     Archivo *a =  new Archivo(arch,todo,errores);
@@ -43,8 +43,8 @@ public:
                     cargarPedido(a, colaPedidos, listaClientes, listaArticulos);
 
                     string ruta_archivo = todo;
-                    //string ruta_pedidosP = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\PedidosProcesados\\"+cArchivo;
-                    string ruta_pedidosP = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\PedidosProcesados\\"+cArchivo;
+                    string ruta_pedidosP = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\PedidosProcesados\\"+cArchivo;
+                    //string ruta_pedidosP = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\PedidosProcesados\\"+cArchivo;
 
                     rename(ruta_archivo.c_str(),ruta_pedidosP.c_str());
                 }
@@ -81,10 +81,12 @@ bool verficarCantidad(ListaArticulosP * lista, listaArticulos * listaG){
 void encolarMenor(Queue<Pedido *>& q1, Queue<Pedido *>& q2, Pedido * pedido) {
     if (q1.getCantidadEnCola() <= q2.getCantidadEnCola()) {
         q1.enQueue(pedido);
+        cout<<"Encolado en queue principal"<<endl;
 
     }
     else {
         q2.enQueue(pedido);
+        cout<<"Encolado en queue comodin"<<endl;
 
     }
 }
@@ -114,8 +116,7 @@ public:
 
                 while (tmp != NULL){
 
-                    bool verif =tmp->haySuficiente(lista); // metodo de imprimir un cliente
-                    tmp->articulo->imprimir();
+                    bool verif =tmp->haySuficiente(lista);
 
                     if (!verif){
                         cout<<"---------A COLA DE FABRICACION---------"<<endl;
@@ -129,18 +130,15 @@ public:
                         if (categoria == "A") {
                             //cout<<"A"<<endl;
                             encolarMenor(f1,f4,pedido);
-                            cout<<"Encolado en A"<<endl;
                             flag= false;
 
                         } else if (categoria == "B") {
                             encolarMenor(f2,f4,pedido);
-                            cout<<"Encolado en B"<<endl ;
                             flag= false;
 
                         } else if (categoria == "C") {
 
                             f3.enQueue(pedido);
-                            cout<<"Encolado en C"<<endl;
                             flag= false;
 
                         }
@@ -189,7 +187,6 @@ public:
     Queue<Pedido *> & cola;
     //string ruta_archivo = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Articulos\\articulos.txt";
 
-    bool fabricando;
 
     void run() override {
 
@@ -199,6 +196,7 @@ public:
             semaphore.acquire();
 
             while(!cola.isEmpty()){
+
                 Pedido * pedido = cola.deQueue();
 
                 NodoArticuloP *tmp = pedido->listaPedido->pn;
@@ -212,7 +210,6 @@ public:
                         if (tmp->articulo->aFabrica && !tmp->articulo->fabricado){
                             cout<<tmp->articulo->codProd<<endl;
 
-                            fabricando=true;
                             int cantidadN= n->articulo->cantidadAlmacen+=(tmp->articulo->cantidad);
                             n->articulo->cantidadAlmacen= cantidadN;
                             tmp->articulo->fabricado=true;
@@ -229,13 +226,14 @@ public:
 
                         }
                     }
-                    fabricando=false;
                     tmp = tmp->siguiente;
 
                 }
 
 
             }
+            sleep(1);
+
             semaphore.release();
 
             // Esperar un tiempo antes de continuar
@@ -256,116 +254,7 @@ private:
 };
 
 
-class Fabricacion : public QThread {
 
-public:
-    Fabricacion(Fabrica *a,Fabrica *b,Fabrica *c,Fabrica *d,QObject* parent = nullptr)
-        : QThread(parent), A(a),B(b),C(c),Comodin(d)
-    {
-
-    }
-
-    void run() override {
-
-
-        while (true) {
-            A->start();
-            B->start();
-            C->start();
-            Comodin->start();
-
-            if(A->fabricando){
-                B->wait();
-                C->wait();
-                Comodin->wait();
-            }
-
-            if(B->fabricando){
-                A->wait();
-                C->wait();
-                Comodin->wait();
-            }
-
-            if(C->fabricando){
-                A->wait();
-                B->wait();
-                Comodin->wait();
-            }
-
-            if(Comodin->fabricando){
-                A->wait();
-                C->wait();
-                B->wait();
-            }
-
-
-
-
-        }
-    }
-
-private:
-    Fabrica *A;
-    Fabrica *B;
-    Fabrica *C;
-    Fabrica *Comodin;
-
-};
-
-class Fabricacion1 : public QThread {
-
-
-public:
-    Fabricacion1(Fabrica *a, Fabrica *b, Fabrica *c, Fabrica *d, QObject *parent = nullptr)
-        : QThread(parent), A(a), B(b), C(c), D(d), fabrica_actual(nullptr)
-    {
-
-    }
-
-    void run() override {
-        while (true) {
-
-            // Esperar a que la fábrica actual termine
-            if (fabrica_actual != nullptr) {
-                cout<<"para";
-                fabrica_actual->wait();
-                cout<<"paro";
-                fabrica_actual = nullptr;
-            }
-
-            // Escoger la siguiente fábrica que debe trabajar
-            if (!A->isRunning() && !A->cola.isEmpty()) {
-                fabrica_actual = A;
-                cout<<"f a"<<endl;
-            } else if (!B->isRunning() && !B->cola.isEmpty()) {
-                fabrica_actual = B;
-                cout<<"f b"<<endl;
-            } else if (!C->isRunning() && !C->cola.isEmpty()) {
-                fabrica_actual = C;
-                cout<<"f c"<<endl;
-            } else if (!D->isRunning() && !D->cola.isEmpty()) {
-                fabrica_actual = D;
-                cout<<"f d"<<endl;
-            } else {
-                // Esperar un tiempo antes de revisar las fábricas de nuevo
-                sleep(1);
-                continue;
-            }
-            //cout<<fabrica_actual;
-
-            // Iniciar la fábrica actual
-            fabrica_actual->start();
-        }
-    }
-
-private:
-    Fabrica *A;
-    Fabrica *B;
-    Fabrica *C;
-    Fabrica *D;
-    Fabrica *fabrica_actual;
-
-};
 
 
 

@@ -23,6 +23,7 @@ struct NodoArticulo;
 struct listaArticulos;
 
 
+
 struct Cliente{
     string codigo;
     string nombre;
@@ -127,6 +128,7 @@ struct listaClientes{
 struct Articulo{
     string codigo;
     int cantidadAlmacen;
+    int cantidadC;
     int segundosF;
     string categoria;
     string ubicacionBodega;
@@ -141,6 +143,7 @@ struct Articulo{
     Articulo(){
         codigo = "";
         cantidadAlmacen = 0;
+        cantidadC = 0;
         segundosF = 0;
         categoria = "";
         ubicacionBodega = "";
@@ -270,7 +273,7 @@ struct NodoArticuloP{
     bool haySuficiente(listaArticulos * lista){
         NodoArticulo * b = lista->buscar(articulo->codProd);
 
-        if(articulo->cantidad <= b->articulo-> cantidadAlmacen){
+        if(articulo->cantidad <= b->articulo-> cantidadC){
             return true;
         }
 

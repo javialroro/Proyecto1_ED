@@ -57,32 +57,32 @@ public:
     QFrame *lineV03;
     QFrame *lineH13;
     QLabel *lblImgListos;
-    QPushButton *btnDetener01;
-    QPushButton *btnVer01;
-    QPushButton *btnVer02;
-    QPushButton *btnDetener02;
-    QPushButton *btnVer04Com;
-    QPushButton *btnDetener04Com;
-    QPushButton *btnVer03;
-    QPushButton *btnDetener03;
-    QPushButton *btnDetener05;
+    QPushButton *btnDetenerFab01;
+    QPushButton *btnVerFab01;
+    QPushButton *btnVerFab02;
+    QPushButton *btnDetenerFab02;
+    QPushButton *btnVerFab04Com;
+    QPushButton *btnDetenerFab04Com;
+    QPushButton *btnVerFab03;
+    QPushButton *btnDetenerFab03;
+    QPushButton *btnDetenerBalanceador;
     QFrame *lineH09;
     QFrame *lineV04;
     QFrame *lineH15;
     QFrame *lineV05;
     QPushButton *btnColaDeAlisto;
     QFrame *lineH14;
-    QPushButton *btnVer05;
+    QPushButton *btnVerBalanceador;
     QLabel *lblAlistadores;
     QFrame *lineH16;
-    QPushButton *btnDetener06;
-    QPushButton *btnVer06;
+    QPushButton *btnDetenerTodosAlistadores;
+    QPushButton *btnVerTodosAlistadores;
     QTableWidget *tableWidget;
     QLabel *lblAlistador2;
-    QPushButton *btnDetener07;
+    QPushButton *btnDetenerAlist2;
     QLabel *lblAlistador3;
-    QPushButton *btnDetener08;
-    QPushButton *btnDetener09;
+    QPushButton *btnDetenerAlist3;
+    QPushButton *btnDetenerAlist1;
     QLabel *lblAlistador1;
     QLabel *lblAlmacen;
     QFrame *lineV06;
@@ -92,16 +92,16 @@ public:
     QFrame *lineH17;
     QPushButton *btnColaAlistados;
     QLabel *lblCaja;
-    QPushButton *btnDetener10;
-    QPushButton *btnVer07;
+    QPushButton *btnDetenerAlistados;
+    QPushButton *btnVerAlistados;
     QFrame *lineV07;
     QPushButton *btnColaPorFacturar;
     QLabel *lblCajaRegistradora;
-    QPushButton *btnVer08;
-    QPushButton *btnDetener11;
+    QPushButton *btnVerFacturacion;
+    QPushButton *btnDetenerFacturacion;
     QFrame *lineV08;
     QLabel *lblPedidoFinal;
-    QPushButton *btnVer09;
+    QPushButton *btnVerLaFactura;
     QStatusBar *statusbar;
 
     void setupUi(QMainWindow *MainWindow)
@@ -314,100 +314,100 @@ public:
         lblImgListos->setGeometry(QRect(700, 79, 63, 51));
         lblImgListos->setPixmap(QPixmap(QString::fromUtf8("../Imagenes/4634990-gold_122537.png")));
         lblImgListos->setScaledContents(true);
-        btnDetener01 = new QPushButton(centralwidget);
-        btnDetener01->setObjectName("btnDetener01");
-        btnDetener01->setGeometry(QRect(600, 50, 31, 21));
-        btnDetener01->setCursor(QCursor(Qt::PointingHandCursor));
-        btnDetener01->setStyleSheet(QString::fromUtf8("background-color: white;\n"
+        btnDetenerFab01 = new QPushButton(centralwidget);
+        btnDetenerFab01->setObjectName("btnDetenerFab01");
+        btnDetenerFab01->setGeometry(QRect(600, 50, 31, 21));
+        btnDetenerFab01->setCursor(QCursor(Qt::PointingHandCursor));
+        btnDetenerFab01->setStyleSheet(QString::fromUtf8("background-color: white;\n"
 "font: 700 9pt \"Segoe UI\";\n"
 "color: white;"));
         QIcon icon;
         icon.addFile(QString::fromUtf8("../Imagenes/semaforos.png"), QSize(), QIcon::Normal, QIcon::Off);
-        btnDetener01->setIcon(icon);
-        btnDetener01->setIconSize(QSize(20, 20));
-        btnDetener01->setFlat(true);
-        btnVer01 = new QPushButton(centralwidget);
-        btnVer01->setObjectName("btnVer01");
-        btnVer01->setGeometry(QRect(600, 70, 31, 21));
-        btnVer01->setCursor(QCursor(Qt::PointingHandCursor));
-        btnVer01->setStyleSheet(QString::fromUtf8("background-color: white;\n"
+        btnDetenerFab01->setIcon(icon);
+        btnDetenerFab01->setIconSize(QSize(20, 20));
+        btnDetenerFab01->setFlat(true);
+        btnVerFab01 = new QPushButton(centralwidget);
+        btnVerFab01->setObjectName("btnVerFab01");
+        btnVerFab01->setGeometry(QRect(600, 70, 31, 21));
+        btnVerFab01->setCursor(QCursor(Qt::PointingHandCursor));
+        btnVerFab01->setStyleSheet(QString::fromUtf8("background-color: white;\n"
 "font: 700 9pt \"Segoe UI\";\n"
 "color: white;"));
         QIcon icon1;
         icon1.addFile(QString::fromUtf8("../Imagenes/vision.png"), QSize(), QIcon::Normal, QIcon::Off);
-        btnVer01->setIcon(icon1);
-        btnVer01->setIconSize(QSize(25, 25));
-        btnVer01->setFlat(true);
-        btnVer02 = new QPushButton(centralwidget);
-        btnVer02->setObjectName("btnVer02");
-        btnVer02->setGeometry(QRect(600, 150, 31, 21));
-        btnVer02->setCursor(QCursor(Qt::PointingHandCursor));
-        btnVer02->setStyleSheet(QString::fromUtf8("background-color: white;\n"
+        btnVerFab01->setIcon(icon1);
+        btnVerFab01->setIconSize(QSize(25, 25));
+        btnVerFab01->setFlat(true);
+        btnVerFab02 = new QPushButton(centralwidget);
+        btnVerFab02->setObjectName("btnVerFab02");
+        btnVerFab02->setGeometry(QRect(600, 150, 31, 21));
+        btnVerFab02->setCursor(QCursor(Qt::PointingHandCursor));
+        btnVerFab02->setStyleSheet(QString::fromUtf8("background-color: white;\n"
 "font: 700 9pt \"Segoe UI\";\n"
 "color: white;"));
-        btnVer02->setIcon(icon1);
-        btnVer02->setIconSize(QSize(25, 25));
-        btnVer02->setFlat(true);
-        btnDetener02 = new QPushButton(centralwidget);
-        btnDetener02->setObjectName("btnDetener02");
-        btnDetener02->setGeometry(QRect(600, 130, 31, 21));
-        btnDetener02->setCursor(QCursor(Qt::PointingHandCursor));
-        btnDetener02->setStyleSheet(QString::fromUtf8("background-color: white;\n"
+        btnVerFab02->setIcon(icon1);
+        btnVerFab02->setIconSize(QSize(25, 25));
+        btnVerFab02->setFlat(true);
+        btnDetenerFab02 = new QPushButton(centralwidget);
+        btnDetenerFab02->setObjectName("btnDetenerFab02");
+        btnDetenerFab02->setGeometry(QRect(600, 130, 31, 21));
+        btnDetenerFab02->setCursor(QCursor(Qt::PointingHandCursor));
+        btnDetenerFab02->setStyleSheet(QString::fromUtf8("background-color: white;\n"
 "font: 700 9pt \"Segoe UI\";\n"
 "color: white;"));
-        btnDetener02->setIcon(icon);
-        btnDetener02->setIconSize(QSize(20, 20));
-        btnDetener02->setFlat(true);
-        btnVer04Com = new QPushButton(centralwidget);
-        btnVer04Com->setObjectName("btnVer04Com");
-        btnVer04Com->setGeometry(QRect(190, 70, 31, 21));
-        btnVer04Com->setCursor(QCursor(Qt::PointingHandCursor));
-        btnVer04Com->setStyleSheet(QString::fromUtf8("background-color: white;\n"
+        btnDetenerFab02->setIcon(icon);
+        btnDetenerFab02->setIconSize(QSize(20, 20));
+        btnDetenerFab02->setFlat(true);
+        btnVerFab04Com = new QPushButton(centralwidget);
+        btnVerFab04Com->setObjectName("btnVerFab04Com");
+        btnVerFab04Com->setGeometry(QRect(190, 70, 31, 21));
+        btnVerFab04Com->setCursor(QCursor(Qt::PointingHandCursor));
+        btnVerFab04Com->setStyleSheet(QString::fromUtf8("background-color: white;\n"
 "font: 700 9pt \"Segoe UI\";\n"
 "color: white;"));
-        btnVer04Com->setIcon(icon1);
-        btnVer04Com->setIconSize(QSize(25, 25));
-        btnVer04Com->setFlat(true);
-        btnDetener04Com = new QPushButton(centralwidget);
-        btnDetener04Com->setObjectName("btnDetener04Com");
-        btnDetener04Com->setGeometry(QRect(190, 50, 31, 21));
-        btnDetener04Com->setCursor(QCursor(Qt::PointingHandCursor));
-        btnDetener04Com->setStyleSheet(QString::fromUtf8("background-color: white;\n"
+        btnVerFab04Com->setIcon(icon1);
+        btnVerFab04Com->setIconSize(QSize(25, 25));
+        btnVerFab04Com->setFlat(true);
+        btnDetenerFab04Com = new QPushButton(centralwidget);
+        btnDetenerFab04Com->setObjectName("btnDetenerFab04Com");
+        btnDetenerFab04Com->setGeometry(QRect(190, 50, 31, 21));
+        btnDetenerFab04Com->setCursor(QCursor(Qt::PointingHandCursor));
+        btnDetenerFab04Com->setStyleSheet(QString::fromUtf8("background-color: white;\n"
 "font: 700 9pt \"Segoe UI\";\n"
 "color: white;"));
-        btnDetener04Com->setIcon(icon);
-        btnDetener04Com->setIconSize(QSize(20, 20));
-        btnDetener04Com->setFlat(true);
-        btnVer03 = new QPushButton(centralwidget);
-        btnVer03->setObjectName("btnVer03");
-        btnVer03->setGeometry(QRect(190, 150, 31, 21));
-        btnVer03->setCursor(QCursor(Qt::PointingHandCursor));
-        btnVer03->setStyleSheet(QString::fromUtf8("background-color: white;\n"
+        btnDetenerFab04Com->setIcon(icon);
+        btnDetenerFab04Com->setIconSize(QSize(20, 20));
+        btnDetenerFab04Com->setFlat(true);
+        btnVerFab03 = new QPushButton(centralwidget);
+        btnVerFab03->setObjectName("btnVerFab03");
+        btnVerFab03->setGeometry(QRect(190, 150, 31, 21));
+        btnVerFab03->setCursor(QCursor(Qt::PointingHandCursor));
+        btnVerFab03->setStyleSheet(QString::fromUtf8("background-color: white;\n"
 "font: 700 9pt \"Segoe UI\";\n"
 "color: white;"));
-        btnVer03->setIcon(icon1);
-        btnVer03->setIconSize(QSize(25, 25));
-        btnVer03->setFlat(true);
-        btnDetener03 = new QPushButton(centralwidget);
-        btnDetener03->setObjectName("btnDetener03");
-        btnDetener03->setGeometry(QRect(190, 130, 31, 21));
-        btnDetener03->setCursor(QCursor(Qt::PointingHandCursor));
-        btnDetener03->setStyleSheet(QString::fromUtf8("background-color: white;\n"
+        btnVerFab03->setIcon(icon1);
+        btnVerFab03->setIconSize(QSize(25, 25));
+        btnVerFab03->setFlat(true);
+        btnDetenerFab03 = new QPushButton(centralwidget);
+        btnDetenerFab03->setObjectName("btnDetenerFab03");
+        btnDetenerFab03->setGeometry(QRect(190, 130, 31, 21));
+        btnDetenerFab03->setCursor(QCursor(Qt::PointingHandCursor));
+        btnDetenerFab03->setStyleSheet(QString::fromUtf8("background-color: white;\n"
 "font: 700 9pt \"Segoe UI\";\n"
 "color: white;"));
-        btnDetener03->setIcon(icon);
-        btnDetener03->setIconSize(QSize(20, 20));
-        btnDetener03->setFlat(true);
-        btnDetener05 = new QPushButton(centralwidget);
-        btnDetener05->setObjectName("btnDetener05");
-        btnDetener05->setGeometry(QRect(370, 320, 31, 20));
-        btnDetener05->setCursor(QCursor(Qt::PointingHandCursor));
-        btnDetener05->setStyleSheet(QString::fromUtf8("background-color: white;\n"
+        btnDetenerFab03->setIcon(icon);
+        btnDetenerFab03->setIconSize(QSize(20, 20));
+        btnDetenerFab03->setFlat(true);
+        btnDetenerBalanceador = new QPushButton(centralwidget);
+        btnDetenerBalanceador->setObjectName("btnDetenerBalanceador");
+        btnDetenerBalanceador->setGeometry(QRect(370, 320, 31, 20));
+        btnDetenerBalanceador->setCursor(QCursor(Qt::PointingHandCursor));
+        btnDetenerBalanceador->setStyleSheet(QString::fromUtf8("background-color: white;\n"
 "font: 700 9pt \"Segoe UI\";\n"
 "color: white;"));
-        btnDetener05->setIcon(icon);
-        btnDetener05->setIconSize(QSize(20, 20));
-        btnDetener05->setFlat(true);
+        btnDetenerBalanceador->setIcon(icon);
+        btnDetenerBalanceador->setIconSize(QSize(20, 20));
+        btnDetenerBalanceador->setFlat(true);
         lineH09 = new QFrame(centralwidget);
         lineH09->setObjectName("lineH09");
         lineH09->setGeometry(QRect(410, 60, 31, 21));
@@ -451,16 +451,16 @@ public:
         lineH14->setMidLineWidth(1);
         lineH14->setFrameShape(QFrame::HLine);
         lineH14->setFrameShadow(QFrame::Sunken);
-        btnVer05 = new QPushButton(centralwidget);
-        btnVer05->setObjectName("btnVer05");
-        btnVer05->setGeometry(QRect(370, 300, 31, 21));
-        btnVer05->setCursor(QCursor(Qt::PointingHandCursor));
-        btnVer05->setStyleSheet(QString::fromUtf8("background-color: white;\n"
+        btnVerBalanceador = new QPushButton(centralwidget);
+        btnVerBalanceador->setObjectName("btnVerBalanceador");
+        btnVerBalanceador->setGeometry(QRect(370, 300, 31, 21));
+        btnVerBalanceador->setCursor(QCursor(Qt::PointingHandCursor));
+        btnVerBalanceador->setStyleSheet(QString::fromUtf8("background-color: white;\n"
 "font: 700 9pt \"Segoe UI\";\n"
 "color: white;"));
-        btnVer05->setIcon(icon1);
-        btnVer05->setIconSize(QSize(25, 25));
-        btnVer05->setFlat(true);
+        btnVerBalanceador->setIcon(icon1);
+        btnVerBalanceador->setIconSize(QSize(25, 25));
+        btnVerBalanceador->setFlat(true);
         lblAlistadores = new QLabel(centralwidget);
         lblAlistadores->setObjectName("lblAlistadores");
         lblAlistadores->setGeometry(QRect(582, 500, 61, 61));
@@ -473,26 +473,26 @@ public:
         lineH16->setMidLineWidth(1);
         lineH16->setFrameShape(QFrame::HLine);
         lineH16->setFrameShadow(QFrame::Sunken);
-        btnDetener06 = new QPushButton(centralwidget);
-        btnDetener06->setObjectName("btnDetener06");
-        btnDetener06->setGeometry(QRect(600, 480, 31, 21));
-        btnDetener06->setCursor(QCursor(Qt::PointingHandCursor));
-        btnDetener06->setStyleSheet(QString::fromUtf8("background-color: white;\n"
+        btnDetenerTodosAlistadores = new QPushButton(centralwidget);
+        btnDetenerTodosAlistadores->setObjectName("btnDetenerTodosAlistadores");
+        btnDetenerTodosAlistadores->setGeometry(QRect(600, 480, 31, 21));
+        btnDetenerTodosAlistadores->setCursor(QCursor(Qt::PointingHandCursor));
+        btnDetenerTodosAlistadores->setStyleSheet(QString::fromUtf8("background-color: white;\n"
 "font: 700 9pt \"Segoe UI\";\n"
 "color: white;"));
-        btnDetener06->setIcon(icon);
-        btnDetener06->setIconSize(QSize(20, 20));
-        btnDetener06->setFlat(true);
-        btnVer06 = new QPushButton(centralwidget);
-        btnVer06->setObjectName("btnVer06");
-        btnVer06->setGeometry(QRect(600, 460, 31, 21));
-        btnVer06->setCursor(QCursor(Qt::PointingHandCursor));
-        btnVer06->setStyleSheet(QString::fromUtf8("background-color: white;\n"
+        btnDetenerTodosAlistadores->setIcon(icon);
+        btnDetenerTodosAlistadores->setIconSize(QSize(20, 20));
+        btnDetenerTodosAlistadores->setFlat(true);
+        btnVerTodosAlistadores = new QPushButton(centralwidget);
+        btnVerTodosAlistadores->setObjectName("btnVerTodosAlistadores");
+        btnVerTodosAlistadores->setGeometry(QRect(600, 460, 31, 21));
+        btnVerTodosAlistadores->setCursor(QCursor(Qt::PointingHandCursor));
+        btnVerTodosAlistadores->setStyleSheet(QString::fromUtf8("background-color: white;\n"
 "font: 700 9pt \"Segoe UI\";\n"
 "color: white;"));
-        btnVer06->setIcon(icon1);
-        btnVer06->setIconSize(QSize(25, 25));
-        btnVer06->setFlat(true);
+        btnVerTodosAlistadores->setIcon(icon1);
+        btnVerTodosAlistadores->setIconSize(QSize(25, 25));
+        btnVerTodosAlistadores->setFlat(true);
         tableWidget = new QTableWidget(centralwidget);
         if (tableWidget->columnCount() < 27)
             tableWidget->setColumnCount(27);
@@ -553,7 +553,7 @@ public:
         if (tableWidget->rowCount() < 10)
             tableWidget->setRowCount(10);
         tableWidget->setObjectName("tableWidget");
-        tableWidget->setGeometry(QRect(660, 340, 471, 401));
+        tableWidget->setGeometry(QRect(660, 340, 471, 341));
         tableWidget->setRowCount(10);
         tableWidget->setColumnCount(27);
         tableWidget->horizontalHeader()->setCascadingSectionResizes(false);
@@ -564,41 +564,41 @@ public:
         lblAlistador2->setGeometry(QRect(590, 350, 31, 31));
         lblAlistador2->setPixmap(QPixmap(QString::fromUtf8("../Imagenes/carretilla.png")));
         lblAlistador2->setScaledContents(true);
-        btnDetener07 = new QPushButton(centralwidget);
-        btnDetener07->setObjectName("btnDetener07");
-        btnDetener07->setGeometry(QRect(620, 350, 31, 21));
-        btnDetener07->setCursor(QCursor(Qt::PointingHandCursor));
-        btnDetener07->setStyleSheet(QString::fromUtf8("background-color: white;\n"
+        btnDetenerAlist2 = new QPushButton(centralwidget);
+        btnDetenerAlist2->setObjectName("btnDetenerAlist2");
+        btnDetenerAlist2->setGeometry(QRect(620, 350, 31, 21));
+        btnDetenerAlist2->setCursor(QCursor(Qt::PointingHandCursor));
+        btnDetenerAlist2->setStyleSheet(QString::fromUtf8("background-color: white;\n"
 "font: 700 9pt \"Segoe UI\";\n"
 "color: white;"));
-        btnDetener07->setIcon(icon);
-        btnDetener07->setIconSize(QSize(20, 20));
-        btnDetener07->setFlat(true);
+        btnDetenerAlist2->setIcon(icon);
+        btnDetenerAlist2->setIconSize(QSize(20, 20));
+        btnDetenerAlist2->setFlat(true);
         lblAlistador3 = new QLabel(centralwidget);
         lblAlistador3->setObjectName("lblAlistador3");
         lblAlistador3->setGeometry(QRect(590, 390, 31, 31));
         lblAlistador3->setPixmap(QPixmap(QString::fromUtf8("../Imagenes/carretilla.png")));
         lblAlistador3->setScaledContents(true);
-        btnDetener08 = new QPushButton(centralwidget);
-        btnDetener08->setObjectName("btnDetener08");
-        btnDetener08->setGeometry(QRect(620, 390, 31, 21));
-        btnDetener08->setCursor(QCursor(Qt::PointingHandCursor));
-        btnDetener08->setStyleSheet(QString::fromUtf8("background-color: white;\n"
+        btnDetenerAlist3 = new QPushButton(centralwidget);
+        btnDetenerAlist3->setObjectName("btnDetenerAlist3");
+        btnDetenerAlist3->setGeometry(QRect(620, 390, 31, 21));
+        btnDetenerAlist3->setCursor(QCursor(Qt::PointingHandCursor));
+        btnDetenerAlist3->setStyleSheet(QString::fromUtf8("background-color: white;\n"
 "font: 700 9pt \"Segoe UI\";\n"
 "color: white;"));
-        btnDetener08->setIcon(icon);
-        btnDetener08->setIconSize(QSize(20, 20));
-        btnDetener08->setFlat(true);
-        btnDetener09 = new QPushButton(centralwidget);
-        btnDetener09->setObjectName("btnDetener09");
-        btnDetener09->setGeometry(QRect(620, 310, 31, 21));
-        btnDetener09->setCursor(QCursor(Qt::PointingHandCursor));
-        btnDetener09->setStyleSheet(QString::fromUtf8("background-color: white;\n"
+        btnDetenerAlist3->setIcon(icon);
+        btnDetenerAlist3->setIconSize(QSize(20, 20));
+        btnDetenerAlist3->setFlat(true);
+        btnDetenerAlist1 = new QPushButton(centralwidget);
+        btnDetenerAlist1->setObjectName("btnDetenerAlist1");
+        btnDetenerAlist1->setGeometry(QRect(620, 310, 31, 21));
+        btnDetenerAlist1->setCursor(QCursor(Qt::PointingHandCursor));
+        btnDetenerAlist1->setStyleSheet(QString::fromUtf8("background-color: white;\n"
 "font: 700 9pt \"Segoe UI\";\n"
 "color: white;"));
-        btnDetener09->setIcon(icon);
-        btnDetener09->setIconSize(QSize(20, 20));
-        btnDetener09->setFlat(true);
+        btnDetenerAlist1->setIcon(icon);
+        btnDetenerAlist1->setIconSize(QSize(20, 20));
+        btnDetenerAlist1->setFlat(true);
         lblAlistador1 = new QLabel(centralwidget);
         lblAlistador1->setObjectName("lblAlistador1");
         lblAlistador1->setGeometry(QRect(590, 310, 31, 31));
@@ -651,26 +651,26 @@ public:
         lblCaja->setGeometry(QRect(1300, 480, 81, 71));
         lblCaja->setPixmap(QPixmap(QString::fromUtf8("../Imagenes/caja.png")));
         lblCaja->setScaledContents(true);
-        btnDetener10 = new QPushButton(centralwidget);
-        btnDetener10->setObjectName("btnDetener10");
-        btnDetener10->setGeometry(QRect(1380, 520, 31, 21));
-        btnDetener10->setCursor(QCursor(Qt::PointingHandCursor));
-        btnDetener10->setStyleSheet(QString::fromUtf8("background-color: white;\n"
+        btnDetenerAlistados = new QPushButton(centralwidget);
+        btnDetenerAlistados->setObjectName("btnDetenerAlistados");
+        btnDetenerAlistados->setGeometry(QRect(1380, 520, 31, 21));
+        btnDetenerAlistados->setCursor(QCursor(Qt::PointingHandCursor));
+        btnDetenerAlistados->setStyleSheet(QString::fromUtf8("background-color: white;\n"
 "font: 700 9pt \"Segoe UI\";\n"
 "color: white;"));
-        btnDetener10->setIcon(icon);
-        btnDetener10->setIconSize(QSize(20, 20));
-        btnDetener10->setFlat(true);
-        btnVer07 = new QPushButton(centralwidget);
-        btnVer07->setObjectName("btnVer07");
-        btnVer07->setGeometry(QRect(1380, 500, 31, 21));
-        btnVer07->setCursor(QCursor(Qt::PointingHandCursor));
-        btnVer07->setStyleSheet(QString::fromUtf8("background-color: white;\n"
+        btnDetenerAlistados->setIcon(icon);
+        btnDetenerAlistados->setIconSize(QSize(20, 20));
+        btnDetenerAlistados->setFlat(true);
+        btnVerAlistados = new QPushButton(centralwidget);
+        btnVerAlistados->setObjectName("btnVerAlistados");
+        btnVerAlistados->setGeometry(QRect(1380, 500, 31, 21));
+        btnVerAlistados->setCursor(QCursor(Qt::PointingHandCursor));
+        btnVerAlistados->setStyleSheet(QString::fromUtf8("background-color: white;\n"
 "font: 700 9pt \"Segoe UI\";\n"
 "color: white;"));
-        btnVer07->setIcon(icon1);
-        btnVer07->setIconSize(QSize(25, 25));
-        btnVer07->setFlat(true);
+        btnVerAlistados->setIcon(icon1);
+        btnVerAlistados->setIconSize(QSize(25, 25));
+        btnVerAlistados->setFlat(true);
         lineV07 = new QFrame(centralwidget);
         lineV07->setObjectName("lineV07");
         lineV07->setGeometry(QRect(1330, 380, 20, 111));
@@ -691,26 +691,26 @@ public:
         lblCajaRegistradora->setGeometry(QRect(1310, 290, 71, 61));
         lblCajaRegistradora->setPixmap(QPixmap(QString::fromUtf8("../Imagenes/caja-registradora.png")));
         lblCajaRegistradora->setScaledContents(true);
-        btnVer08 = new QPushButton(centralwidget);
-        btnVer08->setObjectName("btnVer08");
-        btnVer08->setGeometry(QRect(1380, 290, 31, 21));
-        btnVer08->setCursor(QCursor(Qt::PointingHandCursor));
-        btnVer08->setStyleSheet(QString::fromUtf8("background-color: white;\n"
+        btnVerFacturacion = new QPushButton(centralwidget);
+        btnVerFacturacion->setObjectName("btnVerFacturacion");
+        btnVerFacturacion->setGeometry(QRect(1380, 290, 31, 21));
+        btnVerFacturacion->setCursor(QCursor(Qt::PointingHandCursor));
+        btnVerFacturacion->setStyleSheet(QString::fromUtf8("background-color: white;\n"
 "font: 700 9pt \"Segoe UI\";\n"
 "color: white;"));
-        btnVer08->setIcon(icon1);
-        btnVer08->setIconSize(QSize(25, 25));
-        btnVer08->setFlat(true);
-        btnDetener11 = new QPushButton(centralwidget);
-        btnDetener11->setObjectName("btnDetener11");
-        btnDetener11->setGeometry(QRect(1380, 310, 31, 21));
-        btnDetener11->setCursor(QCursor(Qt::PointingHandCursor));
-        btnDetener11->setStyleSheet(QString::fromUtf8("background-color: white;\n"
+        btnVerFacturacion->setIcon(icon1);
+        btnVerFacturacion->setIconSize(QSize(25, 25));
+        btnVerFacturacion->setFlat(true);
+        btnDetenerFacturacion = new QPushButton(centralwidget);
+        btnDetenerFacturacion->setObjectName("btnDetenerFacturacion");
+        btnDetenerFacturacion->setGeometry(QRect(1380, 310, 31, 21));
+        btnDetenerFacturacion->setCursor(QCursor(Qt::PointingHandCursor));
+        btnDetenerFacturacion->setStyleSheet(QString::fromUtf8("background-color: white;\n"
 "font: 700 9pt \"Segoe UI\";\n"
 "color: white;"));
-        btnDetener11->setIcon(icon);
-        btnDetener11->setIconSize(QSize(20, 20));
-        btnDetener11->setFlat(true);
+        btnDetenerFacturacion->setIcon(icon);
+        btnDetenerFacturacion->setIconSize(QSize(20, 20));
+        btnDetenerFacturacion->setFlat(true);
         lineV08 = new QFrame(centralwidget);
         lineV08->setObjectName("lineV08");
         lineV08->setGeometry(QRect(1330, 190, 20, 111));
@@ -723,16 +723,16 @@ public:
         lblPedidoFinal->setGeometry(QRect(1310, 120, 71, 71));
         lblPedidoFinal->setPixmap(QPixmap(QString::fromUtf8("../Imagenes/simbolo-de-interfaz-de-archivo-del-contorno-de-la-hoja-de-papel-con-la-esquina-superior-derecha-doblada.png")));
         lblPedidoFinal->setScaledContents(true);
-        btnVer09 = new QPushButton(centralwidget);
-        btnVer09->setObjectName("btnVer09");
-        btnVer09->setGeometry(QRect(1330, 150, 31, 21));
-        btnVer09->setCursor(QCursor(Qt::PointingHandCursor));
-        btnVer09->setStyleSheet(QString::fromUtf8("background-color: white;\n"
+        btnVerLaFactura = new QPushButton(centralwidget);
+        btnVerLaFactura->setObjectName("btnVerLaFactura");
+        btnVerLaFactura->setGeometry(QRect(1330, 150, 31, 21));
+        btnVerLaFactura->setCursor(QCursor(Qt::PointingHandCursor));
+        btnVerLaFactura->setStyleSheet(QString::fromUtf8("background-color: white;\n"
 "font: 700 9pt \"Segoe UI\";\n"
 "color: white;"));
-        btnVer09->setIcon(icon1);
-        btnVer09->setIconSize(QSize(25, 25));
-        btnVer09->setFlat(true);
+        btnVerLaFactura->setIcon(icon1);
+        btnVerLaFactura->setIconSize(QSize(25, 25));
+        btnVerLaFactura->setFlat(true);
         MainWindow->setCentralWidget(centralwidget);
         lineV08->raise();
         lineV07->raise();
@@ -765,30 +765,30 @@ public:
         lineV03->raise();
         lineH13->raise();
         lblImgListos->raise();
-        btnDetener01->raise();
-        btnVer01->raise();
-        btnVer02->raise();
-        btnDetener02->raise();
-        btnVer04Com->raise();
-        btnDetener04Com->raise();
-        btnVer03->raise();
-        btnDetener03->raise();
-        btnDetener05->raise();
+        btnDetenerFab01->raise();
+        btnVerFab01->raise();
+        btnVerFab02->raise();
+        btnDetenerFab02->raise();
+        btnVerFab04Com->raise();
+        btnDetenerFab04Com->raise();
+        btnVerFab03->raise();
+        btnDetenerFab03->raise();
+        btnDetenerBalanceador->raise();
         lineH09->raise();
         lineV04->raise();
         lineH15->raise();
         lineV05->raise();
         lineH14->raise();
-        btnVer05->raise();
+        btnVerBalanceador->raise();
         lblAlistadores->raise();
         lineH16->raise();
-        btnDetener06->raise();
-        btnVer06->raise();
+        btnDetenerTodosAlistadores->raise();
+        btnVerTodosAlistadores->raise();
         lblAlistador2->raise();
-        btnDetener07->raise();
+        btnDetenerAlist2->raise();
         lblAlistador3->raise();
-        btnDetener08->raise();
-        btnDetener09->raise();
+        btnDetenerAlist3->raise();
+        btnDetenerAlist1->raise();
         lblAlistador1->raise();
         btnColaDeAlisto->raise();
         lblAlmacen->raise();
@@ -801,14 +801,14 @@ public:
         tableWidget->raise();
         btnColaAlistados->raise();
         lblCaja->raise();
-        btnDetener10->raise();
-        btnVer07->raise();
+        btnDetenerAlistados->raise();
+        btnVerAlistados->raise();
         btnColaPorFacturar->raise();
         lblCajaRegistradora->raise();
-        btnVer08->raise();
-        btnDetener11->raise();
+        btnVerFacturacion->raise();
+        btnDetenerFacturacion->raise();
         lblPedidoFinal->raise();
-        btnVer09->raise();
+        btnVerLaFactura->raise();
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName("statusbar");
         MainWindow->setStatusBar(statusbar);
@@ -871,15 +871,15 @@ public:
         lblFabrica2->setText(QString());
         lblFabrica4Com->setText(QString());
         lblImgListos->setText(QString());
-        btnDetener01->setText(QString());
-        btnVer01->setText(QString());
-        btnVer02->setText(QString());
-        btnDetener02->setText(QString());
-        btnVer04Com->setText(QString());
-        btnDetener04Com->setText(QString());
-        btnVer03->setText(QString());
-        btnDetener03->setText(QString());
-        btnDetener05->setText(QString());
+        btnDetenerFab01->setText(QString());
+        btnVerFab01->setText(QString());
+        btnVerFab02->setText(QString());
+        btnDetenerFab02->setText(QString());
+        btnVerFab04Com->setText(QString());
+        btnDetenerFab04Com->setText(QString());
+        btnVerFab03->setText(QString());
+        btnDetenerFab03->setText(QString());
+        btnDetenerBalanceador->setText(QString());
 #if QT_CONFIG(tooltip)
         btnColaDeAlisto->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p align=\"center\">Pedidos</p></body></html>", nullptr));
 #endif // QT_CONFIG(tooltip)
@@ -888,10 +888,10 @@ public:
 #endif // QT_CONFIG(whatsthis)
         btnColaDeAlisto->setText(QCoreApplication::translate("MainWindow", "Cola de \n"
 "Alisto", nullptr));
-        btnVer05->setText(QString());
+        btnVerBalanceador->setText(QString());
         lblAlistadores->setText(QString());
-        btnDetener06->setText(QString());
-        btnVer06->setText(QString());
+        btnDetenerTodosAlistadores->setText(QString());
+        btnVerTodosAlistadores->setText(QString());
         QTableWidgetItem *___qtablewidgetitem = tableWidget->horizontalHeaderItem(0);
         ___qtablewidgetitem->setText(QCoreApplication::translate("MainWindow", "A", nullptr));
         QTableWidgetItem *___qtablewidgetitem1 = tableWidget->horizontalHeaderItem(1);
@@ -947,10 +947,10 @@ public:
         QTableWidgetItem *___qtablewidgetitem26 = tableWidget->horizontalHeaderItem(26);
         ___qtablewidgetitem26->setText(QCoreApplication::translate("MainWindow", "Z", nullptr));
         lblAlistador2->setText(QString());
-        btnDetener07->setText(QString());
+        btnDetenerAlist2->setText(QString());
         lblAlistador3->setText(QString());
-        btnDetener08->setText(QString());
-        btnDetener09->setText(QString());
+        btnDetenerAlist3->setText(QString());
+        btnDetenerAlist1->setText(QString());
         lblAlistador1->setText(QString());
         lblAlmacen->setText(QString());
         lblNum1Alistador->setText(QCoreApplication::translate("MainWindow", "1.", nullptr));
@@ -965,8 +965,8 @@ public:
         btnColaAlistados->setText(QCoreApplication::translate("MainWindow", "Cola \n"
 "Alistados", nullptr));
         lblCaja->setText(QString());
-        btnDetener10->setText(QString());
-        btnVer07->setText(QString());
+        btnDetenerAlistados->setText(QString());
+        btnVerAlistados->setText(QString());
 #if QT_CONFIG(tooltip)
         btnColaPorFacturar->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p align=\"center\">Pedidos</p></body></html>", nullptr));
 #endif // QT_CONFIG(tooltip)
@@ -976,10 +976,10 @@ public:
         btnColaPorFacturar->setText(QCoreApplication::translate("MainWindow", "Cola por \n"
 "Facturar", nullptr));
         lblCajaRegistradora->setText(QString());
-        btnVer08->setText(QString());
-        btnDetener11->setText(QString());
+        btnVerFacturacion->setText(QString());
+        btnDetenerFacturacion->setText(QString());
         lblPedidoFinal->setText(QString());
-        btnVer09->setText(QString());
+        btnVerLaFactura->setText(QString());
     } // retranslateUi
 
 };

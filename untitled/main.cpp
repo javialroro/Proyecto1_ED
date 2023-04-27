@@ -26,6 +26,7 @@ QApplication a(argc, argv);
 
     Balanceador balanceador(listaArt, colaPedidos, colaAlistados, colaA, colaB, colaC, colaComodin);
     balanceador.start();
+
     QSemaphore s(1);
 
     Fabrica *A = new Fabrica(listaArt,colaAlistados,colaA,"A",s);
@@ -38,11 +39,8 @@ QApplication a(argc, argv);
     C->start();
     Comodin->start();
 
-    //Fabricacion1 fabricacion(A,B,C,Comodin);
-    //fabricacion.start();
-
-    MainWindow w = new MainWindow(colaPedidos, colaAlistados, colaA, colaB, colaC, colaComodin);
-    w.show();
+    //MainWindow w = new MainWindow(colaPedidos, colaAlistados, colaA, colaB, colaC, colaComodin);
+    //w.show();
 
 return a.exec();
     return 0;
