@@ -1,5 +1,5 @@
 
-#include <iterator>
+//#include <iterator>
 #include "priorityqueue.h"
 #include "vcolapedidos.h"
 #include "ui_vcolapedidos.h"
@@ -73,14 +73,14 @@ void vColaPedidos::showEvent(QShowEvent *event)
 }
 
 void vColaPedidos::setCantidadEnCola(int cantidad) {
-    QLabel* lblCantidadEnColaNum = findChild<QLabel*>("lblCantidadEnColaNum");
+    QLabel* lblCantidadEnColaNum = ui->lblCantidadEnColaNum;//findChild<QLabel*>("lblCantidadEnColaNum");
     if (lblCantidadEnColaNum) {
         lblCantidadEnColaNum->setText(QString::number(cantidad)); // Actualizar la cantidad de elementos en la cola
     }
 }
 
 void vColaPedidos::setCantidadDesencolados(int cantidad) {
-    QLabel* lblCantidadDesencoladosNum = findChild<QLabel*>("lblCantidadDesencoladosNum");
+    QLabel* lblCantidadDesencoladosNum = ui->lblCantidadDesencoladosNum;//findChild<QLabel*>("lblCantidadDesencoladosNum");
     if (lblCantidadDesencoladosNum) {
         lblCantidadDesencoladosNum->setText(QString::number(cantidad)); // Actualizar la cantidad de pedidos desencolados
     }
@@ -102,7 +102,7 @@ void vColaPedidos::setQueueContentPQ() {
         qDebug() << "4 Test";
     }
 
-    QTextEdit* txEdit = findChild<QTextEdit*>("txEditMostrarCola");
+    QTextEdit* txEdit = ui->txEditMostrarCola;//findChild<QTextEdit*>("txEditMostrarCola");
 
     if (txEdit) {
         txEdit->clear(); // Limpiar el contenido anterior del QTextEdit
@@ -123,7 +123,8 @@ void vColaPedidos::setQueueContent() {
         texto.append("\n");
     }
 
-    QTextEdit* txEdit = findChild<QTextEdit*>("txEditMostrarCola");
+    QTextEdit* txEdit = ui->txEditMostrarCola;//findChild<QTextEdit*>("txEditMostrarCola");
+
     if (txEdit) {
         txEdit->clear(); // Limpiar el contenido anterior del QTextEdit
         txEdit->append(texto);

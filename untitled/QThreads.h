@@ -318,7 +318,6 @@ public:
 
 class Alistador : public QThread
 {
-    Q_OBJECT
 public:
     explicit Alistador(Queue<Pedido *> cola, QTableWidget *tableWidget, listaArticulos *lista, QObject *parent = nullptr) :
         colaAlistados(cola), m_tableWidget(tableWidget), listaArtGeneral(lista), QThread(parent)
@@ -327,32 +326,33 @@ public:
 
     void run() override
     {
-        for (int i = 0; i < 10; ++i) {
-             // Obtener la ubicación del artículo
-            Pedido *pedidoAProcesar = colaAlistados.deQueue();
-            ListaArticulosP* listArt = pedidoAProcesar->listaPedido;
-            NodoArticuloP* temp = listArt->pn;
-            while (temp != NULL) {
-                string strUbication = getUbication(temp->articulo->codProd);
-                QString ubication = QString::fromStdString(strUbication);
-                QString letra = ubication.left(1); // Obtener la primera letra 'E'
-                qDebug() << letra;
-                QString strNumero = ubication.mid(1); // Obtener el número 05 (convertido a entero)
-                int numero = strNumero.toInt();
-                qDebug() << numero;
-                qDebug() << "-------------------";
-                temp = temp ->siguiente;
+        if (!colaAlistados.isEmpty()){
+            for (int i = 0; i < 10; ++i) {
+                 // Obtener la ubicación del artículo
+                Pedido *pedidoAProcesar = colaAlistados.deQueue();
+                ListaArticulosP* listArt = pedidoAProcesar->listaPedido;
+                NodoArticuloP* temp = listArt->pn;
+                while (temp != NULL) {
+                    string strUbication = getUbication(temp->articulo->codProd);
+                    QString ubication = QString::fromStdString(strUbication);
+                    QString letra = ubication.left(1); // Obtener la primera letra 'E'
+                    qDebug() << letra;
+                    QString strNumero = ubication.mid(1); // Obtener el número 05 (convertido a entero)
+                    int numero = strNumero.toInt();
+                    qDebug() << numero;
+                    qDebug() << "-------------------";
+                    temp = temp ->siguiente;
+                }
+
+                 // Mover el alistador a la ubicación correspondiente en el QTableWidget
+                 //qDebug() << "Moviendo el alistador a la ubicación:" << ubicacion;
+                   //      moverAlistador(ubicacion);
+
+                 // Simular el tiempo de espera
+                sleep(1);
             }
-
-             // Mover el alistador a la ubicación correspondiente en el QTableWidget
-             //qDebug() << "Moviendo el alistador a la ubicación:" << ubicacion;
-               //      moverAlistador(ubicacion);
-
-             // Simular el tiempo de espera
-             sleep(1);
         }
     }
-
 private:
     Queue<Pedido *> colaAlistados;
 

@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QTableWidget>
 #include "priorityqueue.h"
 
 
@@ -18,8 +19,10 @@ public:
     MainWindow(QWidget *parent = nullptr);
     MainWindow(PriorityQueue* _colaPedidos, Queue<Pedido *> _colaAlistados,  Queue<Pedido *> _colaA,  Queue<Pedido *> _colaB,  Queue<Pedido *> _colaC,  Queue<Pedido *> _colaComodin);
     ~MainWindow();
+    QTableWidget* getQTable();
 
 private slots:
+
     void on_btnColaPedidos_clicked();
 
     void on_btnColaFabricaciones1_clicked();
@@ -35,6 +38,7 @@ private slots:
     void on_btnColaAlistados_clicked();
 
     void on_btnColaPorFacturar_clicked();
+
 
 private:
     Ui::MainWindow *ui;

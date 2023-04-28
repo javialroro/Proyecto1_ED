@@ -30,6 +30,10 @@ MainWindow::~MainWindow()
     ui->setupUi(this);
 }
 
+QTableWidget* MainWindow::getQTable(){
+    return ui->tblBodega;
+}
+
 
 void MainWindow::on_btnColaPedidos_clicked() {
     qDebug() << "Entre al btnColaPedidos";

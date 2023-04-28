@@ -7,7 +7,6 @@
 int main(int argc, char *argv[]){
     QApplication a(argc, argv);
 
-
     listaClientes *lista = new listaClientes();
     listaArticulos *listaArt = new listaArticulos();
     CargarArticulos(listaArt);
@@ -20,6 +19,8 @@ int main(int argc, char *argv[]){
     Queue<Pedido *> colaC;
     Queue<Pedido *> colaComodin;
 
+    MainWindow w = new MainWindow(colaPedidos, colaAlistados, colaA, colaB, colaC, colaComodin);
+    w.show();
 
     RevisorArchivos revisor(listaArt,lista,colaPedidos);
     revisor.start();
@@ -39,9 +40,12 @@ int main(int argc, char *argv[]){
     C->start();
     Comodin->start();
 
-    MainWindow w = new MainWindow(colaPedidos, colaAlistados, colaA, colaB, colaC, colaComodin);
+    QTableWidget* tbl = w.getQTable();
 
-    w.show();
+    Alistador* alist1 = new Alistador(colaAlistados, tbl, listaArt);
+    alist1->start();
+
+
 
 return a.exec();
     return 0;
