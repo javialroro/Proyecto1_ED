@@ -127,9 +127,11 @@ public:
                         string categoria =cat->articulo->categoria;
 
 
+
                         if (categoria == "A") {
                             //cout<<"A"<<endl;
                             encolarMenor(f1,f4,pedido);
+
                             flag= false;
 
                         } else if (categoria == "B") {
@@ -147,6 +149,7 @@ public:
                     tmp = tmp->siguiente;
                 }
                 if (flag){
+                    pedido->infoFactura[1]="Este articulo no necesito ir a fabrica\n";
                     a_queue.enQueue(pedido);
                 }
 
@@ -201,14 +204,19 @@ public:
 
                 NodoArticuloP *tmp = pedido->listaPedido->pn;
 
+
+
                 bool flag= true;
 
                 while (tmp != NULL){
                     NodoArticulo * n =lista->buscar(tmp->articulo->codProd);
                     string categoria =n->articulo->categoria;
+
                     if (categoria  ==_categoria | categoria  ==_categoria2){
                         if (tmp->articulo->aFabrica && !tmp->articulo->fabricado){
-                            cout<<tmp->articulo->codProd<<endl;
+                            int falta= tmp->articulo->cantidad - n->articulo->cantidadAlmacen;
+
+                            pedido->infoFactura[1]="A fabrica: "+retornarHora()+" Faltaba "+to_string(falta)+" de"+tmp->articulo->codProd+"\n";
 
                             int cantidadN= n->articulo->cantidadAlmacen+=(tmp->articulo->cantidad);
                             n->articulo->cantidadAlmacen= cantidadN;
@@ -253,7 +261,45 @@ private:
 
 };
 
+class Facturadora : public QThread {
 
+public:
+    Facturadora(Queue<Pedido *> & A, QObject* parent = nullptr)
+        : QThread(parent),  cola(A)
+
+    {
+    }
+
+    Queue<Pedido *> & cola;
+    //string ruta_archivo = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Articulos\\articulos.txt";
+
+
+    void run() override {
+
+
+        while (true) {
+
+
+            while(!cola.isEmpty()){
+
+                Pedido * pedido = cola.deQueue();
+                string name= to_string(pedido->numPedido)+"_"+pedido->codCliente+"_"+retornarHora()+".txt";
+
+                fstream factura("C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Facturas\\"+name);
+
+                factura<<"Pedido: "+to_string(pedido->numPedido)+"\n"+"Cliente: "+pedido->codCliente+"\n";
+
+                for (int i=0 ; i<10; i++ ){
+                    factura << pedido->infoFactura[i];
+                }
+
+
+            }
+        }
+
+
+    }
+};
 
 
 
