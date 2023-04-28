@@ -9,12 +9,10 @@
 
 struct PriorityQueue;
 
-using namespace std;
+//using namespace std;
 
 
 struct PriorityQueue{
-    int counter; // Variable que lleva la cantidad de pedidos encolados en general.
-    int countDesencolados;
     QList<Queue<Pedido *>> listQueue;
 
     // Constructor que genera la lista de queues que manejará la prioridad
@@ -61,9 +59,11 @@ struct PriorityQueue{
     }
 
     // Validador de que los queue de la lista estén todos vacíos
-    bool isEmptyPriority(){
-        for (const auto& queue : listQueue) {
-            if (!queue.isEmpty())
+    bool isEmptyPriority() {
+        qDebug() << "Entra al Empty";
+        for (int i = 0; i < listQueue.size(); ++i) {
+            qDebug() << "Entra al for";
+            if (!listQueue[i].isEmpty())
                 return false;
         }
         return true;
@@ -79,7 +79,6 @@ struct PriorityQueue{
     }
 
     // Convertir a string toda la cola
-    /*
     QString _toString() const {
         QString result;
         for (const auto& queue : listQueue) {
@@ -87,7 +86,10 @@ struct PriorityQueue{
                 result.append(queue._toString());
         }
         return result;
-    }*/
+    }
+private:
+    int counter; // Variable que lleva la cantidad de pedidos encolados en general.
+    int countDesencolados;
 };
 
 

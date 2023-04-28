@@ -1,6 +1,7 @@
 #ifndef VCOLAPEDIDOS_H
 #define VCOLAPEDIDOS_H
 
+#include <QTimer>
 #include <QTextEdit>
 #include <QMainWindow>
 #include "priorityqueue.h"
@@ -17,7 +18,7 @@ public:
 
     vColaPedidos(const Queue<Pedido*>& queueMostrar); //Constructor que recibe los parámetros necesarios para poder mostrar las colas.
 
-    vColaPedidos(const PriorityQueue queueMostrar); //Constructor que recibe los parámetros necesarios para poder mostrar las colas.
+    vColaPedidos(PriorityQueue* queueMostrar); //Constructor que recibe los parámetros necesarios para poder mostrar las colas.
 
     ~vColaPedidos();
 
@@ -27,25 +28,25 @@ public:
 
     void showEvent(QShowEvent *event);
 
-    void setQueueContentPQ();
-
-    void setQueueContent();
-
     void setCantidadEnCola(int cantidad);
 
     void setCantidadDesencolados(int cantidad);
 
-private slots:
-
+public slots:
+    void setQueueContentPQ();
+    void setQueueContent();
     void volverAMenu();
 
 private:
     Ui::vColaPedidos *ui;
     QTextEdit* m_txEditColaPedidos;
-    Queue<Pedido*> queue; // Objeto Queue<Pedido*> agregado
-    Queue<Pedido*>& queueM; // Referencia a Queue<Pedido*>
 
-    PriorityQueue p_queue; // Objeto Queue<Pedido*> agregado
-    PriorityQueue p_queueM; // Referencia a Queue<Pedido*>
+    Queue<Pedido*> queue;
+    Queue<Pedido*>& queueM;
+
+    PriorityQueue* p_queue;
+    PriorityQueue* p_queueM;
+
+    QTimer* timer;
 };
 #endif // VCOLAPEDIDOS_H

@@ -36,8 +36,6 @@ private slots:
 
     void on_btnColaPorFacturar_clicked();
 
-    void on_btnVer03_clicked();
-
 private:
     Ui::MainWindow *ui;
 
@@ -47,6 +45,7 @@ private:
     Queue<Pedido *> colaB;
     Queue<Pedido *> colaC;
     Queue<Pedido *> colaComodin;
+
 };
 
 #endif // MAINWINDOW_H

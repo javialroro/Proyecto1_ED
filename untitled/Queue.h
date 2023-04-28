@@ -24,6 +24,7 @@ public:
 
     // Metodo que valida si la cola está vacía
     bool isEmpty() const {
+        qDebug() << "entra al isEmpty de Queue";
         return m_items.isEmpty();
     }
 
@@ -71,13 +72,13 @@ public:
     }
 
     // Metodo de converción a string de la cola
-    QString _toString() {
+    QString _toString() const {
         QString result;
         for (int i = m_items.size() - 1; i >= 0; --i) {
             if (i < m_items.size() - 1) {
                 result.append('\n');
             }
-            result.append(QString::fromStdString(m_items.at(i).to_String()));
+            result.append(QString::fromStdString(m_items.at(i)->to_String().toStdString()));
         }
         return result;
     }

@@ -1,4 +1,5 @@
 
+#include <QDebug>
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include "vcolapedidos.h"
@@ -31,8 +32,10 @@ MainWindow::~MainWindow()
 
 
 void MainWindow::on_btnColaPedidos_clicked() {
-    vColaPedidos* vColaPedidosDialog = new vColaPedidos(*colaPedidos); // Crear instancia de vColaPedidos
+    qDebug() << "Entre al btnColaPedidos";
+    vColaPedidos* vColaPedidosDialog = new vColaPedidos(colaPedidos); // Crear instancia de vColaPedidos
 
+    qDebug() << "Pasó el new";
     vColaPedidosDialog->setQueueContentPQ(); // Establecer el contenido de la cola en el QTextEdit
 
     vColaPedidosDialog->show();
@@ -102,6 +105,7 @@ void MainWindow::on_btnColaPorFacturar_clicked()
     //vColaPedidos* vColaPedidosDialog = new vColaPedidos(colaPedidos);
     //vColaPedidosDialog->show();
 }
+
 
 
 

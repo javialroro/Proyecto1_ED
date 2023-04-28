@@ -39,8 +39,8 @@ QApplication a(argc, argv);
     C->start();
     Comodin->start();
 
-    //MainWindow w = new MainWindow(colaPedidos, colaAlistados, colaA, colaB, colaC, colaComodin);
-    //w.show();
+    MainWindow w = new MainWindow(colaPedidos, colaAlistados, colaA, colaB, colaC, colaComodin);
+    w.show();
 
 return a.exec();
     return 0;
