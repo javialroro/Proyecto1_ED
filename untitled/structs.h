@@ -245,6 +245,7 @@ struct ArticuloPedido{
     int cantidad;
     bool aFabrica;
     bool fabricado;
+    string fabrica;
 
     ArticuloPedido(string cod, int cant){
         codProd = cod;
@@ -317,18 +318,57 @@ struct ListaArticulosP{
 
 };
 
+struct NodoFactura{
+    string txt;
+    NodoFactura * siguiente;
 
+    NodoFactura (string t){
+        txt = t;
+        siguiente=NULL;
+    }
+
+};
+
+
+struct InfoFacturas{
+    NodoFactura * pn, *un;
+
+    void insertarAlFinal(string s) {
+        // Create a new node with the given ArticuloPedido object
+        NodoFactura *nuevo = new NodoFactura(s);
+        nuevo->siguiente = NULL;
+
+        // If the list is empty, set the new node as the first and last node
+        if (pn == NULL) {
+            pn = nuevo;
+            un = nuevo;
+        }
+        else {
+            // Traverse the list until we reach the last node
+            NodoFactura *tmp = pn;
+            while (tmp->siguiente != NULL) {
+                tmp = tmp->siguiente;
+            }
+
+            // Set the next pointer of the current last node to the new node
+            tmp->siguiente = nuevo;
+            // Update the "un" pointer to point to the new last node
+            un = nuevo;
+        }
+    }
+};
 
 struct Pedido{
     int numPedido;
     string codCliente;
     ListaArticulosP *listaPedido;
-    string infoFactura[10];
+    InfoFacturas * factura;
 
     Pedido(){
         numPedido = 0;
         codCliente = "";
         listaPedido = new ListaArticulosP();
+        factura = new InfoFacturas();
 
     }
 
@@ -336,6 +376,7 @@ struct Pedido{
         numPedido = num;
         codCliente = cod;
         listaPedido = new ListaArticulosP();
+        factura = new InfoFacturas();
     }
     void imprimir(){
         cout<<"----------PEDIDO:----------"<<numPedido<<endl;

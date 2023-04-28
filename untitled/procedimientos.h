@@ -7,6 +7,13 @@
 #include <filesystem>
 using namespace std;
 
+string retornarHora(){
+    auto now = chrono::system_clock::now();
+    time_t now_c = chrono::system_clock::to_time_t(now);
+    string hora= ctime(&now_c);
+    return hora;
+}
+
 
 void cargarClientes(listaClientes *lista) {
     //archivo Javier "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Clientes\\clientes.txt"
@@ -205,6 +212,7 @@ void cargarPedido(Archivo *archivo, PriorityQueue * qPedidos, listaClientes * li
         if (!error){
             pedido->imprimir();
             qPedidos->enQueuePriority(lista->bPrioridad(pedido->codCliente),pedido);
+            pedido->factura->insertarAlFinal("En cola: "+retornarHora()+"\n");
             //count<<listaClientes->buscarCliente(pedido->codCliente)->prioridad<<end;
             archivo->arch.close();
 
@@ -220,12 +228,7 @@ void cargarPedido(Archivo *archivo, PriorityQueue * qPedidos, listaClientes * li
     }
 }
 
-string retornarHora(){
-    auto now = chrono::system_clock::now();
-    time_t now_c = chrono::system_clock::to_time_t(now);
-    string hora= ctime(&now_c);
-    return hora;
-}
+
 
 void modifyField(std::string& line, std::string code, int fieldIndex, int newValue) {
     // Busca el código en la línea
