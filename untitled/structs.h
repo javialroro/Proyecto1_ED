@@ -245,6 +245,7 @@ struct ArticuloPedido{
     int cantidad;
     bool aFabrica;
     bool fabricado;
+    string fabrica;
 
     ArticuloPedido(string cod, int cant){
         codProd = cod;
@@ -361,12 +362,13 @@ struct Pedido{
     int numPedido;
     string codCliente;
     ListaArticulosP *listaPedido;
-    string infoFactura[10];
+    InfoFacturas * factura;
 
     Pedido(){
         numPedido = 0;
         codCliente = "";
         listaPedido = new ListaArticulosP();
+        factura = new InfoFacturas();
 
     }
 
@@ -374,6 +376,7 @@ struct Pedido{
         numPedido = num;
         codCliente = cod;
         listaPedido = new ListaArticulosP();
+        factura = new InfoFacturas();
     }
     void imprimir(){
         cout<<"----------PEDIDO:----------"<<numPedido<<endl;

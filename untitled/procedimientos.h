@@ -212,7 +212,7 @@ void cargarPedido(Archivo *archivo, PriorityQueue * qPedidos, listaClientes * li
         if (!error){
             pedido->imprimir();
             qPedidos->enQueuePriority(lista->bPrioridad(pedido->codCliente),pedido);
-            pedido->infoFactura[0]="En cola: "+retornarHora();
+            pedido->factura->insertarAlFinal("En cola: "+retornarHora()+"\n");
             //count<<listaClientes->buscarCliente(pedido->codCliente)->prioridad<<end;
             archivo->arch.close();
 
