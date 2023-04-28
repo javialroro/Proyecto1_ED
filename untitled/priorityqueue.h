@@ -1,11 +1,9 @@
 
 #ifndef PRIORITYQUEUE_H
 #define PRIORITYQUEUE_H
-#include <QList>
-#include <iostream>
-#include <QDebug>
+
 #include "Queue.h"
-#include "structs.h"
+
 
 struct PriorityQueue;
 
@@ -60,9 +58,9 @@ struct PriorityQueue{
 
     // Validador de que los queue de la lista estén todos vacíos
     bool isEmptyPriority() {
-        qDebug() << "Entra al Empty";
+        //qDebug() << "Entra al Empty";
         for (int i = 0; i < listQueue.size(); ++i) {
-            qDebug() << "Entra al for";
+            //qDebug() << "Entra al for";
             if (!listQueue[i].isEmpty())
                 return false;
         }

@@ -4,7 +4,7 @@
 #include <QtCore>
 #include <QThread>
 #include <QDir>
-#include <QDebug>
+#include <QTableWidget>
 #include "procedimientos.h"
 
 
@@ -184,7 +184,7 @@ public:
 
     {
     }
-    Fabrica(listaArticulos  * l, Queue<Pedido *>& colaAlistos,Queue<Pedido *> & A,Queue<Pedido *> & B, string cat, string cat2, string _name,QSemaphore& sem,QObject* parent = nullptr)
+    Fabrica(listaArticulos  * l, Queue<Pedido *>& colaAlistos,Queue<Pedido *> & A,Queue<Pedido *> & B, string cat, string cat2, QSemaphore& sem, string _name,QObject* parent = nullptr)
         : QThread(parent), a_queue(colaAlistos), cola(A), lista(l), _categoria(cat), _categoria2(cat2), cola2(B),semaphore(sem), name(_name)
     {
     }
@@ -316,7 +316,76 @@ public:
 };
 
 
+class Alistador : public QThread
+{
+    Q_OBJECT
+public:
+    explicit Alistador(Queue<Pedido *> cola, QTableWidget *tableWidget, listaArticulos *lista, QObject *parent = nullptr) :
+        colaAlistados(cola), m_tableWidget(tableWidget), listaArtGeneral(lista), QThread(parent)
+    {
+    }
+
+    void run() override
+    {
+        for (int i = 0; i < 10; ++i) {
+             // Obtener la ubicación del artículo
+            Pedido *pedidoAProcesar = colaAlistados.deQueue();
+            ListaArticulosP* listArt = pedidoAProcesar->listaPedido;
+            NodoArticuloP* temp = listArt->pn;
+            while (temp != NULL) {
+                string strUbication = getUbication(temp->articulo->codProd);
+                QString ubication = QString::fromStdString(strUbication);
+                QString letra = ubication.left(1); // Obtener la primera letra 'E'
+                qDebug() << letra;
+                QString strNumero = ubication.mid(1); // Obtener el número 05 (convertido a entero)
+                int numero = strNumero.toInt();
+                qDebug() << numero;
+                qDebug() << "-------------------";
+                temp = temp ->siguiente;
+            }
+
+             // Mover el alistador a la ubicación correspondiente en el QTableWidget
+             //qDebug() << "Moviendo el alistador a la ubicación:" << ubicacion;
+               //      moverAlistador(ubicacion);
+
+             // Simular el tiempo de espera
+             sleep(1);
+        }
+    }
+
+private:
+    Queue<Pedido *> colaAlistados;
+
+    QTableWidget* m_tableWidget;
+
+    listaArticulos *listaArtGeneral;
+
+    string getUbication(string cod){
+        NodoArticulo *temp = listaArtGeneral->pn;
+        while(temp != NULL){
+             if (temp->articulo->codigo == cod)
+                return temp->articulo->ubicacionBodega;
+             temp = temp->siguiente;
+        }
+        return NULL;
+    }
+/*
+    void moverAlistador(const QString& ubicacion)
+    {
+        // Lógica para mover el alistador a la ubicación en el QTableWidget
+        // Aquí puedes usar métodos del QTableWidget como setCurrentCell o scrollToItem
+
+        // Ejemplo: Mover el cursor a la celda correspondiente
+        QTableWidgetItem* item = m_tableWidget->findItems(ubicacion, Qt::MatchExactly).first();
+        if (item) {
+             int row = item->row();
+             int column = item->column();
+             m_tableWidget->setCurrentCell(row, column);
+        }
+    }*/
+};
+
+#endif // THREADS_H
 
 
 
-#endif // QTHREADS_H

@@ -24,7 +24,7 @@ public:
 
     // Metodo que valida si la cola está vacía
     bool isEmpty() const {
-        qDebug() << "entra al isEmpty de Queue";
+        //qDebug() << "entra al isEmpty de Queue";
         return m_items.isEmpty();
     }
 

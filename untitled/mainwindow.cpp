@@ -105,13 +105,6 @@ void MainWindow::on_btnColaPorFacturar_clicked()
     //vColaPedidos* vColaPedidosDialog = new vColaPedidos(colaPedidos);
     //vColaPedidosDialog->show();
 }
-void MainWindow::on_btnVer03_clicked()
-{
-    //Queue<Pedido*> colaPedidos = revisor->getColaPedidos()->to_Queue();
-    //vColaPedidos* vColaPedidosDialog = new vColaPedidos(colaPedidos);
-    //vColaPedidosDialog->show();
-}
-
 
 
 

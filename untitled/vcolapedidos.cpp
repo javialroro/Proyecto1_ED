@@ -1,6 +1,5 @@
-#include <QTextEdit>
+
 #include <iterator>
-#include <QDebug>
 #include "priorityqueue.h"
 #include "vcolapedidos.h"
 #include "ui_vcolapedidos.h"

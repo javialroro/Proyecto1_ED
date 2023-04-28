@@ -1,11 +1,11 @@
 
-#include "mainwindow.h"
+
 #include <QApplication>
 #include "QThreads.h"
+#include "mainwindow.h"
 
 int main(int argc, char *argv[]){
-QApplication a(argc, argv);
-///*
+    QApplication a(argc, argv);
 
 
     listaClientes *lista = new listaClientes();
@@ -29,10 +29,10 @@ QApplication a(argc, argv);
 
     QSemaphore s(1);
 
-    Fabrica *A = new Fabrica(listaArt,colaAlistados,colaA,"A",s);
-    Fabrica *B= new Fabrica(listaArt,colaAlistados,colaB,"B",s);
-    Fabrica *C= new Fabrica(listaArt,colaAlistados,colaC,"C",s);
-    Fabrica *Comodin= new Fabrica(listaArt,colaAlistados,colaA,colaComodin,"A","B",s);
+    Fabrica *A = new Fabrica(listaArt,colaAlistados,colaA,"A",s,"Fabrica A");
+    Fabrica *B= new Fabrica(listaArt,colaAlistados,colaB,"B",s,"Fabrica B");
+    Fabrica *C= new Fabrica(listaArt,colaAlistados,colaC,"C",s,"Fabrica C");
+    Fabrica *Comodin= new Fabrica(listaArt,colaAlistados,colaA,colaComodin,"A","B",s,"Fabrica Comodin");
 
     A->start();
     B->start();
@@ -40,6 +40,7 @@ QApplication a(argc, argv);
     Comodin->start();
 
     MainWindow w = new MainWindow(colaPedidos, colaAlistados, colaA, colaB, colaC, colaComodin);
+
     w.show();
 
 return a.exec();
