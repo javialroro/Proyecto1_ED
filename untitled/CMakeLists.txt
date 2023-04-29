@@ -28,6 +28,7 @@ set(PROJECT_SOURCES
         QThreads.cpp
         PriorityQueue.cpp
         PriorityQueue.h
+        ThreadContainer.h
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

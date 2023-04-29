@@ -39,8 +39,37 @@ struct PriorityQueue{
 
     // enQueue adaptado
     void enQueuePriority (int prioridad, Pedido * newPedido){
-        listQueue[prioridad-1].enQueue(newPedido);
-        counter++;
+        if (prioridad == 10){
+            listQueue[0].enQueue(newPedido);
+            counter++;
+        }else if (prioridad == 9){
+            listQueue[1].enQueue(newPedido);
+            counter++;
+        }else if (prioridad == 8){
+            listQueue[2].enQueue(newPedido);
+            counter++;
+        }else if (prioridad == 7){
+            listQueue[3].enQueue(newPedido);
+            counter++;
+        }else if (prioridad == 6){
+            listQueue[4].enQueue(newPedido);
+            counter++;
+        }else if (prioridad == 5){
+            listQueue[5].enQueue(newPedido);
+            counter++;
+        }else if (prioridad == 4){
+            listQueue[6].enQueue(newPedido);
+            counter++;
+        }else if (prioridad == 3){
+            listQueue[7].enQueue(newPedido);
+            counter++;
+        }else if (prioridad == 2){
+            listQueue[8].enQueue(newPedido);
+            counter++;
+        }else if (prioridad == 1){
+            listQueue[9].enQueue(newPedido);
+            counter++;
+        }
         cout<<"Encolado correctamente en la Queue de prioridad"<<endl;
     }
 

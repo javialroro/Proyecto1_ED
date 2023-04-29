@@ -25,17 +25,17 @@ int main(int argc, char *argv[]){
     Queue<Pedido *> colaComodin;
     //qDebug() << "pasa inicializacion queue";
 
-    MainWindow* w = new MainWindow(colaPedidos, colaAlisto, colaAlistados, colaA, colaB, colaC, colaComodin);
-    w->show();
-    //qDebug() << "pasa mainwindow";
-
     RevisorArchivos revisor(listaArt,lista,colaPedidos);
     revisor.start();
     //qDebug() << "pasa revisor";
 
-    Balanceador balanceador(listaArt, colaPedidos, colaAlistados, colaA, colaB, colaC, colaComodin);
+    Balanceador balanceador(listaArt, colaPedidos, colaAlisto, colaA, colaB, colaC, colaComodin);
     balanceador.start();
     //qDebug() << "pasa balanceador";
+
+    MainWindow* w = new MainWindow(/*contenedor, */colaPedidos, colaAlisto, colaAlistados, colaA, colaB, colaC, colaComodin);
+    w->show();
+    //qDebug() << "pasa mainwindow";
 
     QSemaphore s(1);
     QLabel * lbl = w->getLabelFabricacion();
@@ -71,6 +71,11 @@ int main(int argc, char *argv[]){
     alist5->start();
     alist6->start();
     //qDebug() << "pasa alistador";
+
+    //ThreadContainer* contenedor = new ThreadContainer(balanceador,A,B,C,Comodin,alist1,alist2,alist3,alist4,alist5,alist6);
+    //qDebug() << "pasa contenedor";
+
+
 
     return a.exec();
 

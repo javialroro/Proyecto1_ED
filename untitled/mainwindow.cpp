@@ -4,8 +4,9 @@
 #include "./ui_mainwindow.h"
 #include "vcolapedidos.h"
 
-MainWindow::MainWindow(PriorityQueue* _colaPedidos,Queue<Pedido *> & _colaAlisto, Queue<Pedido *> &_colaAlistados,  Queue<Pedido *> &_colaA,  Queue<Pedido *> &_colaB,  Queue<Pedido *> &_colaC,  Queue<Pedido *>& _colaComodin)
+MainWindow::MainWindow(/*ThreadContainer* _contenedor,*/ PriorityQueue* _colaPedidos,Queue<Pedido *> & _colaAlisto, Queue<Pedido *> &_colaAlistados,  Queue<Pedido *> &_colaA,  Queue<Pedido *> &_colaB,  Queue<Pedido *> &_colaC,  Queue<Pedido *>& _colaComodin)
     : QMainWindow(),
+    //contenedor(_contenedor),
     colaPedidos(_colaPedidos),
     colaAlisto(_colaAlisto),
     colaAlistados(_colaAlistados),
@@ -114,6 +115,8 @@ void MainWindow::on_btnColaPorFacturar_clicked()
 }
 
 
+void MainWindow::on_btnDetenerBalanceador_clicked()
+{
 
-
+}
 

@@ -1195,9 +1195,14 @@ color: white;</string>
      <rect>
       <x>660</x>
       <y>340</y>
-      <width>471</width>
-      <height>311</height>
+      <width>461</width>
+      <height>301</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QTableView::item {
+    height: 100px;
+}</string>
     </property>
     <property name="rowCount">
      <number>10</number>
@@ -1236,6 +1241,22 @@ color: white;</string>
     <column>
      <property name="text">
       <string>A</string>
+     </property>
+     <property name="background">
+      <color>
+       <red>0</red>
+       <green>74</green>
+       <blue>108</blue>
+      </color>
+     </property>
+     <property name="foreground">
+      <brush brushstyle="NoBrush">
+       <color alpha="255">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
      </property>
     </column>
     <column>
