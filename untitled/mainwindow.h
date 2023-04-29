@@ -42,6 +42,7 @@ private slots:
     void on_btnColaPorFacturar_clicked();
 
 
+
 private:
     Ui::MainWindow *ui;
 

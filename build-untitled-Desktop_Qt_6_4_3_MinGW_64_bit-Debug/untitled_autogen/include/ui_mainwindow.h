@@ -115,6 +115,7 @@ public:
     QPushButton *btnVerAlist6;
     QPushButton *btnVerAlist5;
     QPushButton *btnVerAlist4;
+    QLabel *label;
     QStatusBar *statusbar;
 
     void setupUi(QMainWindow *MainWindow)
@@ -849,6 +850,9 @@ public:
         btnVerAlist4->setIcon(icon1);
         btnVerAlist4->setIconSize(QSize(25, 25));
         btnVerAlist4->setFlat(true);
+        label = new QLabel(centralwidget);
+        label->setObjectName("label");
+        label->setGeometry(QRect(240, 210, 161, 20));
         MainWindow->setCentralWidget(centralwidget);
         lineV08->raise();
         lineV07->raise();
@@ -938,6 +942,7 @@ public:
         btnVerAlist6->raise();
         btnVerAlist5->raise();
         btnVerAlist4->raise();
+        label->raise();
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName("statusbar");
         MainWindow->setStatusBar(statusbar);
@@ -1122,6 +1127,7 @@ public:
         btnVerAlist6->setText(QString());
         btnVerAlist5->setText(QString());
         btnVerAlist4->setText(QString());
+        label->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
     } // retranslateUi
 
 };

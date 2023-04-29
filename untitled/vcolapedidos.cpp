@@ -89,23 +89,23 @@ void vColaPedidos::setCantidadDesencolados(int cantidad) {
 void vColaPedidos::setQueueContentPQ() {
     QString texto;
 
-    qDebug() << "entra a set Queue";
+   // qDebug() << "entra a set Queue";
     PriorityQueue *& queueCopy = p_queue; // Copiar la cola original
-    qDebug() << "inicializa";
+    //qDebug() << "inicializa";
 
     texto = queueCopy->_toString();
-    qDebug() <<queueCopy->_toString();
+    //qDebug() <<queueCopy->_toString();
 
     QTextEdit* txEdit = ui->txEditMostrarCola;//findChild<QTextEdit*>("txEditMostrarCola");
-    qDebug() << "qtext";
+    //qDebug() << "qtext";
     if (txEdit) {
         txEdit->clear(); // Limpiar el contenido anterior del QTextEdit
         txEdit->append(texto);
     }
-    qDebug() << "pasa el if";
+    //qDebug() << "pasa el if";
     setCantidadEnCola(queueCopy->getCantidadEnCola()); // Actualizar la cantidad de elementos en la cola
     setCantidadDesencolados(queueCopy->getCantDesencolados()); // Actualizar la cantidad de pedidos desencolados
-    qDebug() << "pasa set lbl";
+    //qDebug() << "pasa set lbl";
 }
 
 void vColaPedidos::setQueueContent() {

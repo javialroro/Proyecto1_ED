@@ -3,6 +3,7 @@
 #include <QApplication>
 #include "QThreads.h"
 #include "mainwindow.h"
+#include "QLabel"
 
 int main(int argc, char *argv[]){
     QApplication a(argc, argv);
@@ -29,11 +30,15 @@ int main(int argc, char *argv[]){
     balanceador.start();
 
     QSemaphore s(1);
+    QLabel * lbl=w->findChild<QLabel*>("label");
+    lbl->setText("Fabricacion");
 
-    Fabrica *A = new Fabrica(listaArt,colaAlistados,colaA,"A",s,"Fabrica A");
-    Fabrica *B= new Fabrica(listaArt,colaAlistados,colaB,"B",s,"Fabrica B");
-    Fabrica *C= new Fabrica(listaArt,colaAlistados,colaC,"C",s,"Fabrica C");
-    Fabrica *Comodin= new Fabrica(listaArt,colaAlistados,colaA,colaComodin,"A","B",s,"Fabrica Comodin");
+
+
+    Fabrica *A = new Fabrica(listaArt,colaAlistados,colaA,"A",s,"Fabrica A",lbl);
+    Fabrica *B= new Fabrica(listaArt,colaAlistados,colaB,"B",s,"Fabrica B",lbl);
+    Fabrica *C= new Fabrica(listaArt,colaAlistados,colaC,"C",s,"Fabrica C",lbl);
+    Fabrica *Comodin= new Fabrica(listaArt,colaAlistados,colaA,colaComodin,"A","B",s,"Fabrica Comodin",lbl);
 
     A->start();
     B->start();

@@ -6,6 +6,7 @@
 #include <QDir>
 #include <QTableWidget>
 #include "procedimientos.h"
+#include "qlabel.h"
 
 
 
@@ -22,8 +23,8 @@ public:
     }
     void run() override {
         while (true) {
-            //QString path = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Pedidos";
-            QString path = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Pedidos";
+            QString path = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Pedidos";
+            //QString path = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Pedidos";
             QDir directorio(path);
             QStringList archivos = directorio.entryList(QStringList() << "*.txt", QDir::Files);
             if (archivos.size() > 0) {
@@ -34,8 +35,8 @@ public:
                     string cPath= path.toStdString()+"\\";
                     string cArchivo = archivo.toStdString();
                     string todo= cPath+cArchivo;
-                    //string errores = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Errores\\"+cArchivo;
-                    string errores = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Errores\\"+cArchivo;
+                    string errores = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Errores\\"+cArchivo;
+                    //string errores = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Errores\\"+cArchivo;
 
                     fstream arch(todo, std::ios::in | std::ios::app);
                     Archivo *a =  new Archivo(arch,todo,errores);
@@ -43,8 +44,8 @@ public:
                     cargarPedido(a, colaPedidos, listaClientes, listaArticulos);
 
                     string ruta_archivo = todo;
-                    //string ruta_pedidosP = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\PedidosProcesados\\"+cArchivo;
-                    string ruta_pedidosP = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\PedidosProcesados\\"+cArchivo;
+                    string ruta_pedidosP = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\PedidosProcesados\\"+cArchivo;
+                    //string ruta_pedidosP = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\PedidosProcesados\\"+cArchivo;
 
                     rename(ruta_archivo.c_str(),ruta_pedidosP.c_str());
                 }
@@ -104,6 +105,7 @@ public:
         while (true) {
 
             while(!p_queue->isEmptyPriority()){
+                sleep(5);
 
 
                 Pedido * pedido = p_queue->deQueuePriority();
@@ -148,6 +150,7 @@ public:
                     }
 
                     tmp = tmp->siguiente;
+
                 }
                 if (flag){
                     pedido->factura->insertarAlFinal("Este articulo no necesito ir a fabrica\n");
@@ -179,13 +182,14 @@ private:
 class Fabrica : public QThread {
 
 public:
-    Fabrica(listaArticulos  * l, Queue<Pedido *>& colaAlistos,Queue<Pedido *> & A, string cat,QSemaphore& sem, string _name,QObject* parent = nullptr)
-        : QThread(parent), a_queue(colaAlistos), cola(A), lista(l), _categoria(cat),semaphore(sem),name(_name)
+    Fabrica(listaArticulos  * l, Queue<Pedido *>& colaAlistos,Queue<Pedido *> & A, string cat,QSemaphore& sem, string _name, QLabel * lbl,QObject* parent = nullptr)
+        : QThread(parent), a_queue(colaAlistos), cola(A), lista(l), _categoria(cat),semaphore(sem),name(_name),label(lbl)
 
     {
     }
-    Fabrica(listaArticulos  * l, Queue<Pedido *>& colaAlistos,Queue<Pedido *> & A,Queue<Pedido *> & B, string cat, string cat2, QSemaphore& sem, string _name,QObject* parent = nullptr)
-        : QThread(parent), a_queue(colaAlistos), cola(A), lista(l), _categoria(cat), _categoria2(cat2), cola2(B),semaphore(sem), name(_name)
+    Fabrica(listaArticulos  * l, Queue<Pedido *>& colaAlistos,Queue<Pedido *> & A,Queue<Pedido *> & B, string cat, string cat2, QSemaphore& sem,
+            string _name,QLabel * lbl,QObject* parent = nullptr)
+        : QThread(parent), a_queue(colaAlistos), cola(A), lista(l), _categoria(cat), _categoria2(cat2), cola2(B),semaphore(sem), name(_name),label(lbl)
     {
     }
     Queue<Pedido *> & cola;
@@ -221,15 +225,17 @@ public:
 
                             int cantidadN= n->articulo->cantidadAlmacen+=(tmp->articulo->cantidad);
 
-                            pedido->factura->insertarAlFinal("ARTICULO"+tmp->articulo->codProd+" Fabrica: "+name+"\n"+to_string(falta)+" unidades\n");
+                            pedido->factura->insertarAlFinal("ARTICULO "+tmp->articulo->codProd+" Fabrica: "+name+"\n"+to_string(falta)+" unidades\n");
                             pedido->factura->insertarAlFinal("inicio: "+retornarHora());
 
                             n->articulo->cantidadAlmacen= cantidadN;
                             tmp->articulo->fabricado=true;
                             cambiar(n->articulo->codigo,1,cantidadN);
+                            QString s = QString::fromStdString(name+" ARTICULO: "+tmp->articulo->codProd);
 
-
+                            label->setText(s);
                             sleep(n->articulo->segundosF);
+                            label->setText("Fabricacion");
                             pedido->factura->insertarAlFinal("final: "+retornarHora());
 
                             a_queue.enQueue(pedido);
@@ -265,6 +271,7 @@ private:
     string name;
     Queue<Pedido *> cola2;
     QSemaphore& semaphore;
+    QLabel * label;
 
 
 };
