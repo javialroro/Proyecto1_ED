@@ -4,22 +4,16 @@
 #include "./ui_mainwindow.h"
 #include "vcolapedidos.h"
 
-MainWindow::MainWindow(PriorityQueue* _colaPedidos, Queue<Pedido *> _colaAlistados,  Queue<Pedido *> _colaA,  Queue<Pedido *> _colaB,  Queue<Pedido *> _colaC,  Queue<Pedido *> _colaComodin)
+MainWindow::MainWindow(PriorityQueue* _colaPedidos,Queue<Pedido *> _colaAlisto, Queue<Pedido *> _colaAlistados,  Queue<Pedido *> _colaA,  Queue<Pedido *> _colaB,  Queue<Pedido *> _colaC,  Queue<Pedido *> _colaComodin)
     : QMainWindow(),
     colaPedidos(_colaPedidos),
-    colaAlisto(_colaAlistados),
+    colaAlisto(_colaAlisto),
+    colaAlistados(_colaAlistados),
     colaA (_colaA),
     colaB (_colaB),
     colaC (_colaC),
     colaComodin (_colaComodin),
     ui(new Ui::MainWindow)
-{
-    ui->setupUi(this);
-}
-
-MainWindow::MainWindow()
-    : QMainWindow()
-    , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
 }
@@ -33,12 +27,15 @@ QTableWidget* MainWindow::getQTable(){
     return ui->tblBodega;
 }
 
+QLabel* MainWindow::getLabelFabricacion(){
+    return ui->lblMostrarFabricando;
+}
 
 void MainWindow::on_btnColaPedidos_clicked() {
-    qDebug() << "Entre al btnColaPedidos";
+    //qDebug() << "Entre al btnColaPedidos";
     vColaPedidos* vColaPedidosDialog = new vColaPedidos(colaPedidos); // Crear instancia de vColaPedidos
 
-    qDebug() << "Pasó el new";
+    //qDebug() << "Pasó el new";
     vColaPedidosDialog->setQueueContentPQ(); // Establecer el contenido de la cola en el QTextEdit
 
     vColaPedidosDialog->show();
@@ -97,9 +94,11 @@ void MainWindow::on_btnColaDeAlisto_clicked()
 
 void MainWindow::on_btnColaAlistados_clicked()
 {
-    //Queue<Pedido*> colaPedidos = revisor->getColaPedidos()->to_Queue();
-    //vColaPedidos* vColaPedidosDialog = new vColaPedidos(colaPedidos);
-    //vColaPedidosDialog->show();
+    vColaPedidos* vColaPedidosDialog = new vColaPedidos(colaAlistados); // Crear instancia de vColaPedidos
+
+    vColaPedidosDialog->setQueueContent(); // Establecer el contenido de la cola en el QTextEdit
+
+    vColaPedidosDialog->show();
 
 }
 

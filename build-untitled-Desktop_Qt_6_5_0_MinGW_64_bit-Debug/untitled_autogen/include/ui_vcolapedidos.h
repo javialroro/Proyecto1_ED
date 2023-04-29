@@ -45,7 +45,9 @@ public:
         txEditMostrarCola->setEnabled(false);
         txEditMostrarCola->setGeometry(QRect(10, 10, 341, 581));
         txEditMostrarCola->setStyleSheet(QString::fromUtf8("border: 3px solid black;\n"
-"border-color: rgb(0, 85, 127);"));
+"border-color: rgb(0, 85, 127);\n"
+"font: 700 12pt \"Times New Roman\";\n"
+"color: Black;"));
         frame = new QFrame(centralwidget);
         frame->setObjectName("frame");
         frame->setGeometry(QRect(359, 9, 401, 171));

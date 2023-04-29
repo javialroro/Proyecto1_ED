@@ -112,11 +112,7 @@ void vColaPedidos::setQueueContent() {
     QString texto;
     Queue<Pedido*> queueCopy = queue; // Copiar la cola original
 
-    while (!queueCopy.isEmpty()) {
-        Pedido* pedido = queueCopy.deQueue();
-        texto.append(pedido->to_String());
-        texto.append("\n");
-    }
+    texto = queueCopy._toString();
 
     QTextEdit* txEdit = ui->txEditMostrarCola;//findChild<QTextEdit*>("txEditMostrarCola");
 

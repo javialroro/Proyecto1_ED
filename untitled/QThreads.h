@@ -23,8 +23,8 @@ public:
     }
     void run() override {
         while (true) {
-            QString path = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Pedidos";
-            //QString path = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Pedidos";
+            //QString path = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Pedidos";
+            QString path = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Pedidos";
             QDir directorio(path);
             QStringList archivos = directorio.entryList(QStringList() << "*.txt", QDir::Files);
             if (archivos.size() > 0) {
@@ -35,8 +35,8 @@ public:
                     string cPath= path.toStdString()+"\\";
                     string cArchivo = archivo.toStdString();
                     string todo= cPath+cArchivo;
-                    string errores = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Errores\\"+cArchivo;
-                    //string errores = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Errores\\"+cArchivo;
+                    //string errores = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Errores\\"+cArchivo;
+                    string errores = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Errores\\"+cArchivo;
 
                     fstream arch(todo, std::ios::in | std::ios::app);
                     Archivo *a =  new Archivo(arch,todo,errores);
@@ -44,14 +44,14 @@ public:
                     cargarPedido(a, colaPedidos, listaClientes, listaArticulos);
 
                     string ruta_archivo = todo;
-                    string ruta_pedidosP = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\PedidosProcesados\\"+cArchivo;
-                    //string ruta_pedidosP = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\PedidosProcesados\\"+cArchivo;
+                    //string ruta_pedidosP = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\PedidosProcesados\\"+cArchivo;
+                    string ruta_pedidosP = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\PedidosProcesados\\"+cArchivo;
 
                     rename(ruta_archivo.c_str(),ruta_pedidosP.c_str());
                 }
             }
 
-            QThread::msleep(1000); // espera 1 segundo antes de revisar de nuevo
+            QThread::msleep(5000); // espera 1 segundo antes de revisar de nuevo
         }
     }
 
@@ -163,7 +163,7 @@ public:
             }
             
             // Esperar un tiempo antes de continuar
-            sleep(1);
+            sleep(5000);
         }
     }
     
@@ -254,7 +254,7 @@ public:
 
 
             }
-            sleep(1);
+            sleep(5000);
 
             semaphore.release();
 
@@ -302,7 +302,8 @@ public:
                 string name= to_string(pedido->numPedido)+"_"+pedido->codCliente+"_"+retornarHora()+".txt";
                 pedido->factura->insertarAlFinal("Finalizado: "+retornarHora());
 
-                fstream factura("C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Facturas\\"+name);
+                //fstream factura("C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Facturas\\"+name);
+                fstream factura("C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Facturas\\"+name);
 
                 factura<<"Pedido: "+to_string(pedido->numPedido)+"\n"+"Cliente: "+pedido->codCliente+"\n";
 
@@ -315,7 +316,7 @@ public:
 
 
             }
-             sleep(1);
+             sleep(5000);
         }
 
 
@@ -327,41 +328,50 @@ public:
 class Alistador : public QThread
 {
 public:
-    explicit Alistador(Queue<Pedido *> cola, QTableWidget *tableWidget, listaArticulos *lista, QObject *parent = nullptr) :
-        colaAlistados(cola), m_tableWidget(tableWidget), listaArtGeneral(lista), QThread(parent)
+    explicit Alistador(Queue<Pedido *> _colaAlisto, Queue<Pedido *> _colaAlistados, QTableWidget *tableWidget, listaArticulos *lista, QObject *parent = nullptr) :
+        colaAlisto(_colaAlisto), colaAlistados(_colaAlistados), m_tableWidget(tableWidget), listaArtGeneral(lista), QThread(parent)
     {
     }
 
     void run() override
     {
-        if (!colaAlistados.isEmpty()){
-            for (int i = 0; i < 10; ++i) {
-                 // Obtener la ubicación del artículo
-                Pedido *pedidoAProcesar = colaAlistados.deQueue();
+        QString ubicacionInicial = "A01";
+
+        while (true) {
+             if (!colaAlisto.isEmpty()) {
+                QString ubicacionActual = ubicacionInicial;
+
+                Pedido *pedidoAProcesar = colaAlisto.deQueue();
                 ListaArticulosP* listArt = pedidoAProcesar->listaPedido;
                 NodoArticuloP* temp = listArt->pn;
+
                 while (temp != NULL) {
                     string strUbication = getUbication(temp->articulo->codProd);
                     QString ubication = QString::fromStdString(strUbication);
-                    QString letra = ubication.left(1); // Obtener la primera letra 'E'
-                    qDebug() << letra;
-                    QString strNumero = ubication.mid(1); // Obtener el número 05 (convertido a entero)
-                    int numero = strNumero.toInt();
-                    qDebug() << numero;
-                    qDebug() << "-------------------";
-                    temp = temp ->siguiente;
+                    QString letra = ubication.left(1);
+                    int numero = ubication.mid(1).toInt();
+
+                    int espaciosDiferencia = calcularEspaciosDiferencia(ubicacionActual, ubication);
+
+                    moverAlistador(letra, numero, temp->articulo);
+                    QThread::msleep(espaciosDiferencia * 1000);
+
+                    ubicacionActual = ubication;
+
+                    // Calcular espacios de diferencia para volver al inicio
+                    int espaciosDiferenciaVuelta = calcularEspaciosDiferencia(ubicacionActual, ubicacionInicial);
+
+                    moverAlistador("A", 1, temp->articulo); // Mover al inicio (A01)
+                    QThread::msleep(espaciosDiferenciaVuelta * 1000);
+                    temp = temp->siguiente;
                 }
-
-                 // Mover el alistador a la ubicación correspondiente en el QTableWidget
-                 //qDebug() << "Moviendo el alistador a la ubicación:" << ubicacion;
-                   //      moverAlistador(ubicacion);
-
-                 // Simular el tiempo de espera
-                sleep(1);
-            }
+                colaAlistados.enQueue(pedidoAProcesar);
+             }
         }
     }
+
 private:
+    Queue<Pedido *> colaAlisto;
     Queue<Pedido *> colaAlistados;
 
     QTableWidget* m_tableWidget;
@@ -375,22 +385,86 @@ private:
                 return temp->articulo->ubicacionBodega;
              temp = temp->siguiente;
         }
-        return NULL;
+        return "";
     }
-/*
-    void moverAlistador(const QString& ubicacion)
-    {
-        // Lógica para mover el alistador a la ubicación en el QTableWidget
-        // Aquí puedes usar métodos del QTableWidget como setCurrentCell o scrollToItem
 
-        // Ejemplo: Mover el cursor a la celda correspondiente
-        QTableWidgetItem* item = m_tableWidget->findItems(ubicacion, Qt::MatchExactly).first();
-        if (item) {
-             int row = item->row();
-             int column = item->column();
-             m_tableWidget->setCurrentCell(row, column);
+    void moverAlistador(const QString& letra, int numero, ArticuloPedido* art)
+    {
+        // Obtener la columna correspondiente al encabezado de letra
+        int column = -1;
+
+        QStringList headerLabels;
+        QAbstractItemModel* model = m_tableWidget->model();
+        if (model) {
+             int columnCount = model->columnCount();
+             for (int i = 0; i < columnCount; ++i) {
+                QString label = model->headerData(i, Qt::Horizontal).toString();
+                headerLabels.append(label);
+             }
         }
-    }*/
+
+        for (int i = 0; i < headerLabels.size(); ++i) {
+             if (headerLabels.at(i) == letra) {
+                column = i;
+                break;
+             }
+        }
+
+        if (column != -1) {
+             // Obtener la fila correspondiente al encabezado de número
+             int row = numero - 1; // Restamos 1 para ajustar al índice de fila (empezando desde 0)
+
+             // Obtener el elemento de la celda en la posición especificada
+             QTableWidgetItem* item = m_tableWidget->item(row, column);
+             if (item) {
+                // Mover el alistador a la celda correspondiente
+                m_tableWidget->setCurrentCell(row, column);
+                m_tableWidget->scrollToItem(item, QAbstractItemView::PositionAtCenter);
+
+                // Obtener la cantidad actual de la celda
+                QVariant data = item->data(Qt::UserRole);
+                CeldaArticulo celda = data.value<CeldaArticulo>();
+                int cantidadActual = celda.cantidad;
+
+                // Sumar la cantidad del artículo al total actual
+                int nuevaCantidad = cantidadActual + art->cantidad;
+
+                // Actualizar la celda con el código del artículo y la nueva cantidad
+                celda.codigo =  QString::fromStdString(art->codProd);
+                celda.cantidad = nuevaCantidad;
+                item->setData(Qt::UserRole, QVariant::fromValue(celda));
+
+                // Asignar la cadena de texto al elemento de la celda
+                item->setText(celda.toString());
+             }
+        }
+    }
+
+
+    int calcularEspaciosDiferencia(const QString& ubicacionInicial, const QString& ubicacionActual)
+    {
+        QString letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+        QChar letraInicial = ubicacionInicial.at(0);
+        int numeroInicial = ubicacionInicial.mid(1).toInt();
+
+        QChar letraActual = ubicacionActual.at(0);
+        int numeroActual = ubicacionActual.mid(1).toInt();
+
+        int espaciosDiferencia = 0;
+
+        if (letraInicial == letraActual) {
+             espaciosDiferencia = qAbs(numeroActual - numeroInicial);
+        } else {
+             int indiceInicial = letras.indexOf(letraInicial);
+             int indiceActual = letras.indexOf(letraActual);
+
+             espaciosDiferencia = (26 - indiceInicial) + indiceActual + 1;
+             espaciosDiferencia += qAbs(numeroActual - numeroInicial);
+        }
+
+        return espaciosDiferencia;
+    }
 };
 
 #endif // THREADS_H

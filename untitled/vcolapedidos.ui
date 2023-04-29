@@ -28,7 +28,9 @@
     </property>
     <property name="styleSheet">
      <string notr="true">border: 3px solid black;
-border-color: rgb(0, 85, 127);</string>
+border-color: rgb(0, 85, 127);
+font: 700 12pt &quot;Times New Roman&quot;;
+color: Black;</string>
     </property>
    </widget>
    <widget class="QFrame" name="frame">

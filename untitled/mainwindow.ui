@@ -2389,17 +2389,17 @@ color: white;</string>
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="lblMostrarFabricando">
     <property name="geometry">
      <rect>
       <x>240</x>
-      <y>210</y>
-      <width>161</width>
+      <y>190</y>
+      <width>131</width>
       <height>20</height>
      </rect>
     </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string/>
     </property>
    </widget>
    <zorder>lineV08</zorder>
@@ -2490,7 +2490,7 @@ color: white;</string>
    <zorder>btnVerAlist6</zorder>
    <zorder>btnVerAlist5</zorder>
    <zorder>btnVerAlist4</zorder>
-   <zorder>label</zorder>
+   <zorder>lblMostrarFabricando</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>

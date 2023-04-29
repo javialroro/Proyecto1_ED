@@ -261,6 +261,15 @@ struct ArticuloPedido{
         cout<<"Codigo Articulo: "<<codProd;
         cout<<" Cantidad: "<<cantidad<<endl;
     }
+
+    QString toString(){
+        QString text = "";
+        text.append("Cod: ");
+        text.append(codProd);
+        text.append("\n");
+        text.append(QString::number(cantidad));
+        return text;
+    }
 };
 
 struct NodoArticuloP{
@@ -314,7 +323,17 @@ struct ListaArticulosP{
         }
     }
 
+    int size(){
+        int count = 0;
+        NodoArticuloP *tmp = pn;
 
+        while (tmp != NULL){
+            count++;
+            tmp = tmp->siguiente;
+        }
+
+        return count;
+    }
 
 };
 
@@ -392,7 +411,7 @@ struct Pedido{
         string resultado =  "";
         resultado.append("Pedido: #");
         resultado.append(to_string(numPedido));
-        resultado.append(" Código Cliente: ");
+        resultado.append("  Código Cliente: ");
         resultado.append(codCliente);
         resultado.append("\n");
         QString r= QString::fromStdString(resultado);
@@ -431,10 +450,30 @@ struct Archivo{
     fstream arch;
     string path;
     string errores;
+
     Archivo(fstream & a, string p, string e){
         arch = std::move(a);
         path = p;
         errores = e;
+    }
+};
+
+struct CeldaArticulo {
+    QString codigo = "";
+    int cantidad = 0;
+
+    bool isEmpty(){
+        if (codigo == "")
+            return true;
+        return false;
+    }
+
+    QString toString(){
+        QString text = "";
+        text.append(codigo);
+        text.append("\n");
+        text.append(QString::number(cantidad));
+        return text;
     }
 };
 

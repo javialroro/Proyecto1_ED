@@ -78,7 +78,7 @@ struct PriorityQueue{
 
     // Convertir a string toda la cola
     QString _toString() const {
-        QString result = " ";
+        QString result = "";
         int i = 0;
         while (i < 10) {
             if (!listQueue[i].isEmpty()){
