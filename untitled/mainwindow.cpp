@@ -86,20 +86,21 @@ void MainWindow::on_btnColaFabricaciones4Com_clicked()
 
 void MainWindow::on_btnColaDeAlisto_clicked()
 {
-    //Queue<Pedido*> colaPedidos = revisor->getColaPedidos()->to_Queue();
-    //vColaPedidos* vColaPedidosDialog = new vColaPedidos(colaPedidos);
-    //vColaPedidosDialog->show();
+    vColaPedidos* vColaPedidosDialog = new vColaPedidos(colaAlisto); // Crear instancia de vColaPedidos
+
+    vColaPedidosDialog->setQueueContent(); // Establecer el contenido de la cola en el QTextEdit
+
+    vColaPedidosDialog->show();
 
 }
 
 
 void MainWindow::on_btnColaAlistados_clicked()
 {
-    vColaPedidos* vColaPedidosDialog = new vColaPedidos(colaAlisto); // Crear instancia de vColaPedidos
+    //Queue<Pedido*> colaPedidos = revisor->getColaPedidos()->to_Queue();
+    //vColaPedidos* vColaPedidosDialog = new vColaPedidos(colaPedidos);
+    //vColaPedidosDialog->show();
 
-    vColaPedidosDialog->setQueueContent(); // Establecer el contenido de la cola en el QTextEdit
-
-    vColaPedidosDialog->show();
 }
 
 void MainWindow::on_btnColaPorFacturar_clicked()

@@ -37,7 +37,7 @@ public:
     {
         if (vColaPedidos->objectName().isEmpty())
             vColaPedidos->setObjectName("vColaPedidos");
-        vColaPedidos->resize(800, 600);
+        vColaPedidos->resize(772, 600);
         centralwidget = new QWidget(vColaPedidos);
         centralwidget->setObjectName("centralwidget");
         txEditMostrarCola = new QTextEdit(centralwidget);
@@ -48,7 +48,7 @@ public:
 "border-color: rgb(0, 85, 127);"));
         frame = new QFrame(centralwidget);
         frame->setObjectName("frame");
-        frame->setGeometry(QRect(359, 9, 431, 171));
+        frame->setGeometry(QRect(359, 9, 401, 171));
         frame->setFrameShape(QFrame::StyledPanel);
         frame->setFrameShadow(QFrame::Raised);
         lblCantidadEnCola = new QLabel(frame);
@@ -81,9 +81,10 @@ public:
         btnVolverAMenu = new QPushButton(centralwidget);
         btnVolverAMenu->setObjectName("btnVolverAMenu");
         btnVolverAMenu->setEnabled(true);
-        btnVolverAMenu->setGeometry(QRect(510, 500, 80, 24));
+        btnVolverAMenu->setGeometry(QRect(520, 500, 91, 31));
+        btnVolverAMenu->setCursor(QCursor(Qt::PointingHandCursor));
         btnVolverAMenu->setStyleSheet(QString::fromUtf8("background-color: rgb(0, 74, 108);\n"
-"font: 700 9pt \"Arial\";\n"
+"font: 700 12pt \"Arial\";\n"
 "color: White;"));
         vColaPedidos->setCentralWidget(centralwidget);
 
