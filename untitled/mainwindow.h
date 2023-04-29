@@ -43,7 +43,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
 
-    PriorityQueue* colaPedidos;
+    PriorityQueue * colaPedidos;
     Queue<Pedido *> colaAlistados;
     Queue<Pedido *> colaA;
     Queue<Pedido *> colaB;

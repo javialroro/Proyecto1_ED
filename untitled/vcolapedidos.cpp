@@ -9,6 +9,8 @@
 vColaPedidos::vColaPedidos(QWidget *parent) :
     QMainWindow(parent),
     queueM(*(new Queue<Pedido*>())),
+    p_queue(),
+    p_queueM(p_queue),
     ui(new Ui::vColaPedidos)
 {
     ui->setupUi(this);
@@ -32,6 +34,8 @@ vColaPedidos::~vColaPedidos()
 vColaPedidos::vColaPedidos(const Queue<Pedido*>& queueMostrar) :
     queue(queueMostrar),
     queueM(queue),
+    p_queue(),
+    p_queueM(p_queue),
     ui(new Ui::vColaPedidos)
 {
     ui->setupUi(this);
@@ -87,30 +91,54 @@ void vColaPedidos::setCantidadDesencolados(int cantidad) {
 }
 
 void vColaPedidos::setQueueContentPQ() {
+    qDebug()<<"aa";
     QString texto;
+    //p_queue->_toString();
+    //qDebug()<<p_queue->getCantidadEnCola();
 
 
-    PriorityQueue queueCopy = *p_queue; // Copiar la cola original
+    PriorityQueue *& queueCopy = p_queue; // Copiar la cola original
 
-    while (!queueCopy.isEmptyPriority()) {
+    qDebug()<<"creo copia";
+
+    /*while (!queueCopy->isEmptyPriority()) {
+
         qDebug() << "1 Test";
-        Pedido* pedido = queueCopy.deQueuePriority();
+        Pedido* pedido = queueCopy->deQueuePriority();
         qDebug() << "2 Test";
         texto.append(pedido->to_String());
         qDebug() << "3 Test";
         texto.append("\n");
         qDebug() << "4 Test";
     }
+*/
+
+    qDebug()<<"Hola";
 
     QTextEdit* txEdit = ui->txEditMostrarCola;//findChild<QTextEdit*>("txEditMostrarCola");
+
+    qDebug()<<"Hola1";
 
     if (txEdit) {
         txEdit->clear(); // Limpiar el contenido anterior del QTextEdit
         txEdit->append(texto);
+        qDebug()<<"Hola2";
     }
 
-    setCantidadEnCola(p_queue->getCantidadEnCola()); // Actualizar la cantidad de elementos en la cola
-    setCantidadDesencolados(p_queue->getCantDesencolados()); // Actualizar la cantidad de pedidos desencolados
+    qDebug()<<"Hola3";
+
+
+
+    //string s = to_string(p_queue->counter);
+    //QString qs=QString::fromStdString(s);
+    //qDebug()<<qs;
+    //qDebug()<<p_queue->getCantidadEnCola();
+    setCantidadEnCola(queueCopy->getCantidadEnCola()); // Actualizar la cantidad de elementos en la cola
+    setCantidadDesencolados(queueCopy->getCantDesencolados()); // Actualizar la cantidad de pedidos desencolados
+    qDebug()<<"Hola4";
+
+
+
 }
 
 void vColaPedidos::setQueueContent() {
@@ -129,6 +157,7 @@ void vColaPedidos::setQueueContent() {
         txEdit->clear(); // Limpiar el contenido anterior del QTextEdit
         txEdit->append(texto);
     }
+
 
     setCantidadEnCola(queue.getCantidadEnCola()); // Actualizar la cantidad de elementos en la cola
     setCantidadDesencolados(queue.getCantDesencolados()); // Actualizar la cantidad de pedidos desencolados

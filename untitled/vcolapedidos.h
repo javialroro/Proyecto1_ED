@@ -45,7 +45,7 @@ private:
     Queue<Pedido*>& queueM;
 
     PriorityQueue* p_queue;
-    PriorityQueue* p_queueM;
+    PriorityQueue*& p_queueM;
 
     QTimer* timer;
 };
