@@ -100,12 +100,13 @@ public:
         : QThread(parent), p_queue(colaPedidos) , a_queue(colaAlistos), f1(A), f2(B),f3(C),f4(D),lista(l)
     {
     }
+
     
     void run() override {
         while (true) {
 
             while(!p_queue->isEmptyPriority()){
-                sleep(5);
+                sleep(3);
 
 
                 Pedido * pedido = p_queue->deQueuePriority();

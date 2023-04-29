@@ -1,9 +1,10 @@
 
 
 #include <QApplication>
-#include "QThreads.h"
+
 #include "mainwindow.h"
 #include "QLabel"
+#include "QThreads.h"
 
 int main(int argc, char *argv[]){
     QApplication a(argc, argv);
