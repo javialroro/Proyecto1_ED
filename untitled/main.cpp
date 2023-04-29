@@ -19,8 +19,8 @@ int main(int argc, char *argv[]){
     Queue<Pedido *> colaC;
     Queue<Pedido *> colaComodin;
 
-    MainWindow w = new MainWindow(colaPedidos, colaAlistados, colaA, colaB, colaC, colaComodin);
-    w.show();
+    MainWindow* w = new MainWindow(colaPedidos, colaAlistados, colaA, colaB, colaC, colaComodin);
+    w->show();
 
     RevisorArchivos revisor(listaArt,lista,colaPedidos);
     revisor.start();
@@ -40,13 +40,13 @@ int main(int argc, char *argv[]){
     C->start();
     Comodin->start();
 
-    QTableWidget* tbl = w.getQTable();
+    QTableWidget* tbl = w->getQTable();
 
     Alistador* alist1 = new Alistador(colaAlistados, tbl, listaArt);
     alist1->start();
 
 
 
-return a.exec();
-    return 0;
+    return a.exec();
+
 }

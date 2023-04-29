@@ -16,10 +16,12 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
     MainWindow(PriorityQueue* _colaPedidos, Queue<Pedido *> _colaAlistados,  Queue<Pedido *> _colaA,  Queue<Pedido *> _colaB,  Queue<Pedido *> _colaC,  Queue<Pedido *> _colaComodin);
+    MainWindow();
     ~MainWindow();
     QTableWidget* getQTable();
+
+
 
 private slots:
 
@@ -44,7 +46,7 @@ private:
     Ui::MainWindow *ui;
 
     PriorityQueue* colaPedidos;
-    Queue<Pedido *> colaAlistados;
+    Queue<Pedido *> colaAlisto;
     Queue<Pedido *> colaA;
     Queue<Pedido *> colaB;
     Queue<Pedido *> colaC;

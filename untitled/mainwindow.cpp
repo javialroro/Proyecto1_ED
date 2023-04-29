@@ -1,26 +1,25 @@
 
-#include <QDebug>
+
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include "vcolapedidos.h"
 
-
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
-{
-    ui->setupUi(this);
-}
-
 MainWindow::MainWindow(PriorityQueue* _colaPedidos, Queue<Pedido *> _colaAlistados,  Queue<Pedido *> _colaA,  Queue<Pedido *> _colaB,  Queue<Pedido *> _colaC,  Queue<Pedido *> _colaComodin)
     : QMainWindow(),
     colaPedidos(_colaPedidos),
-    colaAlistados(_colaAlistados),
+    colaAlisto(_colaAlistados),
     colaA (_colaA),
     colaB (_colaB),
     colaC (_colaC),
     colaComodin (_colaComodin),
     ui(new Ui::MainWindow)
+{
+    ui->setupUi(this);
+}
+
+MainWindow::MainWindow()
+    : QMainWindow()
+    , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
 }
@@ -96,7 +95,7 @@ void MainWindow::on_btnColaDeAlisto_clicked()
 
 void MainWindow::on_btnColaAlistados_clicked()
 {
-    vColaPedidos* vColaPedidosDialog = new vColaPedidos(colaAlistados); // Crear instancia de vColaPedidos
+    vColaPedidos* vColaPedidosDialog = new vColaPedidos(colaAlisto); // Crear instancia de vColaPedidos
 
     vColaPedidosDialog->setQueueContent(); // Establecer el contenido de la cola en el QTextEdit
 
@@ -109,6 +108,7 @@ void MainWindow::on_btnColaPorFacturar_clicked()
     //vColaPedidos* vColaPedidosDialog = new vColaPedidos(colaPedidos);
     //vColaPedidosDialog->show();
 }
+
 
 
 
