@@ -46,7 +46,7 @@ int main(int argc, char *argv[]){
     Fabrica *A = new Fabrica(listaArt, colaAlisto, colaA,"A",s,"Fabrica A",lbl);
     Fabrica *B= new Fabrica(listaArt, colaAlisto, colaB,"B",s,"Fabrica B",lbl);
     Fabrica *C= new Fabrica(listaArt, colaAlisto, colaC,"C",s,"Fabrica C",lbl);
-    Fabrica *Comodin= new Fabrica(listaArt, colaAlisto, colaA,colaComodin,"A","B",s,"Fabrica Comodin",lbl);
+    Fabrica *Comodin= new Fabrica(listaArt, colaAlisto, colaComodin,"A","B",s,"Fabrica Comodin",lbl);
     //qDebug() << "pasa fabricas";
 
     A->start();

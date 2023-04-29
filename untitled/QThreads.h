@@ -82,11 +82,13 @@ bool verficarCantidad(ListaArticulosP * lista, listaArticulos * listaG){
 void encolarMenor(Queue<Pedido *>& q1, Queue<Pedido *>& q2, Pedido * pedido) {
     if (q1.getCantidadEnCola() <= q2.getCantidadEnCola()) {
         q1.enQueue(pedido);
+        cout<<q1.getCantidadEnCola()<<endl;cout<<q2.getCantidadEnCola()<<endl;
         cout<<"Encolado en queue principal"<<endl;
 
     }
     else {
         q2.enQueue(pedido);
+        cout<<q1.getCantidadEnCola()<<endl;cout<<q2.getCantidadEnCola()<<endl;
         cout<<"Encolado en queue comodin"<<endl;
 
     }
@@ -135,16 +137,19 @@ public:
                         if (categoria == "A") {
                             //cout<<"A"<<endl;
                             encolarMenor(f1,f4,pedido);
+                            sleep(1);
 
                             flag= false;
 
                         } else if (categoria == "B") {
                             encolarMenor(f2,f4,pedido);
+                            sleep(1);
                             flag= false;
 
                         } else if (categoria == "C") {
 
                             f3.enQueue(pedido);
+                            sleep(1);
                             flag= false;
 
                         }
@@ -188,9 +193,9 @@ public:
 
     {
     }
-    Fabrica(listaArticulos  * l, Queue<Pedido *>& colaAlistos,Queue<Pedido *> & A,Queue<Pedido *> & B, string cat, string cat2, QSemaphore& sem,
+    Fabrica(listaArticulos  * l, Queue<Pedido *>& colaAlistos,Queue<Pedido *> & A, string cat, string cat2, QSemaphore& sem,
             string _name,QLabel * lbl,QObject* parent = nullptr)
-        : QThread(parent), a_queue(colaAlistos), cola(A), lista(l), _categoria(cat), _categoria2(cat2), cola2(B),semaphore(sem), name(_name),label(lbl)
+        : QThread(parent), a_queue(colaAlistos), cola(A), lista(l), _categoria(cat), _categoria2(cat2),semaphore(sem), name(_name),label(lbl)
     {
     }
 
@@ -206,9 +211,11 @@ public:
 
 
             while(!cola.isEmpty()){
-                sleep(3);
+                sleep(4);
+                cout<<name<<endl;
 
                 Pedido * pedido = cola.deQueue();
+                cout<<"hice dequeue"<<endl;
 
                 NodoArticuloP *tmp = pedido->listaPedido->pn;
 
@@ -220,8 +227,10 @@ public:
                     NodoArticulo * n =lista->buscar(tmp->articulo->codProd);
                     string categoria =n->articulo->categoria;
 
-                    if (categoria  ==_categoria | categoria  ==_categoria2){
+                    if (categoria  ==_categoria || categoria  ==_categoria2){
+                        cout<<"entre"<<endl;
                         if (tmp->articulo->aFabrica && !tmp->articulo->fabricado){
+                            cout<<tmp->articulo->cantidad<<endl;
                             int falta= tmp->articulo->cantidad - n->articulo->cantidadAlmacen;
 
                             pedido->factura->insertarAlFinal("A fabrica: "+retornarHora()+" Faltaba "+to_string(falta)+" de"+tmp->articulo->codProd+"\n");
@@ -273,7 +282,6 @@ private:
     string _categoria;
     string _categoria2;
     string name;
-    Queue<Pedido *> cola2;
     QSemaphore& semaphore;
     QLabel * label;
     Queue<Pedido *> & cola;
