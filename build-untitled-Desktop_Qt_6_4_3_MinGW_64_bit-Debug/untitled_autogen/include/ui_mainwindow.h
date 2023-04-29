@@ -115,7 +115,7 @@ public:
     QPushButton *btnVerAlist6;
     QPushButton *btnVerAlist5;
     QPushButton *btnVerAlist4;
-    QLabel *label;
+    QLabel *lblMostrarFabricando;
     QStatusBar *statusbar;
 
     void setupUi(QMainWindow *MainWindow)
@@ -237,7 +237,7 @@ public:
 "color: white"));
         btnColaFabricaciones2 = new QPushButton(centralwidget);
         btnColaFabricaciones2->setObjectName("btnColaFabricaciones2");
-        btnColaFabricaciones2->setGeometry(QRect(440, 50, 91, 41));
+        btnColaFabricaciones2->setGeometry(QRect(430, 50, 111, 41));
         btnColaFabricaciones2->setFont(font);
         btnColaFabricaciones2->setCursor(QCursor(Qt::PointingHandCursor));
         btnColaFabricaciones2->setStyleSheet(QString::fromUtf8("background-color: rgb(0, 74, 108);\n"
@@ -245,7 +245,7 @@ public:
 "color: white"));
         btnColaFabricaciones1 = new QPushButton(centralwidget);
         btnColaFabricaciones1->setObjectName("btnColaFabricaciones1");
-        btnColaFabricaciones1->setGeometry(QRect(440, 130, 91, 41));
+        btnColaFabricaciones1->setGeometry(QRect(430, 130, 111, 41));
         btnColaFabricaciones1->setFont(font);
         btnColaFabricaciones1->setCursor(QCursor(Qt::PointingHandCursor));
         btnColaFabricaciones1->setStyleSheet(QString::fromUtf8("background-color: rgb(0, 74, 108);\n"
@@ -253,7 +253,7 @@ public:
 "color: white"));
         btnColaFabricaciones3 = new QPushButton(centralwidget);
         btnColaFabricaciones3->setObjectName("btnColaFabricaciones3");
-        btnColaFabricaciones3->setGeometry(QRect(290, 130, 91, 41));
+        btnColaFabricaciones3->setGeometry(QRect(290, 130, 111, 41));
         btnColaFabricaciones3->setFont(font);
         btnColaFabricaciones3->setCursor(QCursor(Qt::PointingHandCursor));
         btnColaFabricaciones3->setStyleSheet(QString::fromUtf8("background-color: rgb(0, 74, 108);\n"
@@ -266,7 +266,7 @@ public:
         lblFabrica3->setScaledContents(true);
         btnColaFabricaciones4Com = new QPushButton(centralwidget);
         btnColaFabricaciones4Com->setObjectName("btnColaFabricaciones4Com");
-        btnColaFabricaciones4Com->setGeometry(QRect(290, 50, 91, 41));
+        btnColaFabricaciones4Com->setGeometry(QRect(290, 50, 111, 41));
         btnColaFabricaciones4Com->setFont(font);
         btnColaFabricaciones4Com->setCursor(QCursor(Qt::PointingHandCursor));
         btnColaFabricaciones4Com->setStyleSheet(QString::fromUtf8("background-color: rgb(0, 74, 108);\n"
@@ -850,9 +850,9 @@ public:
         btnVerAlist4->setIcon(icon1);
         btnVerAlist4->setIconSize(QSize(25, 25));
         btnVerAlist4->setFlat(true);
-        label = new QLabel(centralwidget);
-        label->setObjectName("label");
-        label->setGeometry(QRect(240, 210, 161, 20));
+        lblMostrarFabricando = new QLabel(centralwidget);
+        lblMostrarFabricando->setObjectName("lblMostrarFabricando");
+        lblMostrarFabricando->setGeometry(QRect(190, 190, 191, 20));
         MainWindow->setCentralWidget(centralwidget);
         lineV08->raise();
         lineV07->raise();
@@ -870,7 +870,6 @@ public:
         lineH10->raise();
         lineH11->raise();
         btnColaPedidos->raise();
-        btnColaFabricaciones2->raise();
         btnColaFabricaciones1->raise();
         btnColaFabricaciones3->raise();
         lblFabrica3->raise();
@@ -942,7 +941,8 @@ public:
         btnVerAlist6->raise();
         btnVerAlist5->raise();
         btnVerAlist4->raise();
-        label->raise();
+        lblMostrarFabricando->raise();
+        btnColaFabricaciones2->raise();
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName("statusbar");
         MainWindow->setStatusBar(statusbar);
@@ -972,7 +972,7 @@ public:
         btnColaFabricaciones2->setWhatsThis(QCoreApplication::translate("MainWindow", "<html><head/><body><p align=\"center\">Pedidos</p></body></html>", nullptr));
 #endif // QT_CONFIG(whatsthis)
         btnColaFabricaciones2->setText(QCoreApplication::translate("MainWindow", "Cola de \n"
-"Fabricaciones", nullptr));
+"Fabricaciones B", nullptr));
 #if QT_CONFIG(tooltip)
         btnColaFabricaciones1->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p align=\"center\">Pedidos</p></body></html>", nullptr));
 #endif // QT_CONFIG(tooltip)
@@ -980,7 +980,7 @@ public:
         btnColaFabricaciones1->setWhatsThis(QCoreApplication::translate("MainWindow", "<html><head/><body><p align=\"center\">Pedidos</p></body></html>", nullptr));
 #endif // QT_CONFIG(whatsthis)
         btnColaFabricaciones1->setText(QCoreApplication::translate("MainWindow", "Cola de \n"
-"Fabricaciones", nullptr));
+"Fabricaciones A", nullptr));
 #if QT_CONFIG(tooltip)
         btnColaFabricaciones3->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p align=\"center\">Pedidos</p></body></html>", nullptr));
 #endif // QT_CONFIG(tooltip)
@@ -988,7 +988,7 @@ public:
         btnColaFabricaciones3->setWhatsThis(QCoreApplication::translate("MainWindow", "<html><head/><body><p align=\"center\">Pedidos</p></body></html>", nullptr));
 #endif // QT_CONFIG(whatsthis)
         btnColaFabricaciones3->setText(QCoreApplication::translate("MainWindow", "Cola de \n"
-"Fabricaciones", nullptr));
+"Fabricaciones C ", nullptr));
         lblFabrica3->setText(QString());
 #if QT_CONFIG(tooltip)
         btnColaFabricaciones4Com->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p align=\"center\">Pedidos</p></body></html>", nullptr));
@@ -997,7 +997,7 @@ public:
         btnColaFabricaciones4Com->setWhatsThis(QCoreApplication::translate("MainWindow", "<html><head/><body><p align=\"center\">Pedidos</p></body></html>", nullptr));
 #endif // QT_CONFIG(whatsthis)
         btnColaFabricaciones4Com->setText(QCoreApplication::translate("MainWindow", "Cola de \n"
-"Fabricaciones", nullptr));
+"Fabricaciones *", nullptr));
         lblcliente2->setText(QString());
         lblcliente3->setText(QString());
         lblcliente4->setText(QString());
@@ -1127,7 +1127,7 @@ public:
         btnVerAlist6->setText(QString());
         btnVerAlist5->setText(QString());
         btnVerAlist4->setText(QString());
-        label->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
+        lblMostrarFabricando->setText(QString());
     } // retranslateUi
 
 };

@@ -17,7 +17,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    MainWindow(PriorityQueue* _colaPedidos, Queue<Pedido *> _colaAlisto, Queue<Pedido *> _colaAlistados,  Queue<Pedido *> _colaA,  Queue<Pedido *> _colaB,  Queue<Pedido *> _colaC,  Queue<Pedido *> _colaComodin);
+    MainWindow(PriorityQueue* _colaPedidos, Queue<Pedido *> & _colaAlisto, Queue<Pedido *> & _colaAlistados,  Queue<Pedido *> & _colaA,  Queue<Pedido *> & _colaB,  Queue<Pedido *> & _colaC,  Queue<Pedido *> & _colaComodin);
     ~MainWindow();
     QTableWidget* getQTable();
     QLabel* getLabelFabricacion();
@@ -47,12 +47,12 @@ private:
     Ui::MainWindow *ui;
 
     PriorityQueue* colaPedidos;
-    Queue<Pedido *> colaAlisto;
-    Queue<Pedido *> colaAlistados;
-    Queue<Pedido *> colaA;
-    Queue<Pedido *> colaB;
-    Queue<Pedido *> colaC;
-    Queue<Pedido *> colaComodin;
+    Queue<Pedido *> &colaAlisto;
+    Queue<Pedido *> &colaAlistados;
+    Queue<Pedido *> & colaA;
+    Queue<Pedido *> & colaB;
+    Queue<Pedido *> & colaC;
+    Queue<Pedido *> & colaComodin;
 
 };
 

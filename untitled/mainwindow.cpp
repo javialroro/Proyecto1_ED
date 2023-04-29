@@ -4,7 +4,7 @@
 #include "./ui_mainwindow.h"
 #include "vcolapedidos.h"
 
-MainWindow::MainWindow(PriorityQueue* _colaPedidos,Queue<Pedido *> _colaAlisto, Queue<Pedido *> _colaAlistados,  Queue<Pedido *> _colaA,  Queue<Pedido *> _colaB,  Queue<Pedido *> _colaC,  Queue<Pedido *> _colaComodin)
+MainWindow::MainWindow(PriorityQueue* _colaPedidos,Queue<Pedido *> & _colaAlisto, Queue<Pedido *> &_colaAlistados,  Queue<Pedido *> &_colaA,  Queue<Pedido *> &_colaB,  Queue<Pedido *> &_colaC,  Queue<Pedido *>& _colaComodin)
     : QMainWindow(),
     colaPedidos(_colaPedidos),
     colaAlisto(_colaAlisto),
@@ -43,6 +43,7 @@ void MainWindow::on_btnColaPedidos_clicked() {
 
 void MainWindow::on_btnColaFabricaciones1_clicked()
 {
+    qDebug()<<colaA._toString()+" A";
     vColaPedidos* vColaPedidosDialog = new vColaPedidos(colaA); // Crear instancia de vColaPedidos
 
     vColaPedidosDialog->setQueueContent(); // Establecer el contenido de la cola en el QTextEdit
@@ -53,6 +54,7 @@ void MainWindow::on_btnColaFabricaciones1_clicked()
 
 void MainWindow::on_btnColaFabricaciones2_clicked()
 {
+    qDebug()<<colaB._toString()+" B";
     vColaPedidos* vColaPedidosDialog = new vColaPedidos(colaB); // Crear instancia de vColaPedidos
 
     vColaPedidosDialog->setQueueContent(); // Establecer el contenido de la cola en el QTextEdit
@@ -63,6 +65,7 @@ void MainWindow::on_btnColaFabricaciones2_clicked()
 
 void MainWindow::on_btnColaFabricaciones3_clicked()
 {
+    qDebug()<<colaC._toString()+" C";
     vColaPedidos* vColaPedidosDialog = new vColaPedidos(colaC); // Crear instancia de vColaPedidos
 
     vColaPedidosDialog->setQueueContent(); // Establecer el contenido de la cola en el QTextEdit
@@ -73,6 +76,7 @@ void MainWindow::on_btnColaFabricaciones3_clicked()
 
 void MainWindow::on_btnColaFabricaciones4Com_clicked()
 {
+    qDebug()<<colaComodin._toString()+" D";
     vColaPedidos* vColaPedidosDialog = new vColaPedidos(colaComodin); // Crear instancia de vColaPedidos
 
     vColaPedidosDialog->setQueueContent(); // Establecer el contenido de la cola en el QTextEdit

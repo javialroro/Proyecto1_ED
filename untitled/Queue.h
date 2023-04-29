@@ -18,8 +18,10 @@ public:
     // Metodo que remueve el primer elemento de la cola, y lo retorna
     T deQueue() {
         Q_ASSERT(!m_items.isEmpty()); // Expresión de aserción que valida que la cola no esté vacía, este genera un error especial en caso de que dé false
-        return m_items.takeFirst();
         countDeQueue++;
+        return m_items.takeFirst();
+
+        qDebug()<<"hizo dequeue"+ countDeQueue;
     }
 
     // Metodo que valida si la cola está vacía

@@ -326,9 +326,9 @@ Pedidos</string>
    <widget class="QPushButton" name="btnColaFabricaciones2">
     <property name="geometry">
      <rect>
-      <x>440</x>
+      <x>430</x>
       <y>50</y>
-      <width>91</width>
+      <width>111</width>
       <height>41</height>
      </rect>
     </property>
@@ -357,15 +357,15 @@ color: white</string>
     </property>
     <property name="text">
      <string>Cola de 
-Fabricaciones</string>
+Fabricaciones B</string>
     </property>
    </widget>
    <widget class="QPushButton" name="btnColaFabricaciones1">
     <property name="geometry">
      <rect>
-      <x>440</x>
+      <x>430</x>
       <y>130</y>
-      <width>91</width>
+      <width>111</width>
       <height>41</height>
      </rect>
     </property>
@@ -394,7 +394,7 @@ color: white</string>
     </property>
     <property name="text">
      <string>Cola de 
-Fabricaciones</string>
+Fabricaciones A</string>
     </property>
    </widget>
    <widget class="QPushButton" name="btnColaFabricaciones3">
@@ -402,7 +402,7 @@ Fabricaciones</string>
      <rect>
       <x>290</x>
       <y>130</y>
-      <width>91</width>
+      <width>111</width>
       <height>41</height>
      </rect>
     </property>
@@ -431,7 +431,7 @@ color: white</string>
     </property>
     <property name="text">
      <string>Cola de 
-Fabricaciones</string>
+Fabricaciones C </string>
     </property>
    </widget>
    <widget class="QLabel" name="lblFabrica3">
@@ -458,7 +458,7 @@ Fabricaciones</string>
      <rect>
       <x>290</x>
       <y>50</y>
-      <width>91</width>
+      <width>111</width>
       <height>41</height>
      </rect>
     </property>
@@ -487,7 +487,7 @@ color: white</string>
     </property>
     <property name="text">
      <string>Cola de 
-Fabricaciones</string>
+Fabricaciones *</string>
     </property>
    </widget>
    <widget class="QLabel" name="lblcliente2">
@@ -2392,9 +2392,9 @@ color: white;</string>
    <widget class="QLabel" name="lblMostrarFabricando">
     <property name="geometry">
      <rect>
-      <x>240</x>
+      <x>190</x>
       <y>190</y>
-      <width>131</width>
+      <width>191</width>
       <height>20</height>
      </rect>
     </property>
@@ -2418,7 +2418,6 @@ color: white;</string>
    <zorder>lineH10</zorder>
    <zorder>lineH11</zorder>
    <zorder>btnColaPedidos</zorder>
-   <zorder>btnColaFabricaciones2</zorder>
    <zorder>btnColaFabricaciones1</zorder>
    <zorder>btnColaFabricaciones3</zorder>
    <zorder>lblFabrica3</zorder>
@@ -2491,6 +2490,7 @@ color: white;</string>
    <zorder>btnVerAlist5</zorder>
    <zorder>btnVerAlist4</zorder>
    <zorder>lblMostrarFabricando</zorder>
+   <zorder>btnColaFabricaciones2</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>

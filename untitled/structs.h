@@ -265,7 +265,7 @@ struct ArticuloPedido{
     QString toString(){
         QString text = "";
         text.append("Cod: ");
-        text.append(codProd);
+        text.append(QString::fromStdString(codProd));
         text.append("\n");
         text.append(QString::number(cantidad));
         return text;
