@@ -213,9 +213,9 @@
    <widget class="Line" name="lineH07">
     <property name="geometry">
      <rect>
-      <x>630</x>
+      <x>640</x>
       <y>50</y>
-      <width>41</width>
+      <width>31</width>
       <height>21</height>
      </rect>
     </property>
@@ -550,7 +550,7 @@ Fabricaciones *</string>
    <widget class="QLabel" name="lblFabrica1">
     <property name="geometry">
      <rect>
-      <x>540</x>
+      <x>550</x>
       <y>50</y>
       <width>51</width>
       <height>41</height>
@@ -569,7 +569,7 @@ Fabricaciones *</string>
    <widget class="QLabel" name="lblFabrica2">
     <property name="geometry">
      <rect>
-      <x>540</x>
+      <x>550</x>
       <y>130</y>
       <width>51</width>
       <height>41</height>
@@ -607,9 +607,9 @@ Fabricaciones *</string>
    <widget class="Line" name="lineH12">
     <property name="geometry">
      <rect>
-      <x>630</x>
+      <x>640</x>
       <y>150</y>
-      <width>41</width>
+      <width>31</width>
       <height>21</height>
      </rect>
     </property>
@@ -683,7 +683,7 @@ Fabricaciones *</string>
    <widget class="QPushButton" name="btnDetenerFab01">
     <property name="geometry">
      <rect>
-      <x>600</x>
+      <x>610</x>
       <y>50</y>
       <width>31</width>
       <height>21</height>
@@ -717,7 +717,7 @@ color: white;</string>
    <widget class="QPushButton" name="btnVerFab01">
     <property name="geometry">
      <rect>
-      <x>600</x>
+      <x>610</x>
       <y>70</y>
       <width>31</width>
       <height>21</height>
@@ -751,7 +751,7 @@ color: white;</string>
    <widget class="QPushButton" name="btnVerFab02">
     <property name="geometry">
      <rect>
-      <x>600</x>
+      <x>610</x>
       <y>150</y>
       <width>31</width>
       <height>21</height>
@@ -785,7 +785,7 @@ color: white;</string>
    <widget class="QPushButton" name="btnDetenerFab02">
     <property name="geometry">
      <rect>
-      <x>600</x>
+      <x>610</x>
       <y>130</y>
       <width>31</width>
       <height>21</height>

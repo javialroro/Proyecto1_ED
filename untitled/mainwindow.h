@@ -110,6 +110,7 @@ class Alistador : public QThread{
 
     public slots:
         void procesarArticuloAlist(Queue<Alistador*> _colaAlistadores, const QString& _ubicacion, ArticuloPedido* _articulo);
+        void alistadorLiberado(Alistador* alistador);
 
     signals:
         void finalizado(Alistador* alistador);
@@ -138,7 +139,7 @@ class Bodega : public QThread
         void actualizarInterfaz();
 
     signals:
-        void procesarArticuloBodega(Queue<Alistador*> colaAlistadores, Alistador* alistDisp, const QString& ubicacion, ArticuloPedido* articulo);
+        void procesarArticuloBodega(Queue<Alistador*> colaAlistadores, const QString& ubicacion, ArticuloPedido* articulo);
 
     public slots:
         void alistadorLiberado(Alistador* alistador);

@@ -195,7 +195,7 @@ public:
         lineV02->setFrameShadow(QFrame::Sunken);
         lineH07 = new QFrame(centralwidget);
         lineH07->setObjectName("lineH07");
-        lineH07->setGeometry(QRect(630, 50, 41, 21));
+        lineH07->setGeometry(QRect(640, 50, 31, 21));
         lineH07->setLineWidth(2);
         lineH07->setMidLineWidth(1);
         lineH07->setFrameShape(QFrame::HLine);
@@ -289,12 +289,12 @@ public:
         lblcliente4->setScaledContents(true);
         lblFabrica1 = new QLabel(centralwidget);
         lblFabrica1->setObjectName("lblFabrica1");
-        lblFabrica1->setGeometry(QRect(540, 50, 51, 41));
+        lblFabrica1->setGeometry(QRect(550, 50, 51, 41));
         lblFabrica1->setPixmap(QPixmap(QString::fromUtf8("../Imagenes/industria.png")));
         lblFabrica1->setScaledContents(true);
         lblFabrica2 = new QLabel(centralwidget);
         lblFabrica2->setObjectName("lblFabrica2");
-        lblFabrica2->setGeometry(QRect(540, 130, 51, 41));
+        lblFabrica2->setGeometry(QRect(550, 130, 51, 41));
         lblFabrica2->setPixmap(QPixmap(QString::fromUtf8("../Imagenes/industria.png")));
         lblFabrica2->setScaledContents(true);
         lblFabrica4Com = new QLabel(centralwidget);
@@ -304,7 +304,7 @@ public:
         lblFabrica4Com->setScaledContents(true);
         lineH12 = new QFrame(centralwidget);
         lineH12->setObjectName("lineH12");
-        lineH12->setGeometry(QRect(630, 150, 41, 21));
+        lineH12->setGeometry(QRect(640, 150, 31, 21));
         lineH12->setLineWidth(2);
         lineH12->setMidLineWidth(1);
         lineH12->setFrameShape(QFrame::HLine);
@@ -330,7 +330,7 @@ public:
         lblImgListos->setScaledContents(true);
         btnDetenerFab01 = new QPushButton(centralwidget);
         btnDetenerFab01->setObjectName("btnDetenerFab01");
-        btnDetenerFab01->setGeometry(QRect(600, 50, 31, 21));
+        btnDetenerFab01->setGeometry(QRect(610, 50, 31, 21));
         btnDetenerFab01->setCursor(QCursor(Qt::PointingHandCursor));
         btnDetenerFab01->setStyleSheet(QString::fromUtf8("background-color: white;\n"
 "font: 700 9pt \"Segoe UI\";\n"
@@ -342,7 +342,7 @@ public:
         btnDetenerFab01->setFlat(true);
         btnVerFab01 = new QPushButton(centralwidget);
         btnVerFab01->setObjectName("btnVerFab01");
-        btnVerFab01->setGeometry(QRect(600, 70, 31, 21));
+        btnVerFab01->setGeometry(QRect(610, 70, 31, 21));
         btnVerFab01->setCursor(QCursor(Qt::PointingHandCursor));
         btnVerFab01->setStyleSheet(QString::fromUtf8("background-color: white;\n"
 "font: 700 9pt \"Segoe UI\";\n"
@@ -354,7 +354,7 @@ public:
         btnVerFab01->setFlat(true);
         btnVerFab02 = new QPushButton(centralwidget);
         btnVerFab02->setObjectName("btnVerFab02");
-        btnVerFab02->setGeometry(QRect(600, 150, 31, 21));
+        btnVerFab02->setGeometry(QRect(610, 150, 31, 21));
         btnVerFab02->setCursor(QCursor(Qt::PointingHandCursor));
         btnVerFab02->setStyleSheet(QString::fromUtf8("background-color: white;\n"
 "font: 700 9pt \"Segoe UI\";\n"
@@ -364,7 +364,7 @@ public:
         btnVerFab02->setFlat(true);
         btnDetenerFab02 = new QPushButton(centralwidget);
         btnDetenerFab02->setObjectName("btnDetenerFab02");
-        btnDetenerFab02->setGeometry(QRect(600, 130, 31, 21));
+        btnDetenerFab02->setGeometry(QRect(610, 130, 31, 21));
         btnDetenerFab02->setCursor(QCursor(Qt::PointingHandCursor));
         btnDetenerFab02->setStyleSheet(QString::fromUtf8("background-color: white;\n"
 "font: 700 9pt \"Segoe UI\";\n"

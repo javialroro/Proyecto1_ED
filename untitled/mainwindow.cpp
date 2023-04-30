@@ -39,8 +39,8 @@ RevisorArchivos::RevisorArchivos(struct listaArticulos  * la, struct listaClient
     void RevisorArchivos::run() {
         while (true) {
 
-            QString path = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Pedidos";
-            //QString path = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Pedidos";
+            //QString path = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Pedidos";
+            QString path = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Pedidos";
             QDir directorio(path);
             QStringList archivos = directorio.entryList(QStringList() << "*.txt", QDir::Files);
             if (archivos.size() > 0) {
@@ -51,8 +51,8 @@ RevisorArchivos::RevisorArchivos(struct listaArticulos  * la, struct listaClient
                     string cPath= path.toStdString()+"\\";
                     string cArchivo = archivo.toStdString();
                     string todo= cPath+cArchivo;
-                    string errores = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Errores\\"+cArchivo;
-                    //string errores = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Errores\\"+cArchivo;
+                    //string errores = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Errores\\"+cArchivo;
+                    string errores = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Errores\\"+cArchivo;
 
                     fstream arch(todo, std::ios::in | std::ios::app);
                     Archivo *a =  new Archivo(arch,todo,errores);
@@ -60,8 +60,8 @@ RevisorArchivos::RevisorArchivos(struct listaArticulos  * la, struct listaClient
                     cargarPedido(a, colaPedidos, listaClientes, listaArticulos);
 
                     string ruta_archivo = todo;
-                    string ruta_pedidosP = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\PedidosProcesados\\"+cArchivo;
-                    //string ruta_pedidosP = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\PedidosProcesados\\"+cArchivo;
+                    //string ruta_pedidosP = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\PedidosProcesados\\"+cArchivo;
+                    string ruta_pedidosP = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\PedidosProcesados\\"+cArchivo;
 
                     rename(ruta_archivo.c_str(),ruta_pedidosP.c_str());
                 }
@@ -346,9 +346,7 @@ Alistador::Alistador(QTableWidget* _tableWidget, QObject* parent)
         articulo = _articulo;
     }
 
-
-    void Alistador::finalizado(Alistador* alistador)
-    {
+    void Alistador::alistadorLiberado(Alistador* alistador) {
         mutex.lock();
         colaAlistadores.enQueue(alistador);
         mutex.unlock();
@@ -413,7 +411,7 @@ Alistador::Alistador(QTableWidget* _tableWidget, QObject* parent)
 
         //-------------------------------------------------------------------------
 
-Bodega::Bodega(QTableWidget* _tableWidget, Queue<Pedido*>& _colaAlisto, Queue<Pedido*>& _colaAlistados, QObject* parent)
+    Bodega::Bodega(QTableWidget* _tableWidget, Queue<Pedido*>& _colaAlisto, Queue<Pedido*>& _colaAlistados, QObject* parent)
         : tableWidget(_tableWidget), colaAlisto(_colaAlisto), colaAlistados(_colaAlistados), QThread(parent)
     {
         // Crear los 6 alistadores y agregarlos a la cola
@@ -422,11 +420,12 @@ Bodega::Bodega(QTableWidget* _tableWidget, Queue<Pedido*>& _colaAlisto, Queue<Pe
             colaAlistadores.enQueue(alistador);
 
             // Conectar la señal procesarArticuloBodega de Bodega a la ranura procesarArticuloAlist de Alistador
-            connect(this, SIGNAL(procesarArticuloBodega(Alistador*, const QString&, ArticuloPedido*)),
-                    alistador, SLOT(procesarArticuloAlist(const QString&, ArticuloPedido*)));
+            connect(this, SIGNAL(procesarArticuloBodega(Queue<Alistador*>, const QString&, ArticuloPedido*)),
+                    alistador, SLOT(procesarArticuloAlist(Queue<Alistador*>, const QString&, ArticuloPedido*)));
 
             alistador->start();
         }
+        qDebug() << "pasa constructo bodega";
     }
 
 
@@ -458,15 +457,18 @@ Bodega::Bodega(QTableWidget* _tableWidget, Queue<Pedido*>& _colaAlisto, Queue<Pe
 
     void Bodega::run()
     {
+        //qDebug() << "inicia run bodega";
         while (true) {
             // Esperar a que haya un pedido alistado en la bodega
             Pedido* pedido = obtenerPedidoAlistado();
+            //qDebug() << "test 1";
 
             // Procesar el pedido alistado
-            procesarPedido(pedido);
+            if (pedido!=nullptr)
+                procesarPedido(pedido);
+           // qDebug() << "test 2";
 
-            // Liberar la memoria del pedido
-            delete pedido;
+
         }
     }
 
@@ -495,14 +497,6 @@ Bodega::Bodega(QTableWidget* _tableWidget, Queue<Pedido*>& _colaAlisto, Queue<Pe
     }
 
 
-    void Bodega::procesarArticuloBodega(Queue<Alistador*> _colaAlistadores, Alistador* alistDisp, const QString& ubicacion, ArticuloPedido* articulo)
-    {
-        mutex.lock();
-        alistDisp->procesarArticuloAlist(_colaAlistadores, ubicacion, articulo);
-        mutex.unlock();
-    }
-
-
     void Bodega::alistadorLiberado(Alistador* alistador)
     {
         liberarAlistador(alistador);
@@ -511,28 +505,33 @@ Bodega::Bodega(QTableWidget* _tableWidget, Queue<Pedido*>& _colaAlisto, Queue<Pe
 
     void Bodega::procesarPedido(Pedido* pedido)
     {
+        //qDebug() << "Entra procesarPedido";
         ListaArticulosP* listaArticulos = pedido->listaPedido;
         NodoArticuloP* temp = listaArticulos->pn;
-
+        //qDebug() << "Pasa inicializaciones";
         while (temp != nullptr) {
             QString ubicacion = QString::fromStdString(temp->articulo->codProd);
+            //qDebug() << "while test 1";
             ArticuloPedido* articulo = temp->articulo;
-
-            Alistador* alistDisp = colaAlistadores.deQueue();
+            //qDebug() << "while test 2";
 
             // Emitir la señal para procesar el artículo en un alistador
-            emit procesarArticuloBodega(colaAlistadores, alistDisp, ubicacion, articulo);
+            emit procesarArticuloBodega(colaAlistadores, ubicacion, articulo);
+            //qDebug() << "while test 3";
 
             temp = temp->siguiente;
+            //qDebug() << "while test 1";
         }
 
         // Esperar a que todos los alistadores finalicen
         while (!colaAlistadores.isEmpty()) {
             QThread::msleep(500);
+            //qDebug() << "whileCola test 1";
         }
 
         // Enviar el pedido a la cola de alistados
         agregarPedidoAlistado(pedido);
+        //qDebug() << "Entra agregarPedidoAlistado";
     }
 
 
@@ -767,6 +766,7 @@ void MainWindow::on_btnDetenerBalanceador_clicked()
     else{
             balanceador->setPaused(false);
     }
+    //balanceador->setPaused(!balanceador->getPaused());
 }
 
 
@@ -814,4 +814,6 @@ void MainWindow::on_btnDetenerFab01_clicked()
             B->setPaused(false);
     }
 }
+
+
 
