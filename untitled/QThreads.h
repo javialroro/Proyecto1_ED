@@ -106,67 +106,69 @@ public:
 
     
     void run() override {
-        while (true) {
-            if (!paused){
-                while(!p_queue->isEmptyPriority()){
-                    sleep(3);
+        if(!paused){
+            while (true) {
+                if (!paused){
+                    while(!p_queue->isEmptyPriority()){
+                        sleep(3);
 
 
-                    Pedido * pedido = p_queue->deQueuePriority();
-                    pedido->factura->insertarAlFinal("Balanceador: "+retornarHora()+"\n");
-
-
-
-                    NodoArticuloP *tmp = pedido->listaPedido->pn;
-
-                    bool flag= true;
-
-                    while (tmp != NULL){
-
-                        bool verif =tmp->haySuficiente(lista);
-
-                        if (!verif){
-                            cout<<"---------A COLA DE FABRICACION---------"<<endl;
-                            tmp->articulo->imprimir();
-                            cout<<"---------------------------------------"<<endl;
-                            tmp->articulo->aFabrica=true;
-                            NodoArticulo *cat= lista->buscar(tmp->articulo->codProd);
-                            string categoria =cat->articulo->categoria;
+                        Pedido * pedido = p_queue->deQueuePriority();
+                        pedido->factura->insertarAlFinal("Balanceador: "+retornarHora()+"\n");
 
 
 
-                            if (categoria == "A") {
-                                //cout<<"A"<<endl;
-                                encolarMenor(f1,f4,pedido);
-                                sleep(1);
+                        NodoArticuloP *tmp = pedido->listaPedido->pn;
 
-                                flag= false;
+                        bool flag= true;
 
-                            } else if (categoria == "B") {
-                                encolarMenor(f2,f4,pedido);
-                                sleep(1);
-                                flag= false;
+                        while (tmp != NULL){
 
-                            } else if (categoria == "C") {
+                            bool verif =tmp->haySuficiente(lista);
 
-                                f3.enQueue(pedido);
-                                sleep(1);
-                                flag= false;
+                            if (!verif){
+                                cout<<"---------A COLA DE FABRICACION---------"<<endl;
+                                tmp->articulo->imprimir();
+                                cout<<"---------------------------------------"<<endl;
+                                tmp->articulo->aFabrica=true;
+                                NodoArticulo *cat= lista->buscar(tmp->articulo->codProd);
+                                string categoria =cat->articulo->categoria;
 
+
+
+                                if (categoria == "A") {
+                                    //cout<<"A"<<endl;
+                                    encolarMenor(f1,f4,pedido);
+                                    sleep(1);
+
+                                    flag= false;
+
+                                } else if (categoria == "B") {
+                                    encolarMenor(f2,f4,pedido);
+                                    sleep(1);
+                                    flag= false;
+
+                                } else if (categoria == "C") {
+
+                                    f3.enQueue(pedido);
+                                    sleep(1);
+                                    flag= false;
+
+                                }
                             }
+
+                            tmp = tmp->siguiente;
+
                         }
-
-                        tmp = tmp->siguiente;
-
-                    }
-                    if (flag){
-                        pedido->factura->insertarAlFinal("Este articulo no necesito ir a fabrica\n");
-                        a_queue.enQueue(pedido);
+                        if (flag){
+                            pedido->factura->insertarAlFinal("Este articulo no necesito ir a fabrica\n");
+                            a_queue.enQueue(pedido);
+                        }
                     }
                 }
+                // Esperar un tiempo antes de continuar
+                sleep(1);
             }
-            // Esperar un tiempo antes de continuar
-            sleep(1);
         }
     }
 
@@ -211,75 +213,83 @@ public:
 
     void run() override {
 
+        if(!paused){
+            while (true) {
 
-        while (true) {
-
-            semaphore.acquire();
-
-
-            while(!cola.isEmpty()){
-                sleep(4);
-                cout<<name<<endl;
-
-                Pedido * pedido = cola.deQueue();
-                cout<<"hice dequeue"<<endl;
-
-                NodoArticuloP *tmp = pedido->listaPedido->pn;
+                semaphore.acquire();
 
 
+                while(!cola.isEmpty()){
+                    sleep(4);
+                    cout<<name<<endl;
 
-                bool flag= true;
+                    Pedido * pedido = cola.deQueue();
+                    cout<<"hice dequeue"<<endl;
 
-                while (tmp != NULL){
-                    NodoArticulo * n =lista->buscar(tmp->articulo->codProd);
-                    string categoria =n->articulo->categoria;
-
-                    if (categoria  ==_categoria || categoria  ==_categoria2){
-                        cout<<"entre"<<endl;
-                        if (tmp->articulo->aFabrica && !tmp->articulo->fabricado){
-                            cout<<tmp->articulo->cantidad<<endl;
-                            int falta= tmp->articulo->cantidad - n->articulo->cantidadAlmacen;
-
-                            pedido->factura->insertarAlFinal("A fabrica: "+retornarHora()+" Faltaba "+to_string(falta)+" de"+tmp->articulo->codProd+"\n");
-
-                            int cantidadN= n->articulo->cantidadAlmacen+=(tmp->articulo->cantidad);
-
-                            pedido->factura->insertarAlFinal("ARTICULO "+tmp->articulo->codProd+" Fabrica: "+name+"\n"+to_string(falta)+" unidades\n");
-                            pedido->factura->insertarAlFinal("inicio: "+retornarHora());
-
-                            n->articulo->cantidadAlmacen= cantidadN;
-                            tmp->articulo->fabricado=true;
-
-                            QString s = QString::fromStdString(name+" ARTICULO: "+tmp->articulo->codProd);
-
-                            label->setText(s);
-                            sleep(n->articulo->segundosF);
-                            cambiar(n->articulo->codigo,1,cantidadN);
-                            label->setText("Fabricacion");
-                            pedido->factura->insertarAlFinal("final: "+retornarHora());
-
-                            a_queue.enQueue(pedido);
-                            pedido->factura->insertarAlFinal("A alisto: "+retornarHora());
-                            cout<<"Encolado en queue de alisto"<<endl;
+                    NodoArticuloP *tmp = pedido->listaPedido->pn;
 
 
 
+                    bool flag= true;
 
+                    while (tmp != NULL){
+                        NodoArticulo * n =lista->buscar(tmp->articulo->codProd);
+                        string categoria =n->articulo->categoria;
+
+                        if (categoria  ==_categoria || categoria  ==_categoria2){
+                            cout<<"entre"<<endl;
+                            if (tmp->articulo->aFabrica && !tmp->articulo->fabricado){
+                                cout<<tmp->articulo->cantidad<<endl;
+                                int falta= tmp->articulo->cantidad - n->articulo->cantidadAlmacen;
+
+                                pedido->factura->insertarAlFinal("A fabrica: "+retornarHora()+" Faltaba "+to_string(falta)+" de"+tmp->articulo->codProd+"\n");
+
+                                int cantidadN= n->articulo->cantidadAlmacen+=(tmp->articulo->cantidad);
+
+                                pedido->factura->insertarAlFinal("ARTICULO "+tmp->articulo->codProd+" Fabrica: "+name+"\n"+to_string(falta)+" unidades\n");
+                                pedido->factura->insertarAlFinal("inicio: "+retornarHora());
+
+                                n->articulo->cantidadAlmacen= cantidadN;
+                                tmp->articulo->fabricado=true;
+
+                                QString s = QString::fromStdString(name+" ARTICULO: "+tmp->articulo->codProd);
+
+                                label->setText(s);
+                                sleep(n->articulo->segundosF);
+                                cambiar(n->articulo->codigo,1,cantidadN);
+                                label->setText("Fabricacion");
+                                pedido->factura->insertarAlFinal("final: "+retornarHora());
+
+                                a_queue.enQueue(pedido);
+                                pedido->factura->insertarAlFinal("A alisto: "+retornarHora());
+                                cout<<"Encolado en queue de alisto"<<endl;
+
+
+
+
+                            }
                         }
+                        tmp = tmp->siguiente;
+
                     }
-                    tmp = tmp->siguiente;
+
 
                 }
+                //sleep(3);
 
+                semaphore.release();
+
+                // Esperar un tiempo antes de continuar
 
             }
-            //sleep(3);
-
-            semaphore.release();
-
-            // Esperar un tiempo antes de continuar
-
         }
+    }
+    bool getPaused (){
+        return paused;
+    }
+
+    void setPaused (bool _paused){
+        paused = _paused;
     }
 
 private:
@@ -292,6 +302,7 @@ private:
     QSemaphore& semaphore;
     QLabel * label;
     Queue<Pedido *> & cola;
+    bool paused = false;
 
 
 };
@@ -311,36 +322,46 @@ public:
 
     void run() override {
 
+        if(!paused){
+            while (true) {
 
-        while (true) {
+
+                while(!cola.isEmpty()){
+
+                    Pedido * pedido = cola.deQueue();
+                    string name= to_string(pedido->numPedido)+"_"+pedido->codCliente+"_"+retornarHora()+".txt";
+                    pedido->factura->insertarAlFinal("Finalizado: "+retornarHora());
+
+                    fstream factura("C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Facturas\\"+name);
+                    //fstream factura("C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Facturas\\"+name);
+
+                    factura<<"Pedido: "+to_string(pedido->numPedido)+"\n"+"Cliente: "+pedido->codCliente+"\n";
+
+                    NodoFactura *tmp = pedido->factura->pn;
+
+                    while(tmp!=NULL){
+                        factura<<tmp->txt;
+                        tmp=tmp->siguiente;
+                    }
 
 
-            while(!cola.isEmpty()){
-
-                Pedido * pedido = cola.deQueue();
-                string name= to_string(pedido->numPedido)+"_"+pedido->codCliente+"_"+retornarHora()+".txt";
-                pedido->factura->insertarAlFinal("Finalizado: "+retornarHora());
-
-                fstream factura("C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Facturas\\"+name);
-                //fstream factura("C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Facturas\\"+name);
-
-                factura<<"Pedido: "+to_string(pedido->numPedido)+"\n"+"Cliente: "+pedido->codCliente+"\n";
-
-                NodoFactura *tmp = pedido->factura->pn;
-
-                while(tmp!=NULL){
-                    factura<<tmp->txt;
-                    tmp=tmp->siguiente;
                 }
-
-
+                 sleep(5000);
             }
-             sleep(5000);
         }
 
 
 
     }
+    bool getPaused (){
+        return paused;
+    }
+
+    void setPaused (bool _paused){
+        paused = _paused;
+    }
+private:
+    bool paused = false;
 };
 
 
@@ -355,6 +376,7 @@ public:
     void run() override
     {
         QString ubicacionInicial = "A01";
+
 
         while (true) {
              if (!colaAlisto.isEmpty()) {
@@ -484,7 +506,74 @@ private:
 
         return espaciosDiferencia;
     }
+
+
 };
+
+class Alistados : public QThread {
+
+public:
+    Alistados(Queue<Pedido *>& colaFacturacion,Queue<Pedido *> & A, string _name,QObject* parent = nullptr)
+        : QThread(parent), f_queue(colaFacturacion), cola(A), name(_name)
+
+    {
+    }
+
+    //string ruta_archivo = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Articulos\\articulos.txt";
+
+
+    void run() override {
+
+
+        while (true) {
+
+
+             while(!cola.isEmpty()){
+                cout<<name<<endl;
+
+                Pedido * pedido = cola.deQueue();
+
+                NodoArticuloP *tmp = pedido->listaPedido->pn;
+
+
+
+
+                while (tmp != NULL){
+                    sleep(1);
+                    tmp = tmp->siguiente;
+
+                }
+
+                f_queue.enQueue(pedido);
+
+
+             }
+
+
+        }
+    }
+
+    bool getPaused (){
+        return paused;
+    }
+
+    void setPaused (bool _paused){
+        paused = _paused;
+    }
+private:
+    bool paused = false;
+    Queue<Pedido *>& f_queue;
+    string name;
+    Queue<Pedido *> & cola;
+
+
+};
+
+void detenerThreads(Balanceador * balanceador) {
+    balanceador->quit();
+    balanceador->wait();
+
+}
 
 #endif // THREADS_H
 
