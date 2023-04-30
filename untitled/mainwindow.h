@@ -213,6 +213,14 @@ private slots:
 
     //Balanceador * getBalanceador();
 
+    void on_btnDetenerFab04Com_clicked();
+
+    void on_btnDetenerFab03_clicked();
+
+    void on_btnDetenerFab02_clicked();
+
+    void on_btnDetenerFab01_clicked();
+
 private:
     Ui::MainWindow *ui;
 

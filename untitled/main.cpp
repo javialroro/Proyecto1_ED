@@ -30,6 +30,7 @@ int main(int argc, char *argv[]){
 
     //qDebug() << "pasa lbl";
     QLabel * lbl= new QLabel();
+    lbl->setText("Fabricacion");
 
     Fabrica *A = new Fabrica(listaArt, colaAlisto, colaA,"A",s,"Fabrica A",lbl);
     Fabrica *B= new Fabrica(listaArt, colaAlisto, colaB,"B",s,"Fabrica B",lbl);
