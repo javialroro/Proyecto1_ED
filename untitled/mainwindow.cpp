@@ -38,7 +38,7 @@ RevisorArchivos::RevisorArchivos(struct listaArticulos  * la, struct listaClient
 }
     void RevisorArchivos::run() {
         while (true) {
-        qDebug()<<"a";
+
             QString path = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Pedidos";
             //QString path = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Pedidos";
             QDir directorio(path);
@@ -367,7 +367,7 @@ MainWindow::MainWindow(PriorityQueue* _colaPedidos,Queue<Pedido *> & _colaAlisto
 {
     ui->setupUi(this);
 
-    //setLabelFabricacion(labelF);
+    setLabelFabricacion(labelF);
     CargarArticulos(listaArt);
     cargarClientes(lista);
 
@@ -377,6 +377,13 @@ MainWindow::MainWindow(PriorityQueue* _colaPedidos,Queue<Pedido *> & _colaAlisto
 
 
     revisor->start();
+    balanceador->start();
+
+    A->start();
+    B->start();
+    C->start();
+    Comodin->start();
+
     qDebug()<<"Hola";
 
 
@@ -522,7 +529,58 @@ void MainWindow::on_btnColaPorFacturar_clicked()
 
 void MainWindow::on_btnDetenerBalanceador_clicked()
 {
-
+    if (!balanceador->getPaused()){
+            balanceador->setPaused(true);
+            qDebug()<<"Balanceador detenido";
+    }
+    else{
+            balanceador->setPaused(false);
+    }
 }
 
+
+
+void MainWindow::on_btnDetenerFab04Com_clicked()
+{
+    if (!Comodin->getPaused()){
+            Comodin->setPaused(true);
+        }
+    else{
+            Comodin->setPaused(false);
+    }
+}
+
+
+void MainWindow::on_btnDetenerFab03_clicked()
+{
+    if (!C->getPaused()){
+            C->setPaused(true);
+    }
+    else{
+            C->setPaused(false);
+    }
+}
+
+
+void MainWindow::on_btnDetenerFab02_clicked()
+{
+    if (!A->getPaused()){
+            A->setPaused(true);
+
+    }
+    else{
+            A->setPaused(false);
+    }
+}
+
+
+void MainWindow::on_btnDetenerFab01_clicked()
+{
+    if (!B->getPaused()){
+            B->setPaused(true);
+    }
+    else{
+            B->setPaused(false);
+    }
+}
 
