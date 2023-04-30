@@ -1,72 +1,406 @@
 
-#include "QThreads.h"
+//#include "QThreads.h"
 #include "mainwindow.h"
+#include "procedimientos.h"
 #include "./ui_mainwindow.h"
 #include "vcolapedidos.h"
 #include <QApplication>
+bool verficarCantidad(ListaArticulosP * lista, listaArticulos * listaG){
+    NodoArticuloP *tmp = lista->pn;
 
-MainWindow::MainWindow(/*ThreadContainer* _contenedor,*/ PriorityQueue* _colaPedidos,Queue<Pedido *> & _colaAlisto, Queue<Pedido *> &_colaAlistados,  Queue<Pedido *> &_colaA,  Queue<Pedido *> &_colaB,  Queue<Pedido *> &_colaC,  Queue<Pedido *>& _colaComodin,
-                       listaArticulos * la, listaClientes * lc)
+    while (tmp != NULL){
+        bool verif =tmp->haySuficiente(listaG); // metodo de imprimir un cliente
+        if (!verif){
+            return false;
+        }
+        tmp = tmp->siguiente;
+    }
+    return true;
+}
+
+void encolarMenor(Queue<Pedido *>& q1, Queue<Pedido *>& q2, Pedido * pedido) {
+    if (q1.getCantidadEnCola() <= q2.getCantidadEnCola()) {
+        q1.enQueue(pedido);
+        cout<<q1.getCantidadEnCola()<<endl;cout<<q2.getCantidadEnCola()<<endl;
+        cout<<"Encolado en queue principal"<<endl;
+
+    }
+    else {
+        q2.enQueue(pedido);
+        cout<<q1.getCantidadEnCola()<<endl;cout<<q2.getCantidadEnCola()<<endl;
+        cout<<"Encolado en queue comodin"<<endl;
+
+    }
+}
+RevisorArchivos::RevisorArchivos(struct listaArticulos  * la, struct listaClientes *lc, PriorityQueue * pq, QObject* parent )
+    : QThread(parent), listaArticulos(la) , listaClientes(lc) , colaPedidos(pq)
+{
+}
+    void RevisorArchivos::run() {
+        while (true) {
+        qDebug()<<"a";
+            QString path = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Pedidos";
+            //QString path = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Pedidos";
+            QDir directorio(path);
+            QStringList archivos = directorio.entryList(QStringList() << "*.txt", QDir::Files);
+            if (archivos.size() > 0) {
+                qDebug() << "Archivos encontrados:";
+                for (const auto& archivo : archivos) {
+                    qDebug()<<archivo;
+
+                    string cPath= path.toStdString()+"\\";
+                    string cArchivo = archivo.toStdString();
+                    string todo= cPath+cArchivo;
+                    string errores = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Errores\\"+cArchivo;
+                    //string errores = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Errores\\"+cArchivo;
+
+                    fstream arch(todo, std::ios::in | std::ios::app);
+                    Archivo *a =  new Archivo(arch,todo,errores);
+
+                    cargarPedido(a, colaPedidos, listaClientes, listaArticulos);
+
+                    string ruta_archivo = todo;
+                    string ruta_pedidosP = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\PedidosProcesados\\"+cArchivo;
+                    //string ruta_pedidosP = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\PedidosProcesados\\"+cArchivo;
+
+                    rename(ruta_archivo.c_str(),ruta_pedidosP.c_str());
+                }
+            }
+
+            QThread::msleep(5000); // espera 1 segundo antes de revisar de nuevo
+        }
+    }
+
+    PriorityQueue* RevisorArchivos::getColaPedidos(){
+        return colaPedidos;
+    }
+
+Balanceador::Balanceador(listaArticulos  * l, PriorityQueue * colaPedidos, Queue<Pedido *>& colaAlistos,Queue<Pedido *> & A,
+                Queue<Pedido *> & B,Queue<Pedido *> & C, Queue<Pedido *> & D, QObject* parent)
+        : QThread(parent), p_queue(colaPedidos) , a_queue(colaAlistos), f1(A), f2(B),f3(C),f4(D),lista(l)
+    {
+    }
+
+
+    void Balanceador::run() {
+        if(!paused){
+            while (true) {
+                if (!paused){
+                    while(!p_queue->isEmptyPriority()){
+                        sleep(3);
+
+
+                        Pedido * pedido = p_queue->deQueuePriority();
+                        pedido->factura->insertarAlFinal("Balanceador: "+retornarHora()+"\n");
+
+
+
+                        NodoArticuloP *tmp = pedido->listaPedido->pn;
+
+                        bool flag= true;
+
+                        while (tmp != NULL){
+
+                            bool verif =tmp->haySuficiente(lista);
+
+                            if (!verif){
+                                cout<<"---------A COLA DE FABRICACION---------"<<endl;
+                                tmp->articulo->imprimir();
+                                cout<<"---------------------------------------"<<endl;
+                                tmp->articulo->aFabrica=true;
+                                NodoArticulo *cat= lista->buscar(tmp->articulo->codProd);
+                                string categoria =cat->articulo->categoria;
+
+
+
+                                if (categoria == "A") {
+                                    //cout<<"A"<<endl;
+                                    encolarMenor(f1,f4,pedido);
+                                    sleep(1);
+
+                                    flag= false;
+
+                                } else if (categoria == "B") {
+                                    encolarMenor(f2,f4,pedido);
+                                    sleep(1);
+                                    flag= false;
+
+                                } else if (categoria == "C") {
+
+                                    f3.enQueue(pedido);
+                                    sleep(1);
+                                    flag= false;
+
+                                }
+                            }
+
+                            tmp = tmp->siguiente;
+
+                        }
+                        if (flag){
+                            pedido->factura->insertarAlFinal("Este articulo no necesito ir a fabrica\n");
+                            a_queue.enQueue(pedido);
+                        }
+                    }
+                }
+                // Esperar un tiempo antes de continuar
+                sleep(1);
+            }
+        }
+    }
+
+    bool Balanceador::getPaused (){
+        return paused;
+    }
+
+    void Balanceador::setPaused (bool _paused){
+        paused = _paused;
+    }
+
+
+    Fabrica::Fabrica(listaArticulos  * l, Queue<Pedido *>& colaAlistos,Queue<Pedido *> & A, string cat,QSemaphore& sem, string _name, QLabel * lbl,QObject* parent )
+            : QThread(parent), a_queue(colaAlistos), cola(A), lista(l), _categoria(cat),semaphore(sem),name(_name),label(lbl)
+
+        {
+        }
+    Fabrica::Fabrica(listaArticulos  * l, Queue<Pedido *>& colaAlistos,Queue<Pedido *> & A, string cat, string cat2, QSemaphore& sem,
+            string _name,QLabel * lbl,QObject* parent)
+        : QThread(parent), a_queue(colaAlistos), cola(A), lista(l), _categoria(cat), _categoria2(cat2),semaphore(sem), name(_name),label(lbl)
+    {
+    }
+
+        //string ruta_archivo = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Articulos\\articulos.txt";
+
+
+    void Fabrica::run() {
+
+            if(!paused){
+                while (true) {
+
+                    semaphore.acquire();
+
+
+                    while(!cola.isEmpty()){
+                        sleep(4);
+                        cout<<name<<endl;
+
+                        Pedido * pedido = cola.deQueue();
+                        cout<<"hice dequeue"<<endl;
+
+                        NodoArticuloP *tmp = pedido->listaPedido->pn;
+
+
+
+                        bool flag= true;
+
+                        while (tmp != NULL){
+                            NodoArticulo * n =lista->buscar(tmp->articulo->codProd);
+                            string categoria =n->articulo->categoria;
+
+                            if (categoria  ==_categoria || categoria  ==_categoria2){
+                                cout<<"entre"<<endl;
+                                if (tmp->articulo->aFabrica && !tmp->articulo->fabricado){
+                                    cout<<tmp->articulo->cantidad<<endl;
+                                    int falta= tmp->articulo->cantidad - n->articulo->cantidadAlmacen;
+
+                                    pedido->factura->insertarAlFinal("A fabrica: "+retornarHora()+" Faltaba "+to_string(falta)+" de"+tmp->articulo->codProd+"\n");
+
+                                    int cantidadN= n->articulo->cantidadAlmacen+=(tmp->articulo->cantidad);
+
+                                    pedido->factura->insertarAlFinal("ARTICULO "+tmp->articulo->codProd+" Fabrica: "+name+"\n"+to_string(falta)+" unidades\n");
+                                    pedido->factura->insertarAlFinal("inicio: "+retornarHora());
+
+                                    n->articulo->cantidadAlmacen= cantidadN;
+                                    tmp->articulo->fabricado=true;
+
+                                    QString s = QString::fromStdString(name+" ARTICULO: "+tmp->articulo->codProd);
+
+
+
+                                    label->setText(s);
+                                    sleep(n->articulo->segundosF);
+                                    cambiar(n->articulo->codigo,1,cantidadN);
+                                    label->setText("Fabricacion");
+                                    pedido->factura->insertarAlFinal("final: "+retornarHora());
+
+                                    a_queue.enQueue(pedido);
+                                    pedido->factura->insertarAlFinal("A alisto: "+retornarHora());
+                                    cout<<"Encolado en queue de alisto"<<endl;
+
+
+
+
+                                }
+                            }
+                            tmp = tmp->siguiente;
+
+                        }
+
+
+                    }
+                    //sleep(3);
+
+                    semaphore.release();
+
+                    // Esperar un tiempo antes de continuar
+
+                }
+            }
+        }
+    bool Fabrica::getPaused (){
+            return paused;
+        }
+
+    void Fabrica::setPaused (bool _paused){
+        paused = _paused;
+    }
+
+
+    Facturadora::Facturadora(Queue<Pedido *> & A, QObject* parent)
+            : QThread(parent),  cola(A)
+
+        {
+        }
+
+        //string ruta_archivo = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Articulos\\articulos.txt";
+
+
+        void Facturadora::run(){
+
+                if(!paused){
+                    while (true) {
+
+
+                        while(!cola.isEmpty()){
+
+                            Pedido * pedido = cola.deQueue();
+                            string name= to_string(pedido->numPedido)+"_"+pedido->codCliente+"_"+retornarHora()+".txt";
+                            pedido->factura->insertarAlFinal("Finalizado: "+retornarHora());
+
+                            //fstream factura("C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Facturas\\"+name);
+                            fstream factura("C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Facturas\\"+name);
+
+                            factura<<"Pedido: "+to_string(pedido->numPedido)+"\n"+"Cliente: "+pedido->codCliente+"\n";
+
+                            NodoFactura *tmp = pedido->factura->pn;
+
+                            while(tmp!=NULL){
+                                factura<<tmp->txt;
+                                tmp=tmp->siguiente;
+                            }
+
+
+                        }
+                        sleep(5000);
+                    }
+                }
+
+
+
+        }
+        bool Facturadora::getPaused (){
+                return paused;
+        }
+
+        void Facturadora::setPaused (bool _paused){
+                paused = _paused;
+        }
+
+
+Alistados::Alistados(Queue<Pedido *>& colaFacturacion,Queue<Pedido *> & A, string _name,QObject* parent)
+    : QThread(parent), f_queue(colaFacturacion), cola(A), name(_name)
+{
+}
+
+    //string ruta_archivo = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Articulos\\articulos.txt";
+
+
+    void Alistados::run()  {
+
+
+        while (true) {
+
+
+            while(!cola.isEmpty()){
+                cout<<name<<endl;
+
+                Pedido * pedido = cola.deQueue();
+
+                NodoArticuloP *tmp = pedido->listaPedido->pn;
+
+
+
+
+                while (tmp != NULL){
+                    sleep(1);
+                    tmp = tmp->siguiente;
+
+                }
+
+                f_queue.enQueue(pedido);
+
+
+            }
+
+
+        }
+    }
+
+    bool Alistados::getPaused (){
+        return paused;
+    }
+
+    void Alistados::setPaused (bool _paused){
+        paused = _paused;
+    }
+
+
+MainWindow::MainWindow(PriorityQueue* _colaPedidos,Queue<Pedido *> & _colaAlisto, Queue<Pedido *> &_colaAlistados,  Queue<Pedido *> &_colaA,  Queue<Pedido *> &_colaB,  Queue<Pedido *> &_colaC,  Queue<Pedido *>& _colaComodin,
+                       listaArticulos * la, listaClientes * lc, Alistados * a, RevisorArchivos * &r, Balanceador * bl, Fabrica * f1,
+                           Fabrica * f2,Fabrica * f3,Fabrica * f4, Facturadora * fc, QLabel * lf)
     : QMainWindow(),
-    //contenedor(_contenedor),
-    colaPedidos(_colaPedidos),
-    colaAlisto(_colaAlisto),
-    colaAlistados(_colaAlistados),
-    colaA (_colaA),
-    colaB (_colaB),
-    colaC (_colaC),
-    colaComodin (_colaComodin),
-    listaArt(la),
-    lista(lc),
+    colaPedidos(_colaPedidos),colaAlisto(_colaAlisto),colaAlistados(_colaAlistados),colaA (_colaA),colaB (_colaB),colaC (_colaC),colaComodin (_colaComodin),
+        listaArt(la),lista(lc),alistad(a),revisor(r),balanceador(bl),A(f1),B(f2),C(f3),Comodin(f4),facturadora(fc),labelF(lf),
+
     ui(new Ui::MainWindow)
 
 {
     ui->setupUi(this);
 
-
-
+    //setLabelFabricacion(labelF);
     CargarArticulos(listaArt);
     cargarClientes(lista);
 
-    Balanceador * balanceador= new Balanceador(listaArt, colaPedidos, colaAlisto, colaA, colaB, colaC, colaComodin);
+    //Balanceador * balanceador= new Balanceador(listaArt, colaPedidos, colaAlisto, colaA, colaB, colaC, colaComodin);
 
     //qDebug() << "pasa inicializacion queue";
 
-    RevisorArchivos * revisor= new RevisorArchivos(listaArt,lista,colaPedidos);
+
     revisor->start();
+    qDebug()<<"Hola";
 
 
 
-    balanceador->start();
+    //balanceador->start();
     //qDebug() << "pasa balanceador";
-    QSemaphore s(1);
-    QLabel * lbl = getLabelFabricacion();
-    lbl->setText("Fabricacion");
-    //qDebug() << "pasa lbl";
 
 
-    Fabrica *A = new Fabrica(listaArt, colaAlisto, colaA,"A",s,"Fabrica A",lbl);
-    Fabrica *B= new Fabrica(listaArt, colaAlisto, colaB,"B",s,"Fabrica B",lbl);
-    Fabrica *C= new Fabrica(listaArt, colaAlisto, colaC,"C",s,"Fabrica C",lbl);
-    Fabrica *Comodin= new Fabrica(listaArt, colaAlisto, colaComodin,"A","B",s,"Fabrica Comodin",lbl);
-    //qDebug() << "pasa fabricas";
-
-    A->start();
-    B->start();
-    C->start();
-    Comodin->start();
+    //A->start();
+    //B->start();
+    //C->start();
+    //Comodin->start();
     //qDebug() << "pasa starts de fabricas";
 
-    QTableWidget* tbl = getQTable();
+    //QTableWidget* tbl = getQTable();
 
 
-    Bodega bodega(tbl, colaAlisto, colaAlistados);
+    //Bodega bodega(tbl, colaAlisto, colaAlistados);
 
     // Conectar la señal y el slot
-    QObject::connect(&bodega, SIGNAL(procesarArticulo(QString, ArticuloPedido*)),
-                     &bodega, SLOT(procesarArticulo(QString, ArticuloPedido*)));
+   // QObject::connect(&bodega, SIGNAL(procesarArticulo(QString, ArticuloPedido*)),
+   //                  &bodega, SLOT(procesarArticulo(QString, ArticuloPedido*)));
 
-    bodega.start();
+   // bodega.start();
 
     //Alistador* alist1 = new Alistador(colaAlisto, colaAlistados, tbl, listaArt);
     //Alistador* alist2 = new Alistador(colaAlisto, colaAlistados, tbl, listaArt);
@@ -96,11 +430,12 @@ QTableWidget* MainWindow::getQTable(){
 QLabel* MainWindow::getLabelFabricacion(){
     return ui->lblMostrarFabricando;
 }
-/*
-Balanceador * MainWindow::getBalanceador(){
-    Balanceador *b= new Balanceador(listaArt, colaPedidos, colaAlisto, colaA, colaB, colaC, colaComodin);
+
+void MainWindow::setLabelFabricacion(QLabel* label){
+     ui->lblMostrarFabricando=label;
 }
-*/
+
+
 
 void MainWindow::on_btnColaPedidos_clicked() {
     //qDebug() << "Entre al btnColaPedidos";
@@ -189,4 +524,5 @@ void MainWindow::on_btnDetenerBalanceador_clicked()
 {
 
 }
+
 
