@@ -1,4 +1,4 @@
-
+/*
 #ifndef QTHREADS_H
 #define QTHREADS_H
 #include <QtCore>
@@ -19,11 +19,11 @@
 
 
 
-/*
+
 
 class Alistador : public QThread
 {
-    //Q_OBJECT
+    Q_OBJECT
 public:
     explicit Alistador(QTableWidget* _tableWidget, QObject* parent = nullptr)
         : QThread(parent), table(_tableWidget)
@@ -134,6 +134,7 @@ private:
 
 class Bodega : public QThread
 {
+    Q_OBJECT
 public:
     explicit Bodega(QTableWidget* _tableWidget, Queue<Pedido*>& _colaAlisto, Queue<Pedido*>& _colaAlistados, QObject* parent = nullptr)
         : tableWidget(_tableWidget), colaAlisto(_colaAlisto), colaAlistados(_colaAlistados), QThread(parent)
@@ -252,9 +253,9 @@ private:
         agregarPedidoAlistado(pedido);
     }
 };
-
-
 */
+
+
 
 
 

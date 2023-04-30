@@ -102,6 +102,57 @@ private:
     bool paused = false;
 };
 
+class Alistador : public QThread{
+    Q_OBJECT
+    public:
+        explicit Alistador(QTableWidget* _tableWidget, QObject* parent = nullptr);
+        void run() override;
+
+    public slots:
+        void procesarArticuloAlist(Queue<Alistador*> _colaAlistadores, const QString& _ubicacion, ArticuloPedido* _articulo);
+
+    signals:
+        void finalizado(Alistador* alistador);
+
+    private:
+        QTableWidget* table;
+        Queue<Alistador*> colaAlistadores;
+        ArticuloPedido* articulo = nullptr;
+        QString ubicacion;
+        QMutex mutex;
+
+        int obtenerIndiceLetra(const QString& letra);
+        void moverAlistador(const QString& ubicacion, ArticuloPedido* articulo);
+};
+
+
+class Bodega : public QThread
+{
+    Q_OBJECT
+    public:
+        explicit Bodega(QTableWidget* _tableWidget, Queue<Pedido*>& _colaAlisto, Queue<Pedido*>& _colaAlistados, QObject* parent = nullptr);
+        void agregarPedidoAlistado(Pedido* pedido);
+        Pedido* obtenerPedidoAlistado();
+        void liberarAlistador(Alistador* alistador);
+        void run() override;
+        void actualizarInterfaz();
+
+    signals:
+        void procesarArticuloBodega(Queue<Alistador*> colaAlistadores, Alistador* alistDisp, const QString& ubicacion, ArticuloPedido* articulo);
+
+    public slots:
+        void alistadorLiberado(Alistador* alistador);
+
+    private:
+        QTableWidget* tableWidget;
+        Queue<Pedido*>& colaAlisto;
+        Queue<Pedido*>& colaAlistados;
+        Queue<Alistador*> colaAlistadores;
+        QMutex mutex;
+
+        void procesarPedido(Pedido* pedido);
+};
+
 class Alistados : public QThread {
 public:
     Alistados(Queue<Pedido *>& colaFacturacion,Queue<Pedido *> & A, string _name,QObject* parent = nullptr);
