@@ -5,6 +5,8 @@
 #include <QThread>
 #include <QDir>
 #include <QTableWidget>
+#include <QObject>
+
 #include "procedimientos.h"
 #include "qlabel.h"
 
@@ -23,8 +25,8 @@ public:
     }
     void run() override {
         while (true) {
-            QString path = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Pedidos";
-            //QString path = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Pedidos";
+            //QString path = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Pedidos";
+            QString path = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Pedidos";
             QDir directorio(path);
             QStringList archivos = directorio.entryList(QStringList() << "*.txt", QDir::Files);
             if (archivos.size() > 0) {
@@ -44,8 +46,8 @@ public:
                     cargarPedido(a, colaPedidos, listaClientes, listaArticulos);
 
                     string ruta_archivo = todo;
-                    string ruta_pedidosP = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\PedidosProcesados\\"+cArchivo;
-                    //string ruta_pedidosP = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\PedidosProcesados\\"+cArchivo;
+                    //string ruta_pedidosP = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\PedidosProcesados\\"+cArchivo;
+                    string ruta_pedidosP = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\PedidosProcesados\\"+cArchivo;
 
                     rename(ruta_archivo.c_str(),ruta_pedidosP.c_str());
                 }
@@ -332,8 +334,8 @@ public:
                     string name= to_string(pedido->numPedido)+"_"+pedido->codCliente+"_"+retornarHora()+".txt";
                     pedido->factura->insertarAlFinal("Finalizado: "+retornarHora());
 
-                    fstream factura("C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Facturas\\"+name);
-                    //fstream factura("C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Facturas\\"+name);
+                    //fstream factura("C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Facturas\\"+name);
+                    fstream factura("C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Facturas\\"+name);
 
                     factura<<"Pedido: "+to_string(pedido->numPedido)+"\n"+"Cliente: "+pedido->codCliente+"\n";
 
@@ -365,150 +367,246 @@ private:
 };
 
 
+
+
+
+
+
 class Alistador : public QThread
 {
+    //Q_OBJECT
 public:
-    explicit Alistador(Queue<Pedido *>& _colaAlisto, Queue<Pedido *>& _colaAlistados, QTableWidget *tableWidget, listaArticulos *lista, QObject *parent = nullptr) :
-        colaAlisto(_colaAlisto), colaAlistados(_colaAlistados), m_tableWidget(tableWidget), listaArtGeneral(lista), QThread(parent)
+    explicit Alistador(QTableWidget* _tableWidget, QObject* parent = nullptr)
+        : QThread(parent), table(_tableWidget)
     {
+    }
+
+    void finalizado(Alistador* alistador){
+        mutex.lock();
+        mutex.unlock();
     }
 
     void run() override
     {
-        QString ubicacionInicial = "A01";
-
-
         while (true) {
-             if (!colaAlisto.isEmpty()) {
-                QString ubicacionActual = ubicacionInicial;
+            // Esperar a recibir la señal para procesar un artículo
+            mutex.lock();
+            if (!ubicacion.isEmpty()) {
+                 QString ubicacionCopy = ubicacion;
+                 ArticuloPedido* articuloCopy = articulo;
+                 mutex.unlock();
 
-                Pedido *pedidoAProcesar = colaAlisto.deQueue();
-                ListaArticulosP* listArt = pedidoAProcesar->listaPedido;
-                NodoArticuloP* temp = listArt->pn;
+                 // Procesar el artículo
+                 moverAlistador(ubicacionCopy, articuloCopy);
 
-                while (temp != NULL) {
-                    string strUbication = getUbication(temp->articulo->codProd);
-                    QString ubication = QString::fromStdString(strUbication);
-                    QString letra = ubication.left(1);
-                    int numero = ubication.mid(1).toInt();
-
-                    int espaciosDiferencia = calcularEspaciosDiferencia(ubicacionActual, ubication);
-
-                    moverAlistador(letra, numero, temp->articulo);
-                    QThread::msleep(espaciosDiferencia * 1000);
-
-                    ubicacionActual = ubication;
-
-                    // Calcular espacios de diferencia para volver al inicio
-                    int espaciosDiferenciaVuelta = calcularEspaciosDiferencia(ubicacionActual, ubicacionInicial);
-
-                    moverAlistador("A", 1, temp->articulo); // Mover al inicio (A01)
-                    QThread::msleep(espaciosDiferenciaVuelta * 1000);
-                    temp = temp->siguiente;
-                }
-                colaAlistados.enQueue(pedidoAProcesar);
-             }
+                 // Emitir señal para notificar que el alistador ha finalizado
+                 emit finalizado(this);
+            } else {
+                 mutex.unlock();
+                 QThread::msleep(500);
+            }
         }
+    }
+
+public slots:
+    void procesarArticulo(const QString& _ubicacion, ArticuloPedido* _articulo)
+    {
+        // Asignar el artículo y la ubicación al alistador
+        ubicacion = _ubicacion;
+        articulo = _articulo;
+    }
+
+signals:
+    void finalizado(Alistador* alistador);
+
+private:
+    QTableWidget* table;
+    ArticuloPedido* articulo = nullptr;
+    QString ubicacion;
+    QMutex mutex;
+
+    int obtenerIndiceLetra(const QString& letra)
+    {
+        QString letrasAlfabeto = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        return letrasAlfabeto.indexOf(letra);
+    }
+
+    void moverAlistador(const QString& ubicacion, ArticuloPedido* articulo)
+    {
+        QChar letra = ubicacion.at(0);
+        QString strNumero = ubicacion.mid(1);
+        int numero = strNumero.toInt();
+
+        // Obtener índices
+        int fila = numero - 1;
+        int columna = obtenerIndiceLetra(letra);
+
+        int distanciaFilas = fila;
+        int distanciaColumnas = columna;
+
+        // Calcular el tiempo necesario para moverse hasta la ubicación del artículo
+        int tiempoIda = distanciaFilas + distanciaColumnas;
+
+        // Simular el tiempo de movimiento
+        QThread::sleep(tiempoIda);
+
+        QTableWidgetItem* item = table->item(fila, columna);
+
+        if (item && !item->text().isEmpty()) {
+            QString texto = item->text();
+            QStringList parts = texto.split("\n");
+            if (parts.size() == 2) {
+                 CeldaArticulo celda;
+                 celda.codigo = parts[0];
+                 celda.cantidad = parts[1].toInt();
+                 // Incrementar la cantidad del artículo
+                 celda.cantidad += articulo->cantidad;
+
+                 // Actualizar el texto del item con la cantidad actualizada
+                 item->setText(celda.toString());
+            } else {
+                 // La celda está vacía, ingresar un nuevo artículo con cantidad 1
+                 CeldaArticulo celda;
+                 celda.codigo = QString::fromStdString(articulo->codProd);
+                 celda.cantidad = articulo->cantidad;
+
+                 // Actualizar el texto del item con el nuevo artículo
+                 item->setText(celda.toString());
+            }
+        }
+
+        // Simular el tiempo de regreso a la posición inicial
+        QThread::sleep(tiempoIda);
+    }
+};
+
+
+//-------------------------------------------------------------------------
+
+class Bodega : public QThread
+{
+public:
+    explicit Bodega(QTableWidget* _tableWidget, Queue<Pedido*>& _colaAlisto, Queue<Pedido*>& _colaAlistados, QObject* parent = nullptr)
+        : tableWidget(_tableWidget), colaAlisto(_colaAlisto), colaAlistados(_colaAlistados), QThread(parent)
+    {
+        // Crear los 6 alistadores y agregarlos a la cola
+        for (int i = 0; i < 6; ++i) {
+            Alistador* alistador = new Alistador(tableWidget);
+            colaAlistadores.enQueue(alistador);
+            connect(alistador, SIGNAL(finalizado(Alistador*)), this, SLOT(alistadorLiberado(Alistador*)));
+            alistador->start();
+        }
+    }
+
+
+    void agregarPedidoAlistado(Pedido* pedido)
+    {
+        mutex.lock();
+        colaAlistados.enQueue(pedido);
+        mutex.unlock();
+    }
+
+    Pedido* obtenerPedidoAlistado()
+    {
+        mutex.lock();
+        if (!colaAlistados.isEmpty()) {
+            Pedido* pedido = colaAlistados.deQueue();
+            mutex.unlock();
+            return pedido;
+        }
+        mutex.unlock();
+        return nullptr;
+    }
+
+    void liberarAlistador(Alistador* alistador)
+    {
+        mutex.lock();
+        colaAlistadores.enQueue(alistador);
+        mutex.unlock();
+    }
+
+    void run() override
+    {
+        while (true) {
+            // Esperar a que haya un pedido alistado en la bodega
+            Pedido* pedido = obtenerPedidoAlistado();
+
+            // Procesar el pedido alistado
+            procesarPedido(pedido);
+
+            // Liberar la memoria del pedido
+            delete pedido;
+        }
+    }
+
+    void actualizarInterfaz()
+    {
+        mutex.lock();
+        int rowCount = tableWidget->rowCount();
+        int columnCount = tableWidget->columnCount();
+
+        for (int row = 0; row < rowCount; ++row) {
+            for (int col = 0; col < columnCount; ++col) {
+                 QTableWidgetItem* item = tableWidget->item(row, col);
+                 if (item) {
+                    QVariant data = item->data(Qt::UserRole);
+                    CeldaArticulo celda = data.value<CeldaArticulo>();
+                    QString codigo = celda.codigo;
+                    int cantidad = celda.cantidad;
+
+                    // Actualizar la celda en la tabla con el código y la cantidad del artículo
+                    item->setText(celda.toString());
+                 }
+            }
+        }
+
+        mutex.unlock();
+    }
+
+signals:
+    void procesarArticulo(const QString& ubicacion, ArticuloPedido* articulo);
+
+public slots:
+    void alistadorLiberado(Alistador* alistador)
+    {
+        liberarAlistador(alistador);
     }
 
 private:
-    Queue<Pedido *>& colaAlisto;
-    Queue<Pedido *>& colaAlistados;
+    QTableWidget* tableWidget;
+    Queue<Pedido*>& colaAlisto;
+    Queue<Pedido*>& colaAlistados;
+    Queue<Alistador*> colaAlistadores;
+    QMutex mutex;
 
-    QTableWidget* m_tableWidget;
-
-    listaArticulos *listaArtGeneral;
-
-    string getUbication(string cod){
-        NodoArticulo *temp = listaArtGeneral->pn;
-        while(temp != NULL){
-             if (temp->articulo->codigo == cod)
-                return temp->articulo->ubicacionBodega;
-             temp = temp->siguiente;
-        }
-        return "";
-    }
-
-    void moverAlistador(const QString& letra, int numero, ArticuloPedido* art)
+    void procesarPedido(Pedido* pedido)
     {
-        // Obtener la columna correspondiente al encabezado de letra
-        int column = -1;
+        ListaArticulosP* listaArticulos = pedido->listaPedido;
+        NodoArticuloP* temp = listaArticulos->pn;
 
-        QStringList headerLabels;
-        QAbstractItemModel* model = m_tableWidget->model();
-        if (model) {
-             int columnCount = model->columnCount();
-             for (int i = 0; i < columnCount; ++i) {
-                QString label = model->headerData(i, Qt::Horizontal).toString();
-                headerLabels.append(label);
-             }
+        while (temp != nullptr) {
+            QString ubicacion = QString::fromStdString(temp->articulo->codProd);
+            ArticuloPedido* articulo = temp->articulo;
+
+            // Emitir la señal para procesar el artículo en un alistador
+            emit procesarArticulo(ubicacion, articulo);
+
+            temp = temp->siguiente;
         }
 
-        for (int i = 0; i < headerLabels.size(); ++i) {
-             if (headerLabels.at(i) == letra) {
-                column = i;
-                break;
-             }
+        // Esperar a que todos los alistadores finalicen
+        while (!colaAlistadores.isEmpty()) {
+            QThread::msleep(500);
         }
 
-        if (column != -1) {
-             // Obtener la fila correspondiente al encabezado de número
-             int row = numero - 1; // Restamos 1 para ajustar al índice de fila (empezando desde 0)
-
-             // Obtener el elemento de la celda en la posición especificada
-             QTableWidgetItem* item = m_tableWidget->item(row, column);
-             if (item) {
-                // Mover el alistador a la celda correspondiente
-                m_tableWidget->setCurrentCell(row, column);
-                m_tableWidget->scrollToItem(item, QAbstractItemView::PositionAtCenter);
-
-                // Obtener la cantidad actual de la celda
-                QVariant data = item->data(Qt::UserRole);
-                CeldaArticulo celda = data.value<CeldaArticulo>();
-                int cantidadActual = celda.cantidad;
-
-                // Sumar la cantidad del artículo al total actual
-                int nuevaCantidad = cantidadActual + art->cantidad;
-
-                // Actualizar la celda con el código del artículo y la nueva cantidad
-                celda.codigo =  QString::fromStdString(art->codProd);
-                celda.cantidad = nuevaCantidad;
-                item->setData(Qt::UserRole, QVariant::fromValue(celda));
-
-                // Asignar la cadena de texto al elemento de la celda
-                item->setText(celda.toString());
-             }
-        }
+        // Enviar el pedido a la cola de alistados
+        agregarPedidoAlistado(pedido);
     }
-
-
-    int calcularEspaciosDiferencia(const QString& ubicacionInicial, const QString& ubicacionActual)
-    {
-        QString letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
-        QChar letraInicial = ubicacionInicial.at(0);
-        int numeroInicial = ubicacionInicial.mid(1).toInt();
-
-        QChar letraActual = ubicacionActual.at(0);
-        int numeroActual = ubicacionActual.mid(1).toInt();
-
-        int espaciosDiferencia = 0;
-
-        if (letraInicial == letraActual) {
-             espaciosDiferencia = qAbs(numeroActual - numeroInicial);
-        } else {
-             int indiceInicial = letras.indexOf(letraInicial);
-             int indiceActual = letras.indexOf(letraActual);
-
-             espaciosDiferencia = (26 - indiceInicial) + indiceActual + 1;
-             espaciosDiferencia += qAbs(numeroActual - numeroInicial);
-        }
-
-        return espaciosDiferencia;
-    }
-
-
 };
+
+
+
+
 
 class Alistados : public QThread {
 

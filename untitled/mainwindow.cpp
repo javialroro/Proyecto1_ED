@@ -59,6 +59,15 @@ MainWindow::MainWindow(/*ThreadContainer* _contenedor,*/ PriorityQueue* _colaPed
 
     QTableWidget* tbl = getQTable();
 
+
+    Bodega bodega(tbl, colaAlisto, colaAlistados);
+
+    // Conectar la señal y el slot
+    QObject::connect(&bodega, SIGNAL(procesarArticulo(QString, ArticuloPedido*)),
+                     &bodega, SLOT(procesarArticulo(QString, ArticuloPedido*)));
+
+    bodega.start();
+
     //Alistador* alist1 = new Alistador(colaAlisto, colaAlistados, tbl, listaArt);
     //Alistador* alist2 = new Alistador(colaAlisto, colaAlistados, tbl, listaArt);
     //Alistador* alist3 = new Alistador(colaAlisto, colaAlistados, tbl, listaArt);
