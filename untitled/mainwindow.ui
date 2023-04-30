@@ -955,8 +955,8 @@ color: white;</string>
    <widget class="QPushButton" name="btnDetenerBalanceador">
     <property name="geometry">
      <rect>
-      <x>370</x>
-      <y>320</y>
+      <x>340</x>
+      <y>310</y>
       <width>31</width>
       <height>20</height>
      </rect>
@@ -1122,7 +1122,7 @@ Alisto</string>
     <property name="geometry">
      <rect>
       <x>370</x>
-      <y>300</y>
+      <y>310</y>
       <width>31</width>
       <height>21</height>
      </rect>
