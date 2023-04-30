@@ -4,17 +4,12 @@
 
 #include "mainwindow.h"
 #include "QLabel"
-#include "QThreads.h"
+
 
 int main(int argc, char *argv[]){
     QApplication a(argc, argv);
     //qDebug() << "pasa QApplication";
 
-    listaClientes *lista = new listaClientes();
-    listaArticulos *listaArt = new listaArticulos();
-    CargarArticulos(listaArt);
-    cargarClientes(lista);
-    //qDebug() << "pasa inicializacion listas";
 
     PriorityQueue * colaPedidos = new PriorityQueue();
     Queue<Pedido *> colaAlisto;
@@ -23,53 +18,14 @@ int main(int argc, char *argv[]){
     Queue<Pedido *> colaB;
     Queue<Pedido *> colaC;
     Queue<Pedido *> colaComodin;
-    //qDebug() << "pasa inicializacion queue";
+    listaClientes *lista = new listaClientes();
+    listaArticulos *listaArt = new listaArticulos();
 
-    RevisorArchivos revisor(listaArt,lista,colaPedidos);
-    revisor.start();
-    //qDebug() << "pasa revisor";
-
-    Balanceador balanceador(listaArt, colaPedidos, colaAlisto, colaA, colaB, colaC, colaComodin);
-    balanceador.start();
-    //qDebug() << "pasa balanceador";
-
-    MainWindow* w = new MainWindow(/*contenedor, */colaPedidos, colaAlisto, colaAlistados, colaA, colaB, colaC, colaComodin);
+    MainWindow* w = new MainWindow(colaPedidos,colaAlisto,colaAlistados,colaA,colaB,colaC,colaComodin,listaArt,lista);
     w->show();
     //qDebug() << "pasa mainwindow";
 
-    QSemaphore s(1);
-    QLabel * lbl = w->getLabelFabricacion();
-    lbl->setText("Fabricacion");
-    //qDebug() << "pasa lbl";
 
-
-    Fabrica *A = new Fabrica(listaArt, colaAlisto, colaA,"A",s,"Fabrica A",lbl);
-    Fabrica *B= new Fabrica(listaArt, colaAlisto, colaB,"B",s,"Fabrica B",lbl);
-    Fabrica *C= new Fabrica(listaArt, colaAlisto, colaC,"C",s,"Fabrica C",lbl);
-    Fabrica *Comodin= new Fabrica(listaArt, colaAlisto, colaComodin,"A","B",s,"Fabrica Comodin",lbl);
-    //qDebug() << "pasa fabricas";
-
-    A->start();
-    B->start();
-    C->start();
-    Comodin->start();
-    //qDebug() << "pasa starts de fabricas";
-
-    QTableWidget* tbl = w->getQTable();
-
-    Alistador* alist1 = new Alistador(colaAlisto, colaAlistados, tbl, listaArt);
-    Alistador* alist2 = new Alistador(colaAlisto, colaAlistados, tbl, listaArt);
-    Alistador* alist3 = new Alistador(colaAlisto, colaAlistados, tbl, listaArt);
-    Alistador* alist4 = new Alistador(colaAlisto, colaAlistados, tbl, listaArt);
-    Alistador* alist5 = new Alistador(colaAlisto, colaAlistados, tbl, listaArt);
-    Alistador* alist6 = new Alistador(colaAlisto, colaAlistados, tbl, listaArt);
-
-    alist1->start();
-    alist2->start();
-    alist3->start();
-    alist4->start();
-    alist5->start();
-    alist6->start();
     //qDebug() << "pasa alistador";
 
     //ThreadContainer* contenedor = new ThreadContainer(balanceador,A,B,C,Comodin,alist1,alist2,alist3,alist4,alist5,alist6);

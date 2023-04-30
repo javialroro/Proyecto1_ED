@@ -5,6 +5,8 @@
 #include <QTableWidget>
 #include <QLabel>
 //#include "ThreadContainer.h"
+//#include "QThreads.h"
+
 #include "priorityqueue.h"
 
 
@@ -18,7 +20,8 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    MainWindow(/*ThreadContainer* _contenedor,*/ PriorityQueue* _colaPedidos, Queue<Pedido *> & _colaAlisto, Queue<Pedido *> & _colaAlistados,  Queue<Pedido *> & _colaA,  Queue<Pedido *> & _colaB,  Queue<Pedido *> & _colaC,  Queue<Pedido *> & _colaComodin);
+    MainWindow(/*ThreadContainer* _contenedor,*/ PriorityQueue* _colaPedidos, Queue<Pedido *> & _colaAlisto, Queue<Pedido *> & _colaAlistados,  Queue<Pedido *> & _colaA,  Queue<Pedido *> & _colaB,  Queue<Pedido *> & _colaC,  Queue<Pedido *> & _colaComodin,
+               listaArticulos * la, listaClientes *lc);
     ~MainWindow();
     QTableWidget* getQTable();
     QLabel* getLabelFabricacion();
@@ -46,6 +49,8 @@ private slots:
 
     void on_btnDetenerBalanceador_clicked();
 
+    //Balanceador * getBalanceador();
+
 private:
     Ui::MainWindow *ui;
 
@@ -56,6 +61,9 @@ private:
     Queue<Pedido *> & colaB;
     Queue<Pedido *> & colaC;
     Queue<Pedido *> & colaComodin;
+    listaClientes *lista;
+    listaArticulos *listaArt;
+
 
     //ThreadContainer* contenedor;
 

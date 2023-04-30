@@ -490,7 +490,11 @@ public:
         tblBodega = new QTableWidget(centralwidget);
         if (tblBodega->columnCount() < 27)
             tblBodega->setColumnCount(27);
+        QBrush brush(QColor(255, 255, 255, 255));
+        brush.setStyle(Qt::NoBrush);
         QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
+        __qtablewidgetitem->setBackground(QColor(0, 74, 108));
+        __qtablewidgetitem->setForeground(brush);
         tblBodega->setHorizontalHeaderItem(0, __qtablewidgetitem);
         QTableWidgetItem *__qtablewidgetitem1 = new QTableWidgetItem();
         tblBodega->setHorizontalHeaderItem(1, __qtablewidgetitem1);
@@ -547,7 +551,10 @@ public:
         if (tblBodega->rowCount() < 10)
             tblBodega->setRowCount(10);
         tblBodega->setObjectName("tblBodega");
-        tblBodega->setGeometry(QRect(660, 340, 471, 311));
+        tblBodega->setGeometry(QRect(660, 340, 461, 301));
+        tblBodega->setStyleSheet(QString::fromUtf8("QTableView::item {\n"
+"    height: 100px;\n"
+"}"));
         tblBodega->setRowCount(10);
         tblBodega->setColumnCount(27);
         tblBodega->horizontalHeader()->setCascadingSectionResizes(false);
