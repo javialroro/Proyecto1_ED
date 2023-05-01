@@ -23,7 +23,7 @@ int main(int argc, char *argv[]){
     listaClientes *lista = new listaClientes();
     listaArticulos *listaArt = new listaArticulos();
 
-    Alistados * al = new Alistados(colaF,colaAlisto,"");
+    Alistados * al = new Alistados(colaF,colaAlistados,"");
     RevisorArchivos * revisor= new RevisorArchivos(listaArt,lista,colaPedidos);
     Balanceador * balanceador= new Balanceador(listaArt, colaPedidos, colaAlisto, colaA, colaB, colaC, colaComodin);
     QSemaphore s(1);
@@ -46,8 +46,8 @@ int main(int argc, char *argv[]){
     w->show();
     qDebug() << "muestra interfaz";
 
-    Bodega* bodega = new Bodega(w->getQTable(), colaAlisto, colaAlistados);
-    bodega->start();
+    //Bodega* bodega = new Bodega(w->getQTable(), colaAlisto, colaAlistados);
+    //bodega->start();
     qDebug() << "pasa bodega";
 
     return a.exec();

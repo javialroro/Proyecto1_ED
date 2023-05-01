@@ -44,7 +44,7 @@ public:
 
 private:
     PriorityQueue * p_queue;
-    Queue<Pedido *> a_queue;
+    Queue<Pedido *> & a_queue;
     Queue<Pedido *> & f1;
     Queue<Pedido *> & f2;
     Queue<Pedido *> & f3;
@@ -243,6 +243,7 @@ private:
     Fabrica * Comodin;
     Facturadora * facturadora;
     QLabel * labelF;
+    Bodega * bodega;
 
 
     //ThreadContainer* contenedor;

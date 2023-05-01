@@ -39,8 +39,8 @@ RevisorArchivos::RevisorArchivos(struct listaArticulos  * la, struct listaClient
     void RevisorArchivos::run() {
         while (true) {
 
-            //QString path = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Pedidos";
-            QString path = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Pedidos";
+            QString path = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Pedidos";
+            //QString path = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Pedidos";
             QDir directorio(path);
             QStringList archivos = directorio.entryList(QStringList() << "*.txt", QDir::Files);
             if (archivos.size() > 0) {
@@ -51,8 +51,8 @@ RevisorArchivos::RevisorArchivos(struct listaArticulos  * la, struct listaClient
                     string cPath= path.toStdString()+"\\";
                     string cArchivo = archivo.toStdString();
                     string todo= cPath+cArchivo;
-                    //string errores = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Errores\\"+cArchivo;
-                    string errores = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Errores\\"+cArchivo;
+                    string errores = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Errores\\"+cArchivo;
+                    //string errores = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Errores\\"+cArchivo;
 
                     fstream arch(todo, std::ios::in | std::ios::app);
                     Archivo *a =  new Archivo(arch,todo,errores);
@@ -60,8 +60,8 @@ RevisorArchivos::RevisorArchivos(struct listaArticulos  * la, struct listaClient
                     cargarPedido(a, colaPedidos, listaClientes, listaArticulos);
 
                     string ruta_archivo = todo;
-                    //string ruta_pedidosP = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\PedidosProcesados\\"+cArchivo;
-                    string ruta_pedidosP = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\PedidosProcesados\\"+cArchivo;
+                    string ruta_pedidosP = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\PedidosProcesados\\"+cArchivo;
+                    //string ruta_pedidosP = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\PedidosProcesados\\"+cArchivo;
 
                     rename(ruta_archivo.c_str(),ruta_pedidosP.c_str());
                 }
@@ -85,25 +85,28 @@ Balanceador::Balanceador(listaArticulos  * l, PriorityQueue * colaPedidos, Queue
     void Balanceador::run() {
         if(!paused){
             while (true) {
-                if (!paused){
+                    bool flag= true;
                     while(!p_queue->isEmptyPriority()){
                         sleep(3);
 
 
                         Pedido * pedido = p_queue->deQueuePriority();
+                        cout<<"hice Dequeue"<<endl;
                         pedido->factura->insertarAlFinal("Balanceador: "+retornarHora()+"\n");
 
 
 
                         NodoArticuloP *tmp = pedido->listaPedido->pn;
 
-                        bool flag= true;
+
 
                         while (tmp != NULL){
 
                             bool verif =tmp->haySuficiente(lista);
+                            //cout<<flag<<endl;
 
                             if (!verif){
+                                flag= false;
                                 cout<<"---------A COLA DE FABRICACION---------"<<endl;
                                 tmp->articulo->imprimir();
                                 cout<<"---------------------------------------"<<endl;
@@ -118,36 +121,42 @@ Balanceador::Balanceador(listaArticulos  * l, PriorityQueue * colaPedidos, Queue
                                     encolarMenor(f1,f4,pedido);
                                     sleep(1);
 
-                                    flag= false;
+
 
                                 } else if (categoria == "B") {
                                     encolarMenor(f2,f4,pedido);
                                     sleep(1);
-                                    flag= false;
+
 
                                 } else if (categoria == "C") {
 
                                     f3.enQueue(pedido);
                                     sleep(1);
-                                    flag= false;
+
 
                                 }
                             }
 
+
                             tmp = tmp->siguiente;
+                            //cout<<flag<<endl;
 
                         }
+                        //cout<<flag<<" debe entrar"<<endl;
                         if (flag){
-                            pedido->factura->insertarAlFinal("Este articulo no necesito ir a fabrica\n");
+                            cout<<"A alisto"<<endl;
+                            //pedido->factura->insertarAlFinal("Este articulo no necesito ir a fabrica\n");
                             a_queue.enQueue(pedido);
+                            //cout<<"hizo enqueue";
                         }
+
                     }
                 }
                 // Esperar un tiempo antes de continuar
                 sleep(1);
             }
         }
-    }
+
 
     bool Balanceador::getPaused (){
         return paused;
@@ -277,8 +286,8 @@ Balanceador::Balanceador(listaArticulos  * l, PriorityQueue * colaPedidos, Queue
                             string name= to_string(pedido->numPedido)+"_"+pedido->codCliente+"_"+retornarHora()+".txt";
                             pedido->factura->insertarAlFinal("Finalizado: "+retornarHora());
 
-                            //fstream factura("C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Facturas\\"+name);
-                            fstream factura("C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Facturas\\"+name);
+                            fstream factura("C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Facturas\\"+name);
+                            //fstream factura("C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Facturas\\"+name);
 
                             factura<<"Pedido: "+to_string(pedido->numPedido)+"\n"+"Cliente: "+pedido->codCliente+"\n";
 
@@ -291,7 +300,7 @@ Balanceador::Balanceador(listaArticulos  * l, PriorityQueue * colaPedidos, Queue
 
 
                         }
-                        sleep(5000);
+                        sleep(1);
                     }
                 }
 
@@ -587,10 +596,10 @@ Alistados::Alistados(Queue<Pedido *>& colaFacturacion,Queue<Pedido *> & A, strin
 
 MainWindow::MainWindow(PriorityQueue* _colaPedidos,Queue<Pedido *> & _colaAlisto, Queue<Pedido *> &_colaAlistados,  Queue<Pedido *> &_colaA,  Queue<Pedido *> &_colaB,  Queue<Pedido *> &_colaC,  Queue<Pedido *>& _colaComodin,
                        listaArticulos * la, listaClientes * lc, Alistados * a, RevisorArchivos * &r, Balanceador * bl, Fabrica * f1,
-                           Fabrica * f2,Fabrica * f3,Fabrica * f4, Facturadora * fc, QLabel * lf)
+                           Fabrica * f2,Fabrica * f3,Fabrica * f4, Facturadora * fc, QLabel * lf, Bodega * b)
     : QMainWindow(),
     colaPedidos(_colaPedidos),colaAlisto(_colaAlisto),colaAlistados(_colaAlistados),colaA (_colaA),colaB (_colaB),colaC (_colaC),colaComodin (_colaComodin),
-        listaArt(la),lista(lc),alistad(a),revisor(r),balanceador(bl),A(f1),B(f2),C(f3),Comodin(f4),facturadora(fc),labelF(lf),
+        listaArt(la),lista(lc),alistad(a),revisor(r),balanceador(bl),A(f1),B(f2),C(f3),Comodin(f4),facturadora(fc),labelF(lf),bodega(b),
 
     ui(new Ui::MainWindow)
 
@@ -601,13 +610,9 @@ MainWindow::MainWindow(PriorityQueue* _colaPedidos,Queue<Pedido *> & _colaAlisto
     CargarArticulos(listaArt);
     cargarClientes(lista);
 
-    //Balanceador * balanceador= new Balanceador(listaArt, colaPedidos, colaAlisto, colaA, colaB, colaC, colaComodin);
-
-    //qDebug() << "pasa inicializacion queue";
-
-
     revisor->start();
     balanceador->start();
+    bodega->start();
 
     A->start();
     B->start();
@@ -616,42 +621,6 @@ MainWindow::MainWindow(PriorityQueue* _colaPedidos,Queue<Pedido *> & _colaAlisto
 
     qDebug()<<"Hola";
 
-
-
-    //balanceador->start();
-    //qDebug() << "pasa balanceador";
-
-
-    //A->start();
-    //B->start();
-    //C->start();
-    //Comodin->start();
-    //qDebug() << "pasa starts de fabricas";
-
-    //QTableWidget* tbl = getQTable();
-
-
-    //Bodega bodega(tbl, colaAlisto, colaAlistados);
-
-    // Conectar la señal y el slot
-   // QObject::connect(&bodega, SIGNAL(procesarArticulo(QString, ArticuloPedido*)),
-   //                  &bodega, SLOT(procesarArticulo(QString, ArticuloPedido*)));
-
-   // bodega.start();
-
-    //Alistador* alist1 = new Alistador(colaAlisto, colaAlistados, tbl, listaArt);
-    //Alistador* alist2 = new Alistador(colaAlisto, colaAlistados, tbl, listaArt);
-    //Alistador* alist3 = new Alistador(colaAlisto, colaAlistados, tbl, listaArt);
-    //Alistador* alist4 = new Alistador(colaAlisto, colaAlistados, tbl, listaArt);
-    //Alistador* alist5 = new Alistador(colaAlisto, colaAlistados, tbl, listaArt);
-    //Alistador* alist6 = new Alistador(colaAlisto, colaAlistados, tbl, listaArt);
-
-    //alist1->start();
-    //alist2->start();
-    //alist3->start();
-    //alist4->start();
-    //alist5->start();
-    //alist6->start();
 
 }
 
@@ -759,12 +728,15 @@ void MainWindow::on_btnColaPorFacturar_clicked()
 
 void MainWindow::on_btnDetenerBalanceador_clicked()
 {
+    qDebug()<<balanceador->getPaused();
     if (!balanceador->getPaused()){
             balanceador->setPaused(true);
+            qDebug()<<balanceador->getPaused();
             qDebug()<<"Balanceador detenido";
     }
     else{
             balanceador->setPaused(false);
+            qDebug()<<balanceador->getPaused();
     }
     //balanceador->setPaused(!balanceador->getPaused());
 }
