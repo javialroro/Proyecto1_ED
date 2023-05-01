@@ -1134,7 +1134,7 @@ public:
         btnVerAlist6->setText(QString());
         btnVerAlist5->setText(QString());
         btnVerAlist4->setText(QString());
-        lblMostrarFabricando->setText(QString());
+        lblMostrarFabricando->setText(QCoreApplication::translate("MainWindow", "Fabricacion", nullptr));
     } // retranslateUi
 
 };

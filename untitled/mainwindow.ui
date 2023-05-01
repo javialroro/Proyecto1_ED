@@ -2420,7 +2420,7 @@ color: white;</string>
      </rect>
     </property>
     <property name="text">
-     <string/>
+     <string>Fabricacion</string>
     </property>
    </widget>
    <zorder>lineV08</zorder>

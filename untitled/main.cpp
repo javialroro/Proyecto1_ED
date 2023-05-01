@@ -29,25 +29,24 @@ int main(int argc, char *argv[]){
     QSemaphore s(1);
 
     //qDebug() << "pasa lbl";
-    QLabel * lbl= new QLabel();
-    lbl->setText("Fabricacion");
 
-    Fabrica *A = new Fabrica(listaArt, colaAlisto, colaA,"A",s,"Fabrica A",lbl);
-    Fabrica *B= new Fabrica(listaArt, colaAlisto, colaB,"B",s,"Fabrica B",lbl);
-    Fabrica *C= new Fabrica(listaArt, colaAlisto, colaC,"C",s,"Fabrica C",lbl);
-    Fabrica *Comodin= new Fabrica(listaArt, colaAlisto, colaComodin,"A","B",s,"Fabrica Comodin",lbl);
+    Fabrica *A = new Fabrica(listaArt, colaAlisto, colaA,"A",s,"Fabrica A");
+    Fabrica *B= new Fabrica(listaArt, colaAlisto, colaB,"B",s,"Fabrica B");
+    Fabrica *C= new Fabrica(listaArt, colaAlisto, colaC,"C",s,"Fabrica C");
+    Fabrica *Comodin= new Fabrica(listaArt, colaAlisto, colaComodin,"A","B",s,"Fabrica Comodin");
     Facturadora * facturadora = new Facturadora(colaAlistados);
     //qDebug() << "pasa fabricas";
-
+    QTableWidget* _tableWidget= new QTableWidget();
+    Bodega* bodega = new Bodega(_tableWidget, colaAlisto, colaAlistados);
 
 
     MainWindow* w = new MainWindow(colaPedidos,colaAlisto,colaAlistados,colaA,colaB,colaC,colaComodin,listaArt,lista,al,revisor, balanceador,A,B,C,Comodin,
-                                   facturadora,lbl);
+                                   facturadora,bodega);
     w->show();
     qDebug() << "muestra interfaz";
 
-    //Bodega* bodega = new Bodega(w->getQTable(), colaAlisto, colaAlistados);
-    //bodega->start();
+
+
     qDebug() << "pasa bodega";
 
     return a.exec();

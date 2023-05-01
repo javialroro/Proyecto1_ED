@@ -167,14 +167,14 @@ Balanceador::Balanceador(listaArticulos  * l, PriorityQueue * colaPedidos, Queue
     }
 
 
-    Fabrica::Fabrica(listaArticulos  * l, Queue<Pedido *>& colaAlistos,Queue<Pedido *> & A, string cat,QSemaphore& sem, string _name, QLabel * lbl,QObject* parent )
-            : QThread(parent), a_queue(colaAlistos), cola(A), lista(l), _categoria(cat),semaphore(sem),name(_name),label(lbl)
+    Fabrica::Fabrica(listaArticulos  * l, Queue<Pedido *>& colaAlistos,Queue<Pedido *> & A, string cat,QSemaphore& sem, string _name, QObject* parent )
+            : QThread(parent), a_queue(colaAlistos), cola(A), lista(l), _categoria(cat),semaphore(sem),name(_name)
 
         {
         }
     Fabrica::Fabrica(listaArticulos  * l, Queue<Pedido *>& colaAlistos,Queue<Pedido *> & A, string cat, string cat2, QSemaphore& sem,
-            string _name,QLabel * lbl,QObject* parent)
-        : QThread(parent), a_queue(colaAlistos), cola(A), lista(l), _categoria(cat), _categoria2(cat2),semaphore(sem), name(_name),label(lbl)
+            string _name,QObject* parent)
+        : QThread(parent), a_queue(colaAlistos), cola(A), lista(l), _categoria(cat), _categoria2(cat2),semaphore(sem), name(_name)
     {
     }
 
@@ -226,10 +226,10 @@ Balanceador::Balanceador(listaArticulos  * l, PriorityQueue * colaPedidos, Queue
 
 
 
-                                    label->setText(s);
+                                    emit actualizarLabel(s);
                                     sleep(n->articulo->segundosF);
                                     cambiar(n->articulo->codigo,1,cantidadN);
-                                    label->setText("Fabricacion");
+                                    emit actualizarLabel("Fabricacion");
                                     pedido->factura->insertarAlFinal("final: "+retornarHora());
 
                                     a_queue.enQueue(pedido);
@@ -596,17 +596,20 @@ Alistados::Alistados(Queue<Pedido *>& colaFacturacion,Queue<Pedido *> & A, strin
 
 MainWindow::MainWindow(PriorityQueue* _colaPedidos,Queue<Pedido *> & _colaAlisto, Queue<Pedido *> &_colaAlistados,  Queue<Pedido *> &_colaA,  Queue<Pedido *> &_colaB,  Queue<Pedido *> &_colaC,  Queue<Pedido *>& _colaComodin,
                        listaArticulos * la, listaClientes * lc, Alistados * a, RevisorArchivos * &r, Balanceador * bl, Fabrica * f1,
-                           Fabrica * f2,Fabrica * f3,Fabrica * f4, Facturadora * fc, QLabel * lf, Bodega * b)
+                           Fabrica * f2,Fabrica * f3,Fabrica * f4, Facturadora * fc, Bodega * b)
     : QMainWindow(),
     colaPedidos(_colaPedidos),colaAlisto(_colaAlisto),colaAlistados(_colaAlistados),colaA (_colaA),colaB (_colaB),colaC (_colaC),colaComodin (_colaComodin),
-        listaArt(la),lista(lc),alistad(a),revisor(r),balanceador(bl),A(f1),B(f2),C(f3),Comodin(f4),facturadora(fc),labelF(lf),bodega(b),
+        listaArt(la),lista(lc),alistad(a),revisor(r),balanceador(bl),A(f1),B(f2),C(f3),Comodin(f4),facturadora(fc),bodega(b),
 
     ui(new Ui::MainWindow)
 
 {
+    connect(A, &Fabrica::actualizarLabel, this, &MainWindow::actualizarTextoLabel);
+    connect(B, &Fabrica::actualizarLabel, this, &MainWindow::actualizarTextoLabel);
+    connect(C, &Fabrica::actualizarLabel, this, &MainWindow::actualizarTextoLabel);
+    connect(Comodin, &Fabrica::actualizarLabel, this, &MainWindow::actualizarTextoLabel);
     ui->setupUi(this);
 
-    setLabelFabricacion(labelF);
     CargarArticulos(listaArt);
     cargarClientes(lista);
 
@@ -785,6 +788,10 @@ void MainWindow::on_btnDetenerFab01_clicked()
     else{
             B->setPaused(false);
     }
+}
+void MainWindow::actualizarTextoLabel(const QString& texto) {
+    QLabel * lbl=getLabelFabricacion();
+    lbl->setText(texto);
 }
 
 
