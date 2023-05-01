@@ -9,6 +9,8 @@
 vColaPedidos::vColaPedidos(QWidget *parent) :
     QMainWindow(parent),
     queueM(*(new Queue<Pedido*>())),
+    a_queue(),
+    a_queueM(a_queue),
     ui(new Ui::vColaPedidos)
 {
     ui->setupUi(this);
@@ -32,6 +34,9 @@ vColaPedidos::~vColaPedidos()
 vColaPedidos::vColaPedidos(const Queue<Pedido*>& queueMostrar) :
     queue(queueMostrar),
     queueM(queue),
+    a_queue(),
+    a_queueM(a_queue),
+
     ui(new Ui::vColaPedidos)
 {
     ui->setupUi(this);
@@ -47,9 +52,34 @@ vColaPedidos::vColaPedidos(const Queue<Pedido*>& queueMostrar) :
     timer->start();
 }
 
+
+vColaPedidos::vColaPedidos(const Queue<Alistador*>& queueMostrar) :
+    a_queue(queueMostrar),
+    a_queueM(a_queue),
+    queue(),
+    queueM(queue),
+    ui(new Ui::vColaPedidos)
+{
+    ui->setupUi(this);
+
+    setWindowFlags(windowFlags() & ~(Qt::WindowCloseButtonHint | Qt::WindowMinimizeButtonHint | Qt::WindowMaximizeButtonHint));
+
+    connect(ui->btnVolverAMenu, &QPushButton::clicked, this, &vColaPedidos::volverAMenu);
+
+    // Inicializar QTimer y configurar propiedades
+    timer = new QTimer(this);
+    timer->setInterval(2000);  // Intervalo de tiempo en milisegundos (por ejemplo, 1000 ms = 1 segundo)
+    connect(timer, SIGNAL(timeout()), this, SLOT(setQueueContent()));
+    timer->start();
+}
+
+
+
 vColaPedidos::vColaPedidos(PriorityQueue* queueMostrar):
     queue(),
     queueM(queue),
+    a_queue(),
+    a_queueM(a_queue),
     p_queue(queueMostrar),
     p_queueM(p_queue),
     ui(new Ui::vColaPedidos)
@@ -125,7 +155,22 @@ void vColaPedidos::setQueueContent() {
     setCantidadDesencolados(queue.getCantDesencolados()); // Actualizar la cantidad de pedidos desencolados
 }
 
+void vColaPedidos::setQueueContentA() {
+    QString texto;
+    Queue<Alistador*> queueCopy = a_queue; // Copiar la cola original
 
+    texto = queueCopy._toString();
+
+    QTextEdit* txEdit = ui->txEditMostrarCola;//findChild<QTextEdit*>("txEditMostrarCola");
+
+    if (txEdit) {
+        txEdit->clear(); // Limpiar el contenido anterior del QTextEdit
+        txEdit->append(texto);
+    }
+
+    setCantidadEnCola(a_queue.getCantidadEnCola()); // Actualizar la cantidad de elementos en la cola
+    setCantidadDesencolados(a_queue.getCantDesencolados()); // Actualizar la cantidad de pedidos desencolados
+}
 
 void vColaPedidos::volverAMenu()
 {
