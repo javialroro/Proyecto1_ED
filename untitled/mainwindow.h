@@ -133,7 +133,7 @@ class Bodega : public QThread
 {
     Q_OBJECT
     public:
-        explicit Bodega(QTableWidget* _tableWidget, Queue<Pedido*>& _colaAlisto, Queue<Pedido*>& _colaAlistados, Queue<Alistador *>& colaAlistadores, QObject* parent = nullptr);
+        explicit Bodega(Queue<Pedido*>& _colaAlisto, Queue<Pedido*>& _colaAlistados, Queue<Alistador *>& colaAlistadores, QObject* parent = nullptr);
         void agregarPedidoAlistado(Pedido* pedido);
         Pedido* obtenerPedidoAlistado();
         void liberarAlistador(Alistador* alistador);
@@ -145,9 +145,10 @@ class Bodega : public QThread
 
     public slots:
         void alistadorLiberado(Alistador* alistador);
+        void receiveTableWidget(QTableWidget* tableWidget);
 
     private:
-        QTableWidget* tableWidget;
+        QTableWidget* table;
         Queue<Pedido*>& colaAlisto;
         Queue<Pedido*>& colaAlistados;
         Queue<Alistador*>& colaAlistadores;
@@ -189,6 +190,9 @@ public:
     QTableWidget* getQTable();
     QLabel* getLabelFabricacion();
 
+
+signals:
+    void tableWidgetSignal(QTableWidget* tableWidget);
 
 
 private slots:

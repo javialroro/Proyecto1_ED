@@ -47,7 +47,7 @@ int main(int argc, char *argv[]){
     w->show();
     qDebug() << "muestra interfaz";
 
-    Bodega* bodega = new Bodega(w->getQTable(), colaAlisto, colaAlistados, colaAlistadores);
+    Bodega* bodega = new Bodega(colaAlisto, colaAlistados, colaAlistadores);
     bodega->start();
     qDebug() << "pasa bodega";
 

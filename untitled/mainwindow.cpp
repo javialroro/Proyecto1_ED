@@ -418,12 +418,12 @@ Alistador::Alistador(int _id, QTableWidget* _tableWidget, QObject* parent)
 
         //-------------------------------------------------------------------------
 
-    Bodega::Bodega(QTableWidget* _tableWidget, Queue<Pedido*>& _colaAlisto, Queue<Pedido*>& _colaAlistados, Queue<Alistador *>& _colaAlistadores, QObject* parent)
-        : tableWidget(_tableWidget), colaAlisto(_colaAlisto), colaAlistados(_colaAlistados), colaAlistadores(_colaAlistadores), QThread(parent)
+    Bodega::Bodega(Queue<Pedido*>& _colaAlisto, Queue<Pedido*>& _colaAlistados, Queue<Alistador *>& _colaAlistadores, QObject* parent)
+        : colaAlisto(_colaAlisto), colaAlistados(_colaAlistados), colaAlistadores(_colaAlistadores), QThread(parent)
     {
         // Crear los 6 alistadores y agregarlos a la cola
         //------------
-        Alistador* alistador1 = new Alistador(1, tableWidget);
+        Alistador* alistador1 = new Alistador(1, table);
         colaAlistadores.enQueue(alistador1);
 
         // Conectar la señal procesarArticuloBodega de Bodega a la ranura procesarArticuloAlist de Alistador
@@ -433,7 +433,7 @@ Alistador::Alistador(int _id, QTableWidget* _tableWidget, QObject* parent)
         alistador1->start();
 
         //------------
-        Alistador* alistador2 = new Alistador(2, tableWidget);
+        Alistador* alistador2 = new Alistador(2, table);
         colaAlistadores.enQueue(alistador2);
 
         // Conectar la señal procesarArticuloBodega de Bodega a la ranura procesarArticuloAlist de Alistador
@@ -443,7 +443,7 @@ Alistador::Alistador(int _id, QTableWidget* _tableWidget, QObject* parent)
         alistador2->start();
 
         //------------
-        Alistador* alistador3 = new Alistador(3, tableWidget);
+        Alistador* alistador3 = new Alistador(3, table);
         colaAlistadores.enQueue(alistador3);
 
         // Conectar la señal procesarArticuloBodega de Bodega a la ranura procesarArticuloAlist de Alistador
@@ -453,7 +453,7 @@ Alistador::Alistador(int _id, QTableWidget* _tableWidget, QObject* parent)
         alistador3->start();
 
         //------------
-        Alistador* alistador4 = new Alistador(4, tableWidget);
+        Alistador* alistador4 = new Alistador(4, table);
         colaAlistadores.enQueue(alistador4);
 
         // Conectar la señal procesarArticuloBodega de Bodega a la ranura procesarArticuloAlist de Alistador
@@ -463,7 +463,7 @@ Alistador::Alistador(int _id, QTableWidget* _tableWidget, QObject* parent)
         alistador4->start();
 
         //------------
-        Alistador* alistador5 = new Alistador(5, tableWidget);
+        Alistador* alistador5 = new Alistador(5, table);
         colaAlistadores.enQueue(alistador5);
 
         // Conectar la señal procesarArticuloBodega de Bodega a la ranura procesarArticuloAlist de Alistador
@@ -473,7 +473,7 @@ Alistador::Alistador(int _id, QTableWidget* _tableWidget, QObject* parent)
         alistador5->start();
 
         //------------
-        Alistador* alistador6 = new Alistador(6, tableWidget);
+        Alistador* alistador6 = new Alistador(6, table);
         colaAlistadores.enQueue(alistador6);
 
         // Conectar la señal procesarArticuloBodega de Bodega a la ranura procesarArticuloAlist de Alistador
@@ -491,6 +491,11 @@ Alistador::Alistador(int _id, QTableWidget* _tableWidget, QObject* parent)
         mutex.lock();
         colaAlistados.enQueue(pedido);
         mutex.unlock();
+    }
+
+    void Bodega::receiveTableWidget(QTableWidget* tableWidget)
+    {
+        table = tableWidget;
     }
 
     Pedido* Bodega::obtenerPedidoAlistado()
@@ -532,12 +537,12 @@ Alistador::Alistador(int _id, QTableWidget* _tableWidget, QObject* parent)
     void Bodega::actualizarInterfaz()
     {
         mutex.lock();
-        int rowCount = tableWidget->rowCount();
-        int columnCount = tableWidget->columnCount();
+        int rowCount = table->rowCount();
+        int columnCount = table->columnCount();
 
         for (int row = 0; row < rowCount; ++row) {
             for (int col = 0; col < columnCount; ++col) {
-                QTableWidgetItem* item = tableWidget->item(row, col);
+                QTableWidgetItem* item = table->item(row, col);
                 if (item) {
                     QVariant data = item->data(Qt::UserRole);
                     CeldaArticulo celda = data.value<CeldaArticulo>();
@@ -672,6 +677,12 @@ MainWindow::MainWindow(PriorityQueue* _colaPedidos, Queue<Pedido *> & _colaAlist
     Comodin->start();
 
     qDebug()<<"Hola";
+
+    emit tableWidgetSignal(tableWidget);
+
+
+    // Conectar la señal con la ranura de Bodega
+    connect(this, &MainWindow::tableWidgetSignal, &bodega, &Bodega::receiveTableWidget);
 
 
 
