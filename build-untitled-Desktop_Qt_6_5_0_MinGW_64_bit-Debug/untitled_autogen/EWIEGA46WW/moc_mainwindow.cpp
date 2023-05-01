@@ -37,6 +37,137 @@ QT_WARNING_DISABLE_GCC("-Wuseless-cast")
 namespace {
 
 #ifdef QT_MOC_HAS_STRINGDATA
+struct qt_meta_stringdata_CLASSFabricaENDCLASS_t {};
+static constexpr auto qt_meta_stringdata_CLASSFabricaENDCLASS = QtMocHelpers::stringData(
+    "Fabrica",
+    "actualizarLabel",
+    "",
+    "texto"
+);
+#else  // !QT_MOC_HAS_STRING_DATA
+struct qt_meta_stringdata_CLASSFabricaENDCLASS_t {
+    uint offsetsAndSizes[8];
+    char stringdata0[8];
+    char stringdata1[16];
+    char stringdata2[1];
+    char stringdata3[6];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_CLASSFabricaENDCLASS_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_CLASSFabricaENDCLASS_t qt_meta_stringdata_CLASSFabricaENDCLASS = {
+    {
+        QT_MOC_LITERAL(0, 7),  // "Fabrica"
+        QT_MOC_LITERAL(8, 15),  // "actualizarLabel"
+        QT_MOC_LITERAL(24, 0),  // ""
+        QT_MOC_LITERAL(25, 5)   // "texto"
+    },
+    "Fabrica",
+    "actualizarLabel",
+    "",
+    "texto"
+};
+#undef QT_MOC_LITERAL
+#endif // !QT_MOC_HAS_STRING_DATA
+} // unnamed namespace
+
+Q_CONSTINIT static const uint qt_meta_data_CLASSFabricaENDCLASS[] = {
+
+ // content:
+      11,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       1,   14, // methods
+       0,    0, // properties
+       0,    0, // enums/sets
+       0,    0, // constructors
+       0,       // flags
+       1,       // signalCount
+
+ // signals: name, argc, parameters, tag, flags, initial metatype offsets
+       1,    1,   20,    2, 0x06,    1 /* Public */,
+
+ // signals: parameters
+    QMetaType::Void, QMetaType::QString,    3,
+
+       0        // eod
+};
+
+Q_CONSTINIT const QMetaObject Fabrica::staticMetaObject = { {
+    QMetaObject::SuperData::link<QThread::staticMetaObject>(),
+    qt_meta_stringdata_CLASSFabricaENDCLASS.offsetsAndSizes,
+    qt_meta_data_CLASSFabricaENDCLASS,
+    qt_static_metacall,
+    nullptr,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_CLASSFabricaENDCLASS_t,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<Fabrica, std::true_type>,
+        // method 'actualizarLabel'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>
+    >,
+    nullptr
+} };
+
+void Fabrica::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+{
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        auto *_t = static_cast<Fabrica *>(_o);
+        (void)_t;
+        switch (_id) {
+        case 0: _t->actualizarLabel((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        default: ;
+        }
+    } else if (_c == QMetaObject::IndexOfMethod) {
+        int *result = reinterpret_cast<int *>(_a[0]);
+        {
+            using _t = void (Fabrica::*)(const QString & );
+            if (_t _q_method = &Fabrica::actualizarLabel; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 0;
+                return;
+            }
+        }
+    }
+}
+
+const QMetaObject *Fabrica::metaObject() const
+{
+    return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
+}
+
+void *Fabrica::qt_metacast(const char *_clname)
+{
+    if (!_clname) return nullptr;
+    if (!strcmp(_clname, qt_meta_stringdata_CLASSFabricaENDCLASS.stringdata0))
+        return static_cast<void*>(this);
+    return QThread::qt_metacast(_clname);
+}
+
+int Fabrica::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+{
+    _id = QThread::qt_metacall(_c, _id, _a);
+    if (_id < 0)
+        return _id;
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        if (_id < 1)
+            qt_static_metacall(this, _c, _id, _a);
+        _id -= 1;
+    } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+        if (_id < 1)
+            *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
+        _id -= 1;
+    }
+    return _id;
+}
+
+// SIGNAL 0
+void Fabrica::actualizarLabel(const QString & _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 0, _a);
+}
+namespace {
+
+#ifdef QT_MOC_HAS_STRINGDATA
 struct qt_meta_stringdata_CLASSAlistadorENDCLASS_t {};
 static constexpr auto qt_meta_stringdata_CLASSAlistadorENDCLASS = QtMocHelpers::stringData(
     "Alistador",
@@ -50,12 +181,11 @@ static constexpr auto qt_meta_stringdata_CLASSAlistadorENDCLASS = QtMocHelpers::
     "_ubicacion",
     "ArticuloPedido*",
     "_articulo",
-    "alistadorLiberado",
-    "to_String"
+    "alistadorLiberado"
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSAlistadorENDCLASS_t {
-    uint offsetsAndSizes[26];
+    uint offsetsAndSizes[24];
     char stringdata0[10];
     char stringdata1[11];
     char stringdata2[1];
@@ -68,7 +198,6 @@ struct qt_meta_stringdata_CLASSAlistadorENDCLASS_t {
     char stringdata9[16];
     char stringdata10[10];
     char stringdata11[18];
-    char stringdata12[10];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSAlistadorENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -85,8 +214,7 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSAlistadorENDCLASS_t qt_meta_str
         QT_MOC_LITERAL(100, 10),  // "_ubicacion"
         QT_MOC_LITERAL(111, 15),  // "ArticuloPedido*"
         QT_MOC_LITERAL(127, 9),  // "_articulo"
-        QT_MOC_LITERAL(137, 17),  // "alistadorLiberado"
-        QT_MOC_LITERAL(155, 9)   // "to_String"
+        QT_MOC_LITERAL(137, 17)   // "alistadorLiberado"
     },
     "Alistador",
     "finalizado",
@@ -99,8 +227,7 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSAlistadorENDCLASS_t qt_meta_str
     "_ubicacion",
     "ArticuloPedido*",
     "_articulo",
-    "alistadorLiberado",
-    "to_String"
+    "alistadorLiberado"
 };
 #undef QT_MOC_LITERAL
 #endif // !QT_MOC_HAS_STRING_DATA
@@ -112,7 +239,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSAlistadorENDCLASS[] = {
       11,       // revision
        0,       // classname
        0,    0, // classinfo
-       4,   14, // methods
+       3,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -120,12 +247,11 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSAlistadorENDCLASS[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    1,   38,    2, 0x06,    1 /* Public */,
+       1,    1,   32,    2, 0x06,    1 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       5,    3,   41,    2, 0x0a,    3 /* Public */,
-      11,    1,   48,    2, 0x0a,    7 /* Public */,
-      12,    0,   51,    2, 0x0a,    9 /* Public */,
+       5,    3,   35,    2, 0x0a,    3 /* Public */,
+      11,    1,   42,    2, 0x0a,    7 /* Public */,
 
  // signals: parameters
     QMetaType::Void, 0x80000000 | 3,    4,
@@ -133,7 +259,6 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSAlistadorENDCLASS[] = {
  // slots: parameters
     QMetaType::Void, 0x80000000 | 6, QMetaType::QString, 0x80000000 | 9,    7,    8,   10,
     QMetaType::Void, 0x80000000 | 3,    4,
-    QMetaType::QString,
 
        0        // eod
 };
@@ -157,9 +282,7 @@ Q_CONSTINIT const QMetaObject Alistador::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<ArticuloPedido *, std::false_type>,
         // method 'alistadorLiberado'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<Alistador *, std::false_type>,
-        // method 'to_String'
-        QtPrivate::TypeAndForceComplete<QString, std::false_type>
+        QtPrivate::TypeAndForceComplete<Alistador *, std::false_type>
     >,
     nullptr
 } };
@@ -173,8 +296,6 @@ void Alistador::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
         case 0: _t->finalizado((*reinterpret_cast< std::add_pointer_t<Alistador*>>(_a[1]))); break;
         case 1: _t->procesarArticuloAlist((*reinterpret_cast< std::add_pointer_t<Queue<Alistador*>>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<ArticuloPedido*>>(_a[3]))); break;
         case 2: _t->alistadorLiberado((*reinterpret_cast< std::add_pointer_t<Alistador*>>(_a[1]))); break;
-        case 3: { QString _r = _t->to_String();
-            if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = std::move(_r); }  break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
@@ -226,13 +347,13 @@ int Alistador::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 4)
+        if (_id < 3)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 4;
+        _id -= 3;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 4)
+        if (_id < 3)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 4;
+        _id -= 3;
     }
     return _id;
 }
@@ -476,11 +597,13 @@ static constexpr auto qt_meta_stringdata_CLASSMainWindowENDCLASS = QtMocHelpers:
     "on_btnDetenerFab03_clicked",
     "on_btnDetenerFab02_clicked",
     "on_btnDetenerFab01_clicked",
+    "actualizarTextoLabel",
+    "texto",
     "on_btnColaDeAlistadores_clicked"
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSMainWindowENDCLASS_t {
-    uint offsetsAndSizes[44];
+    uint offsetsAndSizes[48];
     char stringdata0[11];
     char stringdata1[18];
     char stringdata2[1];
@@ -502,7 +625,9 @@ struct qt_meta_stringdata_CLASSMainWindowENDCLASS_t {
     char stringdata18[27];
     char stringdata19[27];
     char stringdata20[27];
-    char stringdata21[32];
+    char stringdata21[21];
+    char stringdata22[6];
+    char stringdata23[32];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSMainWindowENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -529,7 +654,9 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSMainWindowENDCLASS_t qt_meta_st
         QT_MOC_LITERAL(399, 26),  // "on_btnDetenerFab03_clicked"
         QT_MOC_LITERAL(426, 26),  // "on_btnDetenerFab02_clicked"
         QT_MOC_LITERAL(453, 26),  // "on_btnDetenerFab01_clicked"
-        QT_MOC_LITERAL(480, 31)   // "on_btnColaDeAlistadores_clicked"
+        QT_MOC_LITERAL(480, 20),  // "actualizarTextoLabel"
+        QT_MOC_LITERAL(501, 5),  // "texto"
+        QT_MOC_LITERAL(507, 31)   // "on_btnColaDeAlistadores_clicked"
     },
     "MainWindow",
     "tableWidgetSignal",
@@ -552,6 +679,8 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSMainWindowENDCLASS_t qt_meta_st
     "on_btnDetenerFab03_clicked",
     "on_btnDetenerFab02_clicked",
     "on_btnDetenerFab01_clicked",
+    "actualizarTextoLabel",
+    "texto",
     "on_btnColaDeAlistadores_clicked"
 };
 #undef QT_MOC_LITERAL
@@ -564,7 +693,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
       11,       // revision
        0,       // classname
        0,    0, // classinfo
-      16,   14, // methods
+      17,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -572,24 +701,25 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    1,  110,    2, 0x06,    1 /* Public */,
+       1,    1,  116,    2, 0x06,    1 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       5,    0,  113,    2, 0x08,    3 /* Private */,
-       6,    0,  114,    2, 0x08,    4 /* Private */,
-       7,    0,  115,    2, 0x08,    5 /* Private */,
-       8,    0,  116,    2, 0x08,    6 /* Private */,
-       9,    0,  117,    2, 0x08,    7 /* Private */,
-      10,    0,  118,    2, 0x08,    8 /* Private */,
-      11,    0,  119,    2, 0x08,    9 /* Private */,
-      12,    0,  120,    2, 0x08,   10 /* Private */,
-      13,    0,  121,    2, 0x08,   11 /* Private */,
-      14,    1,  122,    2, 0x08,   12 /* Private */,
-      17,    0,  125,    2, 0x08,   14 /* Private */,
-      18,    0,  126,    2, 0x08,   15 /* Private */,
-      19,    0,  127,    2, 0x08,   16 /* Private */,
-      20,    0,  128,    2, 0x08,   17 /* Private */,
-      21,    0,  129,    2, 0x08,   18 /* Private */,
+       5,    0,  119,    2, 0x08,    3 /* Private */,
+       6,    0,  120,    2, 0x08,    4 /* Private */,
+       7,    0,  121,    2, 0x08,    5 /* Private */,
+       8,    0,  122,    2, 0x08,    6 /* Private */,
+       9,    0,  123,    2, 0x08,    7 /* Private */,
+      10,    0,  124,    2, 0x08,    8 /* Private */,
+      11,    0,  125,    2, 0x08,    9 /* Private */,
+      12,    0,  126,    2, 0x08,   10 /* Private */,
+      13,    0,  127,    2, 0x08,   11 /* Private */,
+      14,    1,  128,    2, 0x08,   12 /* Private */,
+      17,    0,  131,    2, 0x08,   14 /* Private */,
+      18,    0,  132,    2, 0x08,   15 /* Private */,
+      19,    0,  133,    2, 0x08,   16 /* Private */,
+      20,    0,  134,    2, 0x08,   17 /* Private */,
+      21,    1,  135,    2, 0x08,   18 /* Private */,
+      23,    0,  138,    2, 0x08,   20 /* Private */,
 
  // signals: parameters
     QMetaType::Void, 0x80000000 | 3,    4,
@@ -609,6 +739,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void, QMetaType::QString,   22,
     QMetaType::Void,
 
        0        // eod
@@ -655,6 +786,9 @@ Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_btnDetenerFab01_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'actualizarTextoLabel'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
         // method 'on_btnColaDeAlistadores_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
@@ -682,7 +816,8 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 12: _t->on_btnDetenerFab03_clicked(); break;
         case 13: _t->on_btnDetenerFab02_clicked(); break;
         case 14: _t->on_btnDetenerFab01_clicked(); break;
-        case 15: _t->on_btnColaDeAlistadores_clicked(); break;
+        case 15: _t->actualizarTextoLabel((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 16: _t->on_btnColaDeAlistadores_clicked(); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
@@ -734,13 +869,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 16)
+        if (_id < 17)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 16;
+        _id -= 17;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 16)
+        if (_id < 17)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 16;
+        _id -= 17;
     }
     return _id;
 }

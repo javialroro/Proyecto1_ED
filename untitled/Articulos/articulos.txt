@@ -1,2 +1,4 @@
-A01	227	2	A	C05
-B02	125	5	B	F07
+A01	242	2	A	C05
+B02	198	5	B	F07
+
+Archivo erroneo, formato incorrecto

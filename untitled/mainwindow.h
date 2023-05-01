@@ -44,7 +44,7 @@ public:
 
 private:
     PriorityQueue * p_queue;
-    Queue<Pedido *> a_queue;
+    Queue<Pedido *> & a_queue;
     Queue<Pedido *> & f1;
     Queue<Pedido *> & f2;
     Queue<Pedido *> & f3;
@@ -57,12 +57,13 @@ private:
 };
 
 class Fabrica : public QThread {
+    Q_OBJECT
 
 public:
-    Fabrica(listaArticulos  * l, Queue<Pedido *>& colaAlistos,Queue<Pedido *> & A, string cat,QSemaphore& sem, string _name, QLabel * lbl,QObject* parent = nullptr);
+    Fabrica(listaArticulos  * l, Queue<Pedido *>& colaAlistos,Queue<Pedido *> & A, string cat,QSemaphore& sem, string _name, QObject* parent = nullptr);
 
     Fabrica(listaArticulos  * l, Queue<Pedido *>& colaAlistos,Queue<Pedido *> & A, string cat, string cat2, QSemaphore& sem,
-            string _name,QLabel * lbl,QObject* parent = nullptr);
+            string _name,QObject* parent = nullptr);
 
 
 
@@ -70,6 +71,9 @@ public:
     void run() override;
     bool getPaused ();
     void setPaused (bool _paused);
+
+signals:
+    void actualizarLabel(const QString& texto);
 
 private:
     Queue<Pedido *>& a_queue;
@@ -79,7 +83,6 @@ private:
     string _categoria2;
     string name;
     QSemaphore& semaphore;
-    QLabel * label;
     Queue<Pedido *> & cola;
     bool paused = false;
 
@@ -105,13 +108,13 @@ private:
 class Alistador : public QThread{
     Q_OBJECT
     public:
-        explicit Alistador(int _id,QTableWidget* _tableWidget, QObject* parent = nullptr);
+        explicit Alistador(int _id, QTableWidget* _tableWidget, QObject* parent = nullptr);
         void run() override;
+        QString to_String();
 
     public slots:
         void procesarArticuloAlist(Queue<Alistador*> _colaAlistadores, const QString& _ubicacion, ArticuloPedido* _articulo);
         void alistadorLiberado(Alistador* alistador);
-        QString to_String ();
 
     signals:
         void finalizado(Alistador* alistador);
@@ -133,6 +136,7 @@ class Bodega : public QThread
 {
     Q_OBJECT
     public:
+
         explicit Bodega(Queue<Pedido*>& _colaAlisto, Queue<Pedido*>& _colaAlistados, Queue<Alistador *>& colaAlistadores, QObject* parent = nullptr);
         void agregarPedidoAlistado(Pedido* pedido);
         Pedido* obtenerPedidoAlistado();
@@ -151,7 +155,7 @@ class Bodega : public QThread
         QTableWidget* table;
         Queue<Pedido*>& colaAlisto;
         Queue<Pedido*>& colaAlistados;
-        Queue<Alistador*>& colaAlistadores;
+        Queue<Alistador*> colaAlistadores;
         QMutex mutex;
 
         void procesarPedido(Pedido* pedido);
@@ -183,9 +187,9 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    MainWindow(PriorityQueue* _colaPedidos, Queue<Pedido *> & _colaAlisto, Queue<Pedido *> & _colaAlistados,  Queue<Pedido *> & _colaA,  Queue<Pedido *> & _colaB,  Queue<Pedido *> & _colaC,  Queue<Pedido *> & _colaComodin, Queue<Alistador *> & _colaAlistadores,
+    MainWindow(PriorityQueue* _colaPedidos, Queue<Pedido *> & _colaAlisto, Queue<Pedido *> & _colaAlistados,  Queue<Pedido *> & _colaA,  Queue<Pedido *> & _colaB,  Queue<Pedido *> & _colaC,  Queue<Pedido *> & _colaComodin,Queue<Alistador *> & _colaAlistadores,
                listaArticulos * la, listaClientes *lc, Alistados * a, RevisorArchivos *& r, Balanceador * bl, Fabrica * f1,
-               Fabrica * f2,Fabrica * f3,Fabrica * f4, Facturadora * fc, QLabel * lf);
+               Fabrica * f2,Fabrica * f3,Fabrica * f4, Facturadora * fc,  Bodega * b);
     ~MainWindow();
     QTableWidget* getQTable();
     QLabel* getLabelFabricacion();
@@ -228,6 +232,8 @@ private slots:
 
     void on_btnDetenerFab01_clicked();
 
+    void actualizarTextoLabel(const QString& texto);
+
     void on_btnColaDeAlistadores_clicked();
 
 private:
@@ -251,7 +257,7 @@ private:
     Fabrica * C;
     Fabrica * Comodin;
     Facturadora * facturadora;
-    QLabel * labelF;
+    Bodega * bodega;
 
 
     //ThreadContainer* contenedor;
