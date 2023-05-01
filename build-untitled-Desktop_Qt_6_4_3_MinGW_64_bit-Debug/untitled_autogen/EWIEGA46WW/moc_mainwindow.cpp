@@ -147,7 +147,7 @@ void Fabrica::actualizarLabel(const QString & _t1)
 }
 namespace {
 struct qt_meta_stringdata_Alistador_t {
-    uint offsetsAndSizes[24];
+    uint offsetsAndSizes[22];
     char stringdata0[10];
     char stringdata1[11];
     char stringdata2[1];
@@ -156,10 +156,9 @@ struct qt_meta_stringdata_Alistador_t {
     char stringdata5[22];
     char stringdata6[18];
     char stringdata7[17];
-    char stringdata8[11];
-    char stringdata9[16];
-    char stringdata10[10];
-    char stringdata11[18];
+    char stringdata8[17];
+    char stringdata9[7];
+    char stringdata10[18];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_Alistador_t::offsetsAndSizes) + ofs), len 
@@ -173,10 +172,9 @@ Q_CONSTINIT static const qt_meta_stringdata_Alistador_t qt_meta_stringdata_Alist
         QT_MOC_LITERAL(43, 21),  // "procesarArticuloAlist"
         QT_MOC_LITERAL(65, 17),  // "Queue<Alistador*>"
         QT_MOC_LITERAL(83, 16),  // "_colaAlistadores"
-        QT_MOC_LITERAL(100, 10),  // "_ubicacion"
-        QT_MOC_LITERAL(111, 15),  // "ArticuloPedido*"
-        QT_MOC_LITERAL(127, 9),  // "_articulo"
-        QT_MOC_LITERAL(137, 17)   // "alistadorLiberado"
+        QT_MOC_LITERAL(100, 16),  // "ListaArticulosP*"
+        QT_MOC_LITERAL(117, 6),  // "_lista"
+        QT_MOC_LITERAL(124, 17)   // "alistadorLiberado"
     },
     "Alistador",
     "finalizado",
@@ -186,9 +184,8 @@ Q_CONSTINIT static const qt_meta_stringdata_Alistador_t qt_meta_stringdata_Alist
     "procesarArticuloAlist",
     "Queue<Alistador*>",
     "_colaAlistadores",
-    "_ubicacion",
-    "ArticuloPedido*",
-    "_articulo",
+    "ListaArticulosP*",
+    "_lista",
     "alistadorLiberado"
 };
 #undef QT_MOC_LITERAL
@@ -211,14 +208,14 @@ Q_CONSTINIT static const uint qt_meta_data_Alistador[] = {
        1,    1,   32,    2, 0x06,    1 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       5,    3,   35,    2, 0x0a,    3 /* Public */,
-      11,    1,   42,    2, 0x0a,    7 /* Public */,
+       5,    2,   35,    2, 0x0a,    3 /* Public */,
+      10,    1,   40,    2, 0x0a,    6 /* Public */,
 
  // signals: parameters
     QMetaType::Void, 0x80000000 | 3,    4,
 
  // slots: parameters
-    QMetaType::Void, 0x80000000 | 6, QMetaType::QString, 0x80000000 | 9,    7,    8,   10,
+    QMetaType::Void, 0x80000000 | 6, 0x80000000 | 8,    7,    9,
     QMetaType::Void, 0x80000000 | 3,    4,
 
        0        // eod
@@ -239,8 +236,7 @@ Q_CONSTINIT const QMetaObject Alistador::staticMetaObject = { {
         // method 'procesarArticuloAlist'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<Queue<Alistador*>, std::false_type>,
-        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
-        QtPrivate::TypeAndForceComplete<ArticuloPedido *, std::false_type>,
+        QtPrivate::TypeAndForceComplete<ListaArticulosP *, std::false_type>,
         // method 'alistadorLiberado'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<Alistador *, std::false_type>
@@ -255,7 +251,7 @@ void Alistador::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
         (void)_t;
         switch (_id) {
         case 0: _t->finalizado((*reinterpret_cast< std::add_pointer_t<Alistador*>>(_a[1]))); break;
-        case 1: _t->procesarArticuloAlist((*reinterpret_cast< std::add_pointer_t<Queue<Alistador*>>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<ArticuloPedido*>>(_a[3]))); break;
+        case 1: _t->procesarArticuloAlist((*reinterpret_cast< std::add_pointer_t<Queue<Alistador*>>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<ListaArticulosP*>>(_a[2]))); break;
         case 2: _t->alistadorLiberado((*reinterpret_cast< std::add_pointer_t<Alistador*>>(_a[1]))); break;
         default: ;
         }
@@ -327,43 +323,55 @@ void Alistador::finalizado(Alistador * _t1)
 }
 namespace {
 struct qt_meta_stringdata_Bodega_t {
-    uint offsetsAndSizes[22];
+    uint offsetsAndSizes[30];
     char stringdata0[7];
-    char stringdata1[23];
+    char stringdata1[22];
     char stringdata2[1];
     char stringdata3[18];
-    char stringdata4[16];
-    char stringdata5[10];
-    char stringdata6[16];
-    char stringdata7[9];
-    char stringdata8[18];
-    char stringdata9[11];
-    char stringdata10[10];
+    char stringdata4[17];
+    char stringdata5[17];
+    char stringdata6[7];
+    char stringdata7[22];
+    char stringdata8[22];
+    char stringdata9[22];
+    char stringdata10[22];
+    char stringdata11[22];
+    char stringdata12[18];
+    char stringdata13[11];
+    char stringdata14[10];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_Bodega_t::offsetsAndSizes) + ofs), len 
 Q_CONSTINIT static const qt_meta_stringdata_Bodega_t qt_meta_stringdata_Bodega = {
     {
         QT_MOC_LITERAL(0, 6),  // "Bodega"
-        QT_MOC_LITERAL(7, 22),  // "procesarArticuloBodega"
-        QT_MOC_LITERAL(30, 0),  // ""
-        QT_MOC_LITERAL(31, 17),  // "Queue<Alistador*>"
-        QT_MOC_LITERAL(49, 15),  // "colaAlistadores"
-        QT_MOC_LITERAL(65, 9),  // "ubicacion"
-        QT_MOC_LITERAL(75, 15),  // "ArticuloPedido*"
-        QT_MOC_LITERAL(91, 8),  // "articulo"
-        QT_MOC_LITERAL(100, 17),  // "alistadorLiberado"
-        QT_MOC_LITERAL(118, 10),  // "Alistador*"
-        QT_MOC_LITERAL(129, 9)   // "alistador"
+        QT_MOC_LITERAL(7, 21),  // "procesarPedidoBodega1"
+        QT_MOC_LITERAL(29, 0),  // ""
+        QT_MOC_LITERAL(30, 17),  // "Queue<Alistador*>"
+        QT_MOC_LITERAL(48, 16),  // "_colaAlistadores"
+        QT_MOC_LITERAL(65, 16),  // "ListaArticulosP*"
+        QT_MOC_LITERAL(82, 6),  // "_lista"
+        QT_MOC_LITERAL(89, 21),  // "procesarPedidoBodega2"
+        QT_MOC_LITERAL(111, 21),  // "procesarPedidoBodega3"
+        QT_MOC_LITERAL(133, 21),  // "procesarPedidoBodega4"
+        QT_MOC_LITERAL(155, 21),  // "procesarPedidoBodega5"
+        QT_MOC_LITERAL(177, 21),  // "procesarPedidoBodega6"
+        QT_MOC_LITERAL(199, 17),  // "alistadorLiberado"
+        QT_MOC_LITERAL(217, 10),  // "Alistador*"
+        QT_MOC_LITERAL(228, 9)   // "alistador"
     },
     "Bodega",
-    "procesarArticuloBodega",
+    "procesarPedidoBodega1",
     "",
     "Queue<Alistador*>",
-    "colaAlistadores",
-    "ubicacion",
-    "ArticuloPedido*",
-    "articulo",
+    "_colaAlistadores",
+    "ListaArticulosP*",
+    "_lista",
+    "procesarPedidoBodega2",
+    "procesarPedidoBodega3",
+    "procesarPedidoBodega4",
+    "procesarPedidoBodega5",
+    "procesarPedidoBodega6",
     "alistadorLiberado",
     "Alistador*",
     "alistador"
@@ -377,24 +385,34 @@ Q_CONSTINIT static const uint qt_meta_data_Bodega[] = {
       10,       // revision
        0,       // classname
        0,    0, // classinfo
-       2,   14, // methods
+       7,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       1,       // signalCount
+       6,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    3,   26,    2, 0x06,    1 /* Public */,
+       1,    2,   56,    2, 0x06,    1 /* Public */,
+       7,    2,   61,    2, 0x06,    4 /* Public */,
+       8,    2,   66,    2, 0x06,    7 /* Public */,
+       9,    2,   71,    2, 0x06,   10 /* Public */,
+      10,    2,   76,    2, 0x06,   13 /* Public */,
+      11,    2,   81,    2, 0x06,   16 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       8,    1,   33,    2, 0x0a,    5 /* Public */,
+      12,    1,   86,    2, 0x0a,   19 /* Public */,
 
  // signals: parameters
-    QMetaType::Void, 0x80000000 | 3, QMetaType::QString, 0x80000000 | 6,    4,    5,    7,
+    QMetaType::Void, 0x80000000 | 3, 0x80000000 | 5,    4,    6,
+    QMetaType::Void, 0x80000000 | 3, 0x80000000 | 5,    4,    6,
+    QMetaType::Void, 0x80000000 | 3, 0x80000000 | 5,    4,    6,
+    QMetaType::Void, 0x80000000 | 3, 0x80000000 | 5,    4,    6,
+    QMetaType::Void, 0x80000000 | 3, 0x80000000 | 5,    4,    6,
+    QMetaType::Void, 0x80000000 | 3, 0x80000000 | 5,    4,    6,
 
  // slots: parameters
-    QMetaType::Void, 0x80000000 | 9,   10,
+    QMetaType::Void, 0x80000000 | 13,   14,
 
        0        // eod
 };
@@ -408,11 +426,30 @@ Q_CONSTINIT const QMetaObject Bodega::staticMetaObject = { {
     qt_incomplete_metaTypeArray<qt_meta_stringdata_Bodega_t,
         // Q_OBJECT / Q_GADGET
         QtPrivate::TypeAndForceComplete<Bodega, std::true_type>,
-        // method 'procesarArticuloBodega'
+        // method 'procesarPedidoBodega1'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<Queue<Alistador*>, std::false_type>,
-        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
-        QtPrivate::TypeAndForceComplete<ArticuloPedido *, std::false_type>,
+        QtPrivate::TypeAndForceComplete<ListaArticulosP *, std::false_type>,
+        // method 'procesarPedidoBodega2'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<Queue<Alistador*>, std::false_type>,
+        QtPrivate::TypeAndForceComplete<ListaArticulosP *, std::false_type>,
+        // method 'procesarPedidoBodega3'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<Queue<Alistador*>, std::false_type>,
+        QtPrivate::TypeAndForceComplete<ListaArticulosP *, std::false_type>,
+        // method 'procesarPedidoBodega4'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<Queue<Alistador*>, std::false_type>,
+        QtPrivate::TypeAndForceComplete<ListaArticulosP *, std::false_type>,
+        // method 'procesarPedidoBodega5'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<Queue<Alistador*>, std::false_type>,
+        QtPrivate::TypeAndForceComplete<ListaArticulosP *, std::false_type>,
+        // method 'procesarPedidoBodega6'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<Queue<Alistador*>, std::false_type>,
+        QtPrivate::TypeAndForceComplete<ListaArticulosP *, std::false_type>,
         // method 'alistadorLiberado'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<Alistador *, std::false_type>
@@ -426,14 +463,19 @@ void Bodega::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         auto *_t = static_cast<Bodega *>(_o);
         (void)_t;
         switch (_id) {
-        case 0: _t->procesarArticuloBodega((*reinterpret_cast< std::add_pointer_t<Queue<Alistador*>>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<ArticuloPedido*>>(_a[3]))); break;
-        case 1: _t->alistadorLiberado((*reinterpret_cast< std::add_pointer_t<Alistador*>>(_a[1]))); break;
+        case 0: _t->procesarPedidoBodega1((*reinterpret_cast< std::add_pointer_t<Queue<Alistador*>>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<ListaArticulosP*>>(_a[2]))); break;
+        case 1: _t->procesarPedidoBodega2((*reinterpret_cast< std::add_pointer_t<Queue<Alistador*>>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<ListaArticulosP*>>(_a[2]))); break;
+        case 2: _t->procesarPedidoBodega3((*reinterpret_cast< std::add_pointer_t<Queue<Alistador*>>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<ListaArticulosP*>>(_a[2]))); break;
+        case 3: _t->procesarPedidoBodega4((*reinterpret_cast< std::add_pointer_t<Queue<Alistador*>>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<ListaArticulosP*>>(_a[2]))); break;
+        case 4: _t->procesarPedidoBodega5((*reinterpret_cast< std::add_pointer_t<Queue<Alistador*>>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<ListaArticulosP*>>(_a[2]))); break;
+        case 5: _t->procesarPedidoBodega6((*reinterpret_cast< std::add_pointer_t<Queue<Alistador*>>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<ListaArticulosP*>>(_a[2]))); break;
+        case 6: _t->alistadorLiberado((*reinterpret_cast< std::add_pointer_t<Alistador*>>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         switch (_id) {
         default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
-        case 1:
+        case 6:
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
             case 0:
@@ -444,9 +486,44 @@ void Bodega::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
         {
-            using _t = void (Bodega::*)(Queue<Alistador*> , const QString & , ArticuloPedido * );
-            if (_t _q_method = &Bodega::procesarArticuloBodega; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+            using _t = void (Bodega::*)(Queue<Alistador*> , ListaArticulosP * );
+            if (_t _q_method = &Bodega::procesarPedidoBodega1; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
                 *result = 0;
+                return;
+            }
+        }
+        {
+            using _t = void (Bodega::*)(Queue<Alistador*> , ListaArticulosP * );
+            if (_t _q_method = &Bodega::procesarPedidoBodega2; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 1;
+                return;
+            }
+        }
+        {
+            using _t = void (Bodega::*)(Queue<Alistador*> , ListaArticulosP * );
+            if (_t _q_method = &Bodega::procesarPedidoBodega3; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 2;
+                return;
+            }
+        }
+        {
+            using _t = void (Bodega::*)(Queue<Alistador*> , ListaArticulosP * );
+            if (_t _q_method = &Bodega::procesarPedidoBodega4; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 3;
+                return;
+            }
+        }
+        {
+            using _t = void (Bodega::*)(Queue<Alistador*> , ListaArticulosP * );
+            if (_t _q_method = &Bodega::procesarPedidoBodega5; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 4;
+                return;
+            }
+        }
+        {
+            using _t = void (Bodega::*)(Queue<Alistador*> , ListaArticulosP * );
+            if (_t _q_method = &Bodega::procesarPedidoBodega6; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 5;
                 return;
             }
         }
@@ -472,75 +549,113 @@ int Bodega::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 2)
+        if (_id < 7)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 2;
+        _id -= 7;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 2)
+        if (_id < 7)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 2;
+        _id -= 7;
     }
     return _id;
 }
 
 // SIGNAL 0
-void Bodega::procesarArticuloBodega(Queue<Alistador*> _t1, const QString & _t2, ArticuloPedido * _t3)
+void Bodega::procesarPedidoBodega1(Queue<Alistador*> _t1, ListaArticulosP * _t2)
 {
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t3))) };
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);
+}
+
+// SIGNAL 1
+void Bodega::procesarPedidoBodega2(Queue<Alistador*> _t1, ListaArticulosP * _t2)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))) };
+    QMetaObject::activate(this, &staticMetaObject, 1, _a);
+}
+
+// SIGNAL 2
+void Bodega::procesarPedidoBodega3(Queue<Alistador*> _t1, ListaArticulosP * _t2)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))) };
+    QMetaObject::activate(this, &staticMetaObject, 2, _a);
+}
+
+// SIGNAL 3
+void Bodega::procesarPedidoBodega4(Queue<Alistador*> _t1, ListaArticulosP * _t2)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))) };
+    QMetaObject::activate(this, &staticMetaObject, 3, _a);
+}
+
+// SIGNAL 4
+void Bodega::procesarPedidoBodega5(Queue<Alistador*> _t1, ListaArticulosP * _t2)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))) };
+    QMetaObject::activate(this, &staticMetaObject, 4, _a);
+}
+
+// SIGNAL 5
+void Bodega::procesarPedidoBodega6(Queue<Alistador*> _t1, ListaArticulosP * _t2)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))) };
+    QMetaObject::activate(this, &staticMetaObject, 5, _a);
 }
 namespace {
 struct qt_meta_stringdata_MainWindow_t {
-    uint offsetsAndSizes[40];
+    uint offsetsAndSizes[42];
     char stringdata0[11];
-    char stringdata1[26];
+    char stringdata1[17];
     char stringdata2[1];
-    char stringdata3[33];
+    char stringdata3[26];
     char stringdata4[33];
     char stringdata5[33];
-    char stringdata6[36];
-    char stringdata7[27];
-    char stringdata8[28];
-    char stringdata9[30];
-    char stringdata10[33];
-    char stringdata11[20];
-    char stringdata12[8];
-    char stringdata13[6];
-    char stringdata14[30];
-    char stringdata15[27];
+    char stringdata6[33];
+    char stringdata7[36];
+    char stringdata8[27];
+    char stringdata9[28];
+    char stringdata10[30];
+    char stringdata11[33];
+    char stringdata12[20];
+    char stringdata13[8];
+    char stringdata14[6];
+    char stringdata15[30];
     char stringdata16[27];
     char stringdata17[27];
-    char stringdata18[21];
-    char stringdata19[6];
+    char stringdata18[27];
+    char stringdata19[21];
+    char stringdata20[6];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_MainWindow_t::offsetsAndSizes) + ofs), len 
 Q_CONSTINIT static const qt_meta_stringdata_MainWindow_t qt_meta_stringdata_MainWindow = {
     {
         QT_MOC_LITERAL(0, 10),  // "MainWindow"
-        QT_MOC_LITERAL(11, 25),  // "on_btnColaPedidos_clicked"
-        QT_MOC_LITERAL(37, 0),  // ""
-        QT_MOC_LITERAL(38, 32),  // "on_btnColaFabricaciones1_clicked"
-        QT_MOC_LITERAL(71, 32),  // "on_btnColaFabricaciones2_clicked"
-        QT_MOC_LITERAL(104, 32),  // "on_btnColaFabricaciones3_clicked"
-        QT_MOC_LITERAL(137, 35),  // "on_btnColaFabricaciones4Com_c..."
-        QT_MOC_LITERAL(173, 26),  // "on_btnColaDeAlisto_clicked"
-        QT_MOC_LITERAL(200, 27),  // "on_btnColaAlistados_clicked"
-        QT_MOC_LITERAL(228, 29),  // "on_btnColaPorFacturar_clicked"
-        QT_MOC_LITERAL(258, 32),  // "on_btnDetenerBalanceador_clicked"
-        QT_MOC_LITERAL(291, 19),  // "setLabelFabricacion"
-        QT_MOC_LITERAL(311, 7),  // "QLabel*"
-        QT_MOC_LITERAL(319, 5),  // "label"
-        QT_MOC_LITERAL(325, 29),  // "on_btnDetenerFab04Com_clicked"
-        QT_MOC_LITERAL(355, 26),  // "on_btnDetenerFab03_clicked"
-        QT_MOC_LITERAL(382, 26),  // "on_btnDetenerFab02_clicked"
-        QT_MOC_LITERAL(409, 26),  // "on_btnDetenerFab01_clicked"
-        QT_MOC_LITERAL(436, 20),  // "actualizarTextoLabel"
-        QT_MOC_LITERAL(457, 5)   // "texto"
+        QT_MOC_LITERAL(11, 16),  // "actualizarATable"
+        QT_MOC_LITERAL(28, 0),  // ""
+        QT_MOC_LITERAL(29, 25),  // "on_btnColaPedidos_clicked"
+        QT_MOC_LITERAL(55, 32),  // "on_btnColaFabricaciones1_clicked"
+        QT_MOC_LITERAL(88, 32),  // "on_btnColaFabricaciones2_clicked"
+        QT_MOC_LITERAL(121, 32),  // "on_btnColaFabricaciones3_clicked"
+        QT_MOC_LITERAL(154, 35),  // "on_btnColaFabricaciones4Com_c..."
+        QT_MOC_LITERAL(190, 26),  // "on_btnColaDeAlisto_clicked"
+        QT_MOC_LITERAL(217, 27),  // "on_btnColaAlistados_clicked"
+        QT_MOC_LITERAL(245, 29),  // "on_btnColaPorFacturar_clicked"
+        QT_MOC_LITERAL(275, 32),  // "on_btnDetenerBalanceador_clicked"
+        QT_MOC_LITERAL(308, 19),  // "setLabelFabricacion"
+        QT_MOC_LITERAL(328, 7),  // "QLabel*"
+        QT_MOC_LITERAL(336, 5),  // "label"
+        QT_MOC_LITERAL(342, 29),  // "on_btnDetenerFab04Com_clicked"
+        QT_MOC_LITERAL(372, 26),  // "on_btnDetenerFab03_clicked"
+        QT_MOC_LITERAL(399, 26),  // "on_btnDetenerFab02_clicked"
+        QT_MOC_LITERAL(426, 26),  // "on_btnDetenerFab01_clicked"
+        QT_MOC_LITERAL(453, 20),  // "actualizarTextoLabel"
+        QT_MOC_LITERAL(474, 5)   // "texto"
     },
     "MainWindow",
-    "on_btnColaPedidos_clicked",
+    "actualizarATable",
     "",
+    "on_btnColaPedidos_clicked",
     "on_btnColaFabricaciones1_clicked",
     "on_btnColaFabricaciones2_clicked",
     "on_btnColaFabricaciones3_clicked",
@@ -568,7 +683,7 @@ Q_CONSTINIT static const uint qt_meta_data_MainWindow[] = {
       10,       // revision
        0,       // classname
        0,    0, // classinfo
-      15,   14, // methods
+      16,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -576,21 +691,22 @@ Q_CONSTINIT static const uint qt_meta_data_MainWindow[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,  104,    2, 0x08,    1 /* Private */,
-       3,    0,  105,    2, 0x08,    2 /* Private */,
-       4,    0,  106,    2, 0x08,    3 /* Private */,
-       5,    0,  107,    2, 0x08,    4 /* Private */,
-       6,    0,  108,    2, 0x08,    5 /* Private */,
-       7,    0,  109,    2, 0x08,    6 /* Private */,
-       8,    0,  110,    2, 0x08,    7 /* Private */,
-       9,    0,  111,    2, 0x08,    8 /* Private */,
-      10,    0,  112,    2, 0x08,    9 /* Private */,
-      11,    1,  113,    2, 0x08,   10 /* Private */,
-      14,    0,  116,    2, 0x08,   12 /* Private */,
-      15,    0,  117,    2, 0x08,   13 /* Private */,
-      16,    0,  118,    2, 0x08,   14 /* Private */,
-      17,    0,  119,    2, 0x08,   15 /* Private */,
-      18,    1,  120,    2, 0x08,   16 /* Private */,
+       1,    0,  110,    2, 0x08,    1 /* Private */,
+       3,    0,  111,    2, 0x08,    2 /* Private */,
+       4,    0,  112,    2, 0x08,    3 /* Private */,
+       5,    0,  113,    2, 0x08,    4 /* Private */,
+       6,    0,  114,    2, 0x08,    5 /* Private */,
+       7,    0,  115,    2, 0x08,    6 /* Private */,
+       8,    0,  116,    2, 0x08,    7 /* Private */,
+       9,    0,  117,    2, 0x08,    8 /* Private */,
+      10,    0,  118,    2, 0x08,    9 /* Private */,
+      11,    0,  119,    2, 0x08,   10 /* Private */,
+      12,    1,  120,    2, 0x08,   11 /* Private */,
+      15,    0,  123,    2, 0x08,   13 /* Private */,
+      16,    0,  124,    2, 0x08,   14 /* Private */,
+      17,    0,  125,    2, 0x08,   15 /* Private */,
+      18,    0,  126,    2, 0x08,   16 /* Private */,
+      19,    1,  127,    2, 0x08,   17 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -602,12 +718,13 @@ Q_CONSTINIT static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 12,   13,
+    QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 13,   14,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QString,   19,
+    QMetaType::Void, QMetaType::QString,   20,
 
        0        // eod
 };
@@ -621,6 +738,8 @@ Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
     qt_incomplete_metaTypeArray<qt_meta_stringdata_MainWindow_t,
         // Q_OBJECT / Q_GADGET
         QtPrivate::TypeAndForceComplete<MainWindow, std::true_type>,
+        // method 'actualizarATable'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_btnColaPedidos_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_btnColaFabricaciones1_clicked'
@@ -663,27 +782,28 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         auto *_t = static_cast<MainWindow *>(_o);
         (void)_t;
         switch (_id) {
-        case 0: _t->on_btnColaPedidos_clicked(); break;
-        case 1: _t->on_btnColaFabricaciones1_clicked(); break;
-        case 2: _t->on_btnColaFabricaciones2_clicked(); break;
-        case 3: _t->on_btnColaFabricaciones3_clicked(); break;
-        case 4: _t->on_btnColaFabricaciones4Com_clicked(); break;
-        case 5: _t->on_btnColaDeAlisto_clicked(); break;
-        case 6: _t->on_btnColaAlistados_clicked(); break;
-        case 7: _t->on_btnColaPorFacturar_clicked(); break;
-        case 8: _t->on_btnDetenerBalanceador_clicked(); break;
-        case 9: _t->setLabelFabricacion((*reinterpret_cast< std::add_pointer_t<QLabel*>>(_a[1]))); break;
-        case 10: _t->on_btnDetenerFab04Com_clicked(); break;
-        case 11: _t->on_btnDetenerFab03_clicked(); break;
-        case 12: _t->on_btnDetenerFab02_clicked(); break;
-        case 13: _t->on_btnDetenerFab01_clicked(); break;
-        case 14: _t->actualizarTextoLabel((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 0: _t->actualizarATable(); break;
+        case 1: _t->on_btnColaPedidos_clicked(); break;
+        case 2: _t->on_btnColaFabricaciones1_clicked(); break;
+        case 3: _t->on_btnColaFabricaciones2_clicked(); break;
+        case 4: _t->on_btnColaFabricaciones3_clicked(); break;
+        case 5: _t->on_btnColaFabricaciones4Com_clicked(); break;
+        case 6: _t->on_btnColaDeAlisto_clicked(); break;
+        case 7: _t->on_btnColaAlistados_clicked(); break;
+        case 8: _t->on_btnColaPorFacturar_clicked(); break;
+        case 9: _t->on_btnDetenerBalanceador_clicked(); break;
+        case 10: _t->setLabelFabricacion((*reinterpret_cast< std::add_pointer_t<QLabel*>>(_a[1]))); break;
+        case 11: _t->on_btnDetenerFab04Com_clicked(); break;
+        case 12: _t->on_btnDetenerFab03_clicked(); break;
+        case 13: _t->on_btnDetenerFab02_clicked(); break;
+        case 14: _t->on_btnDetenerFab01_clicked(); break;
+        case 15: _t->actualizarTextoLabel((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         switch (_id) {
         default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
-        case 9:
+        case 10:
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
             case 0:
@@ -713,13 +833,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 15)
+        if (_id < 16)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 15;
+        _id -= 16;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 15)
+        if (_id < 16)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 15;
+        _id -= 16;
     }
     return _id;
 }

@@ -41,8 +41,8 @@ RevisorArchivos::RevisorArchivos(struct listaArticulos  * la, struct listaClient
     void RevisorArchivos::run() {
         while (true) {
 
-            //QString path = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Pedidos";
-            QString path = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Pedidos";
+            QString path = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Pedidos";
+            //QString path = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Pedidos";
             QDir directorio(path);
             QStringList archivos = directorio.entryList(QStringList() << "*.txt", QDir::Files);
             if (archivos.size() > 0) {
@@ -62,8 +62,8 @@ RevisorArchivos::RevisorArchivos(struct listaArticulos  * la, struct listaClient
                     cargarPedido(a, colaPedidos, listaClientes, listaArticulos);
 
                     string ruta_archivo = todo;
-                    //string ruta_pedidosP = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\PedidosProcesados\\"+cArchivo;
-                    string ruta_pedidosP = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\PedidosProcesados\\"+cArchivo;
+                    string ruta_pedidosP = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\PedidosProcesados\\"+cArchivo;
+                    //string ruta_pedidosP = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\PedidosProcesados\\"+cArchivo;
 
                     rename(ruta_archivo.c_str(),ruta_pedidosP.c_str());
                 }
@@ -285,11 +285,21 @@ Balanceador::Balanceador(listaArticulos  * l, PriorityQueue * colaPedidos, Queue
                         while(!cola.isEmpty()){
 
                             Pedido * pedido = cola.deQueue();
-                            string name= to_string(pedido->numPedido)+"_"+pedido->codCliente+"_"+retornarHora()+".txt";
-                            pedido->factura->insertarAlFinal("Finalizado: "+retornarHora());
 
-                            fstream factura("C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Facturas\\"+name);
+                            string name= "Factura pedido_"+to_string(pedido->numPedido)+"_Cliente_"+pedido->codCliente+"_.txt";
+
+                            stringstream ss;
+                            ss << "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Facturas\\" << name;
+                            std::string ruta_archivo = ss.str();
+
+
+                            pedido->factura->insertarAlFinal("Finalizado: "+retornarHora());
+                            ofstream factura(ruta_archivo);
+
                             //fstream factura("C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Facturas\\"+name);
+                            if (!factura){
+                                cout<<"error al crear archivo"<<endl;
+                            }
 
                             factura<<"Pedido: "+to_string(pedido->numPedido)+"\n"+"Cliente: "+pedido->codCliente+"\n";
 
@@ -299,6 +309,8 @@ Balanceador::Balanceador(listaArticulos  * l, PriorityQueue * colaPedidos, Queue
                                 factura<<tmp->txt;
                                 tmp=tmp->siguiente;
                             }
+
+                            factura.close();
 
 
                         }
@@ -369,6 +381,7 @@ Alistador::Alistador(listaArticulos *_listaArt, int _id, QTableWidget* _tableWid
                 // Asignar el artículo y la ubicación al alistador
                 colaAlistadores = _colaAlistadores;
                 listaArtProcesados = _lista;
+                //pedidoF=pedido;
                 qDebug() << "alistdor : #" << id;
         }
 
@@ -412,6 +425,7 @@ Alistador::Alistador(listaArticulos *_listaArt, int _id, QTableWidget* _tableWid
 
         void Alistador::moverAlistador(ArticuloPedido* articulo)
         {
+
                 QString ubicacion = obtenerUbicacion(articulo);
                 qDebug()<<"entra a moverAlistador";
                 QString letra = QString(ubicacion.at(0));
@@ -423,6 +437,7 @@ Alistador::Alistador(listaArticulos *_listaArt, int _id, QTableWidget* _tableWid
                 // Obtener índices
                 int fila = numero - 1;
                 int columna = obtenerIndiceLetra(letra);
+
                 qDebug()<<"Pasa obtenerIndiceLetra";
                 int distanciaFilas = fila;
                 int distanciaColumnas = columna;
@@ -430,6 +445,8 @@ Alistador::Alistador(listaArticulos *_listaArt, int _id, QTableWidget* _tableWid
                 // Calcular el tiempo necesario para moverse hasta la ubicación del artículo
                 int tiempoIda = distanciaFilas + distanciaColumnas;
                 qDebug()<<"El alistador durará en segundos: " << tiempoIda;
+                //qDebug()<<pedidoF->numPedido;
+                //pedidoF->factura->insertarAlFinal(articulo->codProd+" Ubicacion: "+ubicacion.toStdString()+" "+to_string(tiempoIda)+" segundos");
 
                 // Simular el tiempo de movimiento
                 QThread::sleep(tiempoIda);
@@ -600,6 +617,7 @@ Bodega::Bodega(listaArticulos *_listaArt, Queue<Pedido*>& _colaAlisto, Queue<Ped
                     qDebug() << "alisto no está vacía";
                     // Esperar a que haya un pedido alistado en la bodega
                     Pedido* pedido = colaAlisto.deQueue();
+                    pedido->factura->insertarAlFinal("A empaque: "+retornarHora());
                     qDebug() << "bodega test 1";
 
                     //Procesar el pedido alistado
@@ -612,7 +630,7 @@ Bodega::Bodega(listaArticulos *_listaArt, Queue<Pedido*>& _colaAlisto, Queue<Ped
                     qDebug() << "Se ha encolado en cola Alistados";
                 }
             }
-            qDebug() << "alisto está vacía";
+            //qDebug() << "alisto está vacía";
             QThread::sleep(1);
         }
     }
@@ -689,7 +707,7 @@ Bodega::Bodega(listaArticulos *_listaArt, Queue<Pedido*>& _colaAlisto, Queue<Ped
         alistador->mutex.unlock();
         // Emitir la señal para procesar el artículo en un alistador
         int iD = alistador->id;
-        qDebug() << "Aistador " << iD;
+        qDebug() << "Alistador " << iD;
         if (iD == 1){
             emit procesarPedidoBodega1(colaAlistadores ,listaArticulos);
         } else if (iD == 2){
@@ -742,6 +760,7 @@ Alistados::Alistados(Queue<Pedido *>& colaFacturacion,Queue<Pedido *> & A, strin
                 cout<<name<<endl;
 
                 Pedido * pedido = cola.deQueue();
+                cout<<pedido->numPedido<<endl;
 
                 NodoArticuloP *tmp = pedido->listaPedido->pn;
 
@@ -750,6 +769,7 @@ Alistados::Alistados(Queue<Pedido *>& colaFacturacion,Queue<Pedido *> & A, strin
 
                 while (tmp != NULL){
                     sleep(1);
+                    cout<<"aliste el pedido "+tmp->articulo->codProd<<endl;;
                     tmp = tmp->siguiente;
 
                 }
@@ -774,10 +794,10 @@ Alistados::Alistados(Queue<Pedido *>& colaFacturacion,Queue<Pedido *> & A, strin
 
 MainWindow::MainWindow(PriorityQueue* _colaPedidos, Queue<Pedido *> & _colaAlisto, Queue<Pedido *> & _colaAlistados,  Queue<Pedido *> & _colaA,  Queue<Pedido *> & _colaB,  Queue<Pedido *> & _colaC,  Queue<Pedido *> & _colaComodin, Queue<Alistador *> & _colaAlistadores,
                            listaArticulos * la, listaClientes *lc, Alistados * a, RevisorArchivos *& r, Balanceador * bl, Fabrica * f1,
-                           Fabrica * f2,Fabrica * f3,Fabrica * f4, Facturadora * fc,  Bodega * b)
+                           Fabrica * f2,Fabrica * f3,Fabrica * f4, Facturadora * fc,  Bodega * b,Queue<Pedido *> & _colaFacturacion )
     : QMainWindow(),
         colaPedidos(_colaPedidos),colaAlisto(_colaAlisto),colaAlistados(_colaAlistados),colaA (_colaA),colaB (_colaB),colaC (_colaC),colaComodin (_colaComodin), colaAlistadores(_colaAlistadores),
-        listaArt(la),lista(lc),alistad(a),revisor(r),balanceador(bl),A(f1),B(f2),C(f3),Comodin(f4),facturadora(fc),bodega(b),
+        listaArt(la),lista(lc),alistad(a),revisor(r),balanceador(bl),A(f1),B(f2),C(f3),Comodin(f4),facturadora(fc),bodega(b),colaFacturacion(_colaFacturacion),
 
     ui(new Ui::MainWindow)
 
@@ -805,6 +825,8 @@ MainWindow::MainWindow(PriorityQueue* _colaPedidos, Queue<Pedido *> & _colaAlist
     B->start();
     C->start();
     Comodin->start();
+    alistad->start();
+    facturadora->start();
 
     qDebug()<<"Hola";
 
@@ -855,7 +877,7 @@ void MainWindow::actualizarATable()
                 }
             }
         }
-        qDebug()<<"tabla actualizada";
+        //qDebug()<<"tabla actualizada";
 
      }
 }
@@ -937,9 +959,11 @@ void MainWindow::on_btnColaAlistados_clicked()
 
 void MainWindow::on_btnColaPorFacturar_clicked()
 {
-    //Queue<Pedido*> colaPedidos = revisor->getColaPedidos()->to_Queue();
-    //vColaPedidos* vColaPedidosDialog = new vColaPedidos(colaPedidos);
-    //vColaPedidosDialog->show();
+    vColaPedidos* vColaPedidosDialog = new vColaPedidos(colaFacturacion); // Crear instancia de vColaPedidos
+
+    vColaPedidosDialog->setQueueContent(); // Establecer el contenido de la cola en el QTextEdit
+
+    vColaPedidosDialog->show();
 }
 
 

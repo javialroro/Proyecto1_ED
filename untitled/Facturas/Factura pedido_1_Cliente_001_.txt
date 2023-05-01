@@ -1,0 +1,8 @@
+Pedido: 1
+Cliente: 001
+En cola: Mon May 01 15_19_59 2023
+
+Balanceador: Mon May 01 15_20_02 2023
+
+A empaque: Mon May 01 15_20_02 2023
+Finalizado: Mon May 01 15_20_05 2023

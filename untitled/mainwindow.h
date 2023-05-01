@@ -204,7 +204,7 @@ class MainWindow : public QMainWindow
 public:
     MainWindow( PriorityQueue* _colaPedidos, Queue<Pedido *> & _colaAlisto, Queue<Pedido *> & _colaAlistados,  Queue<Pedido *> & _colaA,  Queue<Pedido *> & _colaB,  Queue<Pedido *> & _colaC,  Queue<Pedido *> & _colaComodin, Queue<Alistador *> & _colaAlistadores,
                listaArticulos * la, listaClientes *lc, Alistados * a, RevisorArchivos *& r, Balanceador * bl, Fabrica * f1,
-               Fabrica * f2,Fabrica * f3,Fabrica * f4, Facturadora * fc,  Bodega * b);
+               Fabrica * f2,Fabrica * f3,Fabrica * f4, Facturadora * fc,  Bodega * b,Queue<Pedido *> & _colaFacturacion);
     ~MainWindow();
     QTableWidget* getQTable();
     QLabel* getLabelFabricacion();
@@ -259,6 +259,7 @@ private:
     Queue<Pedido *> & colaB;
     Queue<Pedido *> & colaC;
     Queue<Pedido *> & colaComodin;
+    Queue<Pedido *> & colaFacturacion;
     Queue<Alistador *> & colaAlistadores;
     listaClientes *lista;
     listaArticulos *listaArt;
