@@ -150,12 +150,12 @@ class Bodega : public QThread
         void liberarAlistador(Alistador* alistador);
         void run() override;
         void actualizarInterfaz();
-<<<<<<< Updated upstream
+
         void setPaused(bool _paused);
         bool getPaused();
-=======
+
         void encolarAlistador(Alistador * alistador);
->>>>>>> Stashed changes
+
 
     signals:
         void procesarArticuloBodega(Queue<Alistador*> colaAlistadores, const QString& ubicacion, ArticuloPedido* articulo);

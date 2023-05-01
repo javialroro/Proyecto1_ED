@@ -277,29 +277,21 @@ Balanceador::Balanceador(listaArticulos  * l, PriorityQueue * colaPedidos, Queue
 
 
     void Facturadora::run(){
-
-<<<<<<< Updated upstream
                 while (true) {
                     if(!paused){
-=======
-        if(!paused){
-                while (true) {
->>>>>>> Stashed changes
 
 
                     while(!cola.isEmpty()){
 
                         Pedido * pedido = cola.deQueue();
 
-<<<<<<< Updated upstream
-                            //fstream factura("C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Facturas\\"+name);
-                            fstream factura("C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Facturas\\"+name);
-=======
-                        string name= "Factura pedido_"+to_string(pedido->numPedido)+"_Cliente_"+pedido->codCliente+"_.txt";
->>>>>>> Stashed changes
+                        string name= "Pedido: "+to_string(pedido->numPedido)+""+pedido->codCliente;
+                        //fstream factura("C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Facturas\\"+name);
+
 
                         stringstream ss;
                         ss << "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Facturas\\" << name;
+                        ss << "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Facturas\\" << name;
                         std::string ruta_archivo = ss.str();
 
 
@@ -506,28 +498,16 @@ Bodega::Bodega(Queue<Pedido*>& _colaAlisto, Queue<Pedido*>& _colaAlistados, Queu
                     ListaArticulosP* listaArticulos = pedido->listaPedido;
                     NodoArticuloP* temp = listaArticulos->pn;
                     //qDebug() << "Pasa inicializaciones";
-
-
-<<<<<<< Updated upstream
-                    while (temp != NULL) {
-                                ArticuloPedido* articulo = temp->articulo;
-                                string s = listaArt->buscarUbi(temp->articulo->codProd);
-                                QString ubicacion = QString::fromStdString(s);
-                                qDebug()<<ubicacion;
-                                alistador->ubicacion= ubicacion;
-                                alistador->articulo=articulo;
-                                temp = temp->siguiente;
-=======
                 while (temp != NULL) {
-                            ArticuloPedido* articulo = temp->articulo;
-                            string s = listaArt->buscarUbi(temp->articulo->codProd);
-                            QString ubicacion = QString::fromStdString(s);
-                            qDebug()<<ubicacion;
-                            alistador->ubicacion= ubicacion;
-                            alistador->articulo=articulo;
-                            alistador->pedido= pedido;
-                            temp = temp->siguiente;
->>>>>>> Stashed changes
+                    ArticuloPedido* articulo = temp->articulo;
+                    string s = listaArt->buscarUbi(temp->articulo->codProd);
+                    QString ubicacion = QString::fromStdString(s);
+                    qDebug()<<ubicacion;
+                    alistador->ubicacion= ubicacion;
+                    alistador->articulo=articulo;
+                    alistador->pedido= pedido;
+                    temp = temp->siguiente;
+
 
                     }
                     sleep(1);
@@ -540,25 +520,14 @@ Bodega::Bodega(Queue<Pedido*>& _colaAlisto, Queue<Pedido*>& _colaAlistados, Queu
 
                     //actualizarInterfaz();
                 }
-<<<<<<< Updated upstream
-=======
-                sleep(1);
 
-
-
-                //colaAlistados.enQueue(pedido);
-
-                 //Procesar el pedido alistado
-
-                //actualizarInterfaz();
->>>>>>> Stashed changes
             }
 
             QThread::sleep(3);
         }
     }
 
-<<<<<<< Updated upstream
+
     bool Bodega::getPaused(){
         return paused;
     }
@@ -566,8 +535,6 @@ Bodega::Bodega(Queue<Pedido*>& _colaAlisto, Queue<Pedido*>& _colaAlistados, Queu
     void Bodega::setPaused(bool _paused){
         paused = _paused;
     }
-=======
->>>>>>> Stashed changes
 
     void Bodega::actualizarInterfaz()
     {

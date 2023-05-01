@@ -113,6 +113,7 @@ public:
     QLabel *lblMostrarFabricandoB;
     QLabel *lblMostrarFabricandoComodin;
     QLabel *lblMostrarFabricandoC;
+    QLabel *label;
     QStatusBar *statusbar;
 
     void setupUi(QMainWindow *MainWindow)
@@ -393,21 +394,21 @@ public:
         lineV04->setFrameShadow(QFrame::Sunken);
         lineH15 = new QFrame(centralwidget);
         lineH15->setObjectName("lineH15");
-        lineH15->setGeometry(QRect(490, 220, 241, 21));
+        lineH15->setGeometry(QRect(610, 220, 121, 21));
         lineH15->setLineWidth(2);
         lineH15->setMidLineWidth(1);
         lineH15->setFrameShape(QFrame::HLine);
         lineH15->setFrameShadow(QFrame::Sunken);
         lineV05 = new QFrame(centralwidget);
         lineV05->setObjectName("lineV05");
-        lineV05->setGeometry(QRect(480, 230, 20, 291));
+        lineV05->setGeometry(QRect(600, 230, 20, 291));
         lineV05->setLineWidth(2);
         lineV05->setMidLineWidth(1);
         lineV05->setFrameShape(QFrame::VLine);
         lineV05->setFrameShadow(QFrame::Sunken);
         btnColaDeAlisto = new QPushButton(centralwidget);
         btnColaDeAlisto->setObjectName("btnColaDeAlisto");
-        btnColaDeAlisto->setGeometry(QRect(450, 510, 71, 41));
+        btnColaDeAlisto->setGeometry(QRect(570, 510, 71, 41));
         btnColaDeAlisto->setFont(font);
         btnColaDeAlisto->setCursor(QCursor(Qt::PointingHandCursor));
         btnColaDeAlisto->setStyleSheet(QString::fromUtf8("background-color: rgb(0, 74, 108);\n"
@@ -415,7 +416,7 @@ public:
 "color: white"));
         lineH14 = new QFrame(centralwidget);
         lineH14->setObjectName("lineH14");
-        lineH14->setGeometry(QRect(380, 520, 71, 21));
+        lineH14->setGeometry(QRect(380, 520, 201, 21));
         lineH14->setLineWidth(2);
         lineH14->setMidLineWidth(1);
         lineH14->setFrameShape(QFrame::HLine);
@@ -434,24 +435,24 @@ public:
         btnVerBalanceador->setFlat(true);
         lblAlistadores = new QLabel(centralwidget);
         lblAlistadores->setObjectName("lblAlistadores");
-        lblAlistadores->setGeometry(QRect(582, 500, 61, 61));
+        lblAlistadores->setGeometry(QRect(720, 490, 61, 61));
         lblAlistadores->setPixmap(QPixmap(QString::fromUtf8("../Imagenes/carretilla.png")));
         lblAlistadores->setScaledContents(true);
         lineH16 = new QFrame(centralwidget);
         lineH16->setObjectName("lineH16");
-        lineH16->setGeometry(QRect(520, 520, 71, 21));
+        lineH16->setGeometry(QRect(640, 520, 71, 21));
         lineH16->setLineWidth(2);
         lineH16->setMidLineWidth(1);
         lineH16->setFrameShape(QFrame::HLine);
         lineH16->setFrameShadow(QFrame::Sunken);
         lblAlistador2 = new QLabel(centralwidget);
         lblAlistador2->setObjectName("lblAlistador2");
-        lblAlistador2->setGeometry(QRect(760, 450, 21, 21));
+        lblAlistador2->setGeometry(QRect(850, 450, 21, 21));
         lblAlistador2->setPixmap(QPixmap(QString::fromUtf8("../Imagenes/carretilla.png")));
         lblAlistador2->setScaledContents(true);
         btnDetenerAlist2 = new QPushButton(centralwidget);
         btnDetenerAlist2->setObjectName("btnDetenerAlist2");
-        btnDetenerAlist2->setGeometry(QRect(710, 450, 21, 21));
+        btnDetenerAlist2->setGeometry(QRect(800, 450, 21, 21));
         btnDetenerAlist2->setCursor(QCursor(Qt::PointingHandCursor));
         btnDetenerAlist2->setStyleSheet(QString::fromUtf8("background-color: white;\n"
 "font: 700 9pt \"Segoe UI\";\n"
@@ -461,12 +462,12 @@ public:
         btnDetenerAlist2->setFlat(true);
         lblAlistador3 = new QLabel(centralwidget);
         lblAlistador3->setObjectName("lblAlistador3");
-        lblAlistador3->setGeometry(QRect(760, 480, 21, 21));
+        lblAlistador3->setGeometry(QRect(850, 480, 21, 21));
         lblAlistador3->setPixmap(QPixmap(QString::fromUtf8("../Imagenes/carretilla.png")));
         lblAlistador3->setScaledContents(true);
         btnDetenerAlist3 = new QPushButton(centralwidget);
         btnDetenerAlist3->setObjectName("btnDetenerAlist3");
-        btnDetenerAlist3->setGeometry(QRect(710, 480, 21, 21));
+        btnDetenerAlist3->setGeometry(QRect(800, 480, 21, 21));
         btnDetenerAlist3->setCursor(QCursor(Qt::PointingHandCursor));
         btnDetenerAlist3->setStyleSheet(QString::fromUtf8("background-color: white;\n"
 "font: 700 9pt \"Segoe UI\";\n"
@@ -476,7 +477,7 @@ public:
         btnDetenerAlist3->setFlat(true);
         btnDetenerAlist1 = new QPushButton(centralwidget);
         btnDetenerAlist1->setObjectName("btnDetenerAlist1");
-        btnDetenerAlist1->setGeometry(QRect(710, 420, 21, 21));
+        btnDetenerAlist1->setGeometry(QRect(800, 420, 21, 21));
         btnDetenerAlist1->setCursor(QCursor(Qt::PointingHandCursor));
         btnDetenerAlist1->setStyleSheet(QString::fromUtf8("background-color: white;\n"
 "font: 700 9pt \"Segoe UI\";\n"
@@ -486,12 +487,12 @@ public:
         btnDetenerAlist1->setFlat(true);
         lblAlistador1 = new QLabel(centralwidget);
         lblAlistador1->setObjectName("lblAlistador1");
-        lblAlistador1->setGeometry(QRect(760, 420, 21, 21));
+        lblAlistador1->setGeometry(QRect(850, 420, 21, 21));
         lblAlistador1->setPixmap(QPixmap(QString::fromUtf8("../Imagenes/carretilla.png")));
         lblAlistador1->setScaledContents(true);
         lblAlmacen = new QLabel(centralwidget);
         lblAlmacen->setObjectName("lblAlmacen");
-        lblAlmacen->setGeometry(QRect(820, 310, 91, 81));
+        lblAlmacen->setGeometry(QRect(910, 310, 91, 81));
         lblAlmacen->setPixmap(QPixmap(QString::fromUtf8("../Imagenes/edificio-escolar.png")));
         lblAlmacen->setScaledContents(true);
         lineV06 = new QFrame(centralwidget);
@@ -503,17 +504,17 @@ public:
         lineV06->setFrameShadow(QFrame::Sunken);
         lblNum1Alistador = new QLabel(centralwidget);
         lblNum1Alistador->setObjectName("lblNum1Alistador");
-        lblNum1Alistador->setGeometry(QRect(740, 420, 21, 21));
+        lblNum1Alistador->setGeometry(QRect(830, 420, 21, 21));
         lblNum1Alistador->setStyleSheet(QString::fromUtf8("font: 700 12pt \"Arial\";\n"
 "color: black;"));
         lblNum2Alistador = new QLabel(centralwidget);
         lblNum2Alistador->setObjectName("lblNum2Alistador");
-        lblNum2Alistador->setGeometry(QRect(740, 450, 21, 21));
+        lblNum2Alistador->setGeometry(QRect(830, 450, 21, 21));
         lblNum2Alistador->setStyleSheet(QString::fromUtf8("font: 700 12pt \"Arial\";\n"
 "color: black;"));
         lblNum3Alistador = new QLabel(centralwidget);
         lblNum3Alistador->setObjectName("lblNum3Alistador");
-        lblNum3Alistador->setGeometry(QRect(740, 480, 21, 21));
+        lblNum3Alistador->setGeometry(QRect(830, 480, 21, 21));
         lblNum3Alistador->setStyleSheet(QString::fromUtf8("font: 700 12pt \"Arial\";\n"
 "color: black;"));
         lineH17 = new QFrame(centralwidget);
@@ -620,7 +621,7 @@ public:
         btnVerLaFactura->setFlat(true);
         btnDetenerAlist4 = new QPushButton(centralwidget);
         btnDetenerAlist4->setObjectName("btnDetenerAlist4");
-        btnDetenerAlist4->setGeometry(QRect(710, 510, 21, 21));
+        btnDetenerAlist4->setGeometry(QRect(800, 510, 21, 21));
         btnDetenerAlist4->setCursor(QCursor(Qt::PointingHandCursor));
         btnDetenerAlist4->setStyleSheet(QString::fromUtf8("background-color: white;\n"
 "font: 700 9pt \"Segoe UI\";\n"
@@ -630,12 +631,12 @@ public:
         btnDetenerAlist4->setFlat(true);
         lblNum6Alistador = new QLabel(centralwidget);
         lblNum6Alistador->setObjectName("lblNum6Alistador");
-        lblNum6Alistador->setGeometry(QRect(740, 570, 21, 21));
+        lblNum6Alistador->setGeometry(QRect(830, 570, 21, 21));
         lblNum6Alistador->setStyleSheet(QString::fromUtf8("font: 700 12pt \"Arial\";\n"
 "color: black;"));
         btnDetenerAlist5 = new QPushButton(centralwidget);
         btnDetenerAlist5->setObjectName("btnDetenerAlist5");
-        btnDetenerAlist5->setGeometry(QRect(710, 540, 21, 21));
+        btnDetenerAlist5->setGeometry(QRect(800, 540, 21, 21));
         btnDetenerAlist5->setCursor(QCursor(Qt::PointingHandCursor));
         btnDetenerAlist5->setStyleSheet(QString::fromUtf8("background-color: white;\n"
 "font: 700 9pt \"Segoe UI\";\n"
@@ -645,22 +646,22 @@ public:
         btnDetenerAlist5->setFlat(true);
         lblAlistador4 = new QLabel(centralwidget);
         lblAlistador4->setObjectName("lblAlistador4");
-        lblAlistador4->setGeometry(QRect(760, 510, 21, 21));
+        lblAlistador4->setGeometry(QRect(850, 510, 21, 21));
         lblAlistador4->setPixmap(QPixmap(QString::fromUtf8("../Imagenes/carretilla.png")));
         lblAlistador4->setScaledContents(true);
         lblAlistador6 = new QLabel(centralwidget);
         lblAlistador6->setObjectName("lblAlistador6");
-        lblAlistador6->setGeometry(QRect(760, 570, 21, 21));
+        lblAlistador6->setGeometry(QRect(850, 570, 21, 21));
         lblAlistador6->setPixmap(QPixmap(QString::fromUtf8("../Imagenes/carretilla.png")));
         lblAlistador6->setScaledContents(true);
         lblNum4Alistador = new QLabel(centralwidget);
         lblNum4Alistador->setObjectName("lblNum4Alistador");
-        lblNum4Alistador->setGeometry(QRect(740, 510, 21, 21));
+        lblNum4Alistador->setGeometry(QRect(830, 510, 21, 21));
         lblNum4Alistador->setStyleSheet(QString::fromUtf8("font: 700 12pt \"Arial\";\n"
 "color: black;"));
         btnDetenerAlist6 = new QPushButton(centralwidget);
         btnDetenerAlist6->setObjectName("btnDetenerAlist6");
-        btnDetenerAlist6->setGeometry(QRect(710, 570, 21, 21));
+        btnDetenerAlist6->setGeometry(QRect(800, 570, 21, 21));
         btnDetenerAlist6->setCursor(QCursor(Qt::PointingHandCursor));
         btnDetenerAlist6->setStyleSheet(QString::fromUtf8("background-color: white;\n"
 "font: 700 9pt \"Segoe UI\";\n"
@@ -670,12 +671,12 @@ public:
         btnDetenerAlist6->setFlat(true);
         lblNum5Alistador = new QLabel(centralwidget);
         lblNum5Alistador->setObjectName("lblNum5Alistador");
-        lblNum5Alistador->setGeometry(QRect(740, 540, 21, 21));
+        lblNum5Alistador->setGeometry(QRect(830, 540, 21, 21));
         lblNum5Alistador->setStyleSheet(QString::fromUtf8("font: 700 12pt \"Arial\";\n"
 "color: black;"));
         lblAlistador5 = new QLabel(centralwidget);
         lblAlistador5->setObjectName("lblAlistador5");
-        lblAlistador5->setGeometry(QRect(760, 540, 21, 21));
+        lblAlistador5->setGeometry(QRect(850, 540, 21, 21));
         lblAlistador5->setPixmap(QPixmap(QString::fromUtf8("../Imagenes/carretilla.png")));
         lblAlistador5->setScaledContents(true);
         lblMostrarFabricandoA = new QLabel(centralwidget);
@@ -683,7 +684,7 @@ public:
         lblMostrarFabricandoA->setGeometry(QRect(430, 180, 191, 20));
         btnColaDeAlistadores = new QPushButton(centralwidget);
         btnColaDeAlistadores->setObjectName("btnColaDeAlistadores");
-        btnColaDeAlistadores->setGeometry(QRect(820, 610, 71, 41));
+        btnColaDeAlistadores->setGeometry(QRect(880, 610, 71, 41));
         btnColaDeAlistadores->setFont(font);
         btnColaDeAlistadores->setCursor(QCursor(Qt::PointingHandCursor));
         btnColaDeAlistadores->setStyleSheet(QString::fromUtf8("background-color: rgb(0, 74, 108);\n"
@@ -691,22 +692,22 @@ public:
 "color: white"));
         lblMostrarPedidoAlistador1 = new QLabel(centralwidget);
         lblMostrarPedidoAlistador1->setObjectName("lblMostrarPedidoAlistador1");
-        lblMostrarPedidoAlistador1->setGeometry(QRect(790, 420, 241, 16));
+        lblMostrarPedidoAlistador1->setGeometry(QRect(880, 420, 241, 16));
         lblMostrarPedidoAlistador2 = new QLabel(centralwidget);
         lblMostrarPedidoAlistador2->setObjectName("lblMostrarPedidoAlistador2");
-        lblMostrarPedidoAlistador2->setGeometry(QRect(790, 450, 241, 16));
+        lblMostrarPedidoAlistador2->setGeometry(QRect(880, 450, 241, 16));
         lblMostrarPedidoAlistador3 = new QLabel(centralwidget);
         lblMostrarPedidoAlistador3->setObjectName("lblMostrarPedidoAlistador3");
-        lblMostrarPedidoAlistador3->setGeometry(QRect(790, 480, 241, 16));
+        lblMostrarPedidoAlistador3->setGeometry(QRect(880, 480, 241, 16));
         lblMostrarPedidoAlistador4 = new QLabel(centralwidget);
         lblMostrarPedidoAlistador4->setObjectName("lblMostrarPedidoAlistador4");
-        lblMostrarPedidoAlistador4->setGeometry(QRect(790, 510, 241, 16));
+        lblMostrarPedidoAlistador4->setGeometry(QRect(880, 510, 241, 16));
         lblMostrarPedidoAlistador5 = new QLabel(centralwidget);
         lblMostrarPedidoAlistador5->setObjectName("lblMostrarPedidoAlistador5");
-        lblMostrarPedidoAlistador5->setGeometry(QRect(790, 540, 241, 16));
+        lblMostrarPedidoAlistador5->setGeometry(QRect(880, 540, 241, 16));
         lblMostrarPedidoAlistador6 = new QLabel(centralwidget);
         lblMostrarPedidoAlistador6->setObjectName("lblMostrarPedidoAlistador6");
-        lblMostrarPedidoAlistador6->setGeometry(QRect(790, 570, 241, 16));
+        lblMostrarPedidoAlistador6->setGeometry(QRect(880, 570, 241, 16));
         lblMostrarFabricandoB = new QLabel(centralwidget);
         lblMostrarFabricandoB->setObjectName("lblMostrarFabricandoB");
         lblMostrarFabricandoB->setGeometry(QRect(430, 20, 191, 20));
@@ -716,6 +717,9 @@ public:
         lblMostrarFabricandoC = new QLabel(centralwidget);
         lblMostrarFabricandoC->setObjectName("lblMostrarFabricandoC");
         lblMostrarFabricandoC->setGeometry(QRect(210, 180, 191, 20));
+        label = new QLabel(centralwidget);
+        label->setObjectName("label");
+        label->setGeometry(QRect(420, 380, 171, 16));
         MainWindow->setCentralWidget(centralwidget);
         lineV08->raise();
         lineV07->raise();
@@ -805,6 +809,7 @@ public:
         lblMostrarFabricandoB->raise();
         lblMostrarFabricandoComodin->raise();
         lblMostrarFabricandoC->raise();
+        label->raise();
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName("statusbar");
         MainWindow->setStatusBar(statusbar);
@@ -943,6 +948,7 @@ public:
         lblMostrarFabricandoB->setText(QCoreApplication::translate("MainWindow", "Fabricacion", nullptr));
         lblMostrarFabricandoComodin->setText(QCoreApplication::translate("MainWindow", "Fabricacion", nullptr));
         lblMostrarFabricandoC->setText(QCoreApplication::translate("MainWindow", "Fabricacion", nullptr));
+        label->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
     } // retranslateUi
 
 };
