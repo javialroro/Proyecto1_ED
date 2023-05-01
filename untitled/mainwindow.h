@@ -108,12 +108,13 @@ private:
 class Alistador : public QThread{
     Q_OBJECT
     public:
+    Pedido * pedido;
         int id;
         ArticuloPedido* articulo = nullptr;
         QString ubicacion;
-        explicit Alistador(int _id, QTableWidget* _tableWidget, QObject* parent = nullptr);
+        explicit Alistador(int _id, QTableWidget* _tableWidget,Queue<Pedido*> &colaAlistados, QObject* parent = nullptr);
         void run() override;
-        void moverAlistador(QString& ubicacion, ArticuloPedido* articulo);
+        void moverAlistador(QString& ubicacion, ArticuloPedido* articulo, Pedido * pedido);
         QString to_String();
 
     public slots:
@@ -132,6 +133,8 @@ class Alistador : public QThread{
 
         int obtenerIndiceLetra(QString& letra);
 
+        Queue<Pedido*> &colaAlistados;
+
 };
 
 
@@ -147,8 +150,12 @@ class Bodega : public QThread
         void liberarAlistador(Alistador* alistador);
         void run() override;
         void actualizarInterfaz();
+<<<<<<< Updated upstream
         void setPaused(bool _paused);
         bool getPaused();
+=======
+        void encolarAlistador(Alistador * alistador);
+>>>>>>> Stashed changes
 
     signals:
         void procesarArticuloBodega(Queue<Alistador*> colaAlistadores, const QString& ubicacion, ArticuloPedido* articulo);
@@ -197,7 +204,7 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(PriorityQueue* _colaPedidos, Queue<Pedido *> & _colaAlisto, Queue<Pedido *> & _colaAlistados,  Queue<Pedido *> & _colaA,  Queue<Pedido *> & _colaB,  Queue<Pedido *> & _colaC,  Queue<Pedido *> & _colaComodin,Queue<Alistador *> & _colaAlistadores,
                listaArticulos * la, listaClientes *lc, Alistados * a, RevisorArchivos *& r, Balanceador * bl, Fabrica * f1,
-               Fabrica * f2,Fabrica * f3,Fabrica * f4, Facturadora * fc,  Bodega * b);
+               Fabrica * f2,Fabrica * f3,Fabrica * f4, Facturadora * fc,  Bodega * b,Queue<Pedido *> & cf);
     ~MainWindow();
     QTableWidget* getQTable();
     QLabel* getLabelFabricacionA();
@@ -283,6 +290,7 @@ private:
     Fabrica * Comodin;
     Facturadora * facturadora;
     Bodega * bodega;
+    Queue<Pedido *> & colaFacturacion;
 
 
     //ThreadContainer* contenedor;

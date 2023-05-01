@@ -35,14 +35,14 @@ int main(int argc, char *argv[]){
     Fabrica *B= new Fabrica(listaArt, colaAlisto, colaB,"B",s,"Fabrica B");
     Fabrica *C= new Fabrica(listaArt, colaAlisto, colaC,"C",s,"Fabrica C");
     Fabrica *Comodin= new Fabrica(listaArt, colaAlisto, colaComodin,"A","B",s,"Fabrica Comodin");
-    Facturadora * facturadora = new Facturadora(colaAlistados);
+    Facturadora * facturadora = new Facturadora(colaF);
     //qDebug() << "pasa fabricas";
-    QTableWidget* _tableWidget= new QTableWidget();
+
     Bodega* bodega = new Bodega(colaAlisto, colaAlistados, colaAlistadores,listaArt);
 
 
     MainWindow* w = new MainWindow(colaPedidos,colaAlisto,colaAlistados,colaA,colaB,colaC,colaComodin,colaAlistadores,listaArt,lista,al,revisor, balanceador,A,B,C,Comodin,
-                                   facturadora,bodega);
+                                   facturadora,bodega,colaF);
     w->show();
     //qDebug() << "muestra interfaz";
 
