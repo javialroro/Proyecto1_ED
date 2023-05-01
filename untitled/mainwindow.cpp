@@ -308,8 +308,8 @@ Balanceador::Balanceador(listaArticulos  * l, PriorityQueue * colaPedidos, Queue
 
 //------------------------------------------------------------------------
 
-Alistador::Alistador(QTableWidget* _tableWidget, QObject* parent)
-        : QThread(parent), table(_tableWidget)
+Alistador::Alistador(int _id, QTableWidget* _tableWidget, QObject* parent)
+            : id(_id), QThread(parent), table(_tableWidget)
         {
             // Conectar la señal finalizado de Alistador a la ranura alistadorLiberado de Bodega
             connect(this, SIGNAL(finalizado(Alistador*)), this, SLOT(alistadorLiberado(Alistador*)));
@@ -357,6 +357,13 @@ Alistador::Alistador(QTableWidget* _tableWidget, QObject* parent)
     {
         QString letrasAlfabeto = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         return letrasAlfabeto.indexOf(letra);
+    }
+
+    QString Alistador::to_String (){
+        QString texto  = "";
+        texto.append("Alistador: #");
+        texto.append(QString::number(id));
+        return texto;
     }
 
     void Alistador::moverAlistador(const QString& ubicacion, ArticuloPedido* articulo)
@@ -411,20 +418,70 @@ Alistador::Alistador(QTableWidget* _tableWidget, QObject* parent)
 
         //-------------------------------------------------------------------------
 
-    Bodega::Bodega(QTableWidget* _tableWidget, Queue<Pedido*>& _colaAlisto, Queue<Pedido*>& _colaAlistados, QObject* parent)
-        : tableWidget(_tableWidget), colaAlisto(_colaAlisto), colaAlistados(_colaAlistados), QThread(parent)
+    Bodega::Bodega(QTableWidget* _tableWidget, Queue<Pedido*>& _colaAlisto, Queue<Pedido*>& _colaAlistados, Queue<Alistador *>& _colaAlistadores, QObject* parent)
+        : tableWidget(_tableWidget), colaAlisto(_colaAlisto), colaAlistados(_colaAlistados), colaAlistadores(_colaAlistadores), QThread(parent)
     {
         // Crear los 6 alistadores y agregarlos a la cola
-        for (int i = 0; i < 6; ++i) {
-            Alistador* alistador = new Alistador(tableWidget);
-            colaAlistadores.enQueue(alistador);
+        //------------
+        Alistador* alistador1 = new Alistador(1, tableWidget);
+        colaAlistadores.enQueue(alistador1);
 
-            // Conectar la señal procesarArticuloBodega de Bodega a la ranura procesarArticuloAlist de Alistador
-            connect(this, SIGNAL(procesarArticuloBodega(Queue<Alistador*>, const QString&, ArticuloPedido*)),
-                    alistador, SLOT(procesarArticuloAlist(Queue<Alistador*>, const QString&, ArticuloPedido*)));
+        // Conectar la señal procesarArticuloBodega de Bodega a la ranura procesarArticuloAlist de Alistador
+        connect(this, SIGNAL(procesarArticuloBodega(Queue<Alistador*>, const QString&, ArticuloPedido*)),
+                alistador1, SLOT(procesarArticuloAlist(Queue<Alistador*>, const QString&, ArticuloPedido*)));
 
-            alistador->start();
-        }
+        alistador1->start();
+
+        //------------
+        Alistador* alistador2 = new Alistador(2, tableWidget);
+        colaAlistadores.enQueue(alistador2);
+
+        // Conectar la señal procesarArticuloBodega de Bodega a la ranura procesarArticuloAlist de Alistador
+        connect(this, SIGNAL(procesarArticuloBodega(Queue<Alistador*>, const QString&, ArticuloPedido*)),
+                alistador2, SLOT(procesarArticuloAlist(Queue<Alistador*>, const QString&, ArticuloPedido*)));
+
+        alistador2->start();
+
+        //------------
+        Alistador* alistador3 = new Alistador(3, tableWidget);
+        colaAlistadores.enQueue(alistador3);
+
+        // Conectar la señal procesarArticuloBodega de Bodega a la ranura procesarArticuloAlist de Alistador
+        connect(this, SIGNAL(procesarArticuloBodega(Queue<Alistador*>, const QString&, ArticuloPedido*)),
+                alistador3, SLOT(procesarArticuloAlist(Queue<Alistador*>, const QString&, ArticuloPedido*)));
+
+        alistador3->start();
+
+        //------------
+        Alistador* alistador4 = new Alistador(4, tableWidget);
+        colaAlistadores.enQueue(alistador4);
+
+        // Conectar la señal procesarArticuloBodega de Bodega a la ranura procesarArticuloAlist de Alistador
+        connect(this, SIGNAL(procesarArticuloBodega(Queue<Alistador*>, const QString&, ArticuloPedido*)),
+                alistador4, SLOT(procesarArticuloAlist(Queue<Alistador*>, const QString&, ArticuloPedido*)));
+
+        alistador4->start();
+
+        //------------
+        Alistador* alistador5 = new Alistador(5, tableWidget);
+        colaAlistadores.enQueue(alistador5);
+
+        // Conectar la señal procesarArticuloBodega de Bodega a la ranura procesarArticuloAlist de Alistador
+        connect(this, SIGNAL(procesarArticuloBodega(Queue<Alistador*>, const QString&, ArticuloPedido*)),
+                alistador5, SLOT(procesarArticuloAlist(Queue<Alistador*>, const QString&, ArticuloPedido*)));
+
+        alistador5->start();
+
+        //------------
+        Alistador* alistador6 = new Alistador(6, tableWidget);
+        colaAlistadores.enQueue(alistador6);
+
+        // Conectar la señal procesarArticuloBodega de Bodega a la ranura procesarArticuloAlist de Alistador
+        connect(this, SIGNAL(procesarArticuloBodega(Queue<Alistador*>, const QString&, ArticuloPedido*)),
+                alistador6, SLOT(procesarArticuloAlist(Queue<Alistador*>, const QString&, ArticuloPedido*)));
+
+        alistador6->start();
+
         qDebug() << "pasa constructo bodega";
     }
 
@@ -585,11 +642,11 @@ Alistados::Alistados(Queue<Pedido *>& colaFacturacion,Queue<Pedido *> & A, strin
     }
 
 
-MainWindow::MainWindow(PriorityQueue* _colaPedidos,Queue<Pedido *> & _colaAlisto, Queue<Pedido *> &_colaAlistados,  Queue<Pedido *> &_colaA,  Queue<Pedido *> &_colaB,  Queue<Pedido *> &_colaC,  Queue<Pedido *>& _colaComodin,
-                       listaArticulos * la, listaClientes * lc, Alistados * a, RevisorArchivos * &r, Balanceador * bl, Fabrica * f1,
+MainWindow::MainWindow(PriorityQueue* _colaPedidos, Queue<Pedido *> & _colaAlisto, Queue<Pedido *> & _colaAlistados,  Queue<Pedido *> & _colaA,  Queue<Pedido *> & _colaB,  Queue<Pedido *> & _colaC,  Queue<Pedido *> & _colaComodin, Queue<Alistador *> & _colaAlistadores,
+                           listaArticulos * la, listaClientes *lc, Alistados * a, RevisorArchivos *& r, Balanceador * bl, Fabrica * f1,
                            Fabrica * f2,Fabrica * f3,Fabrica * f4, Facturadora * fc, QLabel * lf)
     : QMainWindow(),
-    colaPedidos(_colaPedidos),colaAlisto(_colaAlisto),colaAlistados(_colaAlistados),colaA (_colaA),colaB (_colaB),colaC (_colaC),colaComodin (_colaComodin),
+        colaPedidos(_colaPedidos),colaAlisto(_colaAlisto),colaAlistados(_colaAlistados),colaA (_colaA),colaB (_colaB),colaC (_colaC),colaComodin (_colaComodin), colaAlistadores(_colaAlistadores),
         listaArt(la),lista(lc),alistad(a),revisor(r),balanceador(bl),A(f1),B(f2),C(f3),Comodin(f4),facturadora(fc),labelF(lf),
 
     ui(new Ui::MainWindow)
@@ -756,6 +813,15 @@ void MainWindow::on_btnColaPorFacturar_clicked()
     //vColaPedidosDialog->show();
 }
 
+void MainWindow::on_btnColaDeAlistadores_clicked()
+{
+    vColaPedidos* vColaPedidosDialog = new vColaPedidos(colaAlistadores); // Crear instancia de vColaPedidos
+
+    vColaPedidosDialog->setQueueContent(); // Establecer el contenido de la cola en el QTextEdit
+
+    vColaPedidosDialog->show();
+
+}
 
 void MainWindow::on_btnDetenerBalanceador_clicked()
 {
@@ -814,6 +880,9 @@ void MainWindow::on_btnDetenerFab01_clicked()
             B->setPaused(false);
     }
 }
+
+
+
 
 
 

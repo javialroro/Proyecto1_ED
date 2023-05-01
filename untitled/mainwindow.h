@@ -105,17 +105,19 @@ private:
 class Alistador : public QThread{
     Q_OBJECT
     public:
-        explicit Alistador(QTableWidget* _tableWidget, QObject* parent = nullptr);
+        explicit Alistador(int _id,QTableWidget* _tableWidget, QObject* parent = nullptr);
         void run() override;
 
     public slots:
         void procesarArticuloAlist(Queue<Alistador*> _colaAlistadores, const QString& _ubicacion, ArticuloPedido* _articulo);
         void alistadorLiberado(Alistador* alistador);
+        QString to_String ();
 
     signals:
         void finalizado(Alistador* alistador);
 
     private:
+        int id;
         QTableWidget* table;
         Queue<Alistador*> colaAlistadores;
         ArticuloPedido* articulo = nullptr;
@@ -131,7 +133,7 @@ class Bodega : public QThread
 {
     Q_OBJECT
     public:
-        explicit Bodega(QTableWidget* _tableWidget, Queue<Pedido*>& _colaAlisto, Queue<Pedido*>& _colaAlistados, QObject* parent = nullptr);
+        explicit Bodega(QTableWidget* _tableWidget, Queue<Pedido*>& _colaAlisto, Queue<Pedido*>& _colaAlistados, Queue<Alistador *>& colaAlistadores, QObject* parent = nullptr);
         void agregarPedidoAlistado(Pedido* pedido);
         Pedido* obtenerPedidoAlistado();
         void liberarAlistador(Alistador* alistador);
@@ -148,7 +150,7 @@ class Bodega : public QThread
         QTableWidget* tableWidget;
         Queue<Pedido*>& colaAlisto;
         Queue<Pedido*>& colaAlistados;
-        Queue<Alistador*> colaAlistadores;
+        Queue<Alistador*>& colaAlistadores;
         QMutex mutex;
 
         void procesarPedido(Pedido* pedido);
@@ -180,7 +182,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    MainWindow(/*ThreadContainer* _contenedor,*/ PriorityQueue* _colaPedidos, Queue<Pedido *> & _colaAlisto, Queue<Pedido *> & _colaAlistados,  Queue<Pedido *> & _colaA,  Queue<Pedido *> & _colaB,  Queue<Pedido *> & _colaC,  Queue<Pedido *> & _colaComodin,
+    MainWindow(PriorityQueue* _colaPedidos, Queue<Pedido *> & _colaAlisto, Queue<Pedido *> & _colaAlistados,  Queue<Pedido *> & _colaA,  Queue<Pedido *> & _colaB,  Queue<Pedido *> & _colaC,  Queue<Pedido *> & _colaComodin, Queue<Alistador *> & _colaAlistadores,
                listaArticulos * la, listaClientes *lc, Alistados * a, RevisorArchivos *& r, Balanceador * bl, Fabrica * f1,
                Fabrica * f2,Fabrica * f3,Fabrica * f4, Facturadora * fc, QLabel * lf);
     ~MainWindow();
@@ -222,6 +224,8 @@ private slots:
 
     void on_btnDetenerFab01_clicked();
 
+    void on_btnColaDeAlistadores_clicked();
+
 private:
     Ui::MainWindow *ui;
 
@@ -232,6 +236,7 @@ private:
     Queue<Pedido *> & colaB;
     Queue<Pedido *> & colaC;
     Queue<Pedido *> & colaComodin;
+    Queue<Alistador *> & colaAlistadores;
     listaClientes *lista;
     listaArticulos *listaArt;
     Alistados* alistad;
