@@ -39,8 +39,8 @@ RevisorArchivos::RevisorArchivos(struct listaArticulos  * la, struct listaClient
     void RevisorArchivos::run() {
         while (true) {
 
-            //QString path = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Pedidos";
-            QString path = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Pedidos";
+            QString path = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Pedidos";
+            //QString path = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Pedidos";
             QDir directorio(path);
             QStringList archivos = directorio.entryList(QStringList() << "*.txt", QDir::Files);
             if (archivos.size() > 0) {
@@ -51,8 +51,8 @@ RevisorArchivos::RevisorArchivos(struct listaArticulos  * la, struct listaClient
                     string cPath= path.toStdString()+"\\";
                     string cArchivo = archivo.toStdString();
                     string todo= cPath+cArchivo;
-                    //string errores = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Errores\\"+cArchivo;
-                    string errores = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Errores\\"+cArchivo;
+                    string errores = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Errores\\"+cArchivo;
+                    //string errores = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Errores\\"+cArchivo;
 
                     fstream arch(todo, std::ios::in | std::ios::app);
                     Archivo *a =  new Archivo(arch,todo,errores);
@@ -60,8 +60,8 @@ RevisorArchivos::RevisorArchivos(struct listaArticulos  * la, struct listaClient
                     cargarPedido(a, colaPedidos, listaClientes, listaArticulos);
 
                     string ruta_archivo = todo;
-                    //string ruta_pedidosP = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\PedidosProcesados\\"+cArchivo;
-                    string ruta_pedidosP = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\PedidosProcesados\\"+cArchivo;
+                    string ruta_pedidosP = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\PedidosProcesados\\"+cArchivo;
+                    //string ruta_pedidosP = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\PedidosProcesados\\"+cArchivo;
 
                     rename(ruta_archivo.c_str(),ruta_pedidosP.c_str());
                 }
@@ -286,8 +286,8 @@ Balanceador::Balanceador(listaArticulos  * l, PriorityQueue * colaPedidos, Queue
                             string name= to_string(pedido->numPedido)+"_"+pedido->codCliente+"_"+retornarHora()+".txt";
                             pedido->factura->insertarAlFinal("Finalizado: "+retornarHora());
 
-                            //fstream factura("C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Facturas\\"+name);
-                            fstream factura("C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Facturas\\"+name);
+                            fstream factura("C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Facturas\\"+name);
+                            //fstream factura("C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Facturas\\"+name);
 
                             factura<<"Pedido: "+to_string(pedido->numPedido)+"\n"+"Cliente: "+pedido->codCliente+"\n";
 
@@ -318,10 +318,10 @@ Balanceador::Balanceador(listaArticulos  * l, PriorityQueue * colaPedidos, Queue
 //------------------------------------------------------------------------
 
 Alistador::Alistador(int _id, QTableWidget* _tableWidget, QObject* parent)
-            : QThread(parent), table(_tableWidget), id(_id)
+            : QThread(parent), id(_id)
         {
             // Conectar la señal finalizado de Alistador a la ranura alistadorLiberado de Bodega
-            connect(this, SIGNAL(finalizado(Alistador*)), this, SLOT(alistadorLiberado(Alistador*)));
+
         }
 
 
@@ -331,15 +331,19 @@ Alistador::Alistador(int _id, QTableWidget* _tableWidget, QObject* parent)
             // Esperar a recibir la señal para procesar un artículo
             mutex.lock();
             if (!ubicacion.isEmpty()) {
+                        qDebug()<<"entro";
+                //qDebug()<<"entra a ciclo alistador";
                 QString ubicacionCopy = ubicacion;
                 ArticuloPedido* articuloCopy = articulo;
                 mutex.unlock();
-
+                //qDebug()<<"va a mover";
                 // Procesar el artículo
                 moverAlistador(ubicacionCopy, articuloCopy);
+                qDebug()<<"movio";
 
                 // Emitir señal para notificar que el alistador ha finalizado
                 emit finalizado(this);
+                ubicacion="";
             } else {
                 mutex.unlock();
                 QThread::msleep(2000);
@@ -347,19 +351,20 @@ Alistador::Alistador(int _id, QTableWidget* _tableWidget, QObject* parent)
         }
     }
 
-    void Alistador::procesarArticuloAlist(Queue<Alistador*> _colaAlistadores, QString& _ubicacion, ArticuloPedido* _articulo)
+    void Alistador::procesarArticuloAlist(Queue<Alistador*> _colaAlistadores, const QString& _ubicacion, ArticuloPedido* _articulo)
     {
         // Asignar el artículo y la ubicación al alistador
         colaAlistadores = _colaAlistadores;
         ubicacion = _ubicacion;
         articulo = _articulo;
+        cout<<"termino";
     }
 
-    void Alistador::alistadorLiberado(Alistador* alistador) {
-        mutex.lock();
-        colaAlistadores.enQueue(alistador);
-        mutex.unlock();
-    }
+    //void Alistador::alistadorLiberado(Alistador* alistador) {
+    //    mutex.lock();
+    //    colaAlistadores.enQueue(alistador);
+    //    mutex.unlock();
+    //}
 
 
     QString Alistador::to_String(){
@@ -378,6 +383,8 @@ Alistador::Alistador(int _id, QTableWidget* _tableWidget, QObject* parent)
 
     void Alistador::moverAlistador(QString& ubicacion, ArticuloPedido* articulo)
     {
+
+        qDebug() << ubicacion;
         QString letra = QString(ubicacion.at(0));
         QString strNumero = ubicacion.mid(1);
         int numero = strNumero.toInt();
@@ -387,37 +394,55 @@ Alistador::Alistador(int _id, QTableWidget* _tableWidget, QObject* parent)
         int columna = obtenerIndiceLetra(letra);
 
         int distanciaFilas = fila;
+        //qDebug()<<"fila";
+        //qDebug()<<fila;
+        //qDebug()<<"columna";
+        //qDebug()<<columna;
         int distanciaColumnas = columna;
 
         // Calcular el tiempo necesario para moverse hasta la ubicación del artículo
         int tiempoIda = distanciaFilas + distanciaColumnas;
+        qDebug() << tiempoIda;
+
 
         // Simular el tiempo de movimiento
         QThread::sleep(tiempoIda);
+        qDebug()<<"llego";
 
-        QTableWidgetItem* item = table->item(fila, columna);
 
-        if (item && !item->text().isEmpty()) {
-            QString texto = item->text();
+        QString texto = matriz[fila][columna];
+        if (!texto.isEmpty()) {
+
             QStringList parts = texto.split("\n");
             if (parts.size() == 2) {
+
                 CeldaArticulo celda;
                 celda.codigo = parts[0];
                 celda.cantidad = parts[1].toInt();
                 // Incrementar la cantidad del artículo
                 celda.cantidad += articulo->cantidad;
 
-                // Actualizar el texto del item con la cantidad actualizada
-                item->setText(celda.toString());
+                // Actualizar el texto de la celda con la cantidad actualizada
+                matriz[fila][columna] = celda.toString();
             } else {
+
                 // La celda está vacía, ingresar un nuevo artículo con cantidad 1
                 CeldaArticulo celda;
                 celda.codigo = QString::fromStdString(articulo->codProd);
                 celda.cantidad = articulo->cantidad;
 
-                // Actualizar el texto del item con el nuevo artículo
-                item->setText(celda.toString());
+                // Actualizar el texto de la celda con el nuevo artículo
+                matriz[fila][columna] = celda.toString();
             }
+        } else {
+
+            // La celda está vacía, ingresar un nuevo artículo con cantidad 1
+            CeldaArticulo celda;
+            celda.codigo = QString::fromStdString(articulo->codProd);
+            celda.cantidad = articulo->cantidad;
+
+            // Actualizar el texto de la celda con el nuevo artículo
+            matriz[fila][columna] = celda.toString();
         }
 
         // Simular el tiempo de regreso a la posición inicial
@@ -425,39 +450,25 @@ Alistador::Alistador(int _id, QTableWidget* _tableWidget, QObject* parent)
     }
 
 
-
         //-------------------------------------------------------------------------
 
-Bodega::Bodega(Queue<Pedido*>& _colaAlisto, Queue<Pedido*>& _colaAlistados, Queue<Alistador *>& _colaAlistadores, QObject* parent)
-    : colaAlisto(_colaAlisto), colaAlistados(_colaAlistados), colaAlistadores(_colaAlistadores), QThread(parent)
+Bodega::Bodega(Queue<Pedido*>& _colaAlisto, Queue<Pedido*>& _colaAlistados, Queue<Alistador *>& _colaAlistadores, listaArticulos * l, QObject* parent)
+        : colaAlisto(_colaAlisto), colaAlistados(_colaAlistados), colaAlistadores(_colaAlistadores), listaArt(l),QThread(parent)
 {
     //qDebug() << "Entra al constructor de bodega";
     // Crear los 6 alistadores y agregarlos a la cola
     //------------
     Alistador* alistador1 = new Alistador(1, table);
     colaAlistadores.enQueue(alistador1);
+    alistador1->start();
     //qDebug() << "pasa generar alistador1";
 
-    // Conectar la señal procesarArticuloBodega de Bodega a la ranura procesarArticuloAlist de Alistador
-    connect(this, SIGNAL(procesarArticuloBodega(Queue<Alistador*>, QString&, ArticuloPedido*)),
-            alistador1, SLOT(procesarArticuloAlist(Queue<Alistador*>, QString&, ArticuloPedido*)));
-    //qDebug() << "pasa connect 1";
-
-    alistador1->start();
-    //qDebug() << "inicia alistador1";
 
     //------------
     Alistador* alistador2 = new Alistador(2, table);
     colaAlistadores.enQueue(alistador2);
-    //qDebug() << "pasa generar alistador2";
-
-    // Conectar la señal procesarArticuloBodega de Bodega a la ranura procesarArticuloAlist de Alistador
-    connect(this, SIGNAL(procesarArticuloBodega(Queue<Alistador*>, QString&, ArticuloPedido*)),
-            alistador2, SLOT(procesarArticuloAlist(Queue<Alistador*>, QString&, ArticuloPedido*)));
-    //qDebug() << "pasa connect 2";
-
     alistador2->start();
-    //qDebug() << "inicia alistador2";
+    //qDebug() << "pasa generar alistador2";
 
     //------------
     Alistador* alistador3 = new Alistador(3, table);
@@ -465,108 +476,63 @@ Bodega::Bodega(Queue<Pedido*>& _colaAlisto, Queue<Pedido*>& _colaAlistados, Queu
     //qDebug() << "pasa generar alistador3";
 
     // Conectar la señal procesarArticuloBodega de Bodega a la ranura procesarArticuloAlist de Alistador
-    connect(this, SIGNAL(procesarArticuloBodega(Queue<Alistador*>, QString&, ArticuloPedido*)),
-            alistador3, SLOT(procesarArticuloAlist(Queue<Alistador*>, QString&, ArticuloPedido*)));
-    //qDebug() << "pasa connect 3";
 
-    alistador3->start();
-    //qDebug() << "inicia alistador3";
-
-    //------------
     Alistador* alistador4 = new Alistador(4, table);
     colaAlistadores.enQueue(alistador4);
     //qDebug() << "pasa generar alistador4";
 
-    // Conectar la señal procesarArticuloBodega de Bodega a la ranura procesarArticuloAlist de Alistador
-    connect(this, SIGNAL(procesarArticuloBodega(Queue<Alistador*>, QString&, ArticuloPedido*)),
-            alistador4, SLOT(procesarArticuloAlist(Queue<Alistador*>, QString&, ArticuloPedido*)));
-    //qDebug() << "pasa connect 4";
 
-    alistador4->start();
-    //qDebug() << "inicia alistador4";
-
-    //------------
     Alistador* alistador5 = new Alistador(5, table);
     colaAlistadores.enQueue(alistador5);
     //qDebug() << "pasa generar alistador5";
 
-    // Conectar la señal procesarArticuloBodega de Bodega a la ranura procesarArticuloAlist de Alistador
-    connect(this, SIGNAL(procesarArticuloBodega(Queue<Alistador*>, QString&, ArticuloPedido*)),
-            alistador5, SLOT(procesarArticuloAlist(Queue<Alistador*>, QString&, ArticuloPedido*)));
-    //qDebug() << "pasa connect 5";
 
-    alistador5->start();
-    //qDebug() << "inicia alistador5";
 
     //------------
     Alistador* alistador6 = new Alistador(6, table);
     colaAlistadores.enQueue(alistador6);
     //qDebug() << "pasa generar alistador6";
 
-    // Conectar la señal procesarArticuloBodega de Bodega a la ranura procesarArticuloAlist de Alistador
-    connect(this, SIGNAL(procesarArticuloBodega(Queue<Alistador*>, QString&, ArticuloPedido*)),
-            alistador6, SLOT(procesarArticuloAlist(Queue<Alistador*>, QString&, ArticuloPedido*)));
-    //qDebug() << "pasa connect 6";
-
-    alistador6->start();
-    //qDebug() << "inicia alistador5";
-    }
-
-
-    void Bodega::agregarPedidoAlistado(Pedido* pedido)
-    {
-        mutex.lock();
-        colaAlistados.enQueue(pedido);
-        qDebug() << "se encola en colaAlistados";
-        mutex.unlock();
-    }
-
-    void Bodega::receiveTableWidget(QTableWidget* tableWidget)
-    {
-        qDebug() << "se le asigna QTbale a bodega";
-        table = tableWidget;
-    }
-
-    Pedido* Bodega::obtenerPedidoAlistado()
-    {
-        mutex.lock();
-        if (!colaAlistados.isEmpty()) {
-            Pedido* pedido = colaAlistados.deQueue();
-            qDebug() << "bodega a desencolado de colaAlisto";
-            mutex.unlock();
-            return pedido;
-        }
-        mutex.unlock();
-        return nullptr;
-    }
-
-    void Bodega::liberarAlistador(Alistador* alistador)
-    {
-        mutex.lock();
-        qDebug() << "Se ha desocupado un alistador";
-        colaAlistadores.enQueue(alistador);
-        mutex.unlock();
-    }
+}
 
     void Bodega::run()
     {
-        qDebug() << "inicia run bodega";
+        //qDebug() << "inicia run bodega";
         while (true) {
             if (!colaAlisto.isEmpty()){
-                qDebug() << "alisto no está vacía";
+                //qDebug() << "alisto no está vacía";
                 // Esperar a que haya un pedido alistado en la bodega
-                Pedido* pedido = obtenerPedidoAlistado();
-                qDebug() << "test 1";
+                Pedido* pedido = colaAlisto.deQueue();
+                Alistador * alistador = colaAlistadores.deQueue();
+                //colaAlistadores.deQueue();
+                qDebug()<<alistador->id;
+                ListaArticulosP* listaArticulos = pedido->listaPedido;
+                NodoArticuloP* temp = listaArticulos->pn;
+                //qDebug() << "Pasa inicializaciones";
+
+
+                while (temp != NULL) {
+                            ArticuloPedido* articulo = temp->articulo;
+                            string s = listaArt->buscarUbi(temp->articulo->codProd);
+                            QString ubicacion = QString::fromStdString(s);
+                            qDebug()<<ubicacion;
+                            alistador->ubicacion= ubicacion;
+                            alistador->articulo=articulo;
+                            temp = temp->siguiente;
+
+                }
+                sleep(1);
+
+                colaAlistadores.enQueue(alistador);
+
+                colaAlistados.enQueue(pedido);
 
                  //Procesar el pedido alistado
-                if (pedido!=nullptr)
-                    procesarPedido(pedido);
-                qDebug() << "test 2";
 
-                actualizarInterfaz();
+                //actualizarInterfaz();
             }
-            qDebug() << "alisto está vacía";
-            QThread::sleep(1000);
+
+            QThread::sleep(3);
         }
     }
 
@@ -597,43 +563,6 @@ Bodega::Bodega(Queue<Pedido*>& _colaAlisto, Queue<Pedido*>& _colaAlistados, Queu
     }
 
 
-    void Bodega::alistadorLiberado(Alistador* alistador)
-    {
-        liberarAlistador(alistador);
-        qDebug() << "Se actualizó la interfaz";
-    }
-
-
-    void Bodega::procesarPedido(Pedido* pedido)
-    {
-        qDebug() << "Entra procesarPedido";
-        ListaArticulosP* listaArticulos = pedido->listaPedido;
-        NodoArticuloP* temp = listaArticulos->pn;
-        qDebug() << "Pasa inicializaciones";
-        while (temp != nullptr) {
-            QString ubicacion = QString::fromStdString(temp->articulo->codProd);
-            qDebug() << "while test 1";
-            ArticuloPedido* articulo = temp->articulo;
-            qDebug() << "while test 2";
-
-            // Emitir la señal para procesar el artículo en un alistador
-            emit procesarArticuloBodega(colaAlistadores, ubicacion, articulo);
-            qDebug() << "while test 3";
-
-            temp = temp->siguiente;
-            qDebug() << "while test 1";
-        }
-
-        // Esperar a que todos los alistadores finalicen
-        while (!colaAlistadores.isEmpty()) {
-            QThread::msleep(500);
-            qDebug() << "whileCola test 1";
-        }
-
-        // Enviar el pedido a la cola de alistados
-        agregarPedidoAlistado(pedido);
-        qDebug() << "Entra agregarPedidoAlistado";
-    }
 
 
 
@@ -716,11 +645,11 @@ MainWindow::MainWindow(PriorityQueue* _colaPedidos,Queue<Pedido *> & _colaAlisto
 
     qDebug()<<"Hola";
 
-    emit tableWidgetSignal(ui->tblBodega);
+    //emit tableWidgetSignal(ui->tblBodega);
 
 
     // Conectar la señal con la ranura de Bodega
-    connect(this, SIGNAL(tableWidgetSignal(QTableWidget*)), bodega, SLOT(receiveTableWidget(QTableWidget*)));
+    //connect(this, SIGNAL(tableWidgetSignal(QTableWidget*)), bodega, SLOT(receiveTableWidget(QTableWidget*)));
 
 
 }
@@ -827,6 +756,7 @@ void MainWindow::on_btnColaDeAlistadores_clicked()
     vColaPedidosDialog->setQueueContentA(); // Establecer el contenido de la cola en el QTextEdit
 
     vColaPedidosDialog->show();
+    qDebug()<<colaAlistadores._toString();
 }
 
 

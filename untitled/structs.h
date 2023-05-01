@@ -238,6 +238,22 @@ struct listaArticulos{
         return false;
     }
 
+    string  buscarUbi(string art){
+        NodoArticulo * tmp = pn;
+
+        while (tmp != NULL){
+            if (art==tmp->articulo->codigo){
+                //tmp->articulo->imprimir();
+                return tmp->articulo->ubicacionBodega;
+
+            }
+
+            tmp = tmp->siguiente;
+        }
+        // hacer que vaya a errores
+        return "NULL";
+    }
+
 };
 
 struct ArticuloPedido{

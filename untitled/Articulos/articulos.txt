@@ -1,11 +1,2 @@
-A01	242	2	A	C05
-B02	198	5	B	F07
-
-Archivo erroneo, formato incorrecto
-Archivo erroneo, formato incorrecto
-Archivo erroneo, formato incorrecto
-Archivo erroneo, formato incorrecto
-Archivo erroneo, formato incorrecto
-Archivo erroneo, formato incorrecto
-Archivo erroneo, formato incorrecto
-Archivo erroneo, formato incorrecto
+A01	65	2	A	X10
+B02	42	5	B	Y10

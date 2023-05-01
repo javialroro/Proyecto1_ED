@@ -9,7 +9,7 @@
 vColaPedidos::vColaPedidos(QWidget *parent) :
     QMainWindow(parent),
     queueM(*(new Queue<Pedido*>())),
-    a_queue(),
+    a_queue(*(new Queue<Alistador*>())),
     a_queueM(a_queue),
     ui(new Ui::vColaPedidos)
 {

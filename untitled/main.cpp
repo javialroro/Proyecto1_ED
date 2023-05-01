@@ -38,7 +38,7 @@ int main(int argc, char *argv[]){
     Facturadora * facturadora = new Facturadora(colaAlistados);
     //qDebug() << "pasa fabricas";
     QTableWidget* _tableWidget= new QTableWidget();
-    Bodega* bodega = new Bodega(colaAlisto, colaAlistados, colaAlistadores);
+    Bodega* bodega = new Bodega(colaAlisto, colaAlistados, colaAlistadores,listaArt);
 
 
     MainWindow* w = new MainWindow(colaPedidos,colaAlisto,colaAlistados,colaA,colaB,colaC,colaComodin,colaAlistadores,listaArt,lista,al,revisor, balanceador,A,B,C,Comodin,

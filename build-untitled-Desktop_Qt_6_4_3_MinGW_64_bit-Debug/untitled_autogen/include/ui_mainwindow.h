@@ -116,6 +116,7 @@ public:
     QPushButton *btnVerAlist5;
     QPushButton *btnVerAlist4;
     QLabel *lblMostrarFabricando;
+    QPushButton *btnColaDeAlistadores;
     QStatusBar *statusbar;
 
     void setupUi(QMainWindow *MainWindow)
@@ -860,6 +861,14 @@ public:
         lblMostrarFabricando = new QLabel(centralwidget);
         lblMostrarFabricando->setObjectName("lblMostrarFabricando");
         lblMostrarFabricando->setGeometry(QRect(190, 190, 191, 20));
+        btnColaDeAlistadores = new QPushButton(centralwidget);
+        btnColaDeAlistadores->setObjectName("btnColaDeAlistadores");
+        btnColaDeAlistadores->setGeometry(QRect(670, 280, 71, 41));
+        btnColaDeAlistadores->setFont(font);
+        btnColaDeAlistadores->setCursor(QCursor(Qt::PointingHandCursor));
+        btnColaDeAlistadores->setStyleSheet(QString::fromUtf8("background-color: rgb(0, 74, 108);\n"
+"font: 700 9pt \"Segoe UI\";\n"
+"color: white"));
         MainWindow->setCentralWidget(centralwidget);
         lineV08->raise();
         lineV07->raise();
@@ -950,6 +959,7 @@ public:
         btnVerAlist4->raise();
         lblMostrarFabricando->raise();
         btnColaFabricaciones2->raise();
+        btnColaDeAlistadores->raise();
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName("statusbar");
         MainWindow->setStatusBar(statusbar);
@@ -1135,6 +1145,14 @@ public:
         btnVerAlist5->setText(QString());
         btnVerAlist4->setText(QString());
         lblMostrarFabricando->setText(QCoreApplication::translate("MainWindow", "Fabricacion", nullptr));
+#if QT_CONFIG(tooltip)
+        btnColaDeAlistadores->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p align=\"center\">Pedidos</p></body></html>", nullptr));
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(whatsthis)
+        btnColaDeAlistadores->setWhatsThis(QCoreApplication::translate("MainWindow", "<html><head/><body><p align=\"center\">Pedidos</p></body></html>", nullptr));
+#endif // QT_CONFIG(whatsthis)
+        btnColaDeAlistadores->setText(QCoreApplication::translate("MainWindow", "Cola de \n"
+"Alistadores", nullptr));
     } // retranslateUi
 
 };

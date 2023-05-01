@@ -108,27 +108,30 @@ private:
 class Alistador : public QThread{
     Q_OBJECT
     public:
+        int id;
+        ArticuloPedido* articulo = nullptr;
+        QString ubicacion;
         explicit Alistador(int _id, QTableWidget* _tableWidget, QObject* parent = nullptr);
         void run() override;
+        void moverAlistador(QString& ubicacion, ArticuloPedido* articulo);
         QString to_String();
 
     public slots:
-        void procesarArticuloAlist(Queue<Alistador*> _colaAlistadores, QString& _ubicacion, ArticuloPedido* _articulo);
-        void alistadorLiberado(Alistador* alistador);
+        void procesarArticuloAlist(Queue<Alistador*> _colaAlistadores, const QString& _ubicacion, ArticuloPedido* _articulo);
+        //void alistadorLiberado(Alistador* alistador);
 
     signals:
         void finalizado(Alistador* alistador);
 
-    private:
-        int id;
-        QTableWidget* table;
+    private:        
+        QString matriz[10][26];
+
         Queue<Alistador*> colaAlistadores;
-        ArticuloPedido* articulo = nullptr;
-        QString ubicacion;
+
         QMutex mutex;
 
         int obtenerIndiceLetra(QString& letra);
-        void moverAlistador(QString& ubicacion, ArticuloPedido* articulo);
+
 };
 
 
@@ -137,7 +140,8 @@ class Bodega : public QThread
     Q_OBJECT
     public:
 
-        explicit Bodega(Queue<Pedido*>& _colaAlisto, Queue<Pedido*>& _colaAlistados, Queue<Alistador *>& colaAlistadores, QObject* parent = nullptr);
+
+        explicit Bodega(Queue<Pedido*>& _colaAlisto, Queue<Pedido*>& _colaAlistados, Queue<Alistador *>& colaAlistadores, listaArticulos * l,QObject* parent = nullptr);
         void agregarPedidoAlistado(Pedido* pedido);
         Pedido* obtenerPedidoAlistado();
         void liberarAlistador(Alistador* alistador);
@@ -145,17 +149,18 @@ class Bodega : public QThread
         void actualizarInterfaz();
 
     signals:
-        void procesarArticuloBodega(Queue<Alistador*> colaAlistadores, QString& ubicacion, ArticuloPedido* articulo);
+        void procesarArticuloBodega(Queue<Alistador*> colaAlistadores, const QString& ubicacion, ArticuloPedido* articulo);
 
     public slots:
-        void alistadorLiberado(Alistador* alistador);
-        void receiveTableWidget(QTableWidget* tableWidget);
+        //void alistadorLiberado(Alistador* alistador);
+        //void receiveTableWidget(QTableWidget* tableWidget);
 
     private:
+        listaArticulos * listaArt;
         QTableWidget* table;
         Queue<Pedido*>& colaAlisto;
         Queue<Pedido*>& colaAlistados;
-        Queue<Alistador*> colaAlistadores;
+        Queue<Alistador*> &colaAlistadores;
         QMutex mutex;
 
         void procesarPedido(Pedido* pedido);
