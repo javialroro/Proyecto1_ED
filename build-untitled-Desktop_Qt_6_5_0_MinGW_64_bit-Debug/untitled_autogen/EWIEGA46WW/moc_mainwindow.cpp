@@ -50,12 +50,11 @@ static constexpr auto qt_meta_stringdata_CLASSAlistadorENDCLASS = QtMocHelpers::
     "_ubicacion",
     "ArticuloPedido*",
     "_articulo",
-    "alistadorLiberado",
-    "to_String"
+    "alistadorLiberado"
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSAlistadorENDCLASS_t {
-    uint offsetsAndSizes[26];
+    uint offsetsAndSizes[24];
     char stringdata0[10];
     char stringdata1[11];
     char stringdata2[1];
@@ -68,7 +67,6 @@ struct qt_meta_stringdata_CLASSAlistadorENDCLASS_t {
     char stringdata9[16];
     char stringdata10[10];
     char stringdata11[18];
-    char stringdata12[10];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSAlistadorENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -85,8 +83,7 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSAlistadorENDCLASS_t qt_meta_str
         QT_MOC_LITERAL(100, 10),  // "_ubicacion"
         QT_MOC_LITERAL(111, 15),  // "ArticuloPedido*"
         QT_MOC_LITERAL(127, 9),  // "_articulo"
-        QT_MOC_LITERAL(137, 17),  // "alistadorLiberado"
-        QT_MOC_LITERAL(155, 9)   // "to_String"
+        QT_MOC_LITERAL(137, 17)   // "alistadorLiberado"
     },
     "Alistador",
     "finalizado",
@@ -99,8 +96,7 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSAlistadorENDCLASS_t qt_meta_str
     "_ubicacion",
     "ArticuloPedido*",
     "_articulo",
-    "alistadorLiberado",
-    "to_String"
+    "alistadorLiberado"
 };
 #undef QT_MOC_LITERAL
 #endif // !QT_MOC_HAS_STRING_DATA
@@ -112,7 +108,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSAlistadorENDCLASS[] = {
       11,       // revision
        0,       // classname
        0,    0, // classinfo
-       4,   14, // methods
+       3,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -120,12 +116,11 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSAlistadorENDCLASS[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    1,   38,    2, 0x06,    1 /* Public */,
+       1,    1,   32,    2, 0x06,    1 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       5,    3,   41,    2, 0x0a,    3 /* Public */,
-      11,    1,   48,    2, 0x0a,    7 /* Public */,
-      12,    0,   51,    2, 0x0a,    9 /* Public */,
+       5,    3,   35,    2, 0x0a,    3 /* Public */,
+      11,    1,   42,    2, 0x0a,    7 /* Public */,
 
  // signals: parameters
     QMetaType::Void, 0x80000000 | 3,    4,
@@ -133,7 +128,6 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSAlistadorENDCLASS[] = {
  // slots: parameters
     QMetaType::Void, 0x80000000 | 6, QMetaType::QString, 0x80000000 | 9,    7,    8,   10,
     QMetaType::Void, 0x80000000 | 3,    4,
-    QMetaType::QString,
 
        0        // eod
 };
@@ -157,9 +151,7 @@ Q_CONSTINIT const QMetaObject Alistador::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<ArticuloPedido *, std::false_type>,
         // method 'alistadorLiberado'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<Alistador *, std::false_type>,
-        // method 'to_String'
-        QtPrivate::TypeAndForceComplete<QString, std::false_type>
+        QtPrivate::TypeAndForceComplete<Alistador *, std::false_type>
     >,
     nullptr
 } };
@@ -173,8 +165,6 @@ void Alistador::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
         case 0: _t->finalizado((*reinterpret_cast< std::add_pointer_t<Alistador*>>(_a[1]))); break;
         case 1: _t->procesarArticuloAlist((*reinterpret_cast< std::add_pointer_t<Queue<Alistador*>>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<ArticuloPedido*>>(_a[3]))); break;
         case 2: _t->alistadorLiberado((*reinterpret_cast< std::add_pointer_t<Alistador*>>(_a[1]))); break;
-        case 3: { QString _r = _t->to_String();
-            if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = std::move(_r); }  break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
@@ -226,13 +216,13 @@ int Alistador::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 4)
+        if (_id < 3)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 4;
+        _id -= 3;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 4)
+        if (_id < 3)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 4;
+        _id -= 3;
     }
     return _id;
 }
@@ -447,12 +437,11 @@ static constexpr auto qt_meta_stringdata_CLASSMainWindowENDCLASS = QtMocHelpers:
     "on_btnDetenerFab04Com_clicked",
     "on_btnDetenerFab03_clicked",
     "on_btnDetenerFab02_clicked",
-    "on_btnDetenerFab01_clicked",
-    "on_btnColaDeAlistadores_clicked"
+    "on_btnDetenerFab01_clicked"
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSMainWindowENDCLASS_t {
-    uint offsetsAndSizes[38];
+    uint offsetsAndSizes[36];
     char stringdata0[11];
     char stringdata1[26];
     char stringdata2[1];
@@ -471,7 +460,6 @@ struct qt_meta_stringdata_CLASSMainWindowENDCLASS_t {
     char stringdata15[27];
     char stringdata16[27];
     char stringdata17[27];
-    char stringdata18[32];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSMainWindowENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -494,8 +482,7 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSMainWindowENDCLASS_t qt_meta_st
         QT_MOC_LITERAL(325, 29),  // "on_btnDetenerFab04Com_clicked"
         QT_MOC_LITERAL(355, 26),  // "on_btnDetenerFab03_clicked"
         QT_MOC_LITERAL(382, 26),  // "on_btnDetenerFab02_clicked"
-        QT_MOC_LITERAL(409, 26),  // "on_btnDetenerFab01_clicked"
-        QT_MOC_LITERAL(436, 31)   // "on_btnColaDeAlistadores_clicked"
+        QT_MOC_LITERAL(409, 26)   // "on_btnDetenerFab01_clicked"
     },
     "MainWindow",
     "on_btnColaPedidos_clicked",
@@ -514,8 +501,7 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSMainWindowENDCLASS_t qt_meta_st
     "on_btnDetenerFab04Com_clicked",
     "on_btnDetenerFab03_clicked",
     "on_btnDetenerFab02_clicked",
-    "on_btnDetenerFab01_clicked",
-    "on_btnColaDeAlistadores_clicked"
+    "on_btnDetenerFab01_clicked"
 };
 #undef QT_MOC_LITERAL
 #endif // !QT_MOC_HAS_STRING_DATA
@@ -527,7 +513,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
       11,       // revision
        0,       // classname
        0,    0, // classinfo
-      15,   14, // methods
+      14,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -535,21 +521,20 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,  104,    2, 0x08,    1 /* Private */,
-       3,    0,  105,    2, 0x08,    2 /* Private */,
-       4,    0,  106,    2, 0x08,    3 /* Private */,
-       5,    0,  107,    2, 0x08,    4 /* Private */,
-       6,    0,  108,    2, 0x08,    5 /* Private */,
-       7,    0,  109,    2, 0x08,    6 /* Private */,
-       8,    0,  110,    2, 0x08,    7 /* Private */,
-       9,    0,  111,    2, 0x08,    8 /* Private */,
-      10,    0,  112,    2, 0x08,    9 /* Private */,
-      11,    1,  113,    2, 0x08,   10 /* Private */,
-      14,    0,  116,    2, 0x08,   12 /* Private */,
-      15,    0,  117,    2, 0x08,   13 /* Private */,
-      16,    0,  118,    2, 0x08,   14 /* Private */,
-      17,    0,  119,    2, 0x08,   15 /* Private */,
-      18,    0,  120,    2, 0x08,   16 /* Private */,
+       1,    0,   98,    2, 0x08,    1 /* Private */,
+       3,    0,   99,    2, 0x08,    2 /* Private */,
+       4,    0,  100,    2, 0x08,    3 /* Private */,
+       5,    0,  101,    2, 0x08,    4 /* Private */,
+       6,    0,  102,    2, 0x08,    5 /* Private */,
+       7,    0,  103,    2, 0x08,    6 /* Private */,
+       8,    0,  104,    2, 0x08,    7 /* Private */,
+       9,    0,  105,    2, 0x08,    8 /* Private */,
+      10,    0,  106,    2, 0x08,    9 /* Private */,
+      11,    1,  107,    2, 0x08,   10 /* Private */,
+      14,    0,  110,    2, 0x08,   12 /* Private */,
+      15,    0,  111,    2, 0x08,   13 /* Private */,
+      16,    0,  112,    2, 0x08,   14 /* Private */,
+      17,    0,  113,    2, 0x08,   15 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -562,7 +547,6 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void, 0x80000000 | 12,   13,
-    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -608,8 +592,6 @@ Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
         // method 'on_btnDetenerFab02_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_btnDetenerFab01_clicked'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'on_btnColaDeAlistadores_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
@@ -635,7 +617,6 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 11: _t->on_btnDetenerFab03_clicked(); break;
         case 12: _t->on_btnDetenerFab02_clicked(); break;
         case 13: _t->on_btnDetenerFab01_clicked(); break;
-        case 14: _t->on_btnColaDeAlistadores_clicked(); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
@@ -671,13 +652,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 15)
+        if (_id < 14)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 15;
+        _id -= 14;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 15)
+        if (_id < 14)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 15;
+        _id -= 14;
     }
     return _id;
 }

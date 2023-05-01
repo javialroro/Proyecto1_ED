@@ -5,7 +5,6 @@
 #include <QTextEdit>
 #include <QMainWindow>
 #include "priorityqueue.h"
-#include "mainwindow.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {class vColaPedidos;}
@@ -19,9 +18,7 @@ public:
 
     vColaPedidos(const Queue<Pedido*>& queueMostrar); //Constructor que recibe los parámetros necesarios para poder mostrar las colas.
 
-    vColaPedidos(const Queue<Alistador*>& queueMostrar);
-
-    vColaPedidos(PriorityQueue* queueMostrar);
+    vColaPedidos(PriorityQueue* queueMostrar); //Constructor que recibe los parámetros necesarios para poder mostrar las colas.
 
     ~vColaPedidos();
 
@@ -38,7 +35,6 @@ public:
 public slots:
     void setQueueContentPQ();
     void setQueueContent();
-    void setQueueContentA();
     void volverAMenu();
 
 private:
@@ -47,9 +43,6 @@ private:
 
     Queue<Pedido*> queue;
     Queue<Pedido*>& queueM;
-
-    Queue<Alistador*> a_queue;
-    Queue<Alistador*>& a_queueM;
 
     PriorityQueue* p_queue;
     PriorityQueue* p_queueM;
