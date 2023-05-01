@@ -414,7 +414,7 @@ public:
         btnDetenerFab03->setFlat(true);
         btnDetenerBalanceador = new QPushButton(centralwidget);
         btnDetenerBalanceador->setObjectName("btnDetenerBalanceador");
-        btnDetenerBalanceador->setGeometry(QRect(370, 320, 31, 20));
+        btnDetenerBalanceador->setGeometry(QRect(340, 310, 31, 20));
         btnDetenerBalanceador->setCursor(QCursor(Qt::PointingHandCursor));
         btnDetenerBalanceador->setStyleSheet(QString::fromUtf8("background-color: white;\n"
 "font: 700 9pt \"Segoe UI\";\n"
@@ -467,7 +467,7 @@ public:
         lineH14->setFrameShadow(QFrame::Sunken);
         btnVerBalanceador = new QPushButton(centralwidget);
         btnVerBalanceador->setObjectName("btnVerBalanceador");
-        btnVerBalanceador->setGeometry(QRect(370, 300, 31, 21));
+        btnVerBalanceador->setGeometry(QRect(370, 310, 31, 21));
         btnVerBalanceador->setCursor(QCursor(Qt::PointingHandCursor));
         btnVerBalanceador->setStyleSheet(QString::fromUtf8("background-color: white;\n"
 "font: 700 9pt \"Segoe UI\";\n"
@@ -1134,7 +1134,7 @@ public:
         btnVerAlist6->setText(QString());
         btnVerAlist5->setText(QString());
         btnVerAlist4->setText(QString());
-        lblMostrarFabricando->setText(QString());
+        lblMostrarFabricando->setText(QCoreApplication::translate("MainWindow", "Fabricacion", nullptr));
     } // retranslateUi
 
 };

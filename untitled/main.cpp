@@ -18,6 +18,7 @@ int main(int argc, char *argv[]){
     Queue<Pedido *> colaB;
     Queue<Pedido *> colaC;
     Queue<Pedido *> colaComodin;
+    Queue<Alistador *> colaAlistadores;
     Queue<Pedido *> colaF;
 
     listaClientes *lista = new listaClientes();
@@ -37,12 +38,13 @@ int main(int argc, char *argv[]){
     Facturadora * facturadora = new Facturadora(colaAlistados);
     //qDebug() << "pasa fabricas";
     QTableWidget* _tableWidget= new QTableWidget();
-    Bodega* bodega = new Bodega(_tableWidget, colaAlisto, colaAlistados);
+    Bodega* bodega = new Bodega(listaArt, colaAlisto, colaAlistados, colaAlistadores);
 
 
-    MainWindow* w = new MainWindow(colaPedidos,colaAlisto,colaAlistados,colaA,colaB,colaC,colaComodin,listaArt,lista,al,revisor, balanceador,A,B,C,Comodin,
+    MainWindow* w = new MainWindow(colaPedidos,colaAlisto,colaAlistados,colaA,colaB,colaC,colaComodin,colaAlistadores,listaArt,lista,al,revisor, balanceador,A,B,C,Comodin,
                                    facturadora,bodega);
     w->show();
+
     qDebug() << "muestra interfaz";
 
 
