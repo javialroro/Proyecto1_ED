@@ -147,6 +147,8 @@ class Bodega : public QThread
         void liberarAlistador(Alistador* alistador);
         void run() override;
         void actualizarInterfaz();
+        void setPaused(bool _paused);
+        bool getPaused();
 
     signals:
         void procesarArticuloBodega(Queue<Alistador*> colaAlistadores, const QString& ubicacion, ArticuloPedido* articulo);
@@ -156,6 +158,7 @@ class Bodega : public QThread
         //void receiveTableWidget(QTableWidget* tableWidget);
 
     private:
+        bool paused = false;
         listaArticulos * listaArt;
         QTableWidget* table;
         Queue<Pedido*>& colaAlisto;
@@ -197,7 +200,10 @@ public:
                Fabrica * f2,Fabrica * f3,Fabrica * f4, Facturadora * fc,  Bodega * b);
     ~MainWindow();
     QTableWidget* getQTable();
-    QLabel* getLabelFabricacion();
+    QLabel* getLabelFabricacionA();
+    QLabel* getLabelFabricacionB();
+    QLabel* getLabelFabricacionC();
+    QLabel* getLabelFabricacionComodin();
 
 
 signals:
@@ -225,7 +231,13 @@ private slots:
 
     void on_btnDetenerBalanceador_clicked();
 
-    void setLabelFabricacion(QLabel* label);
+    void setLabelFabricacionA(QLabel* label);
+
+    void setLabelFabricacionB(QLabel* label);
+
+    void setLabelFabricacionC(QLabel* label);
+
+    void setLabelFabricacionComodin(QLabel* label);
 
     //Balanceador * getBalanceador();
 
@@ -237,9 +249,17 @@ private slots:
 
     void on_btnDetenerFab01_clicked();
 
-    void actualizarTextoLabel(const QString& texto);
+    void actualizarTextoLabelA(const QString& texto);
+
+    void actualizarTextoLabelB(const QString& texto);
+
+    void actualizarTextoLabelC(const QString& texto);
+
+    void actualizarTextoLabelComodin(const QString& texto);
 
     void on_btnColaDeAlistadores_clicked();
+
+    void on_btnDetenerAlistados_clicked();
 
 private:
     Ui::MainWindow *ui;

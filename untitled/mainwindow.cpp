@@ -39,8 +39,8 @@ RevisorArchivos::RevisorArchivos(struct listaArticulos  * la, struct listaClient
     void RevisorArchivos::run() {
         while (true) {
 
-            QString path = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Pedidos";
-            //QString path = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Pedidos";
+            //QString path = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Pedidos";
+            QString path = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Pedidos";
             QDir directorio(path);
             QStringList archivos = directorio.entryList(QStringList() << "*.txt", QDir::Files);
             if (archivos.size() > 0) {
@@ -51,8 +51,8 @@ RevisorArchivos::RevisorArchivos(struct listaArticulos  * la, struct listaClient
                     string cPath= path.toStdString()+"\\";
                     string cArchivo = archivo.toStdString();
                     string todo= cPath+cArchivo;
-                    string errores = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Errores\\"+cArchivo;
-                    //string errores = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Errores\\"+cArchivo;
+                    //string errores = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Errores\\"+cArchivo;
+                    string errores = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Errores\\"+cArchivo;
 
                     fstream arch(todo, std::ios::in | std::ios::app);
                     Archivo *a =  new Archivo(arch,todo,errores);
@@ -60,8 +60,8 @@ RevisorArchivos::RevisorArchivos(struct listaArticulos  * la, struct listaClient
                     cargarPedido(a, colaPedidos, listaClientes, listaArticulos);
 
                     string ruta_archivo = todo;
-                    string ruta_pedidosP = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\PedidosProcesados\\"+cArchivo;
-                    //string ruta_pedidosP = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\PedidosProcesados\\"+cArchivo;
+                    //string ruta_pedidosP = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\PedidosProcesados\\"+cArchivo;
+                    string ruta_pedidosP = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\PedidosProcesados\\"+cArchivo;
 
                     rename(ruta_archivo.c_str(),ruta_pedidosP.c_str());
                 }
@@ -83,8 +83,9 @@ Balanceador::Balanceador(listaArticulos  * l, PriorityQueue * colaPedidos, Queue
 
 
     void Balanceador::run() {
-        if(!paused){
-            while (true) {
+
+        while (true) {
+            if(!paused){
                     bool flag= true;
                     while(!p_queue->isEmptyPriority()){
                         sleep(3);
@@ -153,7 +154,7 @@ Balanceador::Balanceador(listaArticulos  * l, PriorityQueue * colaPedidos, Queue
                     }
                 }
                 // Esperar un tiempo antes de continuar
-                sleep(1);
+                sleep(8);
             }
         }
 
@@ -183,8 +184,9 @@ Balanceador::Balanceador(listaArticulos  * l, PriorityQueue * colaPedidos, Queue
 
     void Fabrica::run() {
 
-            if(!paused){
-                while (true) {
+            while (true) {
+
+                if(!paused){
 
                     semaphore.acquire();
 
@@ -276,8 +278,8 @@ Balanceador::Balanceador(listaArticulos  * l, PriorityQueue * colaPedidos, Queue
 
         void Facturadora::run(){
 
-                if(!paused){
-                    while (true) {
+                while (true) {
+                    if(!paused){
 
 
                         while(!cola.isEmpty()){
@@ -286,8 +288,8 @@ Balanceador::Balanceador(listaArticulos  * l, PriorityQueue * colaPedidos, Queue
                             string name= to_string(pedido->numPedido)+"_"+pedido->codCliente+"_"+retornarHora()+".txt";
                             pedido->factura->insertarAlFinal("Finalizado: "+retornarHora());
 
-                            fstream factura("C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Facturas\\"+name);
-                            //fstream factura("C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Facturas\\"+name);
+                            //fstream factura("C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Facturas\\"+name);
+                            fstream factura("C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Facturas\\"+name);
 
                             factura<<"Pedido: "+to_string(pedido->numPedido)+"\n"+"Cliente: "+pedido->codCliente+"\n";
 
@@ -499,41 +501,51 @@ Bodega::Bodega(Queue<Pedido*>& _colaAlisto, Queue<Pedido*>& _colaAlistados, Queu
     {
         //qDebug() << "inicia run bodega";
         while (true) {
-            if (!colaAlisto.isEmpty()){
-                //qDebug() << "alisto no está vacía";
-                // Esperar a que haya un pedido alistado en la bodega
-                Pedido* pedido = colaAlisto.deQueue();
-                Alistador * alistador = colaAlistadores.deQueue();
-                //colaAlistadores.deQueue();
-                qDebug()<<alistador->id;
-                ListaArticulosP* listaArticulos = pedido->listaPedido;
-                NodoArticuloP* temp = listaArticulos->pn;
-                //qDebug() << "Pasa inicializaciones";
+            if(!paused){
+                if (!colaAlisto.isEmpty()){
+                    //qDebug() << "alisto no está vacía";
+                    // Esperar a que haya un pedido alistado en la bodega
+                    Pedido* pedido = colaAlisto.deQueue();
+                    Alistador * alistador = colaAlistadores.deQueue();
+                    //colaAlistadores.deQueue();
+                    qDebug()<<alistador->id;
+                    ListaArticulosP* listaArticulos = pedido->listaPedido;
+                    NodoArticuloP* temp = listaArticulos->pn;
+                    //qDebug() << "Pasa inicializaciones";
 
 
-                while (temp != NULL) {
-                            ArticuloPedido* articulo = temp->articulo;
-                            string s = listaArt->buscarUbi(temp->articulo->codProd);
-                            QString ubicacion = QString::fromStdString(s);
-                            qDebug()<<ubicacion;
-                            alistador->ubicacion= ubicacion;
-                            alistador->articulo=articulo;
-                            temp = temp->siguiente;
+                    while (temp != NULL) {
+                                ArticuloPedido* articulo = temp->articulo;
+                                string s = listaArt->buscarUbi(temp->articulo->codProd);
+                                QString ubicacion = QString::fromStdString(s);
+                                qDebug()<<ubicacion;
+                                alistador->ubicacion= ubicacion;
+                                alistador->articulo=articulo;
+                                temp = temp->siguiente;
 
+                    }
+                    sleep(1);
+
+                    colaAlistadores.enQueue(alistador);
+
+                    colaAlistados.enQueue(pedido);
+
+                     //Procesar el pedido alistado
+
+                    //actualizarInterfaz();
                 }
-                sleep(1);
-
-                colaAlistadores.enQueue(alistador);
-
-                colaAlistados.enQueue(pedido);
-
-                 //Procesar el pedido alistado
-
-                //actualizarInterfaz();
             }
 
             QThread::sleep(3);
         }
+    }
+
+    bool Bodega::getPaused(){
+        return paused;
+    }
+
+    void Bodega::setPaused(bool _paused){
+        paused = _paused;
     }
 
     void Bodega::actualizarInterfaz()
@@ -580,7 +592,7 @@ Alistados::Alistados(Queue<Pedido *>& colaFacturacion,Queue<Pedido *> & A, strin
 
         while (true) {
 
-
+            if (!paused){
             while(!cola.isEmpty()){
                 cout<<name<<endl;
 
@@ -600,9 +612,9 @@ Alistados::Alistados(Queue<Pedido *>& colaFacturacion,Queue<Pedido *> & A, strin
                 f_queue.enQueue(pedido);
 
 
+                }
+
             }
-
-
         }
     }
 
@@ -625,10 +637,10 @@ MainWindow::MainWindow(PriorityQueue* _colaPedidos,Queue<Pedido *> & _colaAlisto
     ui(new Ui::MainWindow)
 
 {
-    connect(A, &Fabrica::actualizarLabel, this, &MainWindow::actualizarTextoLabel);
-    connect(B, &Fabrica::actualizarLabel, this, &MainWindow::actualizarTextoLabel);
-    connect(C, &Fabrica::actualizarLabel, this, &MainWindow::actualizarTextoLabel);
-    connect(Comodin, &Fabrica::actualizarLabel, this, &MainWindow::actualizarTextoLabel);
+    connect(A, &Fabrica::actualizarLabel, this, &MainWindow::actualizarTextoLabelA);
+    connect(B, &Fabrica::actualizarLabel, this, &MainWindow::actualizarTextoLabelB);
+    connect(C, &Fabrica::actualizarLabel, this, &MainWindow::actualizarTextoLabelC);
+    connect(Comodin, &Fabrica::actualizarLabel, this, &MainWindow::actualizarTextoLabelComodin);
     ui->setupUi(this);
 
     CargarArticulos(listaArt);
@@ -659,16 +671,65 @@ MainWindow::~MainWindow()
     ui->setupUi(this);
 }
 
-QTableWidget* MainWindow::getQTable(){
-    return ui->tblBodega;
+//QTableWidget* MainWindow::getQTable(){
+//    return ui->tblBodega;
+//-}
+
+
+// get labels
+QLabel* MainWindow::getLabelFabricacionA(){
+    return ui->lblMostrarFabricandoA;
 }
 
-QLabel* MainWindow::getLabelFabricacion(){
-    return ui->lblMostrarFabricando;
+QLabel* MainWindow::getLabelFabricacionB(){
+    return ui->lblMostrarFabricandoB;
 }
 
-void MainWindow::setLabelFabricacion(QLabel* label){
-     ui->lblMostrarFabricando=label;
+QLabel* MainWindow::getLabelFabricacionC(){
+    return ui->lblMostrarFabricandoC;
+}
+
+QLabel* MainWindow::getLabelFabricacionComodin(){
+    return ui->lblMostrarFabricandoComodin;
+}
+
+// set labels
+void MainWindow::setLabelFabricacionA(QLabel* label){
+     ui->lblMostrarFabricandoA=label;
+}
+
+void MainWindow::setLabelFabricacionB(QLabel* label){
+     ui->lblMostrarFabricandoB=label;
+}
+
+void MainWindow::setLabelFabricacionC(QLabel* label){
+     ui->lblMostrarFabricandoC=label;
+}
+
+void MainWindow::setLabelFabricacionComodin(QLabel* label){
+     ui->lblMostrarFabricandoComodin=label;
+}
+
+
+// Actualizar texto labels
+void MainWindow::actualizarTextoLabelA(const QString& texto) {
+     QLabel * lbl=getLabelFabricacionA();
+     lbl->setText(texto);
+}
+
+void MainWindow::actualizarTextoLabelB(const QString& texto) {
+     QLabel * lbl=getLabelFabricacionB();
+     lbl->setText(texto);
+}
+
+void MainWindow::actualizarTextoLabelC(const QString& texto) {
+     QLabel * lbl=getLabelFabricacionC();
+     lbl->setText(texto);
+}
+
+void MainWindow::actualizarTextoLabelComodin(const QString& texto) {
+     QLabel * lbl=getLabelFabricacionComodin();
+     lbl->setText(texto);
 }
 
 
@@ -771,70 +832,51 @@ void MainWindow::on_btnColaPorFacturar_clicked()
 void MainWindow::on_btnDetenerBalanceador_clicked()
 {
     qDebug()<<balanceador->getPaused();
-    if (!balanceador->getPaused()){
-            balanceador->setPaused(true);
-            qDebug()<<balanceador->getPaused();
-            qDebug()<<"Balanceador detenido";
-    }
-    else{
-            balanceador->setPaused(false);
-            qDebug()<<balanceador->getPaused();
-    }
-    //balanceador->setPaused(!balanceador->getPaused());
+    balanceador->setPaused(!balanceador->getPaused());
+    qDebug()<<balanceador->getPaused();
 }
 
 
 
 void MainWindow::on_btnDetenerFab04Com_clicked()
 {
-    if (!Comodin->getPaused()){
-            Comodin->setPaused(true);
-        }
-    else{
-            Comodin->setPaused(false);
-    }
+    qDebug()<<Comodin->getPaused();
+    Comodin->setPaused(!Comodin->getPaused());
+    qDebug()<<Comodin->getPaused();
 }
 
 
 void MainWindow::on_btnDetenerFab03_clicked()
 {
-    if (!C->getPaused()){
-            C->setPaused(true);
-    }
-    else{
-            C->setPaused(false);
-    }
+    qDebug()<<C->getPaused();
+    C->setPaused(!C->getPaused());
+    qDebug()<<C->getPaused();
 }
 
 
 void MainWindow::on_btnDetenerFab02_clicked()
 {
-    if (!A->getPaused()){
-            A->setPaused(true);
-
-    }
-    else{
-            A->setPaused(false);
-    }
+    qDebug()<<A->getPaused();
+    A->setPaused(!A->getPaused());
+    qDebug()<<A->getPaused();
 }
 
 
 void MainWindow::on_btnDetenerFab01_clicked()
 {
-    if (!B->getPaused()){
-            B->setPaused(true);
-    }
-    else{
-            B->setPaused(false);
-    }
-}
-void MainWindow::actualizarTextoLabel(const QString& texto) {
-    QLabel * lbl=getLabelFabricacion();
-    lbl->setText(texto);
+    qDebug()<<B->getPaused();
+    B->setPaused(!B->getPaused());
+    qDebug()<<B->getPaused();
 }
 
 
 
 
 
+
+
+void MainWindow::on_btnDetenerAlistados_clicked()
+{
+    //Alistados
+}
 
