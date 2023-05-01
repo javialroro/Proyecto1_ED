@@ -113,7 +113,7 @@ class Alistador : public QThread{
         QString to_String();
 
     public slots:
-        void procesarArticuloAlist(Queue<Alistador*> _colaAlistadores, const QString& _ubicacion, ArticuloPedido* _articulo);
+        void procesarArticuloAlist(Queue<Alistador*> _colaAlistadores, QString& _ubicacion, ArticuloPedido* _articulo);
         void alistadorLiberado(Alistador* alistador);
 
     signals:
@@ -127,8 +127,8 @@ class Alistador : public QThread{
         QString ubicacion;
         QMutex mutex;
 
-        int obtenerIndiceLetra(const QString& letra);
-        void moverAlistador(const QString& ubicacion, ArticuloPedido* articulo);
+        int obtenerIndiceLetra(QString& letra);
+        void moverAlistador(QString& ubicacion, ArticuloPedido* articulo);
 };
 
 
@@ -145,7 +145,7 @@ class Bodega : public QThread
         void actualizarInterfaz();
 
     signals:
-        void procesarArticuloBodega(Queue<Alistador*> colaAlistadores, const QString& ubicacion, ArticuloPedido* articulo);
+        void procesarArticuloBodega(Queue<Alistador*> colaAlistadores, QString& ubicacion, ArticuloPedido* articulo);
 
     public slots:
         void alistadorLiberado(Alistador* alistador);
