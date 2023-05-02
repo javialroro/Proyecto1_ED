@@ -33,6 +33,7 @@ private:
 
 
 class Balanceador : public QThread {
+    Q_OBJECT
 public:
     Balanceador(listaArticulos  * l, PriorityQueue * colaPedidos, Queue<Pedido *>& colaAlistos,Queue<Pedido *> & A,
                 Queue<Pedido *> & B,Queue<Pedido *> & C, Queue<Pedido *> & D, QObject* parent = nullptr);
@@ -52,7 +53,8 @@ private:
     listaArticulos * lista;
     bool paused = false;
 
-
+signals:
+    void actualizarLabelBalanceador(const QString& texto);
 
 };
 
@@ -211,6 +213,7 @@ public:
     QLabel* getLabelFabricacionB();
     QLabel* getLabelFabricacionC();
     QLabel* getLabelFabricacionComodin();
+    QLabel* getLabelBalanceador();
 
 
 signals:
@@ -267,6 +270,10 @@ private slots:
     void on_btnColaDeAlistadores_clicked();
 
     void on_btnDetenerAlistados_clicked();
+
+    void setLabelBalanceador(QLabel* label);
+    void actualizarTextoLabelBalanceador(const QString& texto);
+
 
 private:
     Ui::MainWindow *ui;

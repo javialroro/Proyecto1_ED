@@ -92,15 +92,18 @@ Balanceador::Balanceador(listaArticulos  * l, PriorityQueue * colaPedidos, Queue
 
 
                         Pedido * pedido = p_queue->deQueuePriority();
-                        cout<<"hice Dequeue"<<endl;
                         pedido->factura->insertarAlFinal("Balanceador: "+retornarHora()+"\n");
+                        QString textolbl = "Procesando pedido: #" + QString::fromStdString(to_string(pedido->numPedido));
+                        emit actualizarLabelBalanceador(textolbl);
+                        //cout<<"hice Dequeue"<<endl;
+
 
 
 
                         NodoArticuloP *tmp = pedido->listaPedido->pn;
 
 
-
+                        textolbl = "";
                         while (tmp != NULL){
 
                             bool verif =tmp->haySuficiente(lista);
@@ -120,18 +123,21 @@ Balanceador::Balanceador(listaArticulos  * l, PriorityQueue * colaPedidos, Queue
                                 if (categoria == "A") {
                                     //cout<<"A"<<endl;
                                     encolarMenor(f1,f4,pedido);
+                                    emit actualizarLabelBalanceador(textolbl);
                                     sleep(1);
 
 
 
                                 } else if (categoria == "B") {
                                     encolarMenor(f2,f4,pedido);
+                                    emit actualizarLabelBalanceador(textolbl);
                                     sleep(1);
 
 
                                 } else if (categoria == "C") {
 
                                     f3.enQueue(pedido);
+                                    emit actualizarLabelBalanceador(textolbl);
                                     sleep(1);
 
 
@@ -145,8 +151,9 @@ Balanceador::Balanceador(listaArticulos  * l, PriorityQueue * colaPedidos, Queue
                         }
                         //cout<<flag<<" debe entrar"<<endl;
                         if (flag){
-                            cout<<"A alisto"<<endl;
-                            //pedido->factura->insertarAlFinal("Este articulo no necesito ir a fabrica\n");
+                            //cout<<"A alisto"<<endl;
+                            emit actualizarLabelBalanceador(textolbl);
+                            pedido->factura->insertarAlFinal("A alisto"+retornarHora()+"\n");
                             a_queue.enQueue(pedido);
                             //cout<<"hizo enqueue";
                         }
@@ -233,8 +240,9 @@ Balanceador::Balanceador(listaArticulos  * l, PriorityQueue * colaPedidos, Queue
                                     cambiar(n->articulo->codigo,1,cantidadN);
                                     emit actualizarLabel("Fabricacion");
                                     pedido->factura->insertarAlFinal("final: "+retornarHora());
-
-                                    a_queue.enQueue(pedido);
+                                    if(!a_queue.existeEnCola(pedido)){
+                                        a_queue.enQueue(pedido);
+                                    }
                                     pedido->factura->insertarAlFinal("A alisto: "+retornarHora());
                                     cout<<"Encolado en queue de alisto"<<endl;
 
@@ -286,7 +294,7 @@ Balanceador::Balanceador(listaArticulos  * l, PriorityQueue * colaPedidos, Queue
                         Pedido * pedido = cola.deQueue();
 
 
-                        string name= "Pedido: "+to_string(pedido->numPedido)+"_"+pedido->codCliente;
+                        string name= "Pedido_"+to_string(pedido->numPedido)+"_"+pedido->codCliente+"_.txt";
                         //fstream factura("C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Facturas\\"+name);
 
 
@@ -352,11 +360,9 @@ Balanceador::Balanceador(listaArticulos  * l, PriorityQueue * colaPedidos, Queue
                 // Procesar el artículo
                 moverAlistador(ubicacionCopy, articuloCopy,pedido);
                 qDebug()<<"movio";
-
-                // Emitir señal para notificar que el alistador ha finalizado
-
                 ubicacion="";
             } else {
+                emit(finalizado(this));
                 QThread::msleep(2000);
             }
         }
@@ -424,9 +430,10 @@ Balanceador::Balanceador(listaArticulos  * l, PriorityQueue * colaPedidos, Queue
 
         // Simular el tiempo de regreso a la posición inicial
         QThread::sleep(tiempoIda);
+        pedido->factura->insertarAlFinal("Alistador: "+to_string(id)+"\n"+articulo->codProd+"\tUbicacion: "+ubicacion.toStdString()+"\t"+to_string(tiempoIda*2)+"\n");
         colaAlistados.enQueue(pedido);
         //colaAlistadores.enQueue(this);
-        emit(finalizado(this));
+
     }
 
 
@@ -508,17 +515,12 @@ Bodega::Bodega(Queue<Pedido*>& _colaAlisto, Queue<Pedido*>& _colaAlistados, Queu
                     temp = temp->siguiente;
 
 
-                    }
-                    sleep(1);
-
-                    //colaAlistadores.enQueue(alistador);
-
-                    //colaAlistados.enQueue(pedido);
-
-                     //Procesar el pedido alistado
-
-                    //actualizarInterfaz();
                 }
+
+                sleep(1);
+
+                }
+
 
             }
 
@@ -590,6 +592,7 @@ Alistados::Alistados(Queue<Pedido *>& colaFacturacion,Queue<Pedido *> & A, strin
                 Pedido * pedido = cola.deQueue();
 
                 NodoArticuloP *tmp = pedido->listaPedido->pn;
+                pedido->factura->insertarAlFinal("A Empaque: "+ retornarHora());
 
 
 
@@ -641,7 +644,7 @@ MainWindow::MainWindow(PriorityQueue* _colaPedidos,Queue<Pedido *> & _colaAlisto
     revisor->start();
     balanceador->start();
 
-    connect(balanceador, &Balanceador::actualizarLabel, this, &MainWindow::actualizarTextoLabelBalanceador);
+    connect(balanceador, &Balanceador::actualizarLabelBalanceador, this, &MainWindow::actualizarTextoLabelBalanceador);
 
     bodega->start();
     alistad->start();

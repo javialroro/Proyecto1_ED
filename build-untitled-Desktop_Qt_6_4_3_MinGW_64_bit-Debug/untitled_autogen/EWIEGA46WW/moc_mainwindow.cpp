@@ -26,6 +26,126 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 namespace {
+struct qt_meta_stringdata_Balanceador_t {
+    uint offsetsAndSizes[8];
+    char stringdata0[12];
+    char stringdata1[27];
+    char stringdata2[1];
+    char stringdata3[6];
+};
+#define QT_MOC_LITERAL(ofs, len) \
+    uint(sizeof(qt_meta_stringdata_Balanceador_t::offsetsAndSizes) + ofs), len 
+Q_CONSTINIT static const qt_meta_stringdata_Balanceador_t qt_meta_stringdata_Balanceador = {
+    {
+        QT_MOC_LITERAL(0, 11),  // "Balanceador"
+        QT_MOC_LITERAL(12, 26),  // "actualizarLabelBalanceador"
+        QT_MOC_LITERAL(39, 0),  // ""
+        QT_MOC_LITERAL(40, 5)   // "texto"
+    },
+    "Balanceador",
+    "actualizarLabelBalanceador",
+    "",
+    "texto"
+};
+#undef QT_MOC_LITERAL
+} // unnamed namespace
+
+Q_CONSTINIT static const uint qt_meta_data_Balanceador[] = {
+
+ // content:
+      10,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       1,   14, // methods
+       0,    0, // properties
+       0,    0, // enums/sets
+       0,    0, // constructors
+       0,       // flags
+       1,       // signalCount
+
+ // signals: name, argc, parameters, tag, flags, initial metatype offsets
+       1,    1,   20,    2, 0x06,    1 /* Public */,
+
+ // signals: parameters
+    QMetaType::Void, QMetaType::QString,    3,
+
+       0        // eod
+};
+
+Q_CONSTINIT const QMetaObject Balanceador::staticMetaObject = { {
+    QMetaObject::SuperData::link<QThread::staticMetaObject>(),
+    qt_meta_stringdata_Balanceador.offsetsAndSizes,
+    qt_meta_data_Balanceador,
+    qt_static_metacall,
+    nullptr,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_Balanceador_t,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<Balanceador, std::true_type>,
+        // method 'actualizarLabelBalanceador'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>
+    >,
+    nullptr
+} };
+
+void Balanceador::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+{
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        auto *_t = static_cast<Balanceador *>(_o);
+        (void)_t;
+        switch (_id) {
+        case 0: _t->actualizarLabelBalanceador((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        default: ;
+        }
+    } else if (_c == QMetaObject::IndexOfMethod) {
+        int *result = reinterpret_cast<int *>(_a[0]);
+        {
+            using _t = void (Balanceador::*)(const QString & );
+            if (_t _q_method = &Balanceador::actualizarLabelBalanceador; *reinterpret_cast<_t *>(_a[1]) == _q_method) {
+                *result = 0;
+                return;
+            }
+        }
+    }
+}
+
+const QMetaObject *Balanceador::metaObject() const
+{
+    return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
+}
+
+void *Balanceador::qt_metacast(const char *_clname)
+{
+    if (!_clname) return nullptr;
+    if (!strcmp(_clname, qt_meta_stringdata_Balanceador.stringdata0))
+        return static_cast<void*>(this);
+    return QThread::qt_metacast(_clname);
+}
+
+int Balanceador::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+{
+    _id = QThread::qt_metacall(_c, _id, _a);
+    if (_id < 0)
+        return _id;
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        if (_id < 1)
+            qt_static_metacall(this, _c, _id, _a);
+        _id -= 1;
+    } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+        if (_id < 1)
+            *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
+        _id -= 1;
+    }
+    return _id;
+}
+
+// SIGNAL 0
+void Balanceador::actualizarLabelBalanceador(const QString & _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 0, _a);
+}
+namespace {
 struct qt_meta_stringdata_Fabrica_t {
     uint offsetsAndSizes[8];
     char stringdata0[8];
@@ -445,7 +565,7 @@ void Bodega::procesarArticuloBodega(Queue<Alistador*> _t1, const QString & _t2, 
 }
 namespace {
 struct qt_meta_stringdata_MainWindow_t {
-    uint offsetsAndSizes[62];
+    uint offsetsAndSizes[66];
     char stringdata0[11];
     char stringdata1[18];
     char stringdata2[1];
@@ -477,6 +597,8 @@ struct qt_meta_stringdata_MainWindow_t {
     char stringdata28[28];
     char stringdata29[32];
     char stringdata30[31];
+    char stringdata31[20];
+    char stringdata32[32];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_MainWindow_t::offsetsAndSizes) + ofs), len 
@@ -512,7 +634,9 @@ Q_CONSTINIT static const qt_meta_stringdata_MainWindow_t qt_meta_stringdata_Main
         QT_MOC_LITERAL(600, 21),  // "actualizarTextoLabelC"
         QT_MOC_LITERAL(622, 27),  // "actualizarTextoLabelComodin"
         QT_MOC_LITERAL(650, 31),  // "on_btnColaDeAlistadores_clicked"
-        QT_MOC_LITERAL(682, 30)   // "on_btnDetenerAlistados_clicked"
+        QT_MOC_LITERAL(682, 30),  // "on_btnDetenerAlistados_clicked"
+        QT_MOC_LITERAL(713, 19),  // "setLabelBalanceador"
+        QT_MOC_LITERAL(733, 31)   // "actualizarTextoLabelBalanceador"
     },
     "MainWindow",
     "tableWidgetSignal",
@@ -544,7 +668,9 @@ Q_CONSTINIT static const qt_meta_stringdata_MainWindow_t qt_meta_stringdata_Main
     "actualizarTextoLabelC",
     "actualizarTextoLabelComodin",
     "on_btnColaDeAlistadores_clicked",
-    "on_btnDetenerAlistados_clicked"
+    "on_btnDetenerAlistados_clicked",
+    "setLabelBalanceador",
+    "actualizarTextoLabelBalanceador"
 };
 #undef QT_MOC_LITERAL
 } // unnamed namespace
@@ -555,7 +681,7 @@ Q_CONSTINIT static const uint qt_meta_data_MainWindow[] = {
       10,       // revision
        0,       // classname
        0,    0, // classinfo
-      24,   14, // methods
+      26,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -563,32 +689,34 @@ Q_CONSTINIT static const uint qt_meta_data_MainWindow[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    1,  158,    2, 0x06,    1 /* Public */,
+       1,    1,  170,    2, 0x06,    1 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       5,    0,  161,    2, 0x08,    3 /* Private */,
-       6,    0,  162,    2, 0x08,    4 /* Private */,
-       7,    0,  163,    2, 0x08,    5 /* Private */,
-       8,    0,  164,    2, 0x08,    6 /* Private */,
-       9,    0,  165,    2, 0x08,    7 /* Private */,
-      10,    0,  166,    2, 0x08,    8 /* Private */,
-      11,    0,  167,    2, 0x08,    9 /* Private */,
-      12,    0,  168,    2, 0x08,   10 /* Private */,
-      13,    0,  169,    2, 0x08,   11 /* Private */,
-      14,    1,  170,    2, 0x08,   12 /* Private */,
-      17,    1,  173,    2, 0x08,   14 /* Private */,
-      18,    1,  176,    2, 0x08,   16 /* Private */,
-      19,    1,  179,    2, 0x08,   18 /* Private */,
-      20,    0,  182,    2, 0x08,   20 /* Private */,
-      21,    0,  183,    2, 0x08,   21 /* Private */,
-      22,    0,  184,    2, 0x08,   22 /* Private */,
-      23,    0,  185,    2, 0x08,   23 /* Private */,
-      24,    1,  186,    2, 0x08,   24 /* Private */,
-      26,    1,  189,    2, 0x08,   26 /* Private */,
-      27,    1,  192,    2, 0x08,   28 /* Private */,
-      28,    1,  195,    2, 0x08,   30 /* Private */,
-      29,    0,  198,    2, 0x08,   32 /* Private */,
-      30,    0,  199,    2, 0x08,   33 /* Private */,
+       5,    0,  173,    2, 0x08,    3 /* Private */,
+       6,    0,  174,    2, 0x08,    4 /* Private */,
+       7,    0,  175,    2, 0x08,    5 /* Private */,
+       8,    0,  176,    2, 0x08,    6 /* Private */,
+       9,    0,  177,    2, 0x08,    7 /* Private */,
+      10,    0,  178,    2, 0x08,    8 /* Private */,
+      11,    0,  179,    2, 0x08,    9 /* Private */,
+      12,    0,  180,    2, 0x08,   10 /* Private */,
+      13,    0,  181,    2, 0x08,   11 /* Private */,
+      14,    1,  182,    2, 0x08,   12 /* Private */,
+      17,    1,  185,    2, 0x08,   14 /* Private */,
+      18,    1,  188,    2, 0x08,   16 /* Private */,
+      19,    1,  191,    2, 0x08,   18 /* Private */,
+      20,    0,  194,    2, 0x08,   20 /* Private */,
+      21,    0,  195,    2, 0x08,   21 /* Private */,
+      22,    0,  196,    2, 0x08,   22 /* Private */,
+      23,    0,  197,    2, 0x08,   23 /* Private */,
+      24,    1,  198,    2, 0x08,   24 /* Private */,
+      26,    1,  201,    2, 0x08,   26 /* Private */,
+      27,    1,  204,    2, 0x08,   28 /* Private */,
+      28,    1,  207,    2, 0x08,   30 /* Private */,
+      29,    0,  210,    2, 0x08,   32 /* Private */,
+      30,    0,  211,    2, 0x08,   33 /* Private */,
+      31,    1,  212,    2, 0x08,   34 /* Private */,
+      32,    1,  215,    2, 0x08,   36 /* Private */,
 
  // signals: parameters
     QMetaType::Void, 0x80000000 | 3,    4,
@@ -617,6 +745,8 @@ Q_CONSTINIT static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void, QMetaType::QString,   25,
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 15,   16,
+    QMetaType::Void, QMetaType::QString,   25,
 
        0        // eod
 };
@@ -686,7 +816,13 @@ Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
         // method 'on_btnColaDeAlistadores_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_btnDetenerAlistados_clicked'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'setLabelBalanceador'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QLabel *, std::false_type>,
+        // method 'actualizarTextoLabelBalanceador'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>
     >,
     nullptr
 } };
@@ -721,6 +857,8 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 21: _t->actualizarTextoLabelComodin((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 22: _t->on_btnColaDeAlistadores_clicked(); break;
         case 23: _t->on_btnDetenerAlistados_clicked(); break;
+        case 24: _t->setLabelBalanceador((*reinterpret_cast< std::add_pointer_t<QLabel*>>(_a[1]))); break;
+        case 25: _t->actualizarTextoLabelBalanceador((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
@@ -761,6 +899,13 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
                 *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType::fromType< QLabel* >(); break;
             }
             break;
+        case 24:
+            switch (*reinterpret_cast<int*>(_a[1])) {
+            default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
+            case 0:
+                *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType::fromType< QLabel* >(); break;
+            }
+            break;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
@@ -793,13 +938,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 24)
+        if (_id < 26)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 24;
+        _id -= 26;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 24)
+        if (_id < 26)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 24;
+        _id -= 26;
     }
     return _id;
 }

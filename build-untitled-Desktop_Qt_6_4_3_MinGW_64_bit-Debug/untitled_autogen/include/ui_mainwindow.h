@@ -113,7 +113,7 @@ public:
     QLabel *lblMostrarFabricandoB;
     QLabel *lblMostrarFabricandoComodin;
     QLabel *lblMostrarFabricandoC;
-    QLabel *label;
+    QLabel *lblMostrarActBalanceador;
     QStatusBar *statusbar;
 
     void setupUi(QMainWindow *MainWindow)
@@ -717,9 +717,9 @@ public:
         lblMostrarFabricandoC = new QLabel(centralwidget);
         lblMostrarFabricandoC->setObjectName("lblMostrarFabricandoC");
         lblMostrarFabricandoC->setGeometry(QRect(210, 180, 191, 20));
-        label = new QLabel(centralwidget);
-        label->setObjectName("label");
-        label->setGeometry(QRect(420, 380, 171, 16));
+        lblMostrarActBalanceador = new QLabel(centralwidget);
+        lblMostrarActBalanceador->setObjectName("lblMostrarActBalanceador");
+        lblMostrarActBalanceador->setGeometry(QRect(420, 380, 171, 16));
         MainWindow->setCentralWidget(centralwidget);
         lineV08->raise();
         lineV07->raise();
@@ -809,7 +809,7 @@ public:
         lblMostrarFabricandoB->raise();
         lblMostrarFabricandoComodin->raise();
         lblMostrarFabricandoC->raise();
-        label->raise();
+        lblMostrarActBalanceador->raise();
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName("statusbar");
         MainWindow->setStatusBar(statusbar);
@@ -948,7 +948,7 @@ public:
         lblMostrarFabricandoB->setText(QCoreApplication::translate("MainWindow", "Fabricacion", nullptr));
         lblMostrarFabricandoComodin->setText(QCoreApplication::translate("MainWindow", "Fabricacion", nullptr));
         lblMostrarFabricandoC->setText(QCoreApplication::translate("MainWindow", "Fabricacion", nullptr));
-        label->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
+        lblMostrarActBalanceador->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
     } // retranslateUi
 
 };

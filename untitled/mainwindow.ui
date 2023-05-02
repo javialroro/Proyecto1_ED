@@ -2037,7 +2037,7 @@ Alistadores</string>
      <string>Fabricacion</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="lblMostrarActBalanceador">
     <property name="geometry">
      <rect>
       <x>420</x>
@@ -2138,7 +2138,7 @@ Alistadores</string>
    <zorder>lblMostrarFabricandoB</zorder>
    <zorder>lblMostrarFabricandoComodin</zorder>
    <zorder>lblMostrarFabricandoC</zorder>
-   <zorder>label</zorder>
+   <zorder>lblMostrarActBalanceador</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
