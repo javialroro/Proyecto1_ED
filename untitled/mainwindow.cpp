@@ -39,8 +39,8 @@ RevisorArchivos::RevisorArchivos(struct listaArticulos  * la, struct listaClient
     void RevisorArchivos::run() {
         while (true) {
 
-            //QString path = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Pedidos";
-            QString path = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Pedidos";
+            QString path = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Pedidos";
+            //QString path = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Pedidos";
             QDir directorio(path);
             QStringList archivos = directorio.entryList(QStringList() << "*.txt", QDir::Files);
             if (archivos.size() > 0) {
@@ -51,8 +51,8 @@ RevisorArchivos::RevisorArchivos(struct listaArticulos  * la, struct listaClient
                     string cPath= path.toStdString()+"\\";
                     string cArchivo = archivo.toStdString();
                     string todo= cPath+cArchivo;
-                    //string errores = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Errores\\"+cArchivo;
-                    string errores = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Errores\\"+cArchivo;
+                    string errores = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Errores\\"+cArchivo;
+                    //string errores = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Errores\\"+cArchivo;
 
                     fstream arch(todo, std::ios::in | std::ios::app);
                     Archivo *a =  new Archivo(arch,todo,errores);
@@ -60,8 +60,8 @@ RevisorArchivos::RevisorArchivos(struct listaArticulos  * la, struct listaClient
                     cargarPedido(a, colaPedidos, listaClientes, listaArticulos);
 
                     string ruta_archivo = todo;
-                    //string ruta_pedidosP = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\PedidosProcesados\\"+cArchivo;
-                    string ruta_pedidosP = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\PedidosProcesados\\"+cArchivo;
+                    string ruta_pedidosP = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\PedidosProcesados\\"+cArchivo;
+                    //string ruta_pedidosP = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\PedidosProcesados\\"+cArchivo;
 
                     rename(ruta_archivo.c_str(),ruta_pedidosP.c_str());
                 }
@@ -285,13 +285,14 @@ Balanceador::Balanceador(listaArticulos  * l, PriorityQueue * colaPedidos, Queue
 
                         Pedido * pedido = cola.deQueue();
 
-                        string name= "Pedido: "+to_string(pedido->numPedido)+""+pedido->codCliente;
+
+                        string name= "Pedido: "+to_string(pedido->numPedido)+"_"+pedido->codCliente;
                         //fstream factura("C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Facturas\\"+name);
 
 
                         stringstream ss;
                         ss << "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Facturas\\" << name;
-                        ss << "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Facturas\\" << name;
+                        //ss << "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Facturas\\" << name;
                         std::string ruta_archivo = ss.str();
 
 
@@ -316,11 +317,9 @@ Balanceador::Balanceador(listaArticulos  * l, PriorityQueue * colaPedidos, Queue
 
 
                     }
-                    sleep(1);
+
                 }
         }
-
-
 
     }
     bool Facturadora::getPaused (){
@@ -512,9 +511,9 @@ Bodega::Bodega(Queue<Pedido*>& _colaAlisto, Queue<Pedido*>& _colaAlistados, Queu
                     }
                     sleep(1);
 
-                    colaAlistadores.enQueue(alistador);
+                    //colaAlistadores.enQueue(alistador);
 
-                    colaAlistados.enQueue(pedido);
+                    //colaAlistados.enQueue(pedido);
 
                      //Procesar el pedido alistado
 
@@ -642,6 +641,8 @@ MainWindow::MainWindow(PriorityQueue* _colaPedidos,Queue<Pedido *> & _colaAlisto
     revisor->start();
     balanceador->start();
     bodega->start();
+    alistad->start();
+    facturadora->start();
 
     A->start();
     B->start();
@@ -818,7 +819,7 @@ void MainWindow::on_btnColaPorFacturar_clicked()
 {
     vColaPedidos* vColaPedidosDialog = new vColaPedidos(colaFacturacion); // Crear instancia de vColaPedidos
 
-    vColaPedidosDialog->setQueueContentA(); // Establecer el contenido de la cola en el QTextEdit
+    vColaPedidosDialog->setQueueContent(); // Establecer el contenido de la cola en el QTextEdit
 
     vColaPedidosDialog->show();
 }
@@ -863,8 +864,6 @@ void MainWindow::on_btnDetenerFab01_clicked()
     B->setPaused(!B->getPaused());
     qDebug()<<B->getPaused();
 }
-
-
 
 
 
