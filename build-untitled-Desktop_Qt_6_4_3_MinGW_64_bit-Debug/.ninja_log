@@ -1,75 +1,57 @@
 # ninja log v5
+6	2215	7047021512573391	untitled_autogen/mocs_compilation.cpp	c21418c36f716f65
 0	74	0	CMakeFiles/clean.additional	baedbe210acaa455
+6	2215	7047021512573391	C:/Users/javia/OneDrive - Estudiantes ITCR/TEC/TEC 3 Semestre/Estructuras de Datos/Proyectos/Proyecto1_ED/build-untitled-Desktop_Qt_6_4_3_MinGW_64_bit-Debug/untitled_autogen/mocs_compilation.cpp	c21418c36f716f65
+6	2215	7047021512573391	C:/Users/javia/OneDrive - Estudiantes ITCR/TEC/TEC 3 Semestre/Estructuras de Datos/Proyectos/Proyecto1_ED/build-untitled-Desktop_Qt_6_4_3_MinGW_64_bit-Debug/untitled_autogen/timestamp	c21418c36f716f65
+6	2215	7047021512573391	untitled_autogen/timestamp	c21418c36f716f65
 75	114	0	clean	577b940aee94fbd7
-2	2927	7046953594764120	untitled_autogen/timestamp	c21418c36f716f65
-2	2927	7046953594764120	untitled_autogen/mocs_compilation.cpp	c21418c36f716f65
-2	2927	7046953594764120	C:/Users/javia/OneDrive - Estudiantes ITCR/TEC/TEC 3 Semestre/Estructuras de Datos/Proyectos/Proyecto1_ED/build-untitled-Desktop_Qt_6_4_3_MinGW_64_bit-Debug/untitled_autogen/timestamp	c21418c36f716f65
-2	2927	7046953594764120	C:/Users/javia/OneDrive - Estudiantes ITCR/TEC/TEC 3 Semestre/Estructuras de Datos/Proyectos/Proyecto1_ED/build-untitled-Desktop_Qt_6_4_3_MinGW_64_bit-Debug/untitled_autogen/mocs_compilation.cpp	c21418c36f716f65
 2946	3141	7046953602291006	CMakeFiles/untitled.dir/structs.cpp.obj	e2233302edf85731
 3022	3178	7046953602606826	CMakeFiles/untitled.dir/QThreads.cpp.obj	4cee8ff5f0593031
 3035	3207	7046953602816161	CMakeFiles/untitled.dir/priorityqueue.cpp.obj	3dd994e3fd98e32a
-3003	9280	7046953663685332	CMakeFiles/untitled.dir/main.cpp.obj	f158b463460c1aad
-2987	9473	7046953665624286	CMakeFiles/untitled.dir/vcolapedidos.cpp.obj	69c3ae390cb36163
-2937	9543	7046953666310909	CMakeFiles/untitled.dir/untitled_autogen/mocs_compilation.cpp.obj	89927a2960fc9e09
-2971	10353	7046953674386515	CMakeFiles/untitled.dir/mainwindow.cpp.obj	b8388bdbedb16b1c
-6	3464	7046954376454207	CMakeFiles/untitled.dir/untitled_autogen/mocs_compilation.cpp.obj	89927a2960fc9e09
-3492	4140	7046954383067777	untitled.exe	c7c0e0efb2360602
-9	1869	7046957840625054	untitled_autogen/timestamp	c21418c36f716f65
-9	1869	7046957840625054	untitled_autogen/mocs_compilation.cpp	c21418c36f716f65
-9	1869	7046957840625054	C:/Users/javia/OneDrive - Estudiantes ITCR/TEC/TEC 3 Semestre/Estructuras de Datos/Proyectos/Proyecto1_ED/build-untitled-Desktop_Qt_6_4_3_MinGW_64_bit-Debug/untitled_autogen/timestamp	c21418c36f716f65
-9	1869	7046957840625054	C:/Users/javia/OneDrive - Estudiantes ITCR/TEC/TEC 3 Semestre/Estructuras de Datos/Proyectos/Proyecto1_ED/build-untitled-Desktop_Qt_6_4_3_MinGW_64_bit-Debug/untitled_autogen/mocs_compilation.cpp	c21418c36f716f65
-1911	6924	7046957895174521	CMakeFiles/untitled.dir/main.cpp.obj	f158b463460c1aad
-1884	7144	7046957897383726	CMakeFiles/untitled.dir/vcolapedidos.cpp.obj	69c3ae390cb36163
-1870	7186	7046957897797650	CMakeFiles/untitled.dir/untitled_autogen/mocs_compilation.cpp.obj	89927a2960fc9e09
-1902	7966	7046957905579592	CMakeFiles/untitled.dir/mainwindow.cpp.obj	b8388bdbedb16b1c
-8	1820	7046958297900242	untitled_autogen/timestamp	c21418c36f716f65
-8	1820	7046958297900242	untitled_autogen/mocs_compilation.cpp	c21418c36f716f65
-8	1820	7046958297900242	C:/Users/javia/OneDrive - Estudiantes ITCR/TEC/TEC 3 Semestre/Estructuras de Datos/Proyectos/Proyecto1_ED/build-untitled-Desktop_Qt_6_4_3_MinGW_64_bit-Debug/untitled_autogen/timestamp	c21418c36f716f65
-8	1820	7046958297900242	C:/Users/javia/OneDrive - Estudiantes ITCR/TEC/TEC 3 Semestre/Estructuras de Datos/Proyectos/Proyecto1_ED/build-untitled-Desktop_Qt_6_4_3_MinGW_64_bit-Debug/untitled_autogen/mocs_compilation.cpp	c21418c36f716f65
-1835	6923	7046958352683150	CMakeFiles/untitled.dir/main.cpp.obj	f158b463460c1aad
-1851	7154	7046958354980051	CMakeFiles/untitled.dir/vcolapedidos.cpp.obj	69c3ae390cb36163
-1821	7205	7046958355490875	CMakeFiles/untitled.dir/untitled_autogen/mocs_compilation.cpp.obj	89927a2960fc9e09
-1859	7813	7046958361566274	CMakeFiles/untitled.dir/mainwindow.cpp.obj	b8388bdbedb16b1c
-7813	8412	7046958367391083	untitled.exe	c7c0e0efb2360602
-7	442	7046962108637582	untitled_autogen/timestamp	c21418c36f716f65
-7	442	7046962108637582	untitled_autogen/mocs_compilation.cpp	c21418c36f716f65
-7	442	7046962108637582	C:/Users/javia/OneDrive - Estudiantes ITCR/TEC/TEC 3 Semestre/Estructuras de Datos/Proyectos/Proyecto1_ED/build-untitled-Desktop_Qt_6_4_3_MinGW_64_bit-Debug/untitled_autogen/timestamp	c21418c36f716f65
-7	442	7046962108637582	C:/Users/javia/OneDrive - Estudiantes ITCR/TEC/TEC 3 Semestre/Estructuras de Datos/Proyectos/Proyecto1_ED/build-untitled-Desktop_Qt_6_4_3_MinGW_64_bit-Debug/untitled_autogen/mocs_compilation.cpp	c21418c36f716f65
-466	5272	7046962156937578	CMakeFiles/untitled.dir/vcolapedidos.cpp.obj	69c3ae390cb36163
-459	6004	7046962164232097	CMakeFiles/untitled.dir/mainwindow.cpp.obj	b8388bdbedb16b1c
-6004	6640	7046962170467581	untitled.exe	c7c0e0efb2360602
-8	545	7046962367850270	untitled_autogen/timestamp	c21418c36f716f65
-8	545	7046962367850270	untitled_autogen/mocs_compilation.cpp	c21418c36f716f65
-8	545	7046962367850270	C:/Users/javia/OneDrive - Estudiantes ITCR/TEC/TEC 3 Semestre/Estructuras de Datos/Proyectos/Proyecto1_ED/build-untitled-Desktop_Qt_6_4_3_MinGW_64_bit-Debug/untitled_autogen/timestamp	c21418c36f716f65
-8	545	7046962367850270	C:/Users/javia/OneDrive - Estudiantes ITCR/TEC/TEC 3 Semestre/Estructuras de Datos/Proyectos/Proyecto1_ED/build-untitled-Desktop_Qt_6_4_3_MinGW_64_bit-Debug/untitled_autogen/mocs_compilation.cpp	c21418c36f716f65
-586	5441	7046962416796650	CMakeFiles/untitled.dir/vcolapedidos.cpp.obj	69c3ae390cb36163
-569	6146	7046962423873448	CMakeFiles/untitled.dir/mainwindow.cpp.obj	b8388bdbedb16b1c
-6146	6817	7046962430421358	untitled.exe	c7c0e0efb2360602
-8	527	7046962854096195	untitled_autogen/timestamp	c21418c36f716f65
-8	527	7046962854096195	untitled_autogen/mocs_compilation.cpp	c21418c36f716f65
-8	527	7046962854096195	C:/Users/javia/OneDrive - Estudiantes ITCR/TEC/TEC 3 Semestre/Estructuras de Datos/Proyectos/Proyecto1_ED/build-untitled-Desktop_Qt_6_4_3_MinGW_64_bit-Debug/untitled_autogen/timestamp	c21418c36f716f65
-8	527	7046962854096195	C:/Users/javia/OneDrive - Estudiantes ITCR/TEC/TEC 3 Semestre/Estructuras de Datos/Proyectos/Proyecto1_ED/build-untitled-Desktop_Qt_6_4_3_MinGW_64_bit-Debug/untitled_autogen/mocs_compilation.cpp	c21418c36f716f65
-551	5370	7046962902571984	CMakeFiles/untitled.dir/vcolapedidos.cpp.obj	69c3ae390cb36163
-567	6162	7046962910444953	CMakeFiles/untitled.dir/mainwindow.cpp.obj	b8388bdbedb16b1c
-6163	6793	7046962916629766	untitled.exe	c7c0e0efb2360602
-8	536	7046964302992963	untitled_autogen/timestamp	c21418c36f716f65
-8	536	7046964302992963	untitled_autogen/mocs_compilation.cpp	c21418c36f716f65
-8	536	7046964302992963	C:/Users/javia/OneDrive - Estudiantes ITCR/TEC/TEC 3 Semestre/Estructuras de Datos/Proyectos/Proyecto1_ED/build-untitled-Desktop_Qt_6_4_3_MinGW_64_bit-Debug/untitled_autogen/timestamp	c21418c36f716f65
-8	536	7046964302992963	C:/Users/javia/OneDrive - Estudiantes ITCR/TEC/TEC 3 Semestre/Estructuras de Datos/Proyectos/Proyecto1_ED/build-untitled-Desktop_Qt_6_4_3_MinGW_64_bit-Debug/untitled_autogen/mocs_compilation.cpp	c21418c36f716f65
-559	5296	7046964350597276	CMakeFiles/untitled.dir/vcolapedidos.cpp.obj	69c3ae390cb36163
-577	6011	7046964357731075	CMakeFiles/untitled.dir/mainwindow.cpp.obj	b8388bdbedb16b1c
-6011	6653	7046964364026887	untitled.exe	c7c0e0efb2360602
-12	600	7046967562967656	untitled_autogen/timestamp	c21418c36f716f65
-12	600	7046967562967656	untitled_autogen/mocs_compilation.cpp	c21418c36f716f65
-12	600	7046967562967656	C:/Users/javia/OneDrive - Estudiantes ITCR/TEC/TEC 3 Semestre/Estructuras de Datos/Proyectos/Proyecto1_ED/build-untitled-Desktop_Qt_6_4_3_MinGW_64_bit-Debug/untitled_autogen/timestamp	c21418c36f716f65
-12	600	7046967562967656	C:/Users/javia/OneDrive - Estudiantes ITCR/TEC/TEC 3 Semestre/Estructuras de Datos/Proyectos/Proyecto1_ED/build-untitled-Desktop_Qt_6_4_3_MinGW_64_bit-Debug/untitled_autogen/mocs_compilation.cpp	c21418c36f716f65
-620	5085	7046967607816758	CMakeFiles/untitled.dir/vcolapedidos.cpp.obj	69c3ae390cb36163
-637	6052	7046967616666210	CMakeFiles/untitled.dir/mainwindow.cpp.obj	b8388bdbedb16b1c
-6052	6880	7046967625600072	untitled.exe	c7c0e0efb2360602
-11	625	7046968903576796	untitled_autogen/timestamp	c21418c36f716f65
-11	625	7046968903576796	untitled_autogen/mocs_compilation.cpp	c21418c36f716f65
-11	625	7046968903576796	C:/Users/javia/OneDrive - Estudiantes ITCR/TEC/TEC 3 Semestre/Estructuras de Datos/Proyectos/Proyecto1_ED/build-untitled-Desktop_Qt_6_4_3_MinGW_64_bit-Debug/untitled_autogen/timestamp	c21418c36f716f65
-11	625	7046968903576796	C:/Users/javia/OneDrive - Estudiantes ITCR/TEC/TEC 3 Semestre/Estructuras de Datos/Proyectos/Proyecto1_ED/build-untitled-Desktop_Qt_6_4_3_MinGW_64_bit-Debug/untitled_autogen/mocs_compilation.cpp	c21418c36f716f65
-666	5178	7046968949115641	CMakeFiles/untitled.dir/vcolapedidos.cpp.obj	69c3ae390cb36163
-647	5824	7046968955554054	CMakeFiles/untitled.dir/mainwindow.cpp.obj	b8388bdbedb16b1c
-5824	6463	7046968961781681	untitled.exe	c7c0e0efb2360602
+2260	7408	7047021569279266	CMakeFiles/untitled.dir/main.cpp.obj	f158b463460c1aad
+8205	8824	7047021583257909	untitled.exe	c7c0e0efb2360602
+2251	7497	7047021570200353	CMakeFiles/untitled.dir/vcolapedidos.cpp.obj	69c3ae390cb36163
+2216	7551	7047021570706078	CMakeFiles/untitled.dir/untitled_autogen/mocs_compilation.cpp.obj	89927a2960fc9e09
+2233	8204	7047021577256551	CMakeFiles/untitled.dir/mainwindow.cpp.obj	b8388bdbedb16b1c
+12	2158	7047029043815663	untitled_autogen/timestamp	c21418c36f716f65
+12	2158	7047029043815663	untitled_autogen/mocs_compilation.cpp	c21418c36f716f65
+12	2158	7047029043815663	C:/Users/javia/OneDrive - Estudiantes ITCR/TEC/TEC 3 Semestre/Estructuras de Datos/Proyectos/Proyecto1_ED/build-untitled-Desktop_Qt_6_4_3_MinGW_64_bit-Debug/untitled_autogen/timestamp	c21418c36f716f65
+12	2158	7047029043815663	C:/Users/javia/OneDrive - Estudiantes ITCR/TEC/TEC 3 Semestre/Estructuras de Datos/Proyectos/Proyecto1_ED/build-untitled-Desktop_Qt_6_4_3_MinGW_64_bit-Debug/untitled_autogen/mocs_compilation.cpp	c21418c36f716f65
+2174	7558	7047029102076289	CMakeFiles/untitled.dir/main.cpp.obj	f158b463460c1aad
+2202	7642	7047029102921820	CMakeFiles/untitled.dir/vcolapedidos.cpp.obj	69c3ae390cb36163
+2159	7751	7047029103975577	CMakeFiles/untitled.dir/untitled_autogen/mocs_compilation.cpp.obj	89927a2960fc9e09
+11	734	7047029376455168	untitled_autogen/timestamp	c21418c36f716f65
+11	734	7047029376455168	untitled_autogen/mocs_compilation.cpp	c21418c36f716f65
+11	734	7047029376455168	C:/Users/javia/OneDrive - Estudiantes ITCR/TEC/TEC 3 Semestre/Estructuras de Datos/Proyectos/Proyecto1_ED/build-untitled-Desktop_Qt_6_4_3_MinGW_64_bit-Debug/untitled_autogen/timestamp	c21418c36f716f65
+11	734	7047029376455168	C:/Users/javia/OneDrive - Estudiantes ITCR/TEC/TEC 3 Semestre/Estructuras de Datos/Proyectos/Proyecto1_ED/build-untitled-Desktop_Qt_6_4_3_MinGW_64_bit-Debug/untitled_autogen/mocs_compilation.cpp	c21418c36f716f65
+757	5852	7047029427696748	CMakeFiles/untitled.dir/vcolapedidos.cpp.obj	69c3ae390cb36163
+777	6609	7047029435250478	CMakeFiles/untitled.dir/mainwindow.cpp.obj	b8388bdbedb16b1c
+6610	7253	7047029441538333	untitled.exe	c7c0e0efb2360602
+13	682	7047030629124696	untitled_autogen/timestamp	c21418c36f716f65
+13	682	7047030629124696	untitled_autogen/mocs_compilation.cpp	c21418c36f716f65
+13	682	7047030629124696	C:/Users/javia/OneDrive - Estudiantes ITCR/TEC/TEC 3 Semestre/Estructuras de Datos/Proyectos/Proyecto1_ED/build-untitled-Desktop_Qt_6_4_3_MinGW_64_bit-Debug/untitled_autogen/timestamp	c21418c36f716f65
+13	682	7047030629124696	C:/Users/javia/OneDrive - Estudiantes ITCR/TEC/TEC 3 Semestre/Estructuras de Datos/Proyectos/Proyecto1_ED/build-untitled-Desktop_Qt_6_4_3_MinGW_64_bit-Debug/untitled_autogen/mocs_compilation.cpp	c21418c36f716f65
+725	5792	7047030680255120	CMakeFiles/untitled.dir/vcolapedidos.cpp.obj	69c3ae390cb36163
+708	6735	7047030689661963	CMakeFiles/untitled.dir/mainwindow.cpp.obj	b8388bdbedb16b1c
+6736	7369	7047030695851755	untitled.exe	c7c0e0efb2360602
+11	676	7047032994492895	untitled_autogen/timestamp	c21418c36f716f65
+11	676	7047032994492895	untitled_autogen/mocs_compilation.cpp	c21418c36f716f65
+11	676	7047032994492895	C:/Users/javia/OneDrive - Estudiantes ITCR/TEC/TEC 3 Semestre/Estructuras de Datos/Proyectos/Proyecto1_ED/build-untitled-Desktop_Qt_6_4_3_MinGW_64_bit-Debug/untitled_autogen/timestamp	c21418c36f716f65
+11	676	7047032994492895	C:/Users/javia/OneDrive - Estudiantes ITCR/TEC/TEC 3 Semestre/Estructuras de Datos/Proyectos/Proyecto1_ED/build-untitled-Desktop_Qt_6_4_3_MinGW_64_bit-Debug/untitled_autogen/mocs_compilation.cpp	c21418c36f716f65
+700	5845	7047033046219598	CMakeFiles/untitled.dir/vcolapedidos.cpp.obj	69c3ae390cb36163
+720	6676	7047033054512738	CMakeFiles/untitled.dir/mainwindow.cpp.obj	b8388bdbedb16b1c
+6676	7309	7047033060674081	untitled.exe	c7c0e0efb2360602
+11	622	7047033769704157	untitled_autogen/timestamp	c21418c36f716f65
+11	622	7047033769704157	untitled_autogen/mocs_compilation.cpp	c21418c36f716f65
+11	622	7047033769704157	C:/Users/javia/OneDrive - Estudiantes ITCR/TEC/TEC 3 Semestre/Estructuras de Datos/Proyectos/Proyecto1_ED/build-untitled-Desktop_Qt_6_4_3_MinGW_64_bit-Debug/untitled_autogen/timestamp	c21418c36f716f65
+11	622	7047033769704157	C:/Users/javia/OneDrive - Estudiantes ITCR/TEC/TEC 3 Semestre/Estructuras de Datos/Proyectos/Proyecto1_ED/build-untitled-Desktop_Qt_6_4_3_MinGW_64_bit-Debug/untitled_autogen/mocs_compilation.cpp	c21418c36f716f65
+670	5685	7047033820362273	CMakeFiles/untitled.dir/vcolapedidos.cpp.obj	69c3ae390cb36163
+647	6547	7047033828948644	CMakeFiles/untitled.dir/mainwindow.cpp.obj	b8388bdbedb16b1c
+6548	7179	7047033835139114	untitled.exe	c7c0e0efb2360602
+11	763	7047035277090431	untitled_autogen/timestamp	c21418c36f716f65
+11	763	7047035277090431	untitled_autogen/mocs_compilation.cpp	c21418c36f716f65
+11	763	7047035277090431	C:/Users/javia/OneDrive - Estudiantes ITCR/TEC/TEC 3 Semestre/Estructuras de Datos/Proyectos/Proyecto1_ED/build-untitled-Desktop_Qt_6_4_3_MinGW_64_bit-Debug/untitled_autogen/timestamp	c21418c36f716f65
+11	763	7047035277090431	C:/Users/javia/OneDrive - Estudiantes ITCR/TEC/TEC 3 Semestre/Estructuras de Datos/Proyectos/Proyecto1_ED/build-untitled-Desktop_Qt_6_4_3_MinGW_64_bit-Debug/untitled_autogen/mocs_compilation.cpp	c21418c36f716f65
+793	5914	7047035328701998	CMakeFiles/untitled.dir/vcolapedidos.cpp.obj	69c3ae390cb36163
+812	6709	7047035336615385	CMakeFiles/untitled.dir/mainwindow.cpp.obj	b8388bdbedb16b1c
+6709	7343	7047035342815032	untitled.exe	c7c0e0efb2360602

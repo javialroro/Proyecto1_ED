@@ -243,11 +243,11 @@ Balanceador::Balanceador(listaArticulos  * l, PriorityQueue * colaPedidos, Queue
                                     cout<<tmp->articulo->cantidad<<endl;
                                     int falta= tmp->articulo->cantidad - n->articulo->cantidadAlmacen;
 
-                                    pedido->factura->insertarAlFinal("A fabrica: "+retornarHora()+" Faltaba "+to_string(falta)+" de"+tmp->articulo->codProd+"\n");
+                                    pedido->factura->insertarAlFinal("A fabrica: "+retornarHora()+" Faltaba "+to_string(abs(falta))+" de"+tmp->articulo->codProd+"\n");
 
                                     int cantidadN= n->articulo->cantidadAlmacen+=(tmp->articulo->cantidad);
 
-                                    pedido->factura->insertarAlFinal("ARTICULO "+tmp->articulo->codProd+" Fabrica: "+name+"\n"+to_string(falta)+" unidades\n");
+                                    pedido->factura->insertarAlFinal("ARTICULO "+tmp->articulo->codProd+" Fabrica: "+name+"\n"+to_string(abs(falta))+" unidades\n");
                                     pedido->factura->insertarAlFinal("inicio: "+retornarHora());
 
                                     n->articulo->cantidadAlmacen= cantidadN;
@@ -262,13 +262,14 @@ Balanceador::Balanceador(listaArticulos  * l, PriorityQueue * colaPedidos, Queue
                                     cambiar(n->articulo->codigo,1,cantidadN);
                                     emit actualizarLabel("Fabricacion");
                                     pedido->factura->insertarAlFinal("final: "+retornarHora());
-                                    if(!a_queue.existeEnCola(pedido)){
+                                    if(!a_queue.contieneCodigo(pedido->numPedido)){
+                                        cout<<pedido->numPedido<<" Hola";
                                         a_queue.enQueue(pedido);
                                         cantAtendidos++;
                                     }
 
                                     emit actualizarLabelCant(QString::number(cantAtendidos));
-                                    pedido->factura->insertarAlFinal("A alisto: "+retornarHora());
+
                                     cout<<"Encolado en queue de alisto"<<endl;
 
 
@@ -368,7 +369,8 @@ Facturadora::Facturadora(Queue<Pedido *> & A, QObject* parent)
     }
 //------------------------------------------------------------------------
 
-    Alistador::Alistador(int _id, Queue<Pedido*>& _colaAlistados, QObject* parent)
+
+    Alistador::Alistador(int _id, QTableWidget* _tableWidget,Queue<Pedido*> & _colaAlistados, listaArticulos * listaArt,QObject* parent)
         : QThread(parent), id(_id),colaAlistados(_colaAlistados)
         {
             // Conectar la señal finalizado de Alistador a la ranura alistadorLiberado de Bodega
@@ -452,13 +454,13 @@ Facturadora::Facturadora(Queue<Pedido *> & A, QObject* parent)
 
 
         // Simular el tiempo de movimiento
-        QThread::sleep(tiempoIda);
+        QThread::sleep(2);
 
-        qDebug()<<"llego";
+
 
 
         // Simular el tiempo de regreso a la posición inicial
-        QThread::sleep(tiempoIda);
+        QThread::sleep(2);
         pedido->factura->insertarAlFinal("Alistador: "+to_string(id)+"\n"+articulo->codProd+"\tUbicacion: "+ubicacion.toStdString()+"\t"+to_string(tiempoIda*2)+"\n");
         emit(finalizado(this));
         //colaAlistados.enQueue(pedido);
@@ -476,34 +478,39 @@ Bodega::Bodega(Queue<Pedido*>& _colaAlisto, Queue<Pedido*>& _colaAlistados, Queu
     // Crear los 6 alistadores y agregarlos a la cola
     //------------
 
-    Alistador* alistador1 = new Alistador(1, colaAlistados);
+
+    Alistador* alistador1 = new Alistador(1, table,colaAlistados,listaArt);
     colaAlistadores.enQueue(alistador1);
     alistador1->start();
     //qDebug() << "pasa generar alistador1";
 
     //------------
-    Alistador* alistador2 = new Alistador(2, colaAlistados);
+
+    Alistador* alistador2 = new Alistador(2, table,colaAlistados,listaArt);
     colaAlistadores.enQueue(alistador2);
     alistador2->start();
     //qDebug() << "pasa generar alistador2";
 
     //------------
-    Alistador* alistador3 = new Alistador(3, colaAlistados);
+
+    Alistador* alistador3 = new Alistador(3, table,colaAlistados,listaArt);
     colaAlistadores.enQueue(alistador3);
     //qDebug() << "pasa generar alistador3";
 
     // Conectar la señal procesarArticuloBodega de Bodega a la ranura procesarArticuloAlist de Alistador
 
-    Alistador* alistador4 = new Alistador(4, colaAlistados);
+    Alistador* alistador4 = new Alistador(4, table,colaAlistados,listaArt);
     colaAlistadores.enQueue(alistador4);
     //qDebug() << "pasa generar alistador4";
 
-    Alistador* alistador5 = new Alistador(5, colaAlistados);
+
+    Alistador* alistador5 = new Alistador(5, table,colaAlistados,listaArt);
     colaAlistadores.enQueue(alistador5);
     //qDebug() << "pasa generar alistador5";
 
     //------------
-    Alistador* alistador6 = new Alistador(6, colaAlistados);
+
+    Alistador* alistador6 = new Alistador(6, table,colaAlistados,listaArt);
     colaAlistadores.enQueue(alistador6);
     //qDebug() << "pasa generar alistador6";
 
@@ -526,10 +533,14 @@ Bodega::Bodega(Queue<Pedido*>& _colaAlisto, Queue<Pedido*>& _colaAlistados, Queu
                     //qDebug() << "alisto no está vacía";
                     // Esperar a que haya un pedido alistado en la bodega
                     Pedido* pedido = colaAlisto.deQueue();
+
                     QString textolbl = "Procesando pedido: #" + QString::fromStdString(to_string(pedido->numPedido));
                     QString textolblVacio = "";
 
                     emit actualizarLabelBalanceador(textolbl);
+
+                    pedido->factura->insertarAlFinal("A alisto: "+retornarHora());
+
                     Alistador * alistador = colaAlistadores.deQueue();
                     //colaAlistadores.deQueue();
                     qDebug()<<alistador->id;
@@ -548,14 +559,24 @@ Bodega::Bodega(Queue<Pedido*>& _colaAlisto, Queue<Pedido*>& _colaAlistados, Queu
                         alistador->pedido= pedido;
 
                     }
+                    NodoArticulo * p=listaArt->buscar(articulo->codProd);
+
+                    int c = p->articulo->cantidadAlmacen-articulo->cantidad;
+                    p->articulo->cantidadAlmacen=c;
+
+                    cambiar(articulo->codProd,1,c);
+
                     temp = temp->siguiente;
 
 
                 }
                 colaAlistados.enQueue(pedido);
+
                 cantAtendidos++;
                 emit actualizarLabelBalanceador(textolblVacio);
                 emit actualizarLabelCantBalanceador(QString::number(cantAtendidos));
+
+                colaAlistadores.enQueue(alistador);
 
                 sleep(1);
 
@@ -798,30 +819,6 @@ QLabel* MainWindow::getLabelFacturadora(){
 QLabel* MainWindow::getLabelCantFacturadora(){
     return ui->lblCantAtendidosFacturadora;
 }
-
-/*QLabel* MainWindow::getLabelAlist1(){
-    return ui->lblMostrarAlistador1;
-}
-
-QLabel* MainWindow::getLabelAlist2(){
-    return ui->lblMostrarAlistador2;
-}
-
-QLabel* MainWindow::getLabelAlist3(){
-    return ui->lblMostrarAlistador3;
-}
-
-QLabel* MainWindow::getLabelAlist4(){
-    return ui->lblMostrarAlistador4;
-}
-
-QLabel* MainWindow::getLabelAlist5(){
-    return ui->lblMostrarAlistador5;
-}
-
-QLabel* MainWindow::getLabelAlist6(){
-    return ui->lblMostrarAlistador6;
-}*/
 
 QLabel* MainWindow::getLabelAlistados(){
     return ui->lblMostrarActAlistados;

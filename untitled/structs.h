@@ -433,6 +433,9 @@ struct Pedido{
         QString r= QString::fromStdString(resultado);
         return r;
     }
+    int getCodigo() const {
+        return numPedido;
+    }
 };
 
 struct NodoPedido{
