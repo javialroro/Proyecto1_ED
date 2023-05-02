@@ -114,6 +114,7 @@ private:
 class Alistador : public QThread{
     Q_OBJECT
     public:
+    bool AlistP;
     Pedido * pedido;
         int id;
         ArticuloPedido* articulo = nullptr;
@@ -298,7 +299,6 @@ private slots:
 
     void on_btnDetenerAlistados_clicked();
 
-    void setLabelBalanceador(QLabel* label);
     //void actualizarTextoLabelBalanceador(const QString& texto);
 
 

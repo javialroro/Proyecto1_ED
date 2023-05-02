@@ -3,6 +3,7 @@
 #include "mainwindow.h"
 #include "procedimientos.h"
 #include "./ui_mainwindow.h"
+#include "ui_mainwindow.h"
 #include "vcolapedidos.h"
 #include <QApplication>
 bool verficarCantidad(ListaArticulosP * lista, listaArticulos * listaG){
@@ -320,8 +321,8 @@ Balanceador::Balanceador(listaArticulos  * l, PriorityQueue * colaPedidos, Queue
 
 
                         stringstream ss;
-                        //ss << "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Facturas\\" << name;
-                        ss << "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Facturas\\" << name;
+                        ss << "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Facturas\\" << name;
+                        //ss << "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Facturas\\" << name;
 
                         std::string ruta_archivo = ss.str();
 
@@ -373,7 +374,7 @@ Balanceador::Balanceador(listaArticulos  * l, PriorityQueue * colaPedidos, Queue
     {
         while (true) {
             // Esperar a recibir la señal para procesar un artículo
-            if (!ubicacion.isEmpty()) {
+            if (!ubicacion.isEmpty() && !AlistP) {
                         qDebug()<<"entro";
                 //qDebug()<<"entra a ciclo alistador";
                 QString ubicacionCopy = ubicacion;
@@ -453,7 +454,8 @@ Balanceador::Balanceador(listaArticulos  * l, PriorityQueue * colaPedidos, Queue
         // Simular el tiempo de regreso a la posición inicial
         QThread::sleep(tiempoIda);
         pedido->factura->insertarAlFinal("Alistador: "+to_string(id)+"\n"+articulo->codProd+"\tUbicacion: "+ubicacion.toStdString()+"\t"+to_string(tiempoIda*2)+"\n");
-        colaAlistados.enQueue(pedido);
+        emit(finalizado(this));
+        //colaAlistados.enQueue(pedido);
         //colaAlistadores.enQueue(this);
 
     }
@@ -530,18 +532,23 @@ Bodega::Bodega(Queue<Pedido*>& _colaAlisto, Queue<Pedido*>& _colaAlistados, Queu
                     ArticuloPedido* articulo = temp->articulo;
                     string s = listaArt->buscarUbi(temp->articulo->codProd);
                     QString ubicacion = QString::fromStdString(s);
-                    qDebug()<<ubicacion;
-                    alistador->ubicacion= ubicacion;
-                    alistador->articulo=articulo;
-                    alistador->pedido= pedido;
+                    //qDebug()<<ubicacion;
+                    alistador->AlistP=false;
+                    while(!alistador->AlistP){
+                        alistador->ubicacion= ubicacion;
+                        alistador->articulo=articulo;
+                        alistador->pedido= pedido;
+
+                    }
                     temp = temp->siguiente;
 
 
                 }
-
+                colaAlistados.enQueue(pedido);
                 sleep(1);
 
                 }
+
 
 
             }
@@ -586,7 +593,7 @@ Bodega::Bodega(Queue<Pedido*>& _colaAlisto, Queue<Pedido*>& _colaAlistados, Queu
     }
 
     void Bodega::encolarAlistador(Alistador * alistador){
-        colaAlistadores.enQueue(alistador);
+        alistador->AlistP=true;
     }
 
 

@@ -1,12 +1,14 @@
 Pedido: 1
 Cliente: 001
-En cola: Mon May 01 19:10:13 2023
+En cola: Mon May 01 20:15:11 2023
 
-Balanceador: Mon May 01 19:10:17 2023
+Balanceador: Mon May 01 20:15:15 2023
 
-A alistoMon May 01 19:10:17 2023
+A alistoMon May 01 20:15:15 2023
 
 Alistador: 1
+B02	Ubicacion: Y10	66
+Alistador: 1
 A01	Ubicacion: X10	64
-A Empaque: Mon May 01 19:11:24 2023
-Finalizado: Mon May 01 19:11:26 2023
+A Empaque: Mon May 01 20:17:28 2023
+Finalizado: Mon May 01 20:17:30 2023
