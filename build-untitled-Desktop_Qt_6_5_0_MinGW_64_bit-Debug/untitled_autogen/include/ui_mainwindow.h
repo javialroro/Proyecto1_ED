@@ -104,12 +104,12 @@ public:
     QLabel *lblAlistador5;
     QLabel *lblMostrarFabricandoA;
     QPushButton *btnColaDeAlistadores;
-    QLabel *lblMostrarPedidoAlistador1;
-    QLabel *lblMostrarPedidoAlistador2;
-    QLabel *lblMostrarPedidoAlistador3;
-    QLabel *lblMostrarPedidoAlistador4;
-    QLabel *lblMostrarPedidoAlistador5;
-    QLabel *lblMostrarPedidoAlistador6;
+    QLabel *lblMostrarAlistador1;
+    QLabel *lblMostrarAlistador2;
+    QLabel *lblMostrarAlistador3;
+    QLabel *lblMostrarAlistador4;
+    QLabel *lblMostrarAlistador5;
+    QLabel *lblMostrarAlistador6;
     QLabel *lblMostrarFabricandoB;
     QLabel *lblMostrarFabricandoComodin;
     QLabel *lblMostrarFabricandoC;
@@ -119,6 +119,9 @@ public:
     QLabel *lblCantFabA;
     QLabel *lblCantFabComodin;
     QLabel *lblCantFabB;
+    QPushButton *btnDetenerBodega;
+    QLabel *lblMostrarActBodega;
+    QLabel *lblCantAtendidosBodega;
     QStatusBar *statusbar;
 
     void setupUi(QMainWindow *MainWindow)
@@ -497,7 +500,7 @@ public:
         lblAlistador1->setScaledContents(true);
         lblAlmacen = new QLabel(centralwidget);
         lblAlmacen->setObjectName("lblAlmacen");
-        lblAlmacen->setGeometry(QRect(910, 310, 91, 81));
+        lblAlmacen->setGeometry(QRect(920, 310, 91, 81));
         lblAlmacen->setPixmap(QPixmap(QString::fromUtf8("../Imagenes/edificio-escolar.png")));
         lblAlmacen->setScaledContents(true);
         lineV06 = new QFrame(centralwidget);
@@ -689,30 +692,36 @@ public:
         lblMostrarFabricandoA->setGeometry(QRect(430, 130, 191, 20));
         btnColaDeAlistadores = new QPushButton(centralwidget);
         btnColaDeAlistadores->setObjectName("btnColaDeAlistadores");
-        btnColaDeAlistadores->setGeometry(QRect(880, 610, 71, 41));
+        btnColaDeAlistadores->setGeometry(QRect(930, 610, 71, 41));
         btnColaDeAlistadores->setFont(font);
         btnColaDeAlistadores->setCursor(QCursor(Qt::PointingHandCursor));
         btnColaDeAlistadores->setStyleSheet(QString::fromUtf8("background-color: rgb(0, 74, 108);\n"
 "font: 700 9pt \"Segoe UI\";\n"
 "color: white"));
-        lblMostrarPedidoAlistador1 = new QLabel(centralwidget);
-        lblMostrarPedidoAlistador1->setObjectName("lblMostrarPedidoAlistador1");
-        lblMostrarPedidoAlistador1->setGeometry(QRect(880, 420, 241, 16));
-        lblMostrarPedidoAlistador2 = new QLabel(centralwidget);
-        lblMostrarPedidoAlistador2->setObjectName("lblMostrarPedidoAlistador2");
-        lblMostrarPedidoAlistador2->setGeometry(QRect(880, 450, 241, 16));
-        lblMostrarPedidoAlistador3 = new QLabel(centralwidget);
-        lblMostrarPedidoAlistador3->setObjectName("lblMostrarPedidoAlistador3");
-        lblMostrarPedidoAlistador3->setGeometry(QRect(880, 480, 241, 16));
-        lblMostrarPedidoAlistador4 = new QLabel(centralwidget);
-        lblMostrarPedidoAlistador4->setObjectName("lblMostrarPedidoAlistador4");
-        lblMostrarPedidoAlistador4->setGeometry(QRect(880, 510, 241, 16));
-        lblMostrarPedidoAlistador5 = new QLabel(centralwidget);
-        lblMostrarPedidoAlistador5->setObjectName("lblMostrarPedidoAlistador5");
-        lblMostrarPedidoAlistador5->setGeometry(QRect(880, 540, 241, 16));
-        lblMostrarPedidoAlistador6 = new QLabel(centralwidget);
-        lblMostrarPedidoAlistador6->setObjectName("lblMostrarPedidoAlistador6");
-        lblMostrarPedidoAlistador6->setGeometry(QRect(880, 570, 241, 16));
+        lblMostrarAlistador1 = new QLabel(centralwidget);
+        lblMostrarAlistador1->setObjectName("lblMostrarAlistador1");
+        lblMostrarAlistador1->setGeometry(QRect(880, 420, 241, 21));
+        lblMostrarAlistador1->setStyleSheet(QString::fromUtf8("border: 1px solid black;"));
+        lblMostrarAlistador2 = new QLabel(centralwidget);
+        lblMostrarAlistador2->setObjectName("lblMostrarAlistador2");
+        lblMostrarAlistador2->setGeometry(QRect(880, 450, 241, 21));
+        lblMostrarAlistador2->setStyleSheet(QString::fromUtf8("border: 1px solid black;"));
+        lblMostrarAlistador3 = new QLabel(centralwidget);
+        lblMostrarAlistador3->setObjectName("lblMostrarAlistador3");
+        lblMostrarAlistador3->setGeometry(QRect(880, 480, 241, 21));
+        lblMostrarAlistador3->setStyleSheet(QString::fromUtf8("border: 1px solid black;"));
+        lblMostrarAlistador4 = new QLabel(centralwidget);
+        lblMostrarAlistador4->setObjectName("lblMostrarAlistador4");
+        lblMostrarAlistador4->setGeometry(QRect(880, 510, 241, 21));
+        lblMostrarAlistador4->setStyleSheet(QString::fromUtf8("border: 1px solid black;"));
+        lblMostrarAlistador5 = new QLabel(centralwidget);
+        lblMostrarAlistador5->setObjectName("lblMostrarAlistador5");
+        lblMostrarAlistador5->setGeometry(QRect(880, 540, 241, 21));
+        lblMostrarAlistador5->setStyleSheet(QString::fromUtf8("border: 1px solid black;"));
+        lblMostrarAlistador6 = new QLabel(centralwidget);
+        lblMostrarAlistador6->setObjectName("lblMostrarAlistador6");
+        lblMostrarAlistador6->setGeometry(QRect(880, 570, 241, 21));
+        lblMostrarAlistador6->setStyleSheet(QString::fromUtf8("border: 1px solid black;"));
         lblMostrarFabricandoB = new QLabel(centralwidget);
         lblMostrarFabricandoB->setObjectName("lblMostrarFabricandoB");
         lblMostrarFabricandoB->setGeometry(QRect(430, 30, 191, 20));
@@ -740,6 +749,22 @@ public:
         lblCantFabB = new QLabel(centralwidget);
         lblCantFabB->setObjectName("lblCantFabB");
         lblCantFabB->setGeometry(QRect(570, 90, 21, 16));
+        btnDetenerBodega = new QPushButton(centralwidget);
+        btnDetenerBodega->setObjectName("btnDetenerBodega");
+        btnDetenerBodega->setGeometry(QRect(880, 330, 21, 21));
+        btnDetenerBodega->setCursor(QCursor(Qt::PointingHandCursor));
+        btnDetenerBodega->setStyleSheet(QString::fromUtf8("background-color: white;\n"
+"font: 700 9pt \"Segoe UI\";\n"
+"color: white;"));
+        btnDetenerBodega->setIcon(icon);
+        btnDetenerBodega->setIconSize(QSize(20, 20));
+        btnDetenerBodega->setFlat(true);
+        lblMostrarActBodega = new QLabel(centralwidget);
+        lblMostrarActBodega->setObjectName("lblMostrarActBodega");
+        lblMostrarActBodega->setGeometry(QRect(880, 290, 161, 16));
+        lblCantAtendidosBodega = new QLabel(centralwidget);
+        lblCantAtendidosBodega->setObjectName("lblCantAtendidosBodega");
+        lblCantAtendidosBodega->setGeometry(QRect(890, 360, 16, 16));
         MainWindow->setCentralWidget(centralwidget);
         lineV08->raise();
         lineV07->raise();
@@ -820,12 +845,12 @@ public:
         lblMostrarFabricandoA->raise();
         btnColaFabricaciones2->raise();
         btnColaDeAlistadores->raise();
-        lblMostrarPedidoAlistador1->raise();
-        lblMostrarPedidoAlistador2->raise();
-        lblMostrarPedidoAlistador3->raise();
-        lblMostrarPedidoAlistador4->raise();
-        lblMostrarPedidoAlistador5->raise();
-        lblMostrarPedidoAlistador6->raise();
+        lblMostrarAlistador1->raise();
+        lblMostrarAlistador2->raise();
+        lblMostrarAlistador3->raise();
+        lblMostrarAlistador4->raise();
+        lblMostrarAlistador5->raise();
+        lblMostrarAlistador6->raise();
         lblMostrarFabricandoB->raise();
         lblMostrarFabricandoComodin->raise();
         lblMostrarFabricandoC->raise();
@@ -835,6 +860,9 @@ public:
         lblCantFabA->raise();
         lblCantFabComodin->raise();
         lblCantFabB->raise();
+        btnDetenerBodega->raise();
+        lblMostrarActBodega->raise();
+        lblCantAtendidosBodega->raise();
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName("statusbar");
         MainWindow->setStatusBar(statusbar);
@@ -964,12 +992,12 @@ public:
 #endif // QT_CONFIG(whatsthis)
         btnColaDeAlistadores->setText(QCoreApplication::translate("MainWindow", "Cola de \n"
 "Alistadores", nullptr));
-        lblMostrarPedidoAlistador1->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
-        lblMostrarPedidoAlistador2->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
-        lblMostrarPedidoAlistador3->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
-        lblMostrarPedidoAlistador4->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
-        lblMostrarPedidoAlistador5->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
-        lblMostrarPedidoAlistador6->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
+        lblMostrarAlistador1->setText(QString());
+        lblMostrarAlistador2->setText(QString());
+        lblMostrarAlistador3->setText(QString());
+        lblMostrarAlistador4->setText(QString());
+        lblMostrarAlistador5->setText(QString());
+        lblMostrarAlistador6->setText(QString());
         lblMostrarFabricandoB->setText(QCoreApplication::translate("MainWindow", "Fabricacion", nullptr));
         lblMostrarFabricandoComodin->setText(QCoreApplication::translate("MainWindow", "Fabricacion", nullptr));
         lblMostrarFabricandoC->setText(QCoreApplication::translate("MainWindow", "Fabricacion", nullptr));
@@ -979,6 +1007,9 @@ public:
         lblCantFabA->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
         lblCantFabComodin->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
         lblCantFabB->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
+        btnDetenerBodega->setText(QString());
+        lblMostrarActBodega->setText(QString());
+        lblCantAtendidosBodega->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
     } // retranslateUi
 
 };

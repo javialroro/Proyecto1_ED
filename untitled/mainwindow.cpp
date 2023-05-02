@@ -39,8 +39,8 @@ RevisorArchivos::RevisorArchivos(struct listaArticulos  * la, struct listaClient
     void RevisorArchivos::run() {
         while (true) {
 
-            QString path = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Pedidos";
-            //QString path = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Pedidos";
+            //QString path = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Pedidos";
+            QString path = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Pedidos";
             QDir directorio(path);
             QStringList archivos = directorio.entryList(QStringList() << "*.txt", QDir::Files);
             if (archivos.size() > 0) {
@@ -51,8 +51,8 @@ RevisorArchivos::RevisorArchivos(struct listaArticulos  * la, struct listaClient
                     string cPath= path.toStdString()+"\\";
                     string cArchivo = archivo.toStdString();
                     string todo= cPath+cArchivo;
-                    string errores = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Errores\\"+cArchivo;
-                    //string errores = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Errores\\"+cArchivo;
+                    //string errores = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Errores\\"+cArchivo;
+                    string errores = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Errores\\"+cArchivo;
 
                     fstream arch(todo, std::ios::in | std::ios::app);
                     Archivo *a =  new Archivo(arch,todo,errores);
@@ -60,8 +60,8 @@ RevisorArchivos::RevisorArchivos(struct listaArticulos  * la, struct listaClient
                     cargarPedido(a, colaPedidos, listaClientes, listaArticulos);
 
                     string ruta_archivo = todo;
-                    string ruta_pedidosP = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\PedidosProcesados\\"+cArchivo;
-                    //string ruta_pedidosP = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\PedidosProcesados\\"+cArchivo;
+                    //string ruta_pedidosP = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\PedidosProcesados\\"+cArchivo;
+                    string ruta_pedidosP = "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\PedidosProcesados\\"+cArchivo;
 
                     rename(ruta_archivo.c_str(),ruta_pedidosP.c_str());
                 }
@@ -673,6 +673,10 @@ MainWindow::MainWindow(PriorityQueue* _colaPedidos,Queue<Pedido *> & _colaAlisto
     connect(balanceador, &Balanceador::actualizarLabelCantBalanceador, this, &MainWindow::actualizarTextoLabelCantBalanceador);
 
     bodega->start();
+
+    connect(bodega, &Bodega::actualizarLabelBalanceador, this, &MainWindow::actualizarTextoLabelBodega);
+    connect(bodega, &Bodega::actualizarLabelCantBalanceador, this, &MainWindow::actualizarTextoLabelCantBodega);
+
     alistad->start();
     facturadora->start();
 
@@ -702,7 +706,7 @@ MainWindow::~MainWindow()
 //-}
 
 
-// get labels
+// get labels-----------------------------------------------------------------
 QLabel* MainWindow::getLabelFabricacionA(){
     return ui->lblMostrarFabricandoA;
 }
@@ -743,8 +747,40 @@ QLabel* MainWindow::getLabelCantComodin(){
     return ui->lblCantFabComodin;
 }
 
+QLabel* MainWindow::getLabelBodega(){
+    return ui->lblMostrarActBodega;
+}
 
-// Actualizar texto labels
+QLabel* MainWindow::getLabelCantBodega(){
+    return ui->lblCantAtendidosBodega;
+}
+
+QLabel* MainWindow::getLabelAlist1(){
+    return ui->lblMostrarAlistador1;
+}
+
+QLabel* MainWindow::getLabelAlist2(){
+    return ui->lblMostrarAlistador2;
+}
+
+QLabel* MainWindow::getLabelAlist3(){
+    return ui->lblMostrarAlistador3;
+}
+
+QLabel* MainWindow::getLabelAlist4(){
+    return ui->lblMostrarAlistador4;
+}
+
+QLabel* MainWindow::getLabelAlist5(){
+    return ui->lblMostrarAlistador5;
+}
+
+QLabel* MainWindow::getLabelAlist6(){
+    return ui->lblMostrarAlistador6;
+}
+
+
+// Actualizar texto labels ---------------------------------------------------------
 void MainWindow::actualizarTextoLabelA(const QString& texto) {
      QLabel * lbl=getLabelFabricacionA();
      lbl->setText(texto);
@@ -796,6 +832,47 @@ void MainWindow::actualizarTextoLabelCantComodin(const QString& texto) {
      lbl->setText(texto);
 }
 
+void MainWindow::actualizarTextoLabelCantBodega(const QString& texto) {
+     QLabel * lbl=getLabelBodega();
+     lbl->setText(texto);
+}
+
+void MainWindow::actualizarTextoLabelBodega(const QString& texto) {
+     QLabel * lbl=getLabelCantBodega();
+     lbl->setText(texto);
+}
+
+void MainWindow::actualizarTextoLabelAlist1(const QString& texto){
+     QLabel * lbl=getLabelAlist1();
+     lbl->setText(texto);
+}
+
+void MainWindow::actualizarTextoLabelAlist2(const QString& texto){
+     QLabel * lbl=getLabelAlist2();
+     lbl->setText(texto);
+}
+
+void MainWindow::actualizarTextoLabelAlist3(const QString& texto){
+     QLabel * lbl=getLabelAlist3();
+     lbl->setText(texto);
+}
+
+void MainWindow::actualizarTextoLabelAlist4(const QString& texto){
+     QLabel * lbl=getLabelAlist4();
+     lbl->setText(texto);
+}
+
+void MainWindow::actualizarTextoLabelAlist5(const QString& texto){
+     QLabel * lbl=getLabelAlist5();
+     lbl->setText(texto);
+}
+
+void MainWindow::actualizarTextoLabelAlist6(const QString& texto){
+     QLabel * lbl=getLabelAlist6();
+     lbl->setText(texto);
+}
+
+//---------------------------------------------------------------------------------------------------------------
 
 void MainWindow::on_btnColaPedidos_clicked() {
     //qDebug() << "Entre al btnColaPedidos";

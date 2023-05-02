@@ -167,10 +167,11 @@ class Bodega : public QThread
 
     signals:
         void procesarArticuloBodega(Queue<Alistador*> colaAlistadores, const QString& ubicacion, ArticuloPedido* articulo);
+        void actualizarLabelCantBalanceador(const QString& texto);
+        void actualizarLabelBalanceador(const QString& texto);
 
     public slots:
-        //void alistadorLiberado(Alistador* alistador);
-        //void receiveTableWidget(QTableWidget* tableWidget);
+
 
     private:
         bool paused = false;
@@ -225,6 +226,14 @@ public:
     QLabel* getLabelCantB();
     QLabel* getLabelCantC();
     QLabel* getLabelCantComodin();
+    QLabel* getLabelBodega();
+    QLabel* getLabelCantBodega();
+    QLabel* getLabelAlist1();
+    QLabel* getLabelAlist2();
+    QLabel* getLabelAlist3();
+    QLabel* getLabelAlist4();
+    QLabel* getLabelAlist5();
+    QLabel* getLabelAlist6();
 
 
 signals:
@@ -294,9 +303,25 @@ private slots:
 
     void actualizarTextoLabelCantComodin(const QString& texto);
 
+    void actualizarTextoLabelAlist1(const QString& texto);
+
+    void actualizarTextoLabelAlist2(const QString& texto);
+
+    void actualizarTextoLabelAlist3(const QString& texto);
+
+    void actualizarTextoLabelAlist4(const QString& texto);
+
+    void actualizarTextoLabelAlist5(const QString& texto);
+
+    void actualizarTextoLabelAlist6(const QString& texto);
+
     void on_btnColaDeAlistadores_clicked();
 
     void on_btnDetenerAlistados_clicked();
+
+    void actualizarTextoLabelBodega(const QString& texto);
+
+    void actualizarTextoLabelCantBodega(const QString& texto);
 
 private:
     Ui::MainWindow *ui;

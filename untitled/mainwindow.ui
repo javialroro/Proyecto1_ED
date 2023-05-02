@@ -1216,7 +1216,7 @@ color: white;</string>
    <widget class="QLabel" name="lblAlmacen">
     <property name="geometry">
      <rect>
-      <x>910</x>
+      <x>920</x>
       <y>310</y>
       <width>91</width>
       <height>81</height>
@@ -1886,7 +1886,7 @@ color: black;</string>
    <widget class="QPushButton" name="btnColaDeAlistadores">
     <property name="geometry">
      <rect>
-      <x>880</x>
+      <x>930</x>
       <y>610</y>
       <width>71</width>
       <height>41</height>
@@ -1920,82 +1920,100 @@ color: white</string>
 Alistadores</string>
     </property>
    </widget>
-   <widget class="QLabel" name="lblMostrarPedidoAlistador1">
+   <widget class="QLabel" name="lblMostrarAlistador1">
     <property name="geometry">
      <rect>
       <x>880</x>
       <y>420</y>
       <width>241</width>
-      <height>16</height>
+      <height>21</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">border: 1px solid black;</string>
+    </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string/>
     </property>
    </widget>
-   <widget class="QLabel" name="lblMostrarPedidoAlistador2">
+   <widget class="QLabel" name="lblMostrarAlistador2">
     <property name="geometry">
      <rect>
       <x>880</x>
       <y>450</y>
       <width>241</width>
-      <height>16</height>
+      <height>21</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">border: 1px solid black;</string>
+    </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string/>
     </property>
    </widget>
-   <widget class="QLabel" name="lblMostrarPedidoAlistador3">
+   <widget class="QLabel" name="lblMostrarAlistador3">
     <property name="geometry">
      <rect>
       <x>880</x>
       <y>480</y>
       <width>241</width>
-      <height>16</height>
+      <height>21</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">border: 1px solid black;</string>
+    </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string/>
     </property>
    </widget>
-   <widget class="QLabel" name="lblMostrarPedidoAlistador4">
+   <widget class="QLabel" name="lblMostrarAlistador4">
     <property name="geometry">
      <rect>
       <x>880</x>
       <y>510</y>
       <width>241</width>
-      <height>16</height>
+      <height>21</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">border: 1px solid black;</string>
+    </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string/>
     </property>
    </widget>
-   <widget class="QLabel" name="lblMostrarPedidoAlistador5">
+   <widget class="QLabel" name="lblMostrarAlistador5">
     <property name="geometry">
      <rect>
       <x>880</x>
       <y>540</y>
       <width>241</width>
-      <height>16</height>
+      <height>21</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">border: 1px solid black;</string>
+    </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string/>
     </property>
    </widget>
-   <widget class="QLabel" name="lblMostrarPedidoAlistador6">
+   <widget class="QLabel" name="lblMostrarAlistador6">
     <property name="geometry">
      <rect>
       <x>880</x>
       <y>570</y>
       <width>241</width>
-      <height>16</height>
+      <height>21</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">border: 1px solid black;</string>
+    </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="lblMostrarFabricandoB">
@@ -2115,6 +2133,66 @@ Alistadores</string>
      <string>0</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="btnDetenerBodega">
+    <property name="geometry">
+     <rect>
+      <x>880</x>
+      <y>330</y>
+      <width>21</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: white;
+font: 700 9pt &quot;Segoe UI&quot;;
+color: white;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../Imagenes/semaforos.png</normaloff>../Imagenes/semaforos.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>20</width>
+      <height>20</height>
+     </size>
+    </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblMostrarActBodega">
+    <property name="geometry">
+     <rect>
+      <x>880</x>
+      <y>290</y>
+      <width>161</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblCantAtendidosBodega">
+    <property name="geometry">
+     <rect>
+      <x>890</x>
+      <y>360</y>
+      <width>16</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>0</string>
+    </property>
+   </widget>
    <zorder>lineV08</zorder>
    <zorder>lineV07</zorder>
    <zorder>lblcliente1</zorder>
@@ -2194,12 +2272,12 @@ Alistadores</string>
    <zorder>lblMostrarFabricandoA</zorder>
    <zorder>btnColaFabricaciones2</zorder>
    <zorder>btnColaDeAlistadores</zorder>
-   <zorder>lblMostrarPedidoAlistador1</zorder>
-   <zorder>lblMostrarPedidoAlistador2</zorder>
-   <zorder>lblMostrarPedidoAlistador3</zorder>
-   <zorder>lblMostrarPedidoAlistador4</zorder>
-   <zorder>lblMostrarPedidoAlistador5</zorder>
-   <zorder>lblMostrarPedidoAlistador6</zorder>
+   <zorder>lblMostrarAlistador1</zorder>
+   <zorder>lblMostrarAlistador2</zorder>
+   <zorder>lblMostrarAlistador3</zorder>
+   <zorder>lblMostrarAlistador4</zorder>
+   <zorder>lblMostrarAlistador5</zorder>
+   <zorder>lblMostrarAlistador6</zorder>
    <zorder>lblMostrarFabricandoB</zorder>
    <zorder>lblMostrarFabricandoComodin</zorder>
    <zorder>lblMostrarFabricandoC</zorder>
@@ -2209,6 +2287,9 @@ Alistadores</string>
    <zorder>lblCantFabA</zorder>
    <zorder>lblCantFabComodin</zorder>
    <zorder>lblCantFabB</zorder>
+   <zorder>btnDetenerBodega</zorder>
+   <zorder>lblMostrarActBodega</zorder>
+   <zorder>lblCantAtendidosBodega</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
