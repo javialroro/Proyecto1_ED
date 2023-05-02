@@ -641,6 +641,9 @@ MainWindow::MainWindow(PriorityQueue* _colaPedidos,Queue<Pedido *> & _colaAlisto
 
     revisor->start();
     balanceador->start();
+
+    connect(balanceador, &Balanceador::actualizarLabel, this, &MainWindow::actualizarTextoLabelBalanceador);
+
     bodega->start();
 
     A->start();
@@ -686,6 +689,10 @@ QLabel* MainWindow::getLabelFabricacionComodin(){
     return ui->lblMostrarFabricandoComodin;
 }
 
+QLabel* MainWindow::getLabelBalanceador(){
+    return ui->lblMostrarActBalanceador;
+}
+
 // set labels
 void MainWindow::setLabelFabricacionA(QLabel* label){
      ui->lblMostrarFabricandoA=label;
@@ -701,6 +708,10 @@ void MainWindow::setLabelFabricacionC(QLabel* label){
 
 void MainWindow::setLabelFabricacionComodin(QLabel* label){
      ui->lblMostrarFabricandoComodin=label;
+}
+
+void MainWindow::setLabelBalanceador(QLabel* label){
+     ui->lblMostrarActBalanceador=label;
 }
 
 
@@ -725,7 +736,10 @@ void MainWindow::actualizarTextoLabelComodin(const QString& texto) {
      lbl->setText(texto);
 }
 
-
+void MainWindow::actualizarTextoLabelBalanceador(const QString& texto) {
+     QLabel * lbl=getLabelBalanceador();
+     lbl->setText(texto);
+}
 
 void MainWindow::on_btnColaPedidos_clicked() {
     //qDebug() << "Entre al btnColaPedidos";
