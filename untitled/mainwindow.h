@@ -33,6 +33,7 @@ private:
 
 
 class Balanceador : public QThread {
+    Q_OBJECT
 public:
     Balanceador(listaArticulos  * l, PriorityQueue * colaPedidos, Queue<Pedido *>& colaAlistos,Queue<Pedido *> & A,
                 Queue<Pedido *> & B,Queue<Pedido *> & C, Queue<Pedido *> & D, QObject* parent = nullptr);
@@ -41,6 +42,12 @@ public:
     bool getPaused ();
 
     void setPaused (bool _paused);
+
+    int cantProcesados = 0;
+
+signals:
+    void actualizarLabelBalanceador(const QString& texto);
+    void actualizarLabelCantBalanceador(const QString& texto);
 
 private:
     PriorityQueue * p_queue;
@@ -67,13 +74,14 @@ public:
 
 
 
-
+    int cantAtendidos = 0;
     void run() override;
     bool getPaused ();
     void setPaused (bool _paused);
 
 signals:
     void actualizarLabel(const QString& texto);
+    void actualizarLabelCant(const QString& texto);
 
 private:
     Queue<Pedido *>& a_queue;
@@ -211,6 +219,12 @@ public:
     QLabel* getLabelFabricacionB();
     QLabel* getLabelFabricacionC();
     QLabel* getLabelFabricacionComodin();
+    QLabel* getLabelBalanceador();
+    QLabel* getLabelCantBalanceador();
+    QLabel* getLabelCantA();
+    QLabel* getLabelCantB();
+    QLabel* getLabelCantC();
+    QLabel* getLabelCantComodin();
 
 
 signals:
@@ -238,13 +252,17 @@ private slots:
 
     void on_btnDetenerBalanceador_clicked();
 
-    void setLabelFabricacionA(QLabel* label);
+    /*void setLabelFabricacionA(QLabel* label);
 
     void setLabelFabricacionB(QLabel* label);
 
     void setLabelFabricacionC(QLabel* label);
 
     void setLabelFabricacionComodin(QLabel* label);
+
+    void setLabelBalanceador(QLabel* label);
+
+    void setLabelCantBalanceador(QLabel* label);*/
 
     //Balanceador * getBalanceador();
 
@@ -263,6 +281,18 @@ private slots:
     void actualizarTextoLabelC(const QString& texto);
 
     void actualizarTextoLabelComodin(const QString& texto);
+
+    void actualizarTextoLabelBalanceador(const QString& texto);
+
+    void actualizarTextoLabelCantBalanceador(const QString& texto);
+
+    void actualizarTextoLabelCantA(const QString& texto);
+
+    void actualizarTextoLabelCantB(const QString& texto);
+
+    void actualizarTextoLabelCantC(const QString& texto);
+
+    void actualizarTextoLabelCantComodin(const QString& texto);
 
     void on_btnColaDeAlistadores_clicked();
 

@@ -113,7 +113,12 @@ public:
     QLabel *lblMostrarFabricandoB;
     QLabel *lblMostrarFabricandoComodin;
     QLabel *lblMostrarFabricandoC;
-    QLabel *label;
+    QLabel *lblMostrarActBalanceador;
+    QLabel *lblMostrarCantBalanceador;
+    QLabel *lblCantFabC;
+    QLabel *lblCantFabA;
+    QLabel *lblCantFabComodin;
+    QLabel *lblCantFabB;
     QStatusBar *statusbar;
 
     void setupUi(QMainWindow *MainWindow)
@@ -200,7 +205,7 @@ public:
         lineH07->setFrameShadow(QFrame::Sunken);
         lineH08 = new QFrame(centralwidget);
         lineH08->setObjectName("lineH08");
-        lineH08->setGeometry(QRect(410, 140, 31, 21));
+        lineH08->setGeometry(QRect(410, 160, 31, 21));
         lineH08->setLineWidth(2);
         lineH08->setMidLineWidth(1);
         lineH08->setFrameShape(QFrame::HLine);
@@ -214,7 +219,7 @@ public:
         lineH10->setFrameShadow(QFrame::Sunken);
         lineH11 = new QFrame(centralwidget);
         lineH11->setObjectName("lineH11");
-        lineH11->setGeometry(QRect(380, 140, 31, 21));
+        lineH11->setGeometry(QRect(380, 160, 31, 21));
         lineH11->setLineWidth(2);
         lineH11->setMidLineWidth(1);
         lineH11->setFrameShape(QFrame::HLine);
@@ -243,7 +248,7 @@ public:
 "color: white"));
         btnColaFabricaciones1 = new QPushButton(centralwidget);
         btnColaFabricaciones1->setObjectName("btnColaFabricaciones1");
-        btnColaFabricaciones1->setGeometry(QRect(430, 130, 111, 41));
+        btnColaFabricaciones1->setGeometry(QRect(430, 150, 111, 41));
         btnColaFabricaciones1->setFont(font);
         btnColaFabricaciones1->setCursor(QCursor(Qt::PointingHandCursor));
         btnColaFabricaciones1->setStyleSheet(QString::fromUtf8("background-color: rgb(0, 74, 108);\n"
@@ -251,7 +256,7 @@ public:
 "color: white"));
         btnColaFabricaciones3 = new QPushButton(centralwidget);
         btnColaFabricaciones3->setObjectName("btnColaFabricaciones3");
-        btnColaFabricaciones3->setGeometry(QRect(290, 130, 111, 41));
+        btnColaFabricaciones3->setGeometry(QRect(280, 150, 111, 41));
         btnColaFabricaciones3->setFont(font);
         btnColaFabricaciones3->setCursor(QCursor(Qt::PointingHandCursor));
         btnColaFabricaciones3->setStyleSheet(QString::fromUtf8("background-color: rgb(0, 74, 108);\n"
@@ -259,12 +264,12 @@ public:
 "color: white"));
         lblFabrica3 = new QLabel(centralwidget);
         lblFabrica3->setObjectName("lblFabrica3");
-        lblFabrica3->setGeometry(QRect(230, 130, 51, 41));
+        lblFabrica3->setGeometry(QRect(220, 150, 51, 41));
         lblFabrica3->setPixmap(QPixmap(QString::fromUtf8("../Imagenes/industria.png")));
         lblFabrica3->setScaledContents(true);
         btnColaFabricaciones4Com = new QPushButton(centralwidget);
         btnColaFabricaciones4Com->setObjectName("btnColaFabricaciones4Com");
-        btnColaFabricaciones4Com->setGeometry(QRect(290, 50, 111, 41));
+        btnColaFabricaciones4Com->setGeometry(QRect(280, 50, 111, 41));
         btnColaFabricaciones4Com->setFont(font);
         btnColaFabricaciones4Com->setCursor(QCursor(Qt::PointingHandCursor));
         btnColaFabricaciones4Com->setStyleSheet(QString::fromUtf8("background-color: rgb(0, 74, 108);\n"
@@ -292,24 +297,24 @@ public:
         lblFabrica1->setScaledContents(true);
         lblFabrica2 = new QLabel(centralwidget);
         lblFabrica2->setObjectName("lblFabrica2");
-        lblFabrica2->setGeometry(QRect(550, 130, 51, 41));
+        lblFabrica2->setGeometry(QRect(550, 150, 51, 41));
         lblFabrica2->setPixmap(QPixmap(QString::fromUtf8("../Imagenes/industria.png")));
         lblFabrica2->setScaledContents(true);
         lblFabrica4Com = new QLabel(centralwidget);
         lblFabrica4Com->setObjectName("lblFabrica4Com");
-        lblFabrica4Com->setGeometry(QRect(230, 50, 51, 41));
+        lblFabrica4Com->setGeometry(QRect(220, 50, 51, 41));
         lblFabrica4Com->setPixmap(QPixmap(QString::fromUtf8("../Imagenes/factory_icon_136644.png")));
         lblFabrica4Com->setScaledContents(true);
         lineH12 = new QFrame(centralwidget);
         lineH12->setObjectName("lineH12");
-        lineH12->setGeometry(QRect(640, 150, 31, 21));
+        lineH12->setGeometry(QRect(640, 170, 31, 21));
         lineH12->setLineWidth(2);
         lineH12->setMidLineWidth(1);
         lineH12->setFrameShape(QFrame::HLine);
         lineH12->setFrameShadow(QFrame::Sunken);
         lineV03 = new QFrame(centralwidget);
         lineV03->setObjectName("lineV03");
-        lineV03->setGeometry(QRect(660, 60, 20, 101));
+        lineV03->setGeometry(QRect(660, 60, 20, 121));
         lineV03->setLineWidth(2);
         lineV03->setMidLineWidth(1);
         lineV03->setFrameShape(QFrame::VLine);
@@ -340,7 +345,7 @@ public:
         btnDetenerFab01->setFlat(true);
         btnDetenerFab02 = new QPushButton(centralwidget);
         btnDetenerFab02->setObjectName("btnDetenerFab02");
-        btnDetenerFab02->setGeometry(QRect(610, 140, 31, 31));
+        btnDetenerFab02->setGeometry(QRect(610, 160, 31, 31));
         btnDetenerFab02->setCursor(QCursor(Qt::PointingHandCursor));
         btnDetenerFab02->setStyleSheet(QString::fromUtf8("background-color: white;\n"
 "font: 700 9pt \"Segoe UI\";\n"
@@ -350,7 +355,7 @@ public:
         btnDetenerFab02->setFlat(true);
         btnDetenerFab04Com = new QPushButton(centralwidget);
         btnDetenerFab04Com->setObjectName("btnDetenerFab04Com");
-        btnDetenerFab04Com->setGeometry(QRect(190, 50, 31, 31));
+        btnDetenerFab04Com->setGeometry(QRect(180, 50, 31, 31));
         btnDetenerFab04Com->setCursor(QCursor(Qt::PointingHandCursor));
         btnDetenerFab04Com->setStyleSheet(QString::fromUtf8("background-color: white;\n"
 "font: 700 9pt \"Segoe UI\";\n"
@@ -360,7 +365,7 @@ public:
         btnDetenerFab04Com->setFlat(true);
         btnDetenerFab03 = new QPushButton(centralwidget);
         btnDetenerFab03->setObjectName("btnDetenerFab03");
-        btnDetenerFab03->setGeometry(QRect(190, 140, 31, 31));
+        btnDetenerFab03->setGeometry(QRect(180, 160, 31, 31));
         btnDetenerFab03->setCursor(QCursor(Qt::PointingHandCursor));
         btnDetenerFab03->setStyleSheet(QString::fromUtf8("background-color: white;\n"
 "font: 700 9pt \"Segoe UI\";\n"
@@ -681,7 +686,7 @@ public:
         lblAlistador5->setScaledContents(true);
         lblMostrarFabricandoA = new QLabel(centralwidget);
         lblMostrarFabricandoA->setObjectName("lblMostrarFabricandoA");
-        lblMostrarFabricandoA->setGeometry(QRect(430, 180, 191, 20));
+        lblMostrarFabricandoA->setGeometry(QRect(430, 130, 191, 20));
         btnColaDeAlistadores = new QPushButton(centralwidget);
         btnColaDeAlistadores->setObjectName("btnColaDeAlistadores");
         btnColaDeAlistadores->setGeometry(QRect(880, 610, 71, 41));
@@ -710,16 +715,31 @@ public:
         lblMostrarPedidoAlistador6->setGeometry(QRect(880, 570, 241, 16));
         lblMostrarFabricandoB = new QLabel(centralwidget);
         lblMostrarFabricandoB->setObjectName("lblMostrarFabricandoB");
-        lblMostrarFabricandoB->setGeometry(QRect(430, 20, 191, 20));
+        lblMostrarFabricandoB->setGeometry(QRect(430, 30, 191, 20));
         lblMostrarFabricandoComodin = new QLabel(centralwidget);
         lblMostrarFabricandoComodin->setObjectName("lblMostrarFabricandoComodin");
-        lblMostrarFabricandoComodin->setGeometry(QRect(210, 20, 191, 20));
+        lblMostrarFabricandoComodin->setGeometry(QRect(200, 30, 191, 20));
         lblMostrarFabricandoC = new QLabel(centralwidget);
         lblMostrarFabricandoC->setObjectName("lblMostrarFabricandoC");
-        lblMostrarFabricandoC->setGeometry(QRect(210, 180, 191, 20));
-        label = new QLabel(centralwidget);
-        label->setObjectName("label");
-        label->setGeometry(QRect(420, 380, 171, 16));
+        lblMostrarFabricandoC->setGeometry(QRect(200, 130, 191, 20));
+        lblMostrarActBalanceador = new QLabel(centralwidget);
+        lblMostrarActBalanceador->setObjectName("lblMostrarActBalanceador");
+        lblMostrarActBalanceador->setGeometry(QRect(420, 380, 171, 16));
+        lblMostrarCantBalanceador = new QLabel(centralwidget);
+        lblMostrarCantBalanceador->setObjectName("lblMostrarCantBalanceador");
+        lblMostrarCantBalanceador->setGeometry(QRect(420, 400, 171, 16));
+        lblCantFabC = new QLabel(centralwidget);
+        lblCantFabC->setObjectName("lblCantFabC");
+        lblCantFabC->setGeometry(QRect(240, 190, 21, 16));
+        lblCantFabA = new QLabel(centralwidget);
+        lblCantFabA->setObjectName("lblCantFabA");
+        lblCantFabA->setGeometry(QRect(570, 190, 21, 16));
+        lblCantFabComodin = new QLabel(centralwidget);
+        lblCantFabComodin->setObjectName("lblCantFabComodin");
+        lblCantFabComodin->setGeometry(QRect(240, 90, 21, 16));
+        lblCantFabB = new QLabel(centralwidget);
+        lblCantFabB->setObjectName("lblCantFabB");
+        lblCantFabB->setGeometry(QRect(570, 90, 21, 16));
         MainWindow->setCentralWidget(centralwidget);
         lineV08->raise();
         lineV07->raise();
@@ -809,7 +829,12 @@ public:
         lblMostrarFabricandoB->raise();
         lblMostrarFabricandoComodin->raise();
         lblMostrarFabricandoC->raise();
-        label->raise();
+        lblMostrarActBalanceador->raise();
+        lblMostrarCantBalanceador->raise();
+        lblCantFabC->raise();
+        lblCantFabA->raise();
+        lblCantFabComodin->raise();
+        lblCantFabB->raise();
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName("statusbar");
         MainWindow->setStatusBar(statusbar);
@@ -948,7 +973,12 @@ public:
         lblMostrarFabricandoB->setText(QCoreApplication::translate("MainWindow", "Fabricacion", nullptr));
         lblMostrarFabricandoComodin->setText(QCoreApplication::translate("MainWindow", "Fabricacion", nullptr));
         lblMostrarFabricandoC->setText(QCoreApplication::translate("MainWindow", "Fabricacion", nullptr));
-        label->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
+        lblMostrarActBalanceador->setText(QString());
+        lblMostrarCantBalanceador->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
+        lblCantFabC->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
+        lblCantFabA->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
+        lblCantFabComodin->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
+        lblCantFabB->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
     } // retranslateUi
 
 };
