@@ -92,9 +92,16 @@ Balanceador::Balanceador(listaArticulos  * l, PriorityQueue * colaPedidos, Queue
 
 
                         Pedido * pedido = p_queue->deQueuePriority();
-                        pedido->factura->insertarAlFinal("Balanceador: "+retornarHora()+"\n");
+
+
                         QString textolbl = "Procesando pedido: #" + QString::fromStdString(to_string(pedido->numPedido));
+                        QString textolblVacio = "";
                         emit actualizarLabelBalanceador(textolbl);
+
+                        cout<<"hice Dequeue"<<endl;
+
+                        pedido->factura->insertarAlFinal("Balanceador: "+retornarHora()+"\n");
+
                         //cout<<"hice Dequeue"<<endl;
 
 
@@ -103,7 +110,6 @@ Balanceador::Balanceador(listaArticulos  * l, PriorityQueue * colaPedidos, Queue
                         NodoArticuloP *tmp = pedido->listaPedido->pn;
 
 
-                        textolbl = "";
                         while (tmp != NULL){
 
                             bool verif =tmp->haySuficiente(lista);
@@ -123,21 +129,30 @@ Balanceador::Balanceador(listaArticulos  * l, PriorityQueue * colaPedidos, Queue
                                 if (categoria == "A") {
                                     //cout<<"A"<<endl;
                                     encolarMenor(f1,f4,pedido);
-                                    emit actualizarLabelBalanceador(textolbl);
+
+
+                                    cantProcesados++;
+                                    emit actualizarLabelBalanceador(textolblVacio);
+                                    emit actualizarLabelCantBalanceador(QString::number(cantProcesados));
+
                                     sleep(1);
 
 
 
                                 } else if (categoria == "B") {
                                     encolarMenor(f2,f4,pedido);
-                                    emit actualizarLabelBalanceador(textolbl);
+                                    cantProcesados++;
+                                    emit actualizarLabelBalanceador(textolblVacio);
+                                    emit actualizarLabelCantBalanceador(QString::number(cantProcesados));
                                     sleep(1);
 
 
                                 } else if (categoria == "C") {
 
                                     f3.enQueue(pedido);
-                                    emit actualizarLabelBalanceador(textolbl);
+                                    cantProcesados++;
+                                    emit actualizarLabelBalanceador(textolblVacio);
+                                    emit actualizarLabelCantBalanceador(QString::number(cantProcesados));
                                     sleep(1);
 
 
@@ -152,9 +167,12 @@ Balanceador::Balanceador(listaArticulos  * l, PriorityQueue * colaPedidos, Queue
                         //cout<<flag<<" debe entrar"<<endl;
                         if (flag){
                             //cout<<"A alisto"<<endl;
-                            emit actualizarLabelBalanceador(textolbl);
                             pedido->factura->insertarAlFinal("A alisto"+retornarHora()+"\n");
                             a_queue.enQueue(pedido);
+                            cantProcesados++;
+                            emit actualizarLabelBalanceador(textolblVacio);
+                            emit actualizarLabelCantBalanceador(QString::number(cantProcesados));
+
                             //cout<<"hizo enqueue";
                         }
 
@@ -242,7 +260,10 @@ Balanceador::Balanceador(listaArticulos  * l, PriorityQueue * colaPedidos, Queue
                                     pedido->factura->insertarAlFinal("final: "+retornarHora());
                                     if(!a_queue.existeEnCola(pedido)){
                                         a_queue.enQueue(pedido);
+                                        cantAtendidos++;
                                     }
+
+                                    emit actualizarLabelCant(QString::number(cantAtendidos));
                                     pedido->factura->insertarAlFinal("A alisto: "+retornarHora());
                                     cout<<"Encolado en queue de alisto"<<endl;
 
@@ -299,8 +320,9 @@ Balanceador::Balanceador(listaArticulos  * l, PriorityQueue * colaPedidos, Queue
 
 
                         stringstream ss;
-                        ss << "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Facturas\\" << name;
-                        //ss << "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Facturas\\" << name;
+                        //ss << "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Facturas\\" << name;
+                        ss << "C:\\Users\\QUIROS CALVO\\Trabajos_TEC_2023\\ED_\\I Proyecto\\untitled\\Facturas\\" << name;
+
                         std::string ruta_archivo = ss.str();
 
 
@@ -636,6 +658,11 @@ MainWindow::MainWindow(PriorityQueue* _colaPedidos,Queue<Pedido *> & _colaAlisto
     connect(B, &Fabrica::actualizarLabel, this, &MainWindow::actualizarTextoLabelB);
     connect(C, &Fabrica::actualizarLabel, this, &MainWindow::actualizarTextoLabelC);
     connect(Comodin, &Fabrica::actualizarLabel, this, &MainWindow::actualizarTextoLabelComodin);
+
+    connect(A, &Fabrica::actualizarLabelCant, this, &MainWindow::actualizarTextoLabelCantA);
+    connect(B, &Fabrica::actualizarLabelCant, this, &MainWindow::actualizarTextoLabelCantB);
+    connect(C, &Fabrica::actualizarLabelCant, this, &MainWindow::actualizarTextoLabelCantC);
+    connect(Comodin, &Fabrica::actualizarLabelCant, this, &MainWindow::actualizarTextoLabelCantComodin);
     ui->setupUi(this);
 
     CargarArticulos(listaArt);
@@ -645,6 +672,8 @@ MainWindow::MainWindow(PriorityQueue* _colaPedidos,Queue<Pedido *> & _colaAlisto
     balanceador->start();
 
     connect(balanceador, &Balanceador::actualizarLabelBalanceador, this, &MainWindow::actualizarTextoLabelBalanceador);
+    connect(balanceador, &Balanceador::actualizarLabelCantBalanceador, this, &MainWindow::actualizarTextoLabelCantBalanceador);
+
 
     bodega->start();
     alistad->start();
@@ -697,25 +726,24 @@ QLabel* MainWindow::getLabelBalanceador(){
     return ui->lblMostrarActBalanceador;
 }
 
-// set labels
-void MainWindow::setLabelFabricacionA(QLabel* label){
-     ui->lblMostrarFabricandoA=label;
+QLabel* MainWindow::getLabelCantBalanceador(){
+    return ui->lblMostrarCantBalanceador;
 }
 
-void MainWindow::setLabelFabricacionB(QLabel* label){
-     ui->lblMostrarFabricandoB=label;
+QLabel* MainWindow::getLabelCantA(){
+    return ui->lblCantFabA;
 }
 
-void MainWindow::setLabelFabricacionC(QLabel* label){
-     ui->lblMostrarFabricandoC=label;
+QLabel* MainWindow::getLabelCantB(){
+    return ui->lblCantFabB;
 }
 
-void MainWindow::setLabelFabricacionComodin(QLabel* label){
-     ui->lblMostrarFabricandoComodin=label;
+QLabel* MainWindow::getLabelCantC(){
+    return ui->lblCantFabC;
 }
 
-void MainWindow::setLabelBalanceador(QLabel* label){
-     ui->lblMostrarActBalanceador=label;
+QLabel* MainWindow::getLabelCantComodin(){
+    return ui->lblCantFabComodin;
 }
 
 
@@ -742,8 +770,35 @@ void MainWindow::actualizarTextoLabelComodin(const QString& texto) {
 
 void MainWindow::actualizarTextoLabelBalanceador(const QString& texto) {
      QLabel * lbl=getLabelBalanceador();
+     qDebug() << "se actualiza el label: " << texto;
      lbl->setText(texto);
 }
+
+void MainWindow::actualizarTextoLabelCantBalanceador(const QString& texto) {
+     QLabel * lbl=getLabelCantBalanceador();
+     lbl->setText(texto);
+}
+
+void MainWindow::actualizarTextoLabelCantA(const QString& texto) {
+     QLabel * lbl=getLabelCantA();
+     lbl->setText(texto);
+}
+
+void MainWindow::actualizarTextoLabelCantB(const QString& texto) {
+     QLabel * lbl=getLabelCantB();
+     lbl->setText(texto);
+}
+
+void MainWindow::actualizarTextoLabelCantC(const QString& texto) {
+     QLabel * lbl=getLabelCantC();
+     lbl->setText(texto);
+}
+
+void MainWindow::actualizarTextoLabelCantComodin(const QString& texto) {
+     QLabel * lbl=getLabelCantComodin();
+     lbl->setText(texto);
+}
+
 
 void MainWindow::on_btnColaPedidos_clicked() {
     //qDebug() << "Entre al btnColaPedidos";

@@ -43,6 +43,12 @@ public:
 
     void setPaused (bool _paused);
 
+    int cantProcesados = 0;
+
+signals:
+    void actualizarLabelBalanceador(const QString& texto);
+    void actualizarLabelCantBalanceador(const QString& texto);
+
 private:
     PriorityQueue * p_queue;
     Queue<Pedido *> & a_queue;
@@ -52,9 +58,6 @@ private:
     Queue<Pedido *> & f4;
     listaArticulos * lista;
     bool paused = false;
-
-signals:
-    void actualizarLabelBalanceador(const QString& texto);
 
 };
 
@@ -69,13 +72,14 @@ public:
 
 
 
-
+    int cantAtendidos = 0;
     void run() override;
     bool getPaused ();
     void setPaused (bool _paused);
 
 signals:
     void actualizarLabel(const QString& texto);
+    void actualizarLabelCant(const QString& texto);
 
 private:
     Queue<Pedido *>& a_queue;
@@ -215,6 +219,13 @@ public:
     QLabel* getLabelFabricacionComodin();
     QLabel* getLabelBalanceador();
 
+    QLabel* getLabelCantBalanceador();
+    QLabel* getLabelCantA();
+    QLabel* getLabelCantB();
+    QLabel* getLabelCantC();
+    QLabel* getLabelCantComodin();
+
+
 
 signals:
     void tableWidgetSignal(QTableWidget* tableWidget);
@@ -241,13 +252,17 @@ private slots:
 
     void on_btnDetenerBalanceador_clicked();
 
-    void setLabelFabricacionA(QLabel* label);
+    /*void setLabelFabricacionA(QLabel* label);
 
     void setLabelFabricacionB(QLabel* label);
 
     void setLabelFabricacionC(QLabel* label);
 
     void setLabelFabricacionComodin(QLabel* label);
+
+    void setLabelBalanceador(QLabel* label);
+
+    void setLabelCantBalanceador(QLabel* label);*/
 
     //Balanceador * getBalanceador();
 
@@ -267,12 +282,24 @@ private slots:
 
     void actualizarTextoLabelComodin(const QString& texto);
 
+    void actualizarTextoLabelBalanceador(const QString& texto);
+
+    void actualizarTextoLabelCantBalanceador(const QString& texto);
+
+    void actualizarTextoLabelCantA(const QString& texto);
+
+    void actualizarTextoLabelCantB(const QString& texto);
+
+    void actualizarTextoLabelCantC(const QString& texto);
+
+    void actualizarTextoLabelCantComodin(const QString& texto);
+
     void on_btnColaDeAlistadores_clicked();
 
     void on_btnDetenerAlistados_clicked();
 
     void setLabelBalanceador(QLabel* label);
-    void actualizarTextoLabelBalanceador(const QString& texto);
+    //void actualizarTextoLabelBalanceador(const QString& texto);
 
 
 private:
