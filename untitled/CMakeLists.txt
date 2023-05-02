@@ -13,10 +13,8 @@ find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
 set(PROJECT_SOURCES
-        QThreads.h
         procedimientos.h
         structs.h
-        structs.cpp
         main.cpp
         mainwindow.cpp
         mainwindow.h
@@ -25,10 +23,7 @@ set(PROJECT_SOURCES
         vcolapedidos.ui
         vcolapedidos.h
         vcolapedidos.cpp
-        QThreads.cpp
-        PriorityQueue.cpp
         PriorityQueue.h
-        ThreadContainer.h
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

@@ -96,17 +96,23 @@ private:
 };
 
 class Facturadora : public QThread {
-
+    Q_OBJECT
 public:
     Facturadora(Queue<Pedido *> & A, QObject* parent = nullptr);
 
     Queue<Pedido *> & cola;
-    //string ruta_archivo = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Articulos\\articulos.txt";
-
-
-    void run() override;
     bool getPaused ();
     void setPaused (bool _paused);
+    int cantAtendidos = 0;
+    void run() override;
+    //string ruta_archivo = "C:\\Users\\javia\\OneDrive - Estudiantes ITCR\\TEC\\TEC 3 Semestre\\Estructuras de Datos\\Proyectos\\Proyecto1_ED\\untitled\\Articulos\\articulos.txt";
+
+signals:
+    void actualizarLabelCantFacturadora(const QString& texto);
+    void actualizarLabelFacturadora(const QString& texto);
+
+
+
 private:
     bool paused = false;
 };
@@ -119,7 +125,7 @@ class Alistador : public QThread{
         int id;
         ArticuloPedido* articulo = nullptr;
         QString ubicacion;
-        explicit Alistador(int _id, QTableWidget* _tableWidget,Queue<Pedido*> &colaAlistados, QObject* parent = nullptr);
+        explicit Alistador(int _id, Queue<Pedido*> &colaAlistados, QObject* parent = nullptr);
         void run() override;
         void moverAlistador(QString& ubicacion, ArticuloPedido* articulo, Pedido * pedido);
         QString to_String();
@@ -162,6 +168,7 @@ class Bodega : public QThread
         bool getPaused();
 
         void encolarAlistador(Alistador * alistador);
+        int cantAtendidos = 0;
 
 
     signals:
@@ -185,11 +192,17 @@ class Bodega : public QThread
 };
 
 class Alistados : public QThread {
+    Q_OBJECT
 public:
     Alistados(Queue<Pedido *>& colaFacturacion,Queue<Pedido *> & A, string _name,QObject* parent = nullptr);
     void run() override;
     bool getPaused ();
     void setPaused (bool _paused);
+    int cantAtendidos = 0;
+
+signals:
+    void actualizarLabelCantAlistados(const QString& texto);
+    void actualizarLabelAlistados(const QString& texto);
 
 private:
     Queue<Pedido *>& f_queue;
@@ -234,6 +247,10 @@ public:
     QLabel* getLabelAlist4();
     QLabel* getLabelAlist5();
     QLabel* getLabelAlist6();
+    QLabel* getLabelAlistados();
+    QLabel* getLabelCantAlistados();
+    QLabel* getLabelCantFacturadora();
+    QLabel* getLabelFacturadora();
 
 
 
@@ -261,20 +278,6 @@ private slots:
 
 
     void on_btnDetenerBalanceador_clicked();
-
-    /*void setLabelFabricacionA(QLabel* label);
-
-    void setLabelFabricacionB(QLabel* label);
-
-    void setLabelFabricacionC(QLabel* label);
-
-    void setLabelFabricacionComodin(QLabel* label);
-
-    void setLabelBalanceador(QLabel* label);
-
-    void setLabelCantBalanceador(QLabel* label);*/
-
-    //Balanceador * getBalanceador();
 
     void on_btnDetenerFab04Com_clicked();
 
@@ -304,18 +307,6 @@ private slots:
 
     void actualizarTextoLabelCantComodin(const QString& texto);
 
-    void actualizarTextoLabelAlist1(const QString& texto);
-
-    void actualizarTextoLabelAlist2(const QString& texto);
-
-    void actualizarTextoLabelAlist3(const QString& texto);
-
-    void actualizarTextoLabelAlist4(const QString& texto);
-
-    void actualizarTextoLabelAlist5(const QString& texto);
-
-    void actualizarTextoLabelAlist6(const QString& texto);
-
     void on_btnColaDeAlistadores_clicked();
 
     void on_btnDetenerAlistados_clicked();
@@ -323,6 +314,16 @@ private slots:
     void actualizarTextoLabelBodega(const QString& texto);
 
     void actualizarTextoLabelCantBodega(const QString& texto);
+
+    void actualizarTextoLabelCantAlistados(const QString& texto);
+
+    void actualizarTextoLabelAlistados(const QString& texto);
+
+    void actualizarTextoLabelFacturadora(const QString& texto);
+
+    void actualizarTextoLabelCantFacturadora(const QString& texto);
+
+    void on_btnDetenerFacturacion_clicked();
 
 private:
     Ui::MainWindow *ui;

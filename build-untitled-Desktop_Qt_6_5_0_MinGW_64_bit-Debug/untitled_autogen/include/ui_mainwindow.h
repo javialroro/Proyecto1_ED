@@ -70,10 +70,7 @@ public:
     QLabel *lblAlistadores;
     QFrame *lineH16;
     QLabel *lblAlistador2;
-    QPushButton *btnDetenerAlist2;
     QLabel *lblAlistador3;
-    QPushButton *btnDetenerAlist3;
-    QPushButton *btnDetenerAlist1;
     QLabel *lblAlistador1;
     QLabel *lblAlmacen;
     QFrame *lineV06;
@@ -84,22 +81,16 @@ public:
     QPushButton *btnColaAlistados;
     QLabel *lblCaja;
     QPushButton *btnDetenerAlistados;
-    QPushButton *btnVerAlistados;
     QFrame *lineV07;
     QPushButton *btnColaPorFacturar;
     QLabel *lblCajaRegistradora;
-    QPushButton *btnVerFacturacion;
     QPushButton *btnDetenerFacturacion;
     QFrame *lineV08;
     QLabel *lblPedidoFinal;
-    QPushButton *btnVerLaFactura;
-    QPushButton *btnDetenerAlist4;
     QLabel *lblNum6Alistador;
-    QPushButton *btnDetenerAlist5;
     QLabel *lblAlistador4;
     QLabel *lblAlistador6;
     QLabel *lblNum4Alistador;
-    QPushButton *btnDetenerAlist6;
     QLabel *lblNum5Alistador;
     QLabel *lblAlistador5;
     QLabel *lblMostrarFabricandoA;
@@ -122,6 +113,11 @@ public:
     QPushButton *btnDetenerBodega;
     QLabel *lblMostrarActBodega;
     QLabel *lblCantAtendidosBodega;
+    QLabel *label;
+    QLabel *lblCantAtendidosAlistados;
+    QLabel *lblCantAtendidosFacturadora;
+    QLabel *lblMostrarActFacturadora;
+    QLabel *lblMostrarActAlistados;
     QStatusBar *statusbar;
 
     void setupUi(QMainWindow *MainWindow)
@@ -458,41 +454,11 @@ public:
         lblAlistador2->setGeometry(QRect(850, 450, 21, 21));
         lblAlistador2->setPixmap(QPixmap(QString::fromUtf8("../Imagenes/carretilla.png")));
         lblAlistador2->setScaledContents(true);
-        btnDetenerAlist2 = new QPushButton(centralwidget);
-        btnDetenerAlist2->setObjectName("btnDetenerAlist2");
-        btnDetenerAlist2->setGeometry(QRect(800, 450, 21, 21));
-        btnDetenerAlist2->setCursor(QCursor(Qt::PointingHandCursor));
-        btnDetenerAlist2->setStyleSheet(QString::fromUtf8("background-color: white;\n"
-"font: 700 9pt \"Segoe UI\";\n"
-"color: white;"));
-        btnDetenerAlist2->setIcon(icon);
-        btnDetenerAlist2->setIconSize(QSize(20, 20));
-        btnDetenerAlist2->setFlat(true);
         lblAlistador3 = new QLabel(centralwidget);
         lblAlistador3->setObjectName("lblAlistador3");
         lblAlistador3->setGeometry(QRect(850, 480, 21, 21));
         lblAlistador3->setPixmap(QPixmap(QString::fromUtf8("../Imagenes/carretilla.png")));
         lblAlistador3->setScaledContents(true);
-        btnDetenerAlist3 = new QPushButton(centralwidget);
-        btnDetenerAlist3->setObjectName("btnDetenerAlist3");
-        btnDetenerAlist3->setGeometry(QRect(800, 480, 21, 21));
-        btnDetenerAlist3->setCursor(QCursor(Qt::PointingHandCursor));
-        btnDetenerAlist3->setStyleSheet(QString::fromUtf8("background-color: white;\n"
-"font: 700 9pt \"Segoe UI\";\n"
-"color: white;"));
-        btnDetenerAlist3->setIcon(icon);
-        btnDetenerAlist3->setIconSize(QSize(20, 20));
-        btnDetenerAlist3->setFlat(true);
-        btnDetenerAlist1 = new QPushButton(centralwidget);
-        btnDetenerAlist1->setObjectName("btnDetenerAlist1");
-        btnDetenerAlist1->setGeometry(QRect(800, 420, 21, 21));
-        btnDetenerAlist1->setCursor(QCursor(Qt::PointingHandCursor));
-        btnDetenerAlist1->setStyleSheet(QString::fromUtf8("background-color: white;\n"
-"font: 700 9pt \"Segoe UI\";\n"
-"color: white;"));
-        btnDetenerAlist1->setIcon(icon);
-        btnDetenerAlist1->setIconSize(QSize(20, 20));
-        btnDetenerAlist1->setFlat(true);
         lblAlistador1 = new QLabel(centralwidget);
         lblAlistador1->setObjectName("lblAlistador1");
         lblAlistador1->setGeometry(QRect(850, 420, 21, 21));
@@ -547,7 +513,7 @@ public:
         lblCaja->setScaledContents(true);
         btnDetenerAlistados = new QPushButton(centralwidget);
         btnDetenerAlistados->setObjectName("btnDetenerAlistados");
-        btnDetenerAlistados->setGeometry(QRect(1380, 520, 31, 21));
+        btnDetenerAlistados->setGeometry(QRect(1400, 520, 31, 21));
         btnDetenerAlistados->setCursor(QCursor(Qt::PointingHandCursor));
         btnDetenerAlistados->setStyleSheet(QString::fromUtf8("background-color: white;\n"
 "font: 700 9pt \"Segoe UI\";\n"
@@ -555,16 +521,6 @@ public:
         btnDetenerAlistados->setIcon(icon);
         btnDetenerAlistados->setIconSize(QSize(20, 20));
         btnDetenerAlistados->setFlat(true);
-        btnVerAlistados = new QPushButton(centralwidget);
-        btnVerAlistados->setObjectName("btnVerAlistados");
-        btnVerAlistados->setGeometry(QRect(1380, 500, 31, 21));
-        btnVerAlistados->setCursor(QCursor(Qt::PointingHandCursor));
-        btnVerAlistados->setStyleSheet(QString::fromUtf8("background-color: white;\n"
-"font: 700 9pt \"Segoe UI\";\n"
-"color: white;"));
-        btnVerAlistados->setIcon(icon1);
-        btnVerAlistados->setIconSize(QSize(25, 25));
-        btnVerAlistados->setFlat(true);
         lineV07 = new QFrame(centralwidget);
         lineV07->setObjectName("lineV07");
         lineV07->setGeometry(QRect(1330, 380, 20, 111));
@@ -585,19 +541,9 @@ public:
         lblCajaRegistradora->setGeometry(QRect(1310, 290, 71, 61));
         lblCajaRegistradora->setPixmap(QPixmap(QString::fromUtf8("../Imagenes/caja-registradora.png")));
         lblCajaRegistradora->setScaledContents(true);
-        btnVerFacturacion = new QPushButton(centralwidget);
-        btnVerFacturacion->setObjectName("btnVerFacturacion");
-        btnVerFacturacion->setGeometry(QRect(1380, 290, 31, 21));
-        btnVerFacturacion->setCursor(QCursor(Qt::PointingHandCursor));
-        btnVerFacturacion->setStyleSheet(QString::fromUtf8("background-color: white;\n"
-"font: 700 9pt \"Segoe UI\";\n"
-"color: white;"));
-        btnVerFacturacion->setIcon(icon1);
-        btnVerFacturacion->setIconSize(QSize(25, 25));
-        btnVerFacturacion->setFlat(true);
         btnDetenerFacturacion = new QPushButton(centralwidget);
         btnDetenerFacturacion->setObjectName("btnDetenerFacturacion");
-        btnDetenerFacturacion->setGeometry(QRect(1380, 310, 31, 21));
+        btnDetenerFacturacion->setGeometry(QRect(1390, 330, 31, 21));
         btnDetenerFacturacion->setCursor(QCursor(Qt::PointingHandCursor));
         btnDetenerFacturacion->setStyleSheet(QString::fromUtf8("background-color: white;\n"
 "font: 700 9pt \"Segoe UI\";\n"
@@ -607,51 +553,21 @@ public:
         btnDetenerFacturacion->setFlat(true);
         lineV08 = new QFrame(centralwidget);
         lineV08->setObjectName("lineV08");
-        lineV08->setGeometry(QRect(1330, 190, 20, 111));
+        lineV08->setGeometry(QRect(1330, 160, 20, 101));
         lineV08->setLineWidth(2);
         lineV08->setMidLineWidth(1);
         lineV08->setFrameShape(QFrame::VLine);
         lineV08->setFrameShadow(QFrame::Sunken);
         lblPedidoFinal = new QLabel(centralwidget);
         lblPedidoFinal->setObjectName("lblPedidoFinal");
-        lblPedidoFinal->setGeometry(QRect(1310, 120, 71, 71));
+        lblPedidoFinal->setGeometry(QRect(1310, 90, 71, 71));
         lblPedidoFinal->setPixmap(QPixmap(QString::fromUtf8("../Imagenes/simbolo-de-interfaz-de-archivo-del-contorno-de-la-hoja-de-papel-con-la-esquina-superior-derecha-doblada.png")));
         lblPedidoFinal->setScaledContents(true);
-        btnVerLaFactura = new QPushButton(centralwidget);
-        btnVerLaFactura->setObjectName("btnVerLaFactura");
-        btnVerLaFactura->setGeometry(QRect(1330, 150, 31, 21));
-        btnVerLaFactura->setCursor(QCursor(Qt::PointingHandCursor));
-        btnVerLaFactura->setStyleSheet(QString::fromUtf8("background-color: white;\n"
-"font: 700 9pt \"Segoe UI\";\n"
-"color: white;"));
-        btnVerLaFactura->setIcon(icon1);
-        btnVerLaFactura->setIconSize(QSize(25, 25));
-        btnVerLaFactura->setFlat(true);
-        btnDetenerAlist4 = new QPushButton(centralwidget);
-        btnDetenerAlist4->setObjectName("btnDetenerAlist4");
-        btnDetenerAlist4->setGeometry(QRect(800, 510, 21, 21));
-        btnDetenerAlist4->setCursor(QCursor(Qt::PointingHandCursor));
-        btnDetenerAlist4->setStyleSheet(QString::fromUtf8("background-color: white;\n"
-"font: 700 9pt \"Segoe UI\";\n"
-"color: white;"));
-        btnDetenerAlist4->setIcon(icon);
-        btnDetenerAlist4->setIconSize(QSize(20, 20));
-        btnDetenerAlist4->setFlat(true);
         lblNum6Alistador = new QLabel(centralwidget);
         lblNum6Alistador->setObjectName("lblNum6Alistador");
         lblNum6Alistador->setGeometry(QRect(830, 570, 21, 21));
         lblNum6Alistador->setStyleSheet(QString::fromUtf8("font: 700 12pt \"Arial\";\n"
 "color: black;"));
-        btnDetenerAlist5 = new QPushButton(centralwidget);
-        btnDetenerAlist5->setObjectName("btnDetenerAlist5");
-        btnDetenerAlist5->setGeometry(QRect(800, 540, 21, 21));
-        btnDetenerAlist5->setCursor(QCursor(Qt::PointingHandCursor));
-        btnDetenerAlist5->setStyleSheet(QString::fromUtf8("background-color: white;\n"
-"font: 700 9pt \"Segoe UI\";\n"
-"color: white;"));
-        btnDetenerAlist5->setIcon(icon);
-        btnDetenerAlist5->setIconSize(QSize(20, 20));
-        btnDetenerAlist5->setFlat(true);
         lblAlistador4 = new QLabel(centralwidget);
         lblAlistador4->setObjectName("lblAlistador4");
         lblAlistador4->setGeometry(QRect(850, 510, 21, 21));
@@ -667,16 +583,6 @@ public:
         lblNum4Alistador->setGeometry(QRect(830, 510, 21, 21));
         lblNum4Alistador->setStyleSheet(QString::fromUtf8("font: 700 12pt \"Arial\";\n"
 "color: black;"));
-        btnDetenerAlist6 = new QPushButton(centralwidget);
-        btnDetenerAlist6->setObjectName("btnDetenerAlist6");
-        btnDetenerAlist6->setGeometry(QRect(800, 570, 21, 21));
-        btnDetenerAlist6->setCursor(QCursor(Qt::PointingHandCursor));
-        btnDetenerAlist6->setStyleSheet(QString::fromUtf8("background-color: white;\n"
-"font: 700 9pt \"Segoe UI\";\n"
-"color: white;"));
-        btnDetenerAlist6->setIcon(icon);
-        btnDetenerAlist6->setIconSize(QSize(20, 20));
-        btnDetenerAlist6->setFlat(true);
         lblNum5Alistador = new QLabel(centralwidget);
         lblNum5Alistador->setObjectName("lblNum5Alistador");
         lblNum5Alistador->setGeometry(QRect(830, 540, 21, 21));
@@ -765,6 +671,23 @@ public:
         lblCantAtendidosBodega = new QLabel(centralwidget);
         lblCantAtendidosBodega->setObjectName("lblCantAtendidosBodega");
         lblCantAtendidosBodega->setGeometry(QRect(890, 360, 16, 16));
+        label = new QLabel(centralwidget);
+        label->setObjectName("label");
+        label->setGeometry(QRect(1330, 110, 31, 31));
+        label->setPixmap(QPixmap(QString::fromUtf8("../Imagenes/vision.png")));
+        label->setScaledContents(true);
+        lblCantAtendidosAlistados = new QLabel(centralwidget);
+        lblCantAtendidosAlistados->setObjectName("lblCantAtendidosAlistados");
+        lblCantAtendidosAlistados->setGeometry(QRect(1410, 490, 16, 16));
+        lblCantAtendidosFacturadora = new QLabel(centralwidget);
+        lblCantAtendidosFacturadora->setObjectName("lblCantAtendidosFacturadora");
+        lblCantAtendidosFacturadora->setGeometry(QRect(1400, 300, 16, 16));
+        lblMostrarActFacturadora = new QLabel(centralwidget);
+        lblMostrarActFacturadora->setObjectName("lblMostrarActFacturadora");
+        lblMostrarActFacturadora->setGeometry(QRect(1260, 270, 161, 16));
+        lblMostrarActAlistados = new QLabel(centralwidget);
+        lblMostrarActAlistados->setObjectName("lblMostrarActAlistados");
+        lblMostrarActAlistados->setGeometry(QRect(1260, 560, 161, 16));
         MainWindow->setCentralWidget(centralwidget);
         lineV08->raise();
         lineV07->raise();
@@ -810,10 +733,7 @@ public:
         lblAlistadores->raise();
         lineH16->raise();
         lblAlistador2->raise();
-        btnDetenerAlist2->raise();
         lblAlistador3->raise();
-        btnDetenerAlist3->raise();
-        btnDetenerAlist1->raise();
         lblAlistador1->raise();
         btnColaDeAlisto->raise();
         lblAlmacen->raise();
@@ -826,20 +746,14 @@ public:
         btnColaAlistados->raise();
         lblCaja->raise();
         btnDetenerAlistados->raise();
-        btnVerAlistados->raise();
         btnColaPorFacturar->raise();
         lblCajaRegistradora->raise();
-        btnVerFacturacion->raise();
         btnDetenerFacturacion->raise();
         lblPedidoFinal->raise();
-        btnVerLaFactura->raise();
-        btnDetenerAlist4->raise();
         lblNum6Alistador->raise();
-        btnDetenerAlist5->raise();
         lblAlistador4->raise();
         lblAlistador6->raise();
         lblNum4Alistador->raise();
-        btnDetenerAlist6->raise();
         lblNum5Alistador->raise();
         lblAlistador5->raise();
         lblMostrarFabricandoA->raise();
@@ -863,6 +777,11 @@ public:
         btnDetenerBodega->raise();
         lblMostrarActBodega->raise();
         lblCantAtendidosBodega->raise();
+        label->raise();
+        lblCantAtendidosAlistados->raise();
+        lblCantAtendidosFacturadora->raise();
+        lblMostrarActFacturadora->raise();
+        lblMostrarActAlistados->raise();
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName("statusbar");
         MainWindow->setStatusBar(statusbar);
@@ -941,10 +860,7 @@ public:
         btnVerBalanceador->setText(QString());
         lblAlistadores->setText(QString());
         lblAlistador2->setText(QString());
-        btnDetenerAlist2->setText(QString());
         lblAlistador3->setText(QString());
-        btnDetenerAlist3->setText(QString());
-        btnDetenerAlist1->setText(QString());
         lblAlistador1->setText(QString());
         lblAlmacen->setText(QString());
         lblNum1Alistador->setText(QCoreApplication::translate("MainWindow", "1.", nullptr));
@@ -960,7 +876,6 @@ public:
 "Alistados", nullptr));
         lblCaja->setText(QString());
         btnDetenerAlistados->setText(QString());
-        btnVerAlistados->setText(QString());
 #if QT_CONFIG(tooltip)
         btnColaPorFacturar->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p align=\"center\">Pedidos</p></body></html>", nullptr));
 #endif // QT_CONFIG(tooltip)
@@ -970,17 +885,12 @@ public:
         btnColaPorFacturar->setText(QCoreApplication::translate("MainWindow", "Cola por \n"
 "Facturar", nullptr));
         lblCajaRegistradora->setText(QString());
-        btnVerFacturacion->setText(QString());
         btnDetenerFacturacion->setText(QString());
         lblPedidoFinal->setText(QString());
-        btnVerLaFactura->setText(QString());
-        btnDetenerAlist4->setText(QString());
         lblNum6Alistador->setText(QCoreApplication::translate("MainWindow", "6.", nullptr));
-        btnDetenerAlist5->setText(QString());
         lblAlistador4->setText(QString());
         lblAlistador6->setText(QString());
         lblNum4Alistador->setText(QCoreApplication::translate("MainWindow", "4.", nullptr));
-        btnDetenerAlist6->setText(QString());
         lblNum5Alistador->setText(QCoreApplication::translate("MainWindow", "5.", nullptr));
         lblAlistador5->setText(QString());
         lblMostrarFabricandoA->setText(QCoreApplication::translate("MainWindow", "Fabricacion", nullptr));
@@ -1010,6 +920,11 @@ public:
         btnDetenerBodega->setText(QString());
         lblMostrarActBodega->setText(QString());
         lblCantAtendidosBodega->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
+        label->setText(QString());
+        lblCantAtendidosAlistados->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
+        lblCantAtendidosFacturadora->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
+        lblMostrarActFacturadora->setText(QString());
+        lblMostrarActAlistados->setText(QString());
     } // retranslateUi
 
 };

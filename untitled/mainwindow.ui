@@ -1073,40 +1073,6 @@ color: white;</string>
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="btnDetenerAlist2">
-    <property name="geometry">
-     <rect>
-      <x>800</x>
-      <y>450</y>
-      <width>21</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="cursor">
-     <cursorShape>PointingHandCursor</cursorShape>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: white;
-font: 700 9pt &quot;Segoe UI&quot;;
-color: white;</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="icon">
-     <iconset>
-      <normaloff>../Imagenes/semaforos.png</normaloff>../Imagenes/semaforos.png</iconset>
-    </property>
-    <property name="iconSize">
-     <size>
-      <width>20</width>
-      <height>20</height>
-     </size>
-    </property>
-    <property name="flat">
-     <bool>true</bool>
-    </property>
-   </widget>
    <widget class="QLabel" name="lblAlistador3">
     <property name="geometry">
      <rect>
@@ -1123,74 +1089,6 @@ color: white;</string>
      <pixmap>../Imagenes/carretilla.png</pixmap>
     </property>
     <property name="scaledContents">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btnDetenerAlist3">
-    <property name="geometry">
-     <rect>
-      <x>800</x>
-      <y>480</y>
-      <width>21</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="cursor">
-     <cursorShape>PointingHandCursor</cursorShape>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: white;
-font: 700 9pt &quot;Segoe UI&quot;;
-color: white;</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="icon">
-     <iconset>
-      <normaloff>../Imagenes/semaforos.png</normaloff>../Imagenes/semaforos.png</iconset>
-    </property>
-    <property name="iconSize">
-     <size>
-      <width>20</width>
-      <height>20</height>
-     </size>
-    </property>
-    <property name="flat">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btnDetenerAlist1">
-    <property name="geometry">
-     <rect>
-      <x>800</x>
-      <y>420</y>
-      <width>21</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="cursor">
-     <cursorShape>PointingHandCursor</cursorShape>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: white;
-font: 700 9pt &quot;Segoe UI&quot;;
-color: white;</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="icon">
-     <iconset>
-      <normaloff>../Imagenes/semaforos.png</normaloff>../Imagenes/semaforos.png</iconset>
-    </property>
-    <property name="iconSize">
-     <size>
-      <width>20</width>
-      <height>20</height>
-     </size>
-    </property>
-    <property name="flat">
      <bool>true</bool>
     </property>
    </widget>
@@ -1380,7 +1278,7 @@ Alistados</string>
    <widget class="QPushButton" name="btnDetenerAlistados">
     <property name="geometry">
      <rect>
-      <x>1380</x>
+      <x>1400</x>
       <y>520</y>
       <width>31</width>
       <height>21</height>
@@ -1405,40 +1303,6 @@ color: white;</string>
      <size>
       <width>20</width>
       <height>20</height>
-     </size>
-    </property>
-    <property name="flat">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btnVerAlistados">
-    <property name="geometry">
-     <rect>
-      <x>1380</x>
-      <y>500</y>
-      <width>31</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="cursor">
-     <cursorShape>PointingHandCursor</cursorShape>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: white;
-font: 700 9pt &quot;Segoe UI&quot;;
-color: white;</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="icon">
-     <iconset>
-      <normaloff>../Imagenes/vision.png</normaloff>../Imagenes/vision.png</iconset>
-    </property>
-    <property name="iconSize">
-     <size>
-      <width>25</width>
-      <height>25</height>
      </size>
     </property>
     <property name="flat">
@@ -1520,45 +1384,11 @@ Facturar</string>
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="btnVerFacturacion">
-    <property name="geometry">
-     <rect>
-      <x>1380</x>
-      <y>290</y>
-      <width>31</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="cursor">
-     <cursorShape>PointingHandCursor</cursorShape>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: white;
-font: 700 9pt &quot;Segoe UI&quot;;
-color: white;</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="icon">
-     <iconset>
-      <normaloff>../Imagenes/vision.png</normaloff>../Imagenes/vision.png</iconset>
-    </property>
-    <property name="iconSize">
-     <size>
-      <width>25</width>
-      <height>25</height>
-     </size>
-    </property>
-    <property name="flat">
-     <bool>true</bool>
-    </property>
-   </widget>
    <widget class="QPushButton" name="btnDetenerFacturacion">
     <property name="geometry">
      <rect>
-      <x>1380</x>
-      <y>310</y>
+      <x>1390</x>
+      <y>330</y>
       <width>31</width>
       <height>21</height>
      </rect>
@@ -1592,9 +1422,9 @@ color: white;</string>
     <property name="geometry">
      <rect>
       <x>1330</x>
-      <y>190</y>
+      <y>160</y>
       <width>20</width>
-      <height>111</height>
+      <height>101</height>
      </rect>
     </property>
     <property name="lineWidth">
@@ -1611,7 +1441,7 @@ color: white;</string>
     <property name="geometry">
      <rect>
       <x>1310</x>
-      <y>120</y>
+      <y>90</y>
       <width>71</width>
       <height>71</height>
      </rect>
@@ -1623,74 +1453,6 @@ color: white;</string>
      <pixmap>../Imagenes/simbolo-de-interfaz-de-archivo-del-contorno-de-la-hoja-de-papel-con-la-esquina-superior-derecha-doblada.png</pixmap>
     </property>
     <property name="scaledContents">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btnVerLaFactura">
-    <property name="geometry">
-     <rect>
-      <x>1330</x>
-      <y>150</y>
-      <width>31</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="cursor">
-     <cursorShape>PointingHandCursor</cursorShape>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: white;
-font: 700 9pt &quot;Segoe UI&quot;;
-color: white;</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="icon">
-     <iconset>
-      <normaloff>../Imagenes/vision.png</normaloff>../Imagenes/vision.png</iconset>
-    </property>
-    <property name="iconSize">
-     <size>
-      <width>25</width>
-      <height>25</height>
-     </size>
-    </property>
-    <property name="flat">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btnDetenerAlist4">
-    <property name="geometry">
-     <rect>
-      <x>800</x>
-      <y>510</y>
-      <width>21</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="cursor">
-     <cursorShape>PointingHandCursor</cursorShape>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: white;
-font: 700 9pt &quot;Segoe UI&quot;;
-color: white;</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="icon">
-     <iconset>
-      <normaloff>../Imagenes/semaforos.png</normaloff>../Imagenes/semaforos.png</iconset>
-    </property>
-    <property name="iconSize">
-     <size>
-      <width>20</width>
-      <height>20</height>
-     </size>
-    </property>
-    <property name="flat">
      <bool>true</bool>
     </property>
    </widget>
@@ -1709,40 +1471,6 @@ color: black;</string>
     </property>
     <property name="text">
      <string>6.</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btnDetenerAlist5">
-    <property name="geometry">
-     <rect>
-      <x>800</x>
-      <y>540</y>
-      <width>21</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="cursor">
-     <cursorShape>PointingHandCursor</cursorShape>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: white;
-font: 700 9pt &quot;Segoe UI&quot;;
-color: white;</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="icon">
-     <iconset>
-      <normaloff>../Imagenes/semaforos.png</normaloff>../Imagenes/semaforos.png</iconset>
-    </property>
-    <property name="iconSize">
-     <size>
-      <width>20</width>
-      <height>20</height>
-     </size>
-    </property>
-    <property name="flat">
-     <bool>true</bool>
     </property>
    </widget>
    <widget class="QLabel" name="lblAlistador4">
@@ -1798,40 +1526,6 @@ color: black;</string>
     </property>
     <property name="text">
      <string>4.</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btnDetenerAlist6">
-    <property name="geometry">
-     <rect>
-      <x>800</x>
-      <y>570</y>
-      <width>21</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="cursor">
-     <cursorShape>PointingHandCursor</cursorShape>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: white;
-font: 700 9pt &quot;Segoe UI&quot;;
-color: white;</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="icon">
-     <iconset>
-      <normaloff>../Imagenes/semaforos.png</normaloff>../Imagenes/semaforos.png</iconset>
-    </property>
-    <property name="iconSize">
-     <size>
-      <width>20</width>
-      <height>20</height>
-     </size>
-    </property>
-    <property name="flat">
-     <bool>true</bool>
     </property>
    </widget>
    <widget class="QLabel" name="lblNum5Alistador">
@@ -2193,6 +1887,77 @@ color: white;</string>
      <string>0</string>
     </property>
    </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>1330</x>
+      <y>110</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>../Imagenes/vision.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblCantAtendidosAlistados">
+    <property name="geometry">
+     <rect>
+      <x>1410</x>
+      <y>490</y>
+      <width>16</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>0</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblCantAtendidosFacturadora">
+    <property name="geometry">
+     <rect>
+      <x>1400</x>
+      <y>300</y>
+      <width>16</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>0</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblMostrarActFacturadora">
+    <property name="geometry">
+     <rect>
+      <x>1260</x>
+      <y>270</y>
+      <width>161</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblMostrarActAlistados">
+    <property name="geometry">
+     <rect>
+      <x>1260</x>
+      <y>560</y>
+      <width>161</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
    <zorder>lineV08</zorder>
    <zorder>lineV07</zorder>
    <zorder>lblcliente1</zorder>
@@ -2237,10 +2002,7 @@ color: white;</string>
    <zorder>lblAlistadores</zorder>
    <zorder>lineH16</zorder>
    <zorder>lblAlistador2</zorder>
-   <zorder>btnDetenerAlist2</zorder>
    <zorder>lblAlistador3</zorder>
-   <zorder>btnDetenerAlist3</zorder>
-   <zorder>btnDetenerAlist1</zorder>
    <zorder>lblAlistador1</zorder>
    <zorder>btnColaDeAlisto</zorder>
    <zorder>lblAlmacen</zorder>
@@ -2253,20 +2015,14 @@ color: white;</string>
    <zorder>btnColaAlistados</zorder>
    <zorder>lblCaja</zorder>
    <zorder>btnDetenerAlistados</zorder>
-   <zorder>btnVerAlistados</zorder>
    <zorder>btnColaPorFacturar</zorder>
    <zorder>lblCajaRegistradora</zorder>
-   <zorder>btnVerFacturacion</zorder>
    <zorder>btnDetenerFacturacion</zorder>
    <zorder>lblPedidoFinal</zorder>
-   <zorder>btnVerLaFactura</zorder>
-   <zorder>btnDetenerAlist4</zorder>
    <zorder>lblNum6Alistador</zorder>
-   <zorder>btnDetenerAlist5</zorder>
    <zorder>lblAlistador4</zorder>
    <zorder>lblAlistador6</zorder>
    <zorder>lblNum4Alistador</zorder>
-   <zorder>btnDetenerAlist6</zorder>
    <zorder>lblNum5Alistador</zorder>
    <zorder>lblAlistador5</zorder>
    <zorder>lblMostrarFabricandoA</zorder>
@@ -2290,6 +2046,11 @@ color: white;</string>
    <zorder>btnDetenerBodega</zorder>
    <zorder>lblMostrarActBodega</zorder>
    <zorder>lblCantAtendidosBodega</zorder>
+   <zorder>label</zorder>
+   <zorder>lblCantAtendidosAlistados</zorder>
+   <zorder>lblCantAtendidosFacturadora</zorder>
+   <zorder>lblMostrarActFacturadora</zorder>
+   <zorder>lblMostrarActAlistados</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
