@@ -85,9 +85,9 @@ public:
         return result;
     }
 
-    bool existeEnCola(const T& value) const {
-        for (const T& item : m_items) {
-            if (item == value) {
+    bool contieneCodigo(const int& codigo) const {
+        for (const T& value : m_items) {
+            if (value->getCodigo() == codigo) {
                 return true;
             }
         }

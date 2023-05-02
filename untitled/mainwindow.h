@@ -119,7 +119,7 @@ class Alistador : public QThread{
         int id;
         ArticuloPedido* articulo = nullptr;
         QString ubicacion;
-        explicit Alistador(int _id, QTableWidget* _tableWidget,Queue<Pedido*> &colaAlistados, QObject* parent = nullptr);
+        explicit Alistador(int _id, QTableWidget* _tableWidget,Queue<Pedido*> &colaAlistados, listaArticulos * listaArt,QObject* parent = nullptr);
         void run() override;
         void moverAlistador(QString& ubicacion, ArticuloPedido* articulo, Pedido * pedido);
         QString to_String();
@@ -141,6 +141,7 @@ class Alistador : public QThread{
         int obtenerIndiceLetra(QString& letra);
 
         Queue<Pedido*> &colaAlistados;
+        listaArticulos * listaArt;
 
 };
 
