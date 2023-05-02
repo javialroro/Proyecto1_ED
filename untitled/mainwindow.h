@@ -59,8 +59,6 @@ private:
     listaArticulos * lista;
     bool paused = false;
 
-
-
 };
 
 class Fabrica : public QThread {
@@ -116,6 +114,7 @@ private:
 class Alistador : public QThread{
     Q_OBJECT
     public:
+    bool AlistP;
     Pedido * pedido;
         int id;
         ArticuloPedido* articulo = nullptr;
@@ -221,6 +220,7 @@ public:
     QLabel* getLabelFabricacionC();
     QLabel* getLabelFabricacionComodin();
     QLabel* getLabelBalanceador();
+
     QLabel* getLabelCantBalanceador();
     QLabel* getLabelCantA();
     QLabel* getLabelCantB();
@@ -234,6 +234,7 @@ public:
     QLabel* getLabelAlist4();
     QLabel* getLabelAlist5();
     QLabel* getLabelAlist6();
+
 
 
 signals:

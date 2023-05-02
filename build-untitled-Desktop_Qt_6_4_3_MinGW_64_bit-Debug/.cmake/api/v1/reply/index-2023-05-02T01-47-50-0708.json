@@ -1,0 +1,105 @@
+{
+	"cmake" : 
+	{
+		"generator" : 
+		{
+			"multiConfig" : false,
+			"name" : "Ninja"
+		},
+		"paths" : 
+		{
+			"cmake" : "C:/Qt/Tools/CMake_64/bin/cmake.exe",
+			"cpack" : "C:/Qt/Tools/CMake_64/bin/cpack.exe",
+			"ctest" : "C:/Qt/Tools/CMake_64/bin/ctest.exe",
+			"root" : "C:/Qt/Tools/CMake_64/share/cmake-3.24"
+		},
+		"version" : 
+		{
+			"isDirty" : false,
+			"major" : 3,
+			"minor" : 24,
+			"patch" : 2,
+			"string" : "3.24.2",
+			"suffix" : ""
+		}
+	},
+	"objects" : 
+	[
+		{
+<<<<<<<< HEAD:build-untitled-Desktop_Qt_6_4_3_MinGW_64_bit-Debug/.cmake/api/v1/reply/index-2023-05-02T01-47-50-0708.json
+			"jsonFile" : "codemodel-v2-96e4d046574b2da9f7f6.json",
+========
+			"jsonFile" : "codemodel-v2-97eb72058af4edef0220.json",
+>>>>>>>> 9e3f35995c06873dfa424e75270328ed171fba00:build-untitled-Desktop_Qt_6_4_3_MinGW_64_bit-Debug/.cmake/api/v1/reply/index-2023-05-02T01-49-14-0470.json
+			"kind" : "codemodel",
+			"version" : 
+			{
+				"major" : 2,
+				"minor" : 4
+			}
+		},
+		{
+			"jsonFile" : "cache-v2-bc5b709ba081810fbca6.json",
+			"kind" : "cache",
+			"version" : 
+			{
+				"major" : 2,
+				"minor" : 0
+			}
+		},
+		{
+<<<<<<<< HEAD:build-untitled-Desktop_Qt_6_4_3_MinGW_64_bit-Debug/.cmake/api/v1/reply/index-2023-05-02T01-47-50-0708.json
+			"jsonFile" : "cmakeFiles-v1-cadf54f04396e4a55c41.json",
+========
+			"jsonFile" : "cmakeFiles-v1-8d57447006918807e78c.json",
+>>>>>>>> 9e3f35995c06873dfa424e75270328ed171fba00:build-untitled-Desktop_Qt_6_4_3_MinGW_64_bit-Debug/.cmake/api/v1/reply/index-2023-05-02T01-49-14-0470.json
+			"kind" : "cmakeFiles",
+			"version" : 
+			{
+				"major" : 1,
+				"minor" : 0
+			}
+		}
+	],
+	"reply" : 
+	{
+		"cache-v2" : 
+		{
+			"jsonFile" : "cache-v2-bc5b709ba081810fbca6.json",
+			"kind" : "cache",
+			"version" : 
+			{
+				"major" : 2,
+				"minor" : 0
+			}
+		},
+		"cmakeFiles-v1" : 
+		{
+<<<<<<<< HEAD:build-untitled-Desktop_Qt_6_4_3_MinGW_64_bit-Debug/.cmake/api/v1/reply/index-2023-05-02T01-47-50-0708.json
+			"jsonFile" : "cmakeFiles-v1-cadf54f04396e4a55c41.json",
+========
+			"jsonFile" : "cmakeFiles-v1-8d57447006918807e78c.json",
+>>>>>>>> 9e3f35995c06873dfa424e75270328ed171fba00:build-untitled-Desktop_Qt_6_4_3_MinGW_64_bit-Debug/.cmake/api/v1/reply/index-2023-05-02T01-49-14-0470.json
+			"kind" : "cmakeFiles",
+			"version" : 
+			{
+				"major" : 1,
+				"minor" : 0
+			}
+		},
+		"codemodel-v2" : 
+		{
+<<<<<<<< HEAD:build-untitled-Desktop_Qt_6_4_3_MinGW_64_bit-Debug/.cmake/api/v1/reply/index-2023-05-02T01-47-50-0708.json
+			"jsonFile" : "codemodel-v2-96e4d046574b2da9f7f6.json",
+========
+			"jsonFile" : "codemodel-v2-97eb72058af4edef0220.json",
+>>>>>>>> 9e3f35995c06873dfa424e75270328ed171fba00:build-untitled-Desktop_Qt_6_4_3_MinGW_64_bit-Debug/.cmake/api/v1/reply/index-2023-05-02T01-49-14-0470.json
+			"kind" : "codemodel",
+			"version" : 
+			{
+				"major" : 2,
+				"minor" : 4
+			}
+		}
+	}
+}

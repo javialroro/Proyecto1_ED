@@ -85,6 +85,15 @@ public:
         return result;
     }
 
+    bool existeEnCola(const T& value) const {
+        for (const T& item : m_items) {
+            if (item == value) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 private:
     QList<T> m_items; // Creación de cola de elementos
     int countDeQueue = 0;

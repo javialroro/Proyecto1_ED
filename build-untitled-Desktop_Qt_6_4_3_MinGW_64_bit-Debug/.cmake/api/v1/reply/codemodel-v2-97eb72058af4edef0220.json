@@ -44,21 +44,25 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "untitled::@6890427a1f51a3e7e1df",
+<<<<<<<< HEAD:build-untitled-Desktop_Qt_6_4_3_MinGW_64_bit-Debug/.cmake/api/v1/reply/codemodel-v2-96e4d046574b2da9f7f6.json
 					"jsonFile" : "target-untitled-Debug-0b3035dcab8950fb458a.json",
+========
+					"jsonFile" : "target-untitled-Debug-327d475bdb5d398f18b5.json",
+>>>>>>>> 9e3f35995c06873dfa424e75270328ed171fba00:build-untitled-Desktop_Qt_6_4_3_MinGW_64_bit-Debug/.cmake/api/v1/reply/codemodel-v2-97eb72058af4edef0220.json
 					"name" : "untitled",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 0,
 					"id" : "untitled_autogen::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-untitled_autogen-Debug-414ecf78614d8e1659fb.json",
+					"jsonFile" : "target-untitled_autogen-Debug-4a113e941088715ee791.json",
 					"name" : "untitled_autogen",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 0,
 					"id" : "untitled_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-untitled_autogen_timestamp_deps-Debug-75b8addef2137b4faa49.json",
+					"jsonFile" : "target-untitled_autogen_timestamp_deps-Debug-de707356c2773d8408f8.json",
 					"name" : "untitled_autogen_timestamp_deps",
 					"projectIndex" : 0
 				}
@@ -68,8 +72,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/Users/QUIROS CALVO/Trabajos_TEC_2023/ED_/I Proyecto/build-untitled-Desktop_Qt_6_5_0_MinGW_64_bit-Debug",
-		"source" : "C:/Users/QUIROS CALVO/Trabajos_TEC_2023/ED_/I Proyecto/untitled"
+		"build" : "C:/Users/javia/OneDrive - Estudiantes ITCR/TEC/TEC 3 Semestre/Estructuras de Datos/Proyectos/Proyecto1_ED/build-untitled-Desktop_Qt_6_4_3_MinGW_64_bit-Debug",
+		"source" : "C:/Users/javia/OneDrive - Estudiantes ITCR/TEC/TEC 3 Semestre/Estructuras de Datos/Proyectos/Proyecto1_ED/untitled"
 	},
 	"version" : 
 	{
