@@ -282,7 +282,7 @@ Balanceador::Balanceador(listaArticulos  * l, PriorityQueue * colaPedidos, Queue
                         }
 
                     }
-                    //sleep(3);
+                    sleep(5);
 
                     semaphore.release();
 
@@ -454,13 +454,13 @@ Facturadora::Facturadora(Queue<Pedido *> & A, QObject* parent)
 
 
         // Simular el tiempo de movimiento
-        QThread::sleep(2);
+        QThread::sleep(tiempoIda);
 
 
 
 
         // Simular el tiempo de regreso a la posición inicial
-        QThread::sleep(2);
+        QThread::sleep(tiempoIda);
         pedido->factura->insertarAlFinal("Alistador: "+to_string(id)+"\n"+articulo->codProd+"\tUbicacion: "+ubicacion.toStdString()+"\t"+to_string(tiempoIda*2)+"\n");
         emit(finalizado(this));
         //colaAlistados.enQueue(pedido);
